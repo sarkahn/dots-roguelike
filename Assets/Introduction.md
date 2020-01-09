@@ -7,3 +7,5 @@ With that being said I will also be using Unity's ECS and Jobs systems. These ar
 
 ## Getting Started
 The project is structured so that each example will sit in it's own folder in the assets directory. A single unity project can be quite large so it's not recommended to try and create a separate project for each tutorial. Instead we'll divide each tutorial up by scene. In the folder for each tutorial you'll find the readme for that particular part. You can also view the tuorial readmes from the github repo if desired.
+
+Without further ado you can start the first tutorial in [Part 1](Part1/Part1-HelloWorld).
