@@ -25,4 +25,4 @@ whether installed in your assets folder or via the package manager. You can see
 details on how to do that 
 [in the RLTK repository](https://github.com/sarkahn/rltk_unity#how-to-get-it).
 
-Now without further ado you can start the first tutorial in [Part 1 - Hello World](Part1/Part1-HelloWorld).
+Now without further ado you can start the first tutorial in [Part 1 - Hello World](Part1/Part1-HelloWorld.md).
