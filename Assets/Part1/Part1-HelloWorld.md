@@ -1,6 +1,6 @@
 # Part 1 - Hello World
 
-### Setting Up the Console
+## Setting Up the Console
 
 Assuming everything is set up properly we have 
 [RLTK installed](https://github.com/sarkahn/rltk_unity#how-to-get-it) and
@@ -16,7 +16,7 @@ and attach the camera to it automatically:
 
 ![](images~/createmenu.png)
 
-### Writing to the Console
+## Writing to the Console
 
 With our console created we can write to it from a script. Before too 
 long we'll be using Unity's ECS systems to interact with our console, 
@@ -52,7 +52,7 @@ as the reference in the inspector:
 
 ![](images~/consoleinspector.png)
 
-##### Dealing with Visual Artifacts AKA The Camera Is Not Your Friend
+## Dealing with Visual Artifacts AKA The Camera Is Not Your Friend
 
 Now when you press play you might see something like this:
 
