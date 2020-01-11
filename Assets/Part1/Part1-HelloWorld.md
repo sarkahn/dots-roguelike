@@ -2,7 +2,7 @@
 
 # Part 1 - Hello World
 
-Please be sure to [read the introduction](../Introduction) before you start. It's important.
+Please be sure to [read the introduction](../Introduction.md) before you start. It's important.
 
 ## Setting Up the Console
 
