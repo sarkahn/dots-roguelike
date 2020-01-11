@@ -1,4 +1,4 @@
-**([Back to Index](../Readme.md)) - ([Next: Part 1 - Hello World](Part1/Part1-HelloWorld.md#part-1---hello-world))**
+**([Back to Index](../README.md)) - ([Next: Part 1 - Hello World](Part1/Part1-HelloWorld.md#part-1---hello-world))**
 
 # Introduction
 The goal of this tutorial is pretty much to create a Unity version of TheBracket's 
@@ -46,7 +46,7 @@ download it via ".md" files. You can read it locally or on github. If you want t
 tutorials locally you'll probably want some kind of MD reader, otherwise I would recommend 
 just viewing them [on github](https://github.com/sarkahn/rltk_unity_roguelike/blob/master/Assets/Introduction.md#project-structure).
 
-**([Back to Index](../Readme.md)) - ([Next: "Part 1 - Hello World"](Part1/Part1-HelloWorld.md#part-1---hello-world))**
+**([Back to Index](../README.md)) - ([Next: "Part 1 - Hello World"](Part1/Part1-HelloWorld.md#part-1---hello-world))**
 
 
 

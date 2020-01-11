@@ -1,4 +1,4 @@
-**([Back to Index](../../Readme.md)) - [Previous: (Introduction)](../Introduction.md) - (Next: In Progress...)**
+**([Back to Index](../../README.md)) - [Previous: (Introduction)](../Introduction.md) - (Next: In Progress...)**
 
 # Part 1 - Hello World
 
@@ -129,4 +129,4 @@ in the PixelPerfectCamera component, but it will ONLY work if the viewport is
 large enough to scale up the internal RenderTexture at least once.
 
 
-**([Back to Index](../../Readme.md)) - [Previous: (Introduction)](../Introduction.md) - (Next: In Progress...)**
+**([Back to Index](../../README.md)) - [Previous: (Introduction)](../Introduction.md) - (Next: In Progress...)**
