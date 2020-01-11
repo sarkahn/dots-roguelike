@@ -1,11 +1,14 @@
+**([Back to Index](../../Readme.md)) - [Previous: (Introduction)](../Introduction.md) - (Next: In Progress...)**
+
 # Part 1 - Hello World
+
+Please be sure to [read the introduction](../Introduction) before you start. It's important.
 
 ## Setting Up the Console
 
-Assuming everything is set up properly we have 
-[RLTK installed](https://github.com/sarkahn/rltk_unity#how-to-get-it) and
-an empty scene to start work from. If you're working from the github project
-it should look similar to this:
+Assuming [everything is set up properly](../Introduction.md#project-structure) we have 
+RLTK installed and an empty scene to start work from. If you're working from 
+the repository it should look similar to this:
 
 ![](images~/project.png)
 
@@ -42,9 +45,10 @@ public class HelloWorld : MonoBehaviour
 ```
 
 The code is pretty straightforward - we're writing the string 
-"Hello, World!" to position 5,5 in the console. By default
-Print will write white text on a black background, but you
-can pass colors as the final two arguments to change the tile colors.
+"Hello, World!" to position 5,5 in the console. Make sure you're calling it
+in `Start` and not `Awake` since the console needs to do some initilization during
+`Awake)`. By default `Print` will write white text on a black background, but you
+can call `PrintColor` to add colored tiles.
 
 In order for it to work we need it to be in our scene, so attach the new 
 script to any GameObject in the scene and set our console
@@ -86,7 +90,7 @@ The "Pixel Perfect Camera" it's referring to is a built-in Unity component
 that was put on the camera automatically from the "Initialize Simple Console"
 step earlier. In order for this camera to do it's job and give us those nice
 crisp pixels we so desire, it requires 3 things:
-1. Our game resolution (both X and Y) needs to even
+1. Our game resolution (both X and Y) needs to even. [^1]
 2. All objects must be positioned such that their pixels in the viewport line up with the pixel grid. By pixel grid I'm talking about the literal pixels on your monitor.
 3. Our game resolution needs to be at LEAST as large as the "reference resolution" setting on the PixelPerfectCamera.
 
@@ -119,3 +123,10 @@ required in order to keep things rendering correctly, it's not something you
 can just disable and expect everthing to look okay. If your camera ends up
 being too zoomed out the correct solution is to resize your console so
 the camera can adjust itself accordingly.
+
+[^1]: An alternative solution is to check the  "Upscale RenderTexture" option 
+in the PixelPerfectCamera component, but it will ONLY work if the viewport is 
+large enough to scale up the internal RenderTexture at least once.
+
+
+**([Back to Index](../../Readme.md)) - [Previous: (Introduction)](../Introduction.md) - (Next: In Progress...)**

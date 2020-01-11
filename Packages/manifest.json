@@ -2,6 +2,7 @@
   "dependencies": {
     "com.sark.rltk_unity": "https://github.com/sarkahn/rltk_unity.git#upm",
     "com.unity.collab-proxy": "1.2.16",
+    "com.unity.entities": "0.4.0-preview.10",
     "com.unity.render-pipelines.universal": "7.1.5",
     "com.unity.test-framework": "1.1.3",
     "com.unity.timeline": "1.2.6",
