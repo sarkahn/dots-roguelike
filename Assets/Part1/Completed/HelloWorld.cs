@@ -5,7 +5,7 @@ using UnityEngine;
 public class HelloWorld : MonoBehaviour
 {
     [SerializeField]
-    SimpleConsoleProxy _console;
+    SimpleConsoleProxy _console = null;
 
     private void Start()
     {

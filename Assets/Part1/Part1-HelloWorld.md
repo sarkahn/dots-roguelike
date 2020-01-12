@@ -1,12 +1,14 @@
-**([Back to Index](../../README.md)) - [Previous: (Introduction)](../Introduction.md) - (Next: In Progress...)**
+**([Back to Index](../../README.md)) - ([Previous: Introduction](../Introduction.md)) - ([Next: Part 2 - "ECS"](../Part2/Part2-ecs.md))**
 
 # Part 1 - Hello World
 
 Please be sure to [read the introduction](../Introduction.md) before you start. It's important.
 
+In part 1 we're going to get our console up and running and write some text to it.
+
 ## Setting Up the Console
 
-Assuming [everything is set up properly](../Introduction.md#project-structure) we have 
+Assuming [everything is set up properly](../Introduction.md#what-you-need) we have 
 RLTK installed and an empty scene to start work from. If you're working from 
 the repository it should look similar to this:
 
@@ -46,9 +48,9 @@ public class HelloWorld : MonoBehaviour
 
 The code is pretty straightforward - we're writing the string 
 "Hello, World!" to position 5,5 in the console. Make sure you're calling it
-in `Start` and not `Awake` since the console needs to do some initilization during
-`Awake)`. By default `Print` will write white text on a black background, but you
-can call `PrintColor` to add colored tiles.
+in Start and not Awake, since the console needs to do some initilization during
+Awake. By default Print will write white text on a black background, but you
+can call PrintColor to add colored tiles.
 
 In order for it to work we need it to be in our scene, so attach the new 
 script to any GameObject in the scene and set our console
@@ -90,7 +92,10 @@ The "Pixel Perfect Camera" it's referring to is a built-in Unity component
 that was put on the camera automatically from the "Initialize Simple Console"
 step earlier. In order for this camera to do it's job and give us those nice
 crisp pixels we so desire, it requires 3 things:
-1. Our game resolution (both X and Y) needs to even. [^1]
+1. Our game resolution (both X and Y) needs to even. An alternative solution 
+is to check the  "UpscaleRenderTexture" option in the PixelPerfectCamera component, 
+but it will ONLY work if the viewport is large enough to scale up the internal RenderTexture
+at least once. 
 2. All objects must be positioned such that their pixels in the viewport line up with the pixel grid. By pixel grid I'm talking about the literal pixels on your monitor.
 3. Our game resolution needs to be at LEAST as large as the "reference resolution" setting on the PixelPerfectCamera.
 
@@ -121,12 +126,37 @@ If you notice the camera is being a bit weird, maybe zoomed out more than it
 should be, this is why. And again, it's important to remember that this is 
 required in order to keep things rendering correctly, it's not something you 
 can just disable and expect everthing to look okay. If your camera ends up
-being too zoomed out the correct solution is to resize your console so
+being too zoomed out the correct solution in our case is to resize your console so
 the camera can adjust itself accordingly.
 
-[^1]: An alternative solution is to check the  "Upscale RenderTexture" option 
-in the PixelPerfectCamera component, but it will ONLY work if the viewport is 
-large enough to scale up the internal RenderTexture at least once.
+## Tweaking The Console Appearance
 
+You may have noticed the green background on the console. That's the "Screen Burn" effect
+being applied by the console's Material. You can tweak the settings on the Material to change
+how the console is rendered - but by default all newly created consoles share the same material.
+Because Materials are assets that live outside the scene, this means if you changed the default 
+material in one scene, it would change the appearance of all other consoles in all other scenes 
+in the project. Obviously not what we want!
 
-**([Back to Index](../../README.md)) - [Previous: (Introduction)](../Introduction.md) - (Next: In Progress...)**
+Instead if you want to customize your console's appearance you should create a new material
+and set your console use that instead by setting it in the MeshRenderer's material. Go ahead and 
+create a new Material in the Part1 folder and set it's shader to "Custom/RLKT-ConsoleShader":
+
+![](images~/makemat.png)
+
+Then in your console's inspector you can set it to use your newly created material:
+
+![](images~/setmat.png)
+
+Once that's set you can tweak the values of the newly created material in it's inspector to 
+change how your console is rendered:
+
+![](images~/materialtweaks.gif)
+
+And that will wrap up the first part. We learned how to create a console, write to it, how to make 
+sure it renders properly, and how to change it's appearance with a custom material.
+
+In the next tutorial we will start dipping our toes in to Unity's ECS system to render some 
+entities in our console.
+
+**([Back to Index](../../README.md)) - ([Previous: Introduction](../Introduction.md)) - ([Next: Part 2 - "ECS"](../Part2/Part2-ecs.md))**
