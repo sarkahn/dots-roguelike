@@ -21,6 +21,10 @@ and attach the camera to it automatically:
 
 ![](images~/createmenu.png)
 
+Note that there are 3 different types of consoles. When you use the initialize
+menu it creates a `SimpleConsoleProxy`, which is a GameObject-focused console.
+You can read more about the different consoles [in the RLKT documentation](https://github.com/sarkahn/rltk_unity/blob/master/README.md#the-console).
+
 ## Writing to the Console
 
 With our console created we can write to it from a script. Before too 
@@ -48,11 +52,11 @@ public class HelloWorld : MonoBehaviour
 
 The code is pretty straightforward - we're writing the string 
 "Hello, World!" to position 5,5 in the console. Make sure you're calling it
-in Start and not Awake, since the console needs to do some initilization during
+in Start and not Awake, since `SimpleConsoleProxy` needs to do some initilization during
 Awake. By default Print will write white text on a black background, but you
 can call PrintColor to add colored tiles.
 
-In order for it to work we need it to be in our scene, so attach the new 
+In order for our new script to work we need it to be in our scene, so attach the new 
 script to any GameObject in the scene and set our console
 as the reference in the inspector:
 
@@ -72,7 +76,7 @@ moved your objects around in your scene, you might see something like this:
 It's important to note that as horrible as the above image looks, 
 *it's completely expected*. This isn't some arcane mysterious bug with
 Unity - it's an unfortunate byproduct of the way Unity renders in 2D. To
-fully explain the technical details behind it is beyond the scope of this 
+fully explain the technical details of it is beyond the scope of this 
 tutorial, but if you're curious you can google for "Pixel Perfect Unity" 
 and you'll find plenty of explanations.
 
@@ -93,7 +97,7 @@ that was put on the camera automatically from the "Initialize Simple Console"
 step earlier. In order for this camera to do it's job and give us those nice
 crisp pixels we so desire, it requires 3 things:
 1. Our game resolution (both X and Y) needs to even. An alternative solution 
-is to check the  "UpscaleRenderTexture" option in the PixelPerfectCamera component, 
+is to check the "UpscaleRenderTexture" option in the PixelPerfectCamera component, 
 but it will ONLY work if the viewport is large enough to scale up the internal RenderTexture
 at least once. 
 2. All objects must be positioned such that their pixels in the viewport line up with the pixel grid. By pixel grid I'm talking about the literal pixels on your monitor.
@@ -126,8 +130,8 @@ If you notice the camera is being a bit weird, maybe zoomed out more than it
 should be, this is why. And again, it's important to remember that this is 
 required in order to keep things rendering correctly, it's not something you 
 can just disable and expect everthing to look okay. If your camera ends up
-being too zoomed out the correct solution in our case is to resize your console so
-the camera can adjust itself accordingly.
+being too zoomed out the correct solution in our case is to resize your console 
+or viewport so the camera can adjust itself accordingly.
 
 ## Tweaking The Console Appearance
 
@@ -135,11 +139,11 @@ You may have noticed the green background on the console. That's the "Screen Bur
 being applied by the console's Material. You can tweak the settings on the Material to change
 how the console is rendered - but by default all newly created consoles share the same material.
 Because Materials are assets that live outside the scene, this means if you changed the default 
-material in one scene, it would change the appearance of all other consoles in all other scenes 
-in the project. Obviously not what we want!
+material in one scene, it would change the appearance of all other consoles that share that
+material in all other scenes in the project. Obviously not what we want!
 
 Instead if you want to customize your console's appearance you should create a new material
-and set your console use that instead by setting it in the MeshRenderer's material. Go ahead and 
+and set your console use that instead. Go ahead and 
 create a new Material in the Part1 folder and set it's shader to "Custom/RLKT-ConsoleShader":
 
 ![](images~/makemat.png)

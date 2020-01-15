@@ -61,12 +61,12 @@ Material:
     - _Glossiness: 0
     - _GlossyReflections: 0
     - _HardLines: 0
-    - _LineIntensity: 1
+    - _LineIntensity: 0.19
     - _Metallic: 0
     - _OcclusionStrength: 1
     - _PixelScale: 2
-    - _PixelScaleCamera: 1
-    - _PixelScaleCameraFrequency: 0.5
+    - _PixelScaleCamera: 3
+    - _PixelScaleCameraFrequency: 2
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _Scanlines: 1

@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d994d465cada224baad851e5b5d7eb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _targetConsole: {fileID: 1937822663}
+  _consoleProxy: {fileID: 0}
 --- !u!114 &705287474
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -262,7 +262,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1dacebd9391b6042bc24da92f3ceff5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _width: 40
+  _width: 20
   _height: 15
 --- !u!33 &1937822664
 MeshFilter:

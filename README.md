@@ -9,3 +9,4 @@ This project was written in Unity 2019.3.01f.
 
 - [Introduction](Assets/Introduction.md)
 - [Part 1: "Hello World"](Assets/Part1/Part1-HelloWorld.md)
+- [Part 2: "ECS"](Assets/Part2/Part2-ECS.md)
