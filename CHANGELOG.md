@@ -1,5 +1,8 @@
 # Change Log
 
+## [0.2.2] - 2020-01-15
+* Isolated part 2 completed example using a bootstrap script - now only runs when scene is loaded.
+
 ## [0.2.1] - 2020-01-15
 * Cleanup on part 2
 

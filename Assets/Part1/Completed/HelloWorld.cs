@@ -2,13 +2,16 @@
 using RLTK.MonoBehaviours;
 using UnityEngine;
 
-public class HelloWorld : MonoBehaviour
+namespace RLTKTutorial.Part1
 {
-    [SerializeField]
-    SimpleConsoleProxy _console = null;
-
-    private void Start()
+    public class HelloWorld : MonoBehaviour
     {
-        _console.Print(5, 5, "Hello, world!");
+        [SerializeField]
+        SimpleConsoleProxy _console = null;
+
+        private void Start()
+        {
+            _console.Print(5, 5, "Hello, world!");
+        }
     }
 }
