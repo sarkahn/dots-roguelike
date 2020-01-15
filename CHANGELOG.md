@@ -1,5 +1,8 @@
 # Change Log
 
+## [0.2.1] - 2020-01-15
+* Cleanup on part 2
+
 ## [0.2.0] - 2020-01-15
 * First draft of Part 2 complete
 

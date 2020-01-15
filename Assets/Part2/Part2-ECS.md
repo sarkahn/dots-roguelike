@@ -68,13 +68,15 @@ when you want write ECS code, let's get started!
 
 ## Creating our RenderSystem
 
+First, create a new empty scene in our "Part2" folder and open it up, so all we have is a camera.
+
 In order to get entities drawing to our console, we'll need to create a JobComponentSystem
 that will iterate over our entities, read their position and render data, and then write to the console 
 using that data. This is the basis of all Systems - read whatever data it's concerned with and 
 act on it in some way, whether that's writing to other data, printing something to the log, or
 in our case, drawing some smileys on screen.
 
-To start with we create the bones of our system:
+To start with we create the bones of our system. Create a new script:
 
 ###### TileRenderSystem
 ``` csharp
@@ -112,15 +114,15 @@ attached to any scenes. If you change scenes and press play, this system will be
 
 If you ever want to disable a system you can add the [DisableAutoCreation] attribute to it. 
 You can learn more 
-[from the documentation](https://docs.unity3d.com/Packages/com.unity.entities@0.4/manual/system_update_order.html?q=System%20Update). For this example we're only going to be using one
-system so the default behaviour is fine, but as we move forward we'll have to put more thought
+[from the documentation](https://docs.unity3d.com/Packages/com.unity.entities@0.4/manual/system_update_order.html?q=System%20Update). For this example we're only going to be using a few simple 
+systems so the default behaviour is fine, but as we move forward we'll have to put more thought
 into how to manage the creation, upkeep, and order of many systems at once.
 
 ## Adding the Console
 
 Of course our system is not going to do much as is - it needs a console to write to. 
-The `SimpleConsoleProxy` we were using in the previous part is not really 
-suitable for us in this case since we don't need a GameObject at all - in ECS all 
+The `SimpleConsoleProxy` we were using in the previous chapter is not really 
+suitable for us in this case since we don't need a GameObject at all. In ECS all 
 entities, components and system are completely separated from the traditional 
 Unity hierarchy. Accessing MonoBehaviours from ECS is possible but should not be
 the first solution you reach for.
@@ -129,6 +131,7 @@ Instead we're just going to use the base console class, [SimpleConsole](https://
 which is intended for simple console usage from code on the main thread. We'll stick it in our 
 system like so:
 
+###### TileRenderSystem
 ``` csharp
 [AlwaysSynchronizeSystem]
 [AlwaysUpdateSystem]
@@ -172,7 +175,7 @@ Now when you press play you should see an empty console:
 ![](images~/emptyconsole.png)
 
 You might also notice that the camera is no longer resizing itself to our console. This was
-something that was handled automatically in the previous tutorial by the "Initialize Simple Console"
+something that was handled automatically in the previous chapter by the "Initialize Simple Console"
 menu command. Since we're no longer relying on that, we need to manually attach the 
 camera to our console. However, there's a problem. As I mentioned earlier we cannot access
 MonoBehaviours from ECS without doing some extra work.
@@ -200,8 +203,8 @@ to "Convert and Inject GameObject". Your Camera should look similar to this now:
 ## Accessing the MonoBehaviour from our System
 
 Now when you press play, all the components on the camera's GameObject will be "injected" into
-the ECS world, meaning an entity will be created and all the components will be attached to it. 
-We can now access our `LockCameraToConsole` component in ECS via that entity. 
+the ECS world, meaning an entity will be created and all the MonoBehaviours from the injected GameObjects will be
+attached to it. This mean we can now access our `LockCameraToConsole` component in ECS via that entity. 
 
 We can't access it inside `OnCreate` since that gets called before Entity Conversion. Instead 
 we'll override `OnStartRunning` and get our component there:
