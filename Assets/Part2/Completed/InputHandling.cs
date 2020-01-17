@@ -32,6 +32,7 @@ namespace RLTKTutorial.Part2
         }
     }
 
+    [DisableAutoCreation]
     [AlwaysSynchronizeSystem]
     public class MovePlayerSystem : JobComponentSystem
     {

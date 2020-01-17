@@ -7,22 +7,22 @@ namespace RLTKTutorial.Part2
 {
     public class Part2Bootstrap : MonoBehaviour
     {
-        Part1SystemGroup systems;
+        Part1SystemGroup _systems;
 
         private void OnEnable()
         {
-            systems = World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<Part1SystemGroup>();
+            _systems = World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<Part1SystemGroup>();
         }
 
         private void OnDisable()
         {
-            if(systems != null && World.DefaultGameObjectInjectionWorld != null)
-                World.DefaultGameObjectInjectionWorld.DestroySystem(systems);
+            if(_systems != null && World.DefaultGameObjectInjectionWorld != null)
+                World.DefaultGameObjectInjectionWorld.DestroySystem(_systems);
         }
 
         private void Update()
         {
-            systems.Update();
+            _systems.Update();
         }
 
     }
@@ -35,6 +35,7 @@ namespace RLTKTutorial.Part2
         {
             AddSystemToUpdateList(World.GetOrCreateSystem<TileRenderSystem>());
             AddSystemToUpdateList(World.GetOrCreateSystem<MoveLeftSystem>());
+            AddSystemToUpdateList(World.GetOrCreateSystem<MovePlayerSystem>());
             AddSystemToUpdateList(World.GetOrCreateSystem<ReadInputSystem>());
         }
     }
