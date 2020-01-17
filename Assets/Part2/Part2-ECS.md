@@ -1,4 +1,4 @@
-﻿**([Back to Index](../../README.md)) - ([Previous: Part 1 - "Hello World"](../Part1/Part1-helloworld.md))- (Next: In Progress...))**
+﻿**([Back to Index](../../README.md)) - ([Previous: Part 1 - "Hello World"](../Part1/Part1-helloworld.md))- ([Next: Part 3 - "Walking a Map"](../Part3/Part3-WalkingaMap.md)))**
 
 # Part 2 - ECS
 
@@ -574,4 +574,4 @@ And that's it for this part of the tutorial. That was a lot of information to di
 the documentation close at hand and don't be afraid to poke around the source code of anything
 you don't yet understand.
 
-**([Back to Index](../../README.md)) - ([Previous: Part 1 - "Hello World"](../Part1/Part1-helloworld.md))- (Next: In Progress...))**
+**([Back to Index](../../README.md)) - ([Previous: Part 1 - "Hello World"](../Part1/Part1-helloworld.md))- ([Next: Part 3 - "Walking a Map"](../Part3/Part3-WalkingaMap.md)))**

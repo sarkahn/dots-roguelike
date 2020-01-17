@@ -13,7 +13,6 @@ namespace RLTKTutorial.Part2
     }
 
     [DisableAutoCreation]
-    [UpdateInGroup(typeof(Part1SystemGroup))]
     [AlwaysSynchronizeSystem]
     public class ReadInputSystem : JobComponentSystem
     {
