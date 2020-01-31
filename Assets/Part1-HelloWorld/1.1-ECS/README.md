@@ -1,4 +1,4 @@
-﻿#### [« Previous: 1.0 - Writing to the Console](../1.0-WritingToTheConsole/README#10) —  [Next: 1.2 - Walking a Map »](../1.2-WalkingAMap/README)
+﻿#### [« Previous: 1.0 - Writing to the Console](../1.0-WritingToTheConsole/README.md#10---writing-to-the-console) —  [Next: 1.2 - Walking a Map »](../1.2-WalkingAMap/README.md#12---walking-a-map)
 
 # 1.1 - ECS
 
@@ -185,4 +185,4 @@ The `ReadInputSystem` and `MovePlayerSystem` inside [InputHandling.cs](InputHand
 
 The next chapter will focus on generating a map for the player to move around in.
 
-#### [« Previous: 1.0 - Writing to the Console](../1.0-WritingToTheConsole/README#10) —  [Next: 1.2 - Walking a Map »](../1.2-WalkingAMap/README)
+#### [« Previous: 1.0 - Writing to the Console](../1.0-WritingToTheConsole/README.md#10---writing-to-the-console) —  [Next: 1.2 - Walking a Map »](../1.2-WalkingAMap/README.md#12---walking-a-map)
