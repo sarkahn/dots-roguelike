@@ -1,5 +1,9 @@
 # Change Log
 
+## [0.3.0] - 2020-01-31
+* Massively simplified readmes
+* Part 3 scene is complete, needs readme
+
 ## [0.2.2] - 2020-01-15
 * Isolated part 2 completed example using a bootstrap script - now only runs when scene is loaded.
 

@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Part2/Completed/Part2-Completed.unity
-    guid: 949305d09c02e7d44b324aa42b95a318
+    path: Assets/Part1-HelloWorld/1.2-WalkingAMap/1.2-WalkingAMap.unity
+    guid: 1c83ae31fd51bbd439e37d4cd3af4f1b
   m_configObjects: {}

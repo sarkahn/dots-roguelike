@@ -3,9 +3,10 @@
     "com.sark.rltk_unity": "https://github.com/sarkahn/rltk_unity.git#upm",
     "com.unity.collab-proxy": "1.2.16",
     "com.unity.entities": "0.4.0-preview.10",
-    "com.unity.render-pipelines.universal": "7.1.5",
-    "com.unity.test-framework": "1.1.3",
-    "com.unity.timeline": "1.2.6",
+    "com.unity.inputsystem": "1.0.0-preview.4",
+    "com.unity.render-pipelines.universal": "7.1.8",
+    "com.unity.test-framework": "1.1.9",
+    "com.unity.timeline": "1.2.10",
     "com.unity.modules.ai": "1.0.0",
     "com.unity.modules.androidjni": "1.0.0",
     "com.unity.modules.animation": "1.0.0",
@@ -41,7 +42,7 @@
   "lock": {
     "com.sark.rltk_unity": {
       "revision": "upm",
-      "hash": "8675ac537de5e3488cc91a8f270450bb2e1105b2"
+      "hash": "d95b438b449a7cc28059c7fde165472f03fc1fb2"
     }
   }
 }
