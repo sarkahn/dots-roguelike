@@ -2,7 +2,7 @@
 using RLTK.MonoBehaviours;
 using UnityEngine;
 
-namespace RLTKTutorial.Part1
+namespace RLTKTutorial.Part1_0
 {
     public class HelloWorld : MonoBehaviour
     {

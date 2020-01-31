@@ -89,7 +89,7 @@ public class RenderSystem : JobComponentSystem
 
 I applied the [DisableAutoCreation] attribute because I want the systems for each chapter to be created only when that chapter's scene is loaded. This is accomplished with the [Part2Bootstrap](Part2Bootstrap.cs) class, which is derived from the utility [Bootstrap](../../Common/Bootstrap.cs) inside the "Common" folder.
 
-We create the console inside `OnCreate` and destroy in `OnDestroy`. The lifetime isn't managed automatically by our `SimpleConsoleProxy` any more so we have to do it ourselves. 
+We create the console inside `OnCreate` and destroy in `OnDestroy`. The lifetime isn't managed automatically by our `SimpleConsoleProxy` anymore so we have to do it ourselves. 
 
 In the previous chapter we used the `LockCameraToConsole` component to adjust the Camera. That component is made to work with the `SimpleConsoleProxy`, since we aren't using that we can instead use the RLTK class `RenderUtility` to automatically adjust the camera to our console's size inside `OnStartRunning`. We can't call that from `OnCreate` since the Camera's GameObject will not have been created yet at that point.
 
@@ -136,13 +136,13 @@ public class CreateEntities : MonoBehaviour, IConvertGameObjectToEntity
 }
 ```
 
-Note the `conversionSystem.CreateAdditionalEntity` calls. You might intuitively think you should create additional entities via `dstManager.CreateEntity`, but inside a `IConvertGameObjectToEntity` script you must use `CreateAdditionalEntity` and pass in the converting GameObject for it to work properly.
+Note the `conversionSystem.CreateAdditionalEntity` calls. You might intuitively think you should create additional entities via `dstManager.CreateEntity`, but inside an `IConvertGameObjectToEntity` script you must use `CreateAdditionalEntity` and pass in the converting GameObject for it to work properly.
 
 This is a nice and straightforward way to create entities using the [ConversionSystem](https://docs.unity3d.com/Packages/com.unity.entities@0.5/manual/gp_overview.html#gameobject-conversion). I didn't do it in this case, but this also makes it really easy to add values in the inspector that you can use to customize entity creation (ie: Change colors, or create more or less entities).
 
 ## Movement
 
-For the non-player entities movement is handles by the `MoveLeftSystem`, which iterates over all entities with a `MoveLeft` component and a `Position`:
+For the non-player entities movement is handled by the `MoveLeftSystem`, which iterates over all entities with a `MoveLeft` component and a `Position`:
 
 ###### MoveLeftSystem
 ```

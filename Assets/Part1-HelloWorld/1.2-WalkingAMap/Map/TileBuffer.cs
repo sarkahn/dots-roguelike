@@ -1,12 +1,14 @@
-﻿using RLTK;
-using RLTKTutorial.Game;
+﻿
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Entities;
 using UnityEngine;
 
-namespace RLTKTutorial.Part3
+using RLTK;
+
+namespace RLTKTutorial.Part1_2
 {
+    // A buffer of TileType which will represent the walkable map.
     [System.Serializable]
     public struct TileBuffer : IBufferElementData
     {

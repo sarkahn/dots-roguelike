@@ -7,6 +7,4 @@ Unless you have an MD reader I would generally recommend just reading the readme
 
 This tutorial is not intended for someone who is a complete beginner to Unity or someone with little to no programming experience. Before proceeding you should have some familiarity with Unity and be prepared to dig through some source code to figure out how things work.
 
-
-
 #### [Next: 1.0 - Writing to the Console »](Part1-HelloWorld/1.0-WritingToTheConsole/README.md#10---writing-to-the-console)

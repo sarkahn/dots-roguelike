@@ -1,18 +1,18 @@
-﻿using RLTK;
-using RLTK.Consoles;
-using RLTK.Rendering;
+﻿
 using Unity.Collections;
 using Unity.Entities;
 using Unity.Jobs;
 using UnityEngine;
 
-using RLTKTutorial.Game;
-using RLTKTutorial.Part3.Map;
-
-using static RLTK.CodePage437;
+using RLTK;
+using RLTK.Consoles;
+using RLTK.Rendering;
 using Unity.Mathematics;
 
-namespace RLTKTutorial.Part3
+using static RLTK.CodePage437;
+
+
+namespace RLTKTutorial.Part1_2
 {
     [DisableAutoCreation]
     [AlwaysSynchronizeSystem]

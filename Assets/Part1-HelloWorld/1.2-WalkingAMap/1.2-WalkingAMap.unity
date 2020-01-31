@@ -1736,7 +1736,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _width: 45
   _height: 30
-  _seed: 0
 --- !u!4 &1556800597
 Transform:
   m_ObjectHideFlags: 0

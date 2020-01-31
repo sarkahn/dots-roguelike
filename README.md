@@ -11,5 +11,14 @@ This project was written in Unity 2019.3.06f.
 
 #### Part 1 - Hello World  
   - [1.0 - Writing to the Console](Assets/Part1-HelloWorld/1.0-WritingToTheConsole/README.md)
+
+
+![](Assets/Common/demoimages~/helloworldsmall.png)
+
   - [1.1 - ECS](Assets/Part1-HelloWorld/1.1-ECS/README.md)
+
+![](Assets/Common/demoimages~/moveleftsmall.gif)
+
   - [1.2 - WalkingAMap](Assets/Part1-HelloWorld/1.2-WalkingAMap/README.md)
+
+![](Assets/Common/demoimages~/mapgensmall.gif)

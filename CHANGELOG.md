@@ -1,5 +1,10 @@
 # Change Log
 
+## [0.3.1] - 2020-01-31
+* Cleaned up earlier examples a bit
+* First draft on part 3 readme done.
+* Added fancy pictures to the main README
+
 ## [0.3.0] - 2020-01-31
 * Massively simplified readmes
 * Part 3 scene is complete, needs readme

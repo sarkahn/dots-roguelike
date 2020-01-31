@@ -7,7 +7,7 @@ using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace RLTKTutorial.Part3
+namespace RLTKTutorial.Part1_2
 {
     [DisableAutoCreation]
     public class PlayerInputSystem : JobComponentSystem
@@ -32,12 +32,6 @@ namespace RLTKTutorial.Part3
 
         protected override JobHandle OnUpdate(JobHandle inputDeps)
         {
-            //float h = Input.GetAxisRaw("Horizontal");
-            //float v = Input.GetAxisRaw("Vertical");
-
-            //float2 move = new float2(h, v);
-            
-            
             if( _inputQueue.Count > 0 )
             {
                 float2 move = _inputQueue.Dequeue();

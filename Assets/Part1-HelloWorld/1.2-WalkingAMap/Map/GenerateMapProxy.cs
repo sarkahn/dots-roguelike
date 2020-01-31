@@ -4,10 +4,10 @@ using Unity.Entities;
 using Unity.Mathematics;
 using UnityEngine;
 
-namespace RLTKTutorial.Part3
+namespace RLTKTutorial.Part1_2
 {
     [GenerateAuthoringComponent]
-    public struct GenerateMapProxy : IComponentData
+    public struct GenerateMap : IComponentData
     {
         public int iterationCount;
         public int2 playerPos;

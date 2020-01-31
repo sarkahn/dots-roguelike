@@ -1,5 +1,4 @@
 ﻿
-using RLTKTutorial.Part3.Map;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Entities;
@@ -7,7 +6,7 @@ using Unity.Jobs;
 using Unity.Mathematics;
 using UnityEngine;
 
-namespace RLTKTutorial.Part3
+namespace RLTKTutorial.Part1_2
 {
     public class PlayerMoveSystem : JobComponentSystem
     {
@@ -56,7 +55,7 @@ namespace RLTKTutorial.Part3
 
                     int idx = p.y * mapData.width + p.x;
 
-                    if (map[idx].value != Game.TileType.Wall)
+                    if (map[idx].value != TileType.Wall)
                     {
                         posFromEntity[playerEntity] = p;
                     }

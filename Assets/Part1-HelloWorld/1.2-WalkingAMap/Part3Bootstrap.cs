@@ -1,9 +1,9 @@
-﻿using RLTKTutorial.Part3.Map;
+﻿
 using Unity.Entities;
 using Unity.Jobs;
 using UnityEngine;
 
-namespace RLTKTutorial.Part3
+namespace RLTKTutorial.Part1_2
 {
     public class Part3Bootstrap : Bootstrap
     {

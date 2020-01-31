@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace RLTKTutorial.Game
+namespace RLTKTutorial.Part1_2
 {
 
     public enum TileType : int

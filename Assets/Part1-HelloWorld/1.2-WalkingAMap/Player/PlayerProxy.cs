@@ -5,24 +5,27 @@ using Unity.Mathematics;
 using UnityEngine;
 
 
-public struct Player : IComponentData
-{ }
-
-public class PlayerProxy : MonoBehaviour, IConvertGameObjectToEntity
+namespace RLTKTutorial.Part1_2
 {
-    public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem)
-    {
-        var p = transform.position;
-        int2 pos = new int2((int)p.x, (int)p.y);
+    public struct Player : IComponentData
+    { }
 
-        dstManager.AddComponent<Player>(entity);
-        dstManager.AddComponentData<Position>(entity, pos);
-    }
-
-    private void OnDrawGizmos()
+    public class PlayerProxy : MonoBehaviour, IConvertGameObjectToEntity
     {
-        var p = transform.position;
-        Gizmos.color = Color.cyan;
-        Gizmos.DrawWireCube(p, Vector3.one);
+        public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem)
+        {
+            var p = transform.position;
+            int2 pos = new int2((int)p.x, (int)p.y);
+
+            dstManager.AddComponent<Player>(entity);
+            dstManager.AddComponentData<Position>(entity, pos);
+        }
+
+        private void OnDrawGizmos()
+        {
+            var p = transform.position;
+            Gizmos.color = Color.cyan;
+            Gizmos.DrawWireCube(p, Vector3.one);
+        }
     }
 }
