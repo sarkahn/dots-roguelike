@@ -7,13 +7,14 @@ using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace RLTKTutorial.Part1_2
+namespace RLTKTutorial.Part1_3
 {
     [DisableAutoCreation]
     public class PlayerInputSystem : JobComponentSystem
     {
         TutorialControls _controls;
         InputAction _moveAction;
+        InputAction _generateMapAction;
 
         Queue<Vector2> _inputQueue = new Queue<Vector2>();
 
@@ -22,19 +23,22 @@ namespace RLTKTutorial.Part1_2
             _controls = new TutorialControls();
             _controls.Enable();
             _moveAction = _controls.DefaultMapping.Move;
+            _generateMapAction = _controls.DefaultMapping.GenerateMap;
         }
 
 
         protected override JobHandle OnUpdate(JobHandle inputDeps)
         {
-            float2 move = _moveAction.triggered ? (float2)_moveAction.ReadValue<Vector2>() : float2.zero;
+            float2 movement = _moveAction.triggered ? (float2)_moveAction.ReadValue<Vector2>() : float2.zero;
+            bool generateMap = _generateMapAction.triggered;
             
             inputDeps = Entities.ForEach((ref PlayerInput input) =>
             {
-                input.movement = move;
+                input.movement = movement;
+                input.generateNewMap = generateMap;
             }).Schedule(inputDeps);
 
-            return inputDeps;
+        return inputDeps;
         }
     }
 }

@@ -1,5 +1,5 @@
 
-#### [« Previous: 1.1 - ECS](../1.1-ECS/README.md#11---ecs) —  [Next: --- »](README)
+#### [« Previous: 1.1 - ECS](../1.1-ECS/README.md#11---ecs) —  [Next: 1.3 - A More Interesting Map »](../1.3-AMoreInterestingMap/README.md)
 
 # 1.2 - Walking a Map
 
@@ -203,4 +203,4 @@ var gen = new GenerateMap
 em.AddComponentData(_mapEntity, gen);
 ```
 
-#### [« Previous: 1.1 - ECS](../1.1-ECS/README#11---ecs) —  [Next: --- »](README)
+#### [« Previous: 1.1 - ECS](../1.1-ECS/README.md#11---ecs) —  [Next: 1.3 - A More Interesting Map »](../1.3-AMoreInterestingMap/README.md)

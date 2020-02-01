@@ -4,6 +4,7 @@ using Unity.Entities;
 using Unity.Jobs;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace RLTKTutorial.Part1_1
 {
@@ -16,15 +17,24 @@ namespace RLTKTutorial.Part1_1
     [AlwaysSynchronizeSystem]
     public class ReadInputSystem : JobComponentSystem
     {
+        TutorialControls _controls;
+        InputAction _moveAction;
+
+        protected override void OnCreate()
+        {
+            _controls = new TutorialControls();
+            _controls.Enable();
+            _moveAction = _controls.DefaultMapping.Move;
+        }
+
         protected override JobHandle OnUpdate(JobHandle inputDeps)
         {
-            float hor = Input.GetAxisRaw("Horizontal");
-            float ver = Input.GetAxisRaw("Vertical");
+            float2 move = _moveAction.triggered ? (float2)_moveAction.ReadValue<Vector2>() : float2.zero;
 
             Entities.ForEach((ref InputData input) =>
             {
-                input.Value.x = hor;
-                input.Value.y = ver;
+                input.Value.x = move.x;
+                input.Value.y = move.y;
             }).Run();
 
             return default;
@@ -37,10 +47,9 @@ namespace RLTKTutorial.Part1_1
     {
         protected override JobHandle OnUpdate(JobHandle inputDeps)
         {
-            float dt = Time.DeltaTime;
             Entities.ForEach((ref Position pos, in InputData input) =>
             {
-                pos.Value += input.Value * 10 * dt;
+                pos.Value += input.Value;
             }).Run();
 
             return default;

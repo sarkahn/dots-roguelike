@@ -33,35 +33,57 @@ namespace RLTKTutorial.Part1_2
             var inputFromEntity = GetComponentDataFromEntity<PlayerInput>(false);
             var posFromEntity = GetComponentDataFromEntity<Position>(false);
 
-            // We want to do the foreach over the map ( as opposed to the player )
-            // to avoid the "container is not suitable for parallel writing" 
-            // from passing the map into a foreach. 
-            // TODO : Clean this up a bit, maybe just get everything via query and 
-            // do the work inside Job.WithCode
-            inputDeps = Entities
-                .WithNativeDisableParallelForRestriction(posFromEntity)
-                .WithNativeDisableParallelForRestriction(inputFromEntity)
-                .ForEach((ref DynamicBuffer<TileBuffer> map, in MapData mapData) =>
+            var mapEntity = GetSingletonEntity<TileBuffer>();
+            var mapFromEntity = GetBufferFromEntity<TileBuffer>(false);
+            var mapDataFromEntity = GetComponentDataFromEntity<MapData>();
+
+            inputDeps = Job.WithCode(() =>
+            {
+                var input = inputFromEntity[playerEntity];
+                var hor = input.movement.x;
+                var ver = input.movement.y;
+
+                var pos = posFromEntity[playerEntity];
+                int2 p = pos;
+
+                p.x += (int)hor;
+                p.y += (int)ver;
+
+                var map = mapFromEntity[mapEntity];
+                var mapData = mapDataFromEntity[mapEntity];
+
+                int idx = p.y * mapData.width + p.x;
+
+                if (map[idx].value != TileType.Wall)
                 {
-                    var input = inputFromEntity[playerEntity];
-                    var hor = input.movement.x;
-                    var ver = input.movement.y;
+                    posFromEntity[playerEntity] = p;
+                }
+            }).Schedule(inputDeps);
+            
+            //inputDeps = Entities
+            //    .WithNativeDisableParallelForRestriction(posFromEntity)
+            //    .WithNativeDisableParallelForRestriction(inputFromEntity)
+            //    .ForEach((ref DynamicBuffer<TileBuffer> map, in MapData mapData) =>
+            //    {
+            //        var input = inputFromEntity[playerEntity];
+            //        var hor = input.movement.x;
+            //        var ver = input.movement.y;
 
-                    var pos = posFromEntity[playerEntity];
-                    int2 p = pos;
+            //        var pos = posFromEntity[playerEntity];
+            //        int2 p = pos;
 
-                    p.x += (int)hor;
-                    p.y += (int)ver;
+            //        p.x += (int)hor;
+            //        p.y += (int)ver;
 
-                    int idx = p.y * mapData.width + p.x;
+            //        int idx = p.y * mapData.width + p.x;
 
-                    if (map[idx].value != TileType.Wall)
-                    {
-                        posFromEntity[playerEntity] = p;
-                    }
-                    // Reset input
-                    inputFromEntity[playerEntity] = default;
-                }).Schedule(inputDeps);
+            //        if (map[idx].value != TileType.Wall)
+            //        {
+            //            posFromEntity[playerEntity] = p;
+            //        }
+            //        // Reset input
+            //        inputFromEntity[playerEntity] = default;
+            //    }).Schedule(inputDeps);
     
             return inputDeps;
         }

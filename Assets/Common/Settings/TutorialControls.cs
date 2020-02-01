@@ -1,4 +1,4 @@
-// GENERATED AUTOMATICALLY FROM 'Assets/Settings/MapNavigationInput.inputactions'
+// GENERATED AUTOMATICALLY FROM 'Assets/Common/Settings/TutorialControls.inputactions'
 
 using System;
 using System.Collections;
@@ -6,16 +6,16 @@ using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
 
-public class @MapNavigationInput : IInputActionCollection, IDisposable
+public class @TutorialControls : IInputActionCollection, IDisposable
 {
     public InputActionAsset asset { get; }
-    public @MapNavigationInput()
+    public @TutorialControls()
     {
         asset = InputActionAsset.FromJson(@"{
-    ""name"": ""MapNavigationInput"",
+    ""name"": ""TutorialControls"",
     ""maps"": [
         {
-            ""name"": ""MapNavigation"",
+            ""name"": ""DefaultMapping"",
             ""id"": ""0bcf1ae4-d4a8-4a89-af0f-2fc99c062bc4"",
             ""actions"": [
                 {
@@ -24,7 +24,23 @@ public class @MapNavigationInput : IInputActionCollection, IDisposable
                     ""id"": ""0b87067b-513e-4be1-b906-637b3f915ddd"",
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
-                    ""interactions"": """"
+                    ""interactions"": ""RepeatedPress(delay=0.2)""
+                },
+                {
+                    ""name"": ""GenerateMap"",
+                    ""type"": ""Button"",
+                    ""id"": ""265618f5-c436-4ae7-9d31-f88042c1122f"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""RepeatedPress""
+                },
+                {
+                    ""name"": ""ResizeMap"",
+                    ""type"": ""Value"",
+                    ""id"": ""fd074da2-8877-4d0b-9885-2388a909c4d0"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": ""RepeatedPress(delay=0.2,rate=0.01)""
                 }
             ],
             ""bindings"": [
@@ -95,61 +111,6 @@ public class @MapNavigationInput : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""Arrows"",
-                    ""id"": ""6643f30e-b031-4128-a192-02f250ae3013"",
-                    ""path"": ""2DVector"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""up"",
-                    ""id"": ""7cf7e46c-0b09-488c-8653-d256540e78e1"",
-                    ""path"": ""<Keyboard>/upArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""down"",
-                    ""id"": ""aabf1f6c-04b0-44d6-82fb-edd2a2080edd"",
-                    ""path"": ""<Keyboard>/downArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""left"",
-                    ""id"": ""ba74d141-99ab-423f-ad88-54225620606d"",
-                    ""path"": ""<Keyboard>/leftArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""right"",
-                    ""id"": ""6df60965-14f1-4b7b-9382-ff4d2f5399dd"",
-                    ""path"": ""<Keyboard>/rightArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
                     ""name"": ""Numpad"",
                     ""id"": ""6898ec67-4196-402b-a995-91ee0e03d9ea"",
                     ""path"": ""2DVector"",
@@ -203,15 +164,83 @@ public class @MapNavigationInput : IInputActionCollection, IDisposable
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c1e84ef1-66d6-44b0-8874-2fe1656f1e0f"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""GenerateMap"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""84a35741-4aa2-46ac-86ff-ef6ef3afd03f"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ResizeMap"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""848f3b74-ba46-4de6-9502-6348fa7aa635"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ResizeMap"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""0445c42f-f663-461d-9120-d8d9e1259a1d"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ResizeMap"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""6e4e578b-7839-4673-bee5-1d1ef8a536a2"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ResizeMap"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""85f29695-d3a1-4808-a927-141fc9d9dd8d"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ResizeMap"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
     ],
     ""controlSchemes"": []
 }");
-        // MapNavigation
-        m_MapNavigation = asset.FindActionMap("MapNavigation", throwIfNotFound: true);
-        m_MapNavigation_Move = m_MapNavigation.FindAction("Move", throwIfNotFound: true);
+        // DefaultMapping
+        m_DefaultMapping = asset.FindActionMap("DefaultMapping", throwIfNotFound: true);
+        m_DefaultMapping_Move = m_DefaultMapping.FindAction("Move", throwIfNotFound: true);
+        m_DefaultMapping_GenerateMap = m_DefaultMapping.FindAction("GenerateMap", throwIfNotFound: true);
+        m_DefaultMapping_ResizeMap = m_DefaultMapping.FindAction("ResizeMap", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -258,40 +287,58 @@ public class @MapNavigationInput : IInputActionCollection, IDisposable
         asset.Disable();
     }
 
-    // MapNavigation
-    private readonly InputActionMap m_MapNavigation;
-    private IMapNavigationActions m_MapNavigationActionsCallbackInterface;
-    private readonly InputAction m_MapNavigation_Move;
-    public struct MapNavigationActions
+    // DefaultMapping
+    private readonly InputActionMap m_DefaultMapping;
+    private IDefaultMappingActions m_DefaultMappingActionsCallbackInterface;
+    private readonly InputAction m_DefaultMapping_Move;
+    private readonly InputAction m_DefaultMapping_GenerateMap;
+    private readonly InputAction m_DefaultMapping_ResizeMap;
+    public struct DefaultMappingActions
     {
-        private @MapNavigationInput m_Wrapper;
-        public MapNavigationActions(@MapNavigationInput wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Move => m_Wrapper.m_MapNavigation_Move;
-        public InputActionMap Get() { return m_Wrapper.m_MapNavigation; }
+        private @TutorialControls m_Wrapper;
+        public DefaultMappingActions(@TutorialControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Move => m_Wrapper.m_DefaultMapping_Move;
+        public InputAction @GenerateMap => m_Wrapper.m_DefaultMapping_GenerateMap;
+        public InputAction @ResizeMap => m_Wrapper.m_DefaultMapping_ResizeMap;
+        public InputActionMap Get() { return m_Wrapper.m_DefaultMapping; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
         public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(MapNavigationActions set) { return set.Get(); }
-        public void SetCallbacks(IMapNavigationActions instance)
+        public static implicit operator InputActionMap(DefaultMappingActions set) { return set.Get(); }
+        public void SetCallbacks(IDefaultMappingActions instance)
         {
-            if (m_Wrapper.m_MapNavigationActionsCallbackInterface != null)
+            if (m_Wrapper.m_DefaultMappingActionsCallbackInterface != null)
             {
-                @Move.started -= m_Wrapper.m_MapNavigationActionsCallbackInterface.OnMove;
-                @Move.performed -= m_Wrapper.m_MapNavigationActionsCallbackInterface.OnMove;
-                @Move.canceled -= m_Wrapper.m_MapNavigationActionsCallbackInterface.OnMove;
+                @Move.started -= m_Wrapper.m_DefaultMappingActionsCallbackInterface.OnMove;
+                @Move.performed -= m_Wrapper.m_DefaultMappingActionsCallbackInterface.OnMove;
+                @Move.canceled -= m_Wrapper.m_DefaultMappingActionsCallbackInterface.OnMove;
+                @GenerateMap.started -= m_Wrapper.m_DefaultMappingActionsCallbackInterface.OnGenerateMap;
+                @GenerateMap.performed -= m_Wrapper.m_DefaultMappingActionsCallbackInterface.OnGenerateMap;
+                @GenerateMap.canceled -= m_Wrapper.m_DefaultMappingActionsCallbackInterface.OnGenerateMap;
+                @ResizeMap.started -= m_Wrapper.m_DefaultMappingActionsCallbackInterface.OnResizeMap;
+                @ResizeMap.performed -= m_Wrapper.m_DefaultMappingActionsCallbackInterface.OnResizeMap;
+                @ResizeMap.canceled -= m_Wrapper.m_DefaultMappingActionsCallbackInterface.OnResizeMap;
             }
-            m_Wrapper.m_MapNavigationActionsCallbackInterface = instance;
+            m_Wrapper.m_DefaultMappingActionsCallbackInterface = instance;
             if (instance != null)
             {
                 @Move.started += instance.OnMove;
                 @Move.performed += instance.OnMove;
                 @Move.canceled += instance.OnMove;
+                @GenerateMap.started += instance.OnGenerateMap;
+                @GenerateMap.performed += instance.OnGenerateMap;
+                @GenerateMap.canceled += instance.OnGenerateMap;
+                @ResizeMap.started += instance.OnResizeMap;
+                @ResizeMap.performed += instance.OnResizeMap;
+                @ResizeMap.canceled += instance.OnResizeMap;
             }
         }
     }
-    public MapNavigationActions @MapNavigation => new MapNavigationActions(this);
-    public interface IMapNavigationActions
+    public DefaultMappingActions @DefaultMapping => new DefaultMappingActions(this);
+    public interface IDefaultMappingActions
     {
         void OnMove(InputAction.CallbackContext context);
+        void OnGenerateMap(InputAction.CallbackContext context);
+        void OnResizeMap(InputAction.CallbackContext context);
     }
 }

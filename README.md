@@ -5,7 +5,7 @@ A unity port of TheBracket's [Roguelike Tutorial in Rust - using RLTK](https://g
 This is very much a work in progress. Feel free to [open an issue](https://github.com/sarkahn/rltk_unity_roguelike/issues)
 if you see any obvious mistakes or errors. 
 
-This project was written in Unity 2019.3.06f.
+This project was written in Unity 2019.3.06f with the Entities package v 0.5.1.
 
 ### [Introduction](Assets/Introduction.md)
 
@@ -19,6 +19,11 @@ This project was written in Unity 2019.3.06f.
 
 ![](Assets/Common/demoimages~/moveleftsmall.gif)
 
-  - [1.2 - WalkingAMap](Assets/Part1-HelloWorld/1.2-WalkingAMap/README.md)
+  - [1.2 - Walking a Map](Assets/Part1-HelloWorld/1.2-WalkingAMap/README.md)
 
 ![](Assets/Common/demoimages~/mapgensmall.gif)
+
+  - [1.3 - A More Interesting Map](Assets/Part1-HelloWorld/1.3-AMoreInterestingMap/README.md)
+
+![](Assets/Common/demoimages~/1_3_small.gif)
+
