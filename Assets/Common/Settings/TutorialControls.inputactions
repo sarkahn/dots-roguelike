@@ -28,6 +28,14 @@
                     "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "RepeatedPress(delay=0.2,rate=0.01)"
+                },
+                {
+                    "name": "QuitGame",
+                    "type": "Button",
+                    "id": "bed7f492-4a3b-4b7a-911e-deaaf13f9117",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "RepeatedPress(delay=0.2,rate=0.01)"
                 }
             ],
             "bindings": [
@@ -217,6 +225,17 @@
                     "action": "ResizeMap",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "cdf5231c-43a1-4164-b7b3-b4f15ed10bed",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "QuitGame",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }

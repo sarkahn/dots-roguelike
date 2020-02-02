@@ -14,6 +14,7 @@ namespace RLTKTutorial.Part1_2
     {
         TutorialControls _controls;
         InputAction _moveAction;
+        InputAction _quitAction;
 
         Queue<Vector2> _inputQueue = new Queue<Vector2>();
 
@@ -22,11 +23,18 @@ namespace RLTKTutorial.Part1_2
             _controls = new TutorialControls();
             _controls.Enable();
             _moveAction = _controls.DefaultMapping.Move;
+            _quitAction = _controls.DefaultMapping.QuitGame;
         }
 
 
         protected override JobHandle OnUpdate(JobHandle inputDeps)
         {
+            if( _quitAction.triggered )
+            {
+                Application.Quit();
+                return inputDeps;
+            }
+
             float2 move = _moveAction.triggered ? (float2)_moveAction.ReadValue<Vector2>() : float2.zero;
             
             inputDeps = Entities.ForEach((ref PlayerInput input) =>

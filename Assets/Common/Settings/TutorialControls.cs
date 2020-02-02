@@ -41,6 +41,14 @@ public class @TutorialControls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": ""RepeatedPress(delay=0.2,rate=0.01)""
+                },
+                {
+                    ""name"": ""QuitGame"",
+                    ""type"": ""Button"",
+                    ""id"": ""bed7f492-4a3b-4b7a-911e-deaaf13f9117"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""RepeatedPress(delay=0.2,rate=0.01)""
                 }
             ],
             ""bindings"": [
@@ -230,6 +238,17 @@ public class @TutorialControls : IInputActionCollection, IDisposable
                     ""action"": ""ResizeMap"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cdf5231c-43a1-4164-b7b3-b4f15ed10bed"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""QuitGame"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -241,6 +260,7 @@ public class @TutorialControls : IInputActionCollection, IDisposable
         m_DefaultMapping_Move = m_DefaultMapping.FindAction("Move", throwIfNotFound: true);
         m_DefaultMapping_GenerateMap = m_DefaultMapping.FindAction("GenerateMap", throwIfNotFound: true);
         m_DefaultMapping_ResizeMap = m_DefaultMapping.FindAction("ResizeMap", throwIfNotFound: true);
+        m_DefaultMapping_QuitGame = m_DefaultMapping.FindAction("QuitGame", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -293,6 +313,7 @@ public class @TutorialControls : IInputActionCollection, IDisposable
     private readonly InputAction m_DefaultMapping_Move;
     private readonly InputAction m_DefaultMapping_GenerateMap;
     private readonly InputAction m_DefaultMapping_ResizeMap;
+    private readonly InputAction m_DefaultMapping_QuitGame;
     public struct DefaultMappingActions
     {
         private @TutorialControls m_Wrapper;
@@ -300,6 +321,7 @@ public class @TutorialControls : IInputActionCollection, IDisposable
         public InputAction @Move => m_Wrapper.m_DefaultMapping_Move;
         public InputAction @GenerateMap => m_Wrapper.m_DefaultMapping_GenerateMap;
         public InputAction @ResizeMap => m_Wrapper.m_DefaultMapping_ResizeMap;
+        public InputAction @QuitGame => m_Wrapper.m_DefaultMapping_QuitGame;
         public InputActionMap Get() { return m_Wrapper.m_DefaultMapping; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -318,6 +340,9 @@ public class @TutorialControls : IInputActionCollection, IDisposable
                 @ResizeMap.started -= m_Wrapper.m_DefaultMappingActionsCallbackInterface.OnResizeMap;
                 @ResizeMap.performed -= m_Wrapper.m_DefaultMappingActionsCallbackInterface.OnResizeMap;
                 @ResizeMap.canceled -= m_Wrapper.m_DefaultMappingActionsCallbackInterface.OnResizeMap;
+                @QuitGame.started -= m_Wrapper.m_DefaultMappingActionsCallbackInterface.OnQuitGame;
+                @QuitGame.performed -= m_Wrapper.m_DefaultMappingActionsCallbackInterface.OnQuitGame;
+                @QuitGame.canceled -= m_Wrapper.m_DefaultMappingActionsCallbackInterface.OnQuitGame;
             }
             m_Wrapper.m_DefaultMappingActionsCallbackInterface = instance;
             if (instance != null)
@@ -331,6 +356,9 @@ public class @TutorialControls : IInputActionCollection, IDisposable
                 @ResizeMap.started += instance.OnResizeMap;
                 @ResizeMap.performed += instance.OnResizeMap;
                 @ResizeMap.canceled += instance.OnResizeMap;
+                @QuitGame.started += instance.OnQuitGame;
+                @QuitGame.performed += instance.OnQuitGame;
+                @QuitGame.canceled += instance.OnQuitGame;
             }
         }
     }
@@ -340,5 +368,6 @@ public class @TutorialControls : IInputActionCollection, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnGenerateMap(InputAction.CallbackContext context);
         void OnResizeMap(InputAction.CallbackContext context);
+        void OnQuitGame(InputAction.CallbackContext context);
     }
 }

@@ -1,8 +1,14 @@
-# Unity Roguelike Tutorial
+# Unity ECS Roguelike Tutorial
 
-A unity port of TheBracket's [Roguelike Tutorial in Rust - using RLTK](https://github.com/thebracket/rustrogueliketutorial).
+This is a set of tutorials for creating a "traditional" ascii based roguelike in Unity. Please read the introduction if this is your first time here.
 
-This is very much a work in progress. Feel free to [open an issue](https://github.com/sarkahn/rltk_unity_roguelike/issues)
+These tutorials will always be free and the code will always be open source. With that being said I put quite a lot of work into them. If you find them useful, please consider donating. Any amount you can spare would really help me out a great deal - thank you!
+
+[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=Y54CX7AXFKQXG)
+
+These tutorials are based off TheBracket's [Roguelike Tutorial in Rust - using RLTK](https://github.com/thebracket/rustrogueliketutorial).
+
+This project is very much a work in progress. Feel free to [open an issue](https://github.com/sarkahn/rltk_unity_roguelike/issues)
 if you see any obvious mistakes or errors. 
 
 This project was written in Unity 2019.3.06f with the Entities package v 0.5.1.
