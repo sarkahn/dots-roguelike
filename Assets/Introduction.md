@@ -1,3 +1,7 @@
+#### [« Previous: Main](../README.md) —  [Next: 1.0 - Writing to the Console »](Part1-HelloWorld/1.0-WritingToTheConsole/README.md)
+
+--------
+
 # Introduction
 
 These tutorials will always be free and the code will always be open source. With that being said I put quite a lot of work into them. If you find them useful, please consider donating. Any amount you can spare would really help me out a great deal - thank you!
@@ -14,4 +18,6 @@ This tutorial is not intended for someone who is a complete beginner to Unity or
 
 Unless you have an MD reader I would generally recommend just reading the readmes on [github](https://github.com/sarkahn/rltk_unity_roguelike/blob/master/Assets/Introduction.md), since your browser should display MD files properly.
 
-#### [Next: 1.0 - Writing to the Console »](Part1-HelloWorld/1.0-WritingToTheConsole/README.md#10---writing-to-the-console)
+--------
+
+#### [« Previous: Main](../README.md) —  [Next: 1.0 - Writing to the Console »](Part1-HelloWorld/1.0-WritingToTheConsole/README.md)

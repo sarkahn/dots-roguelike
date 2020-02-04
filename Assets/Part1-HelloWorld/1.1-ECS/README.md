@@ -1,5 +1,7 @@
 ﻿#### [« Previous: 1.0 - Writing to the Console](../1.0-WritingToTheConsole/README.md#10---writing-to-the-console) —  [Next: 1.2 - Walking a Map »](../1.2-WalkingAMap/README.md#12---walking-a-map)
 
+--------
+
 # 1.1 - ECS
 
 These tutorials will always be free and the code will always be open source. With that being said I put quite a lot of work into them. If you find them useful, please consider donating. Any amount you can spare would really help me out a great deal - thank you!
@@ -219,5 +221,7 @@ Once we read our input on the main thread and assign it to components, we then r
 And that's it for this chapter. If you feel confused about anything you've read on this page I strongly encourage you to refer back to the learning references linked earlier in this chapter.
 
 The next chapter will focus on generating a map for the player to move around in.
+
+--------
 
 #### [« Previous: 1.0 - Writing to the Console](../1.0-WritingToTheConsole/README.md#10---writing-to-the-console) —  [Next: 1.2 - Walking a Map »](../1.2-WalkingAMap/README.md#12---walking-a-map)

@@ -1,6 +1,8 @@
 
 #### [« Previous: 1.2 - Walking a Map](../1.2-WalkingAMap/README.md) —  [Next: 1.4 - Field of View »](../1.4-FieldOfView/README.md)
 
+--------
+
 # 1.3 - A More Interesting Map
 
 These tutorials will always be free and the code will always be open source. With that being said I put quite a lot of work into them. If you find them useful, please consider donating. Any amount you can spare would really help me out a great deal - thank you!
@@ -126,5 +128,7 @@ Nothing too complicated, we just shove the player in middle of the first room we
 And that's pretty much it - with a few small tweaks we have a much nicer map to run around in:
 
 ![](images~/nicemap.gif)
+
+--------
 
 #### [« Previous: 1.2 - Walking a Map](../1.2-WalkingAMap/README.md) —  [Next: 1.4 - Field of View »](../1.4-FieldOfView/README.md)

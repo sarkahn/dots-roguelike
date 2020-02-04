@@ -19,7 +19,7 @@ This is very much a work in progress. Feel free to [open an issue](https://githu
  
   ### [Part 1.0 - Writing to the Console](Assets/Part1-HelloWorld/1.0-WritingToTheConsole/README.md)
 
-Demonstrates how to create a MonoBehaviour based `SimpleConsoleProxy` and how to write to it from another script.
+Demonstrates how to create a MonoBehaviour-based `SimpleConsoleProxy` and how to write to it from another script.
 
 
 ![](Assets/Common/demoimages~/helloworldsmall.png)
@@ -28,7 +28,7 @@ Demonstrates how to create a MonoBehaviour based `SimpleConsoleProxy` and how to
 
 ### [Part 1.1 - ECS](Assets/Part1-HelloWorld/1.1-ECS/README.md)
 
-Provides a brief introduction to ECS with plenty of reference material to learn more. Shows how to spawn some entities using Unity's Converion System and how to handle input for moving the player entity around.
+Provides a brief introduction to ECS with plenty of reference material to learn more. Shows how to spawn some entities using Unity's Conversion System and how to handle input for moving the player entity around.
 
 ![](Assets/Common/demoimages~/moveleftsmall.gif)
 

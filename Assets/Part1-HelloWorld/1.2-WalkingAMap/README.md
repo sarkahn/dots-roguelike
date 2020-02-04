@@ -1,6 +1,8 @@
 
 #### [« Previous: 1.1 - ECS](../1.1-ECS/README.md#11---ecs) —  [Next: 1.3 - A More Interesting Map »](../1.3-AMoreInterestingMap/README.md)
 
+--------
+
 # 1.2 - Walking a Map
 
 These tutorials will always be free and the code will always be open source. With that being said I put quite a lot of work into them. If you find them useful, please consider donating. Any amount you can spare would really help me out a great deal - thank you!
@@ -9,7 +11,7 @@ These tutorials will always be free and the code will always be open source. Wit
 
 -----------
 
-This chapter is focused on generating a map in ECS for the player to move around in. It also displays controls at runtime to control the map size, and uses Unity's new input system to read input.
+This chapter is focused on generating a map in ECS for the player to move around in. It also displays controls at runtime to control the map size.
 
 ## Representing the Map - aka Shared Data
 
@@ -208,5 +210,7 @@ var gen = new GenerateMap
 };
 em.AddComponentData(_mapEntity, gen);
 ```
+
+--------
 
 #### [« Previous: 1.1 - ECS](../1.1-ECS/README.md#11---ecs) —  [Next: 1.3 - A More Interesting Map »](../1.3-AMoreInterestingMap/README.md)

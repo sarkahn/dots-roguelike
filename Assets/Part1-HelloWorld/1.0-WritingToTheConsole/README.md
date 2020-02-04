@@ -1,6 +1,8 @@
 
 #### [« Previous: Introduction](../../Introduction.md) —  [Next: 1.1 - ECS »](../1.1-ECS/README.md#10---writing-to-the-console)
 
+--------
+
 # 1.0 - Writing to the Console
 
 These tutorials will always be free and the code will always be open source. With that being said I put quite a lot of work into them. If you find them useful, please consider donating. Any amount you can spare would really help me out a great deal - thank you!
@@ -55,5 +57,6 @@ And finally you can tweak the appearance of the console itself from the Material
 
 The next chapter focuses on giving a brief summary of ECS and shows a simple way to create and render dynamic entities using ECS and a `SimpleConsole`. 
 
+--------
 
 #### [« Previous: Introduction](../../Introduction.md) —  [Next: 1.1 - ECS »](../1.1-ECS/README.md#10---writing-to-the-console)
