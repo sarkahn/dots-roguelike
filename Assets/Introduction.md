@@ -4,6 +4,8 @@ These tutorials will always be free and the code will always be open source. Wit
 
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=Y54CX7AXFKQXG)
 
+----------------------
+
 These tutorials utilize [RLTK](https://github.com/sarkahn/rltk_unity), a framework for making Roguelikes in Unity. RLKT should have automatically been included as a package when you downloaded this project - you should see it in your packages folder.
 
 Each chapter of these tutorials is mostly self-contained aside from a couple of common utilities used throughout (found in the Common folder). In the folder for each chapter will find a readme. The readmes will generally *not* be a step-by-step guide, but rather an overview of how the different pieces of the chapter fit together to achieve the result. The goal of these tutorials is not to teach you how to code or how Unity's ECS system actually works - the goal is to create a game.
