@@ -24,7 +24,7 @@ public class @TutorialControls : IInputActionCollection, IDisposable
                     ""id"": ""0b87067b-513e-4be1-b906-637b3f915ddd"",
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
-                    ""interactions"": ""RepeatedPress(delay=0.2)""
+                    ""interactions"": ""RepeatedPress(delay=0.3)""
                 },
                 {
                     ""name"": ""GenerateMap"",

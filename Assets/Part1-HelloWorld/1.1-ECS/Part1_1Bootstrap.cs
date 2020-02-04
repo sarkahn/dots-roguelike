@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace RLTKTutorial.Part1_1
 {
-    public class Part2Bootstrap : Bootstrap
+    public class Part1_1Bootstrap : Bootstrap
     {
         protected override void AddSystems()
         {

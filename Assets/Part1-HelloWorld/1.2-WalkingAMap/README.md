@@ -3,11 +3,17 @@
 
 # 1.2 - Walking a Map
 
+These tutorials will always be free and the code will always be open source. With that being said I put quite a lot of work into them. If you find them useful, please consider donating. Any amount you can spare would really help me out a great deal - thank you!
+
+[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=Y54CX7AXFKQXG)
+
+-----------
+
 This chapter is focused on generating a map in ECS for the player to move around in. It also displays controls at runtime to control the map size, and uses Unity's new input system to read input.
 
 ## Representing the Map - aka Shared Data
 
-For this example the map data is defined simply as a [DynamicBuffer](https://docs.unity3d.com/Packages/com.unity.entities@0.5/api/Unity.Entities.DynamicBuffer-1.html?q=DynamicBuffer) of `TileType`:
+For this example the map data is defined simply as a [DynamicBuffer](https://docs.unity3d.com/Packages/com.unity.entities@0.5/manual/dynamic_buffers.html) of `TileType`:
 
 
 ###### TileType.cs

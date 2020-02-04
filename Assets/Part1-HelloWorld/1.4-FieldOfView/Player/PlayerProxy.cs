@@ -5,7 +5,7 @@ using Unity.Mathematics;
 using UnityEngine;
 
 
-namespace RLTKTutorial.Part1_2
+namespace RLTKTutorial.Part1_4
 {
     public struct Player : IComponentData
     { }
@@ -19,7 +19,8 @@ namespace RLTKTutorial.Part1_2
 
             dstManager.AddComponent<Player>(entity);
             dstManager.AddComponentData<Position>(entity, pos);
-            dstManager.AddComponent<PlayerInput>(entity);
+            dstManager.AddComponentData<FOVRange>(entity, FOVRange.Default);
+            dstManager.AddBuffer<FOVTiles>(entity);
         }
 
         private void OnDrawGizmos()

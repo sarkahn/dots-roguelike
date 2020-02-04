@@ -19,6 +19,7 @@ namespace RLTKTutorial.Part1_3
 
             dstManager.AddComponent<Player>(entity);
             dstManager.AddComponentData<Position>(entity, pos);
+            dstManager.AddComponent<PlayerInput>(entity);
         }
 
         private void OnDrawGizmos()

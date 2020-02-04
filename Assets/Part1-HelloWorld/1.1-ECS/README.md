@@ -2,6 +2,12 @@
 
 # 1.1 - ECS
 
+These tutorials will always be free and the code will always be open source. With that being said I put quite a lot of work into them. If you find them useful, please consider donating. Any amount you can spare would really help me out a great deal - thank you!
+
+[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=Y54CX7AXFKQXG)
+
+----------------------
+
 In this chapter we use Unity's ECS system to track some entities and render them in the console using their positions. We also create a player that we can move around in the console.
 
 As of this writing Unity's ECS framework is **very much** in development. The API seems to be stabilizing but there's a good chance that some aspects could change in the future and things in this tutorial might not be up to date with the latest changes. This tutorial was written using the Entities package v[0.5.0].
@@ -87,11 +93,11 @@ public class RenderSystem : JobComponentSystem
 }
 ```
 
-I applied the [DisableAutoCreation] attribute because I want the systems for each chapter to be created only when that chapter's scene is loaded. This is accomplished with the [Part2Bootstrap](Part2Bootstrap.cs) class, which is derived from the utility [Bootstrap](../../Common/Bootstrap.cs) inside the "Common" folder.
+I applied the [DisableAutoCreation] attribute because I want the systems for each chapter to be created only when that chapter's scene is loaded. This is accomplished with the [Part1_1Bootstrap](Part1_1Bootstrap.cs) class, which is derived from the utility [Bootstrap](../../Common/Bootstrap.cs) inside the "Common" folder.
 
-We create the console inside `OnCreate` and destroy in `OnDestroy`. The lifetime isn't managed automatically by our `SimpleConsoleProxy` anymore so we have to do it ourselves. 
+The lifetime isn't managed automatically by our `SimpleConsoleProxy` anymore so we have to do it ourselves. We create the console inside `OnCreate` and dispose in `OnDestroy`. 
 
-In the previous chapter we used the `LockCameraToConsole` component to adjust the Camera. That component is made to work with the `SimpleConsoleProxy`, since we aren't using that we can instead use the RLTK class `RenderUtility` to automatically adjust the camera to our console's size inside `OnStartRunning`. We can't call that from `OnCreate` since the Camera's GameObject will not have been created yet at that point.
+In the previous chapter we used the `LockCameraToConsole` component to adjust the Camera. That component is made to work with the `SimpleConsoleProxy`. Since we aren't using that we can instead use the RLTK class `RenderUtility` to automatically adjust the camera to our console's size inside `OnStartRunning`. We can't call that from `OnCreate` since the Camera's GameObject will not have been created yet at that point.
 
 Inside `OnUpdate` we clear the console and iterate over all our entities and draw them to the console. Finally we call `Update` and `Draw` to render the console:
 
@@ -99,8 +105,7 @@ Inside `OnUpdate` we clear the console and iterate over all our entities and dra
 
 ## Creating the Entities
 
-The entities are created from the [CreateEntities](CreateEntities.cs) script:
-
+The entities (the yellow player and the little red smileys) are created from the [CreateEntities](CreateEntities.cs) script:
 
 ###### CreateEntities.cs
 ```
@@ -136,9 +141,11 @@ public class CreateEntities : MonoBehaviour, IConvertGameObjectToEntity
 }
 ```
 
+This is a nice and straightforward way to create entities using the [ConversionSystem](https://docs.unity3d.com/Packages/com.unity.entities@0.5/manual/gp_overview.html#gameobject-conversion). I didn't do it in this case, but since this is a MonoBehaviour you can easily expose values in the inspector that you can use to customize entity creation through the editor before you hit play - such as tweaking colors or changing the number of entities you spawn.
+
 Note the `conversionSystem.CreateAdditionalEntity` calls. You might intuitively think you should create additional entities via `dstManager.CreateEntity`, but inside an `IConvertGameObjectToEntity` script you must use `CreateAdditionalEntity` and pass in the converting GameObject for it to work properly.
 
-This is a nice and straightforward way to create entities using the [ConversionSystem](https://docs.unity3d.com/Packages/com.unity.entities@0.5/manual/gp_overview.html#gameobject-conversion). I didn't do it in this case, but this also makes it really easy to add values in the inspector that you can use to customize entity creation (ie: Change colors, or create more or less entities).
+
 
 ## Movement
 
@@ -158,30 +165,58 @@ When they reach the left edge, it snaps them back to the right edge so they can 
 
 ![](images~/moveleft.gif)
 
-The `ReadInputSystem` and `MovePlayerSystem` inside [InputHandling.cs](InputHandling.cs) are how we can move the player around. We read our input on the main thread then assign it to components which are read and applied inside the `MovePlayerSystem`:
+The `ReadInputSystem` and `MovePlayerSystem` inside [InputHandling.cs](InputHandling.cs) are how we can move the player around:
 
 ###### ReadInputSystem
 ```
-    float hor = Input.GetAxisRaw("Horizontal");
-    float ver = Input.GetAxisRaw("Vertical");
-
-    Entities.ForEach((ref InputData input) =>
+    [AlwaysSynchronizeSystem]
+    public class ReadInputSystem : JobComponentSystem
     {
-        input.Value.x = hor;
-        input.Value.y = ver;
-    }).Run();
+        TutorialControls _controls;
+        InputAction _moveAction;
+
+        protected override void OnCreate()
+        {
+            _controls = new TutorialControls();
+            _controls.Enable();
+            _moveAction = _controls.DefaultMapping.Move;
+        }
+
+        protected override JobHandle OnUpdate(JobHandle inputDeps)
+        {
+
+            float2 move = _moveAction.triggered ? (float2)_moveAction.ReadValue<Vector2>() : float2.zero;
+
+            Entities.ForEach((ref InputData input) =>
+            {
+                input.Value.x = move.x;
+                input.Value.y = move.y;
+            }).Run();
+
+            return default;
+        }
+    }
 ```
 
-###### MovePlayerSystem
-```
-    float dt = Time.DeltaTime;
-    Entities.ForEach((ref Position pos, in InputData input) =>
-    {
-        pos.Value += input.Value * 10 * dt;
-    }).Run();
-```
+We're utilizing Unity's [new Input System](https://docs.unity3d.com/Packages/com.unity.inputsystem@latest) to read input. The `InputActions` are defined inside the `Assets/Common/Settings/TutorialControls` asset. 
+
+![](images~/input.png)
+
+The actions are set to use a [Repeated Press](../../Common/RepeatedPressInteraction.cs) interaction which gives the input a very "natural", classic roguelike feel - you can hold a key down and there's a slight delay before it repeats at a constant rate:
 
 ![](images~/playermove.gif)
+
+Once we read our input on the main thread and assign it to components, we then read and apply them inside the `MovePlayerSystem`:
+###### MovePlayerSystem
+```
+    Entities.ForEach((ref Position pos, in InputData input) =>
+    {
+        pos.Value += input.Value;
+    }).Run();
+```
+
+
+And that's it for this chapter. If you feel confused about anything you've read on this page I strongly encourage you to refer back to the learning references linked earlier in this chapter.
 
 The next chapter will focus on generating a map for the player to move around in.
 

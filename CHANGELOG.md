@@ -1,5 +1,10 @@
 # Change Log
 
+## [0.3.3] - 2020-02-04
+* Updated a bunch of older readmes
+* Started 1.4
+* Updated RLTK
+
 ## [0.3.2] - 2020-02-01
 * Finished 1.3
 * Added "RepeatedPress" input interaction, changed all examples to use it. This simplifies input handling and gives a much more "natural" feeling input/response.
