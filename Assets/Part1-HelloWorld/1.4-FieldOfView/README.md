@@ -3,7 +3,7 @@
 
 --------
 
-# 1.4 - Field of View
+# 1.4 - Field of View, Interfaces, and Reactive Systems
 
 These tutorials will always be free and the code will always be open source. With that being said I put quite a lot of work into them. If you find them useful, please consider donating. Any amount you can spare would really help me out a great deal - thank you!
 
@@ -11,13 +11,13 @@ These tutorials will always be free and the code will always be open source. Wit
 
 -----------
 
-This chapter covers the implementation of a "Field of View" system. It uses [RLTK's FOV algorithm](https://github.com/sarkahn/rltk_unity/tree/master/Assets/Runtime/RLTK/FieldOfView) to calculate visible points on the map. It also provides an example of how to properly use an interface to allow for 'function pointer-like' behaviour in burst. 
+This chapter covers the implementation of a "Field of View" system. It uses [RLTK's FOV algorithm](https://github.com/sarkahn/rltk_unity/tree/master/Assets/Runtime/RLTK/FieldOfView) to calculate visible points on the map. We also go over how to properly use interfaces to allow for 'function pointer-like' behaviour in Burst/Jobs and briefly cover "Reactive Systems" in ECS. 
 
 ## The Data
 
 The `TilesInView` buffer represents the tiles that are currently visible to a given entity. 
 
-###### TilesInView
+###### [FOV/TilesInView.cs](FOV/TilesInView.cs)
 ```
     public struct TilesInView : IBufferElementData
     {
@@ -28,7 +28,7 @@ The `TilesInView` buffer represents the tiles that are currently visible to a gi
 ```
 
 `FOVRange` is how far the entity can see:
-###### FOVRange
+###### [FOV/FOVRange.cs](FOV/FOVRange.cs)
 ```
     public struct FOVRange : IComponentData
     {
@@ -41,7 +41,7 @@ The `TilesInView` buffer represents the tiles that are currently visible to a gi
 
 Inside `FOVSystem` we read from the map and use our FOV components to calculate our visible points. First step is to gather the necessary data to pass into the job:
 
-###### FOVSystem
+###### [FOV/FOVSystem.cs](FOV/FOVSystem.cs)
 ```
 protected override JobHandle OnUpdate(JobHandle inputDeps)
 {
@@ -64,9 +64,9 @@ protected override JobHandle OnUpdate(JobHandle inputDeps)
 }
 ```
 
-Most of that is pretty straightforward if you're comfortable with ECS - we gather all the components and buffers we're going to need via entity queries to pass into our job. The unusual part is the `VisibilityMap`. There's a lot to explain there, and we will momentarily. But for now we're going to quickly go over the rest of `OnUpdate`.
+Most of that should be pretty straightforward if you're comfortable with ECS - we gather all the components and buffers we're going to need via entity queries to pass into our job. The unusual part is the `VisibilityMap`. There's a lot to explain there, and we will momentarily. But for now we're going to quickly go over the rest of `FOVSystem.OnUpdate`.
 
-###### FOVSystem
+###### [FOV/FOVSystem.cs](FOV/FOVSystem.cs)
 ```
     inputDeps = Job.WithCode(() =>
     {
@@ -81,9 +81,9 @@ Most of that is pretty straightforward if you're comfortable with ECS - we gathe
     }).Schedule(inputDeps);
 ```
 
-This is fairly straightforward - we pass in the relevant data to RLTK's FOV algorithm, clear our fovTiles buffer and rebuild it based on our results. This gives us a nice list of visible tiles for use in other systems.
+This is fairly straightforward - we pass in the relevant data that we just retrieved to RLTK's FOV algorithm, clear our fovTiles buffer and rebuild it based on our results. This gives us a nice list of visible tiles for use in other systems.
 
-## VisibleTileMap
+## Visibility Map
 
 Now back to this our `VisibilityMap` constructor:
 
@@ -96,15 +96,15 @@ Now back to this our `VisibilityMap` constructor:
 
 `VisibilityMap` is what we're using to represent our map data for use with RLTK's FOV algorithm. If you're not familiar with ECS, the second argument where we pass in our map data might be a little confusing.
 
-The most important thing to note is that there is no copying going on here - we are using [reinterpret](https://docs.unity3d.com/Packages/com.unity.entities@0.5/manual/dynamic_buffers.html?q=Reinterpret#using-an-entitycommandbufferxrefunityentitiesentitycommandbuffer) to represent our buffer as it's underlying type (TileType) then using [AsNativeArray()](https://docs.unity3d.com/Packages/com.unity.entities@0.5/api/Unity.Entities.DynamicBuffer-1.html?q=AsNativeArray#Unity_Entities_DynamicBuffer_1_AsNativeArray) to pass a `NativeArray` that aliases the original data. Because the array aliases the original data, any changes to it will be reflected in the Dynamic Buffer.
+The most important thing to note is that there is no copying going on here - we are using `DynamicBuffer`'s [reinterpret](https://docs.unity3d.com/Packages/com.unity.entities@0.5/manual/dynamic_buffers.html?q=Reinterpret#using-an-entitycommandbufferxrefunityentitiesentitycommandbuffer) to represent our buffer as it's underlying type (TileType) then using [AsNativeArray()](https://docs.unity3d.com/Packages/com.unity.entities@0.5/api/Unity.Entities.DynamicBuffer-1.html?q=AsNativeArray#Unity_Entities_DynamicBuffer_1_AsNativeArray) to pass a `NativeArray` that aliases the original data. Because the array aliases the original data, any changes to it will be reflected in the Dynamic Buffer.
 
-Because we took the time to properly represent our map data in a simple and generic way inside an entity, we can now reap the benefits - we can pass our data around without copying and it can be understood by standard our FOV algorithm as under the hood it's nothing more than a simple array of enums.
+Because we took the time to properly represent our map data in a simple and generic way inside an entity, we can now reap the benefits - we can pass our data around without worrying about copying or dependencies and it can be handled by our FOV algorithm as nothing more than a basic array,  as that's what it is under the hood - a simple array of enums.
 
-Now I've explained what the `VisibilityMap` is beinged used for, I want to explain how exactly it interfaces with RLTK - it's important. 
+Now I've explained what the `VisibilityMap` is being used for, I want to explain how exactly it interfaces with RLTK - it's important. 
 
 The `VisiblityMap` struct is defined like this:
 
-###### VisibilityMap
+###### [FOV/VisibilityMap.cs](FOV/VisibilityMap.cs)
 ```
     public struct VisibilityMap : IVisibilityMap, IDisposable
     {
@@ -142,7 +142,7 @@ The `VisiblityMap` struct is defined like this:
     }
 ```
 
-It's fairly straightforward - it accepts our map data and the functions just operate on the data as you'd expect. Note that it also derives from the interface `IVisiblityMap`. This is an interface provided by RLTK:
+You can see very straightforward - it accepts our map data and the functions just operate on the data as you'd expect. Note that it also derives from the interface `IVisiblityMap`. This is an interface provided by RLTK:
 
 ###### RLTK/Runtime/RLTK/FieldOfView/IVisibilityMap.cs
 ```
@@ -170,11 +170,11 @@ Though it's not obvious from this code, `FOV.Compute` is a generic function whic
 static public void Compute<T>(int2 origin, int range, T map) where T : IVisibilityMap
 ```
 
-If you're familiar with the restrictions of burst you might think this function couldn't be called in Burst or in a job since it relies on inheritance. While it's true that normally you can't use any kind of inheritance or polymorphism in Burst or Jobs, you can kind of "trick it" using a generic paremter with an interface type constraint like `Compute` is doing. The generic parameter will be compiled to a concrete struct at compile time and the resulting code will never know the difference. 
+If you're familiar with the restrictions of Burst you might think this function couldn't be called in Burst or in a job since it relies on inheritance. While it's true that normally you can't use any kind of inheritance or polymorphism in Burst or Jobs, you can kind of "trick it" using a generic parameter with an interface type constraint like `Compute` is doing. The generic parameter will be compiled to a concrete struct at compile time and the resulting code will never know the difference. 
 
 This technique is incredibly useful for creating a "function pointer" like API in Burst , which is absolutely essential for making more flexible and readable code.
 
-I should also note that while Burst does technically have a separate [FunctionPointer](https://docs.unity3d.com/Packages/com.unity.burst@1.2/manual/index.html#function-pointers) type, I would strongly recommend against using it. It is *extremely* restrictive on what functions it accepts (only static functions, no lambdas) and in my opinion it forces you to write very ugly code to make it work.
+I should also note that while Burst does technically have a separate [FunctionPointer](https://docs.unity3d.com/Packages/com.unity.burst@1.2/manual/index.html#function-pointers) type, I would strongly recommend against using it. It is *extremely* restrictive on what functions it accepts (only static functions, no lambdas without resorting to "unsafe" code) and in my opinion it forces you to write very ugly code to make it work.
 
 ## Rendering
 
@@ -220,11 +220,11 @@ Now that I've sufficiently extolled the virtues of interfaces we can get back to
 
 ```
 
-Extremely straightforward - we iterate the visible tiles and draw based on what's there. This alone gives us a nice FOV:
+Extremely straightforward - we iterate the visible tiles and draw only what we can see. This alone gives us a nice FOV:
 
 ![](images~/fovnomemory.gif)
 
-We can improve on it though. We want to be able to remember the previous tiles we've seen, a typical feature in many roguelikes. Thankfully it's extremely simple since all our data is already represented so nicely.
+We can improve on it though. We want to be able to remember the previous tiles we've seen, a typical feature in many roguelikes. Thankfully it's extremely simple since all the data we would need is already represented in easy to retrieve components.
 
 ## Memory
 
@@ -240,26 +240,50 @@ We just need to add a new "Memory" buffer to our player:
     }
 ```
 
-This buffer gets added with the rest back in `PlayerProxy`. Once it's on our player we need to intiialize it properly somewhere. Since we want it to be compeletely separate from everything else we'll create one system to intialize it and one to update it when needed. First, initialization:
+This buffer gets added with the everything else back in [PlayerProxy](Player/PlayerProxy.cs). Once it's on our player we need to intiialize it properly somewhere. Since we want it to be compeletely separate from everything else we'll create one system to intialize it and one to update it when needed. First, initialization:
 
-###### FOV/InitializeTilesInMemorySystem.cs
+###### [FOV/InitializeTilesInMemorySystem.cs](FOV/InitializeTilesInMemorySystem.cs)
 ```
-    var mapEntity = _mapQuery.GetSingletonEntity();
-    var mapData = EntityManager.GetComponentData<MapData>(mapEntity);
+        EntityQuery _mapQuery;
+        EntityQuery _memoryQuery;
 
-    var memoryEntity = _memoryQuery.GetSingletonEntity();
-    var memory = EntityManager.GetBuffer<TilesInMemory>(memoryEntity);
+        protected override void OnCreate()
+        {
+            _mapQuery = GetEntityQuery(
+                ComponentType.ReadOnly<GenerateMap>(),
+                ComponentType.ReadOnly<MapData>()
+                );
 
-    inputDeps = Job.WithCode(() =>
-    {
-        memory.ResizeUninitialized(mapData.width * mapData.height);
-        for (int i = 0; i < memory.Length; ++i)
-            memory[i] = false;
-    }).Schedule(inputDeps);
+            _memoryQuery = GetEntityQuery(
+                ComponentType.ReadWrite<TilesInMemory>()
+                );
+
+            RequireForUpdate(_mapQuery);
+            RequireForUpdate(_memoryQuery);
+        }
+
+        protected override JobHandle OnUpdate(JobHandle inputDeps)
+        {
+            var mapEntity = _mapQuery.GetSingletonEntity();
+            var mapData = EntityManager.GetComponentData<MapData>(mapEntity);
+
+            var memoryEntity = _memoryQuery.GetSingletonEntity();
+            var memory = EntityManager.GetBuffer<TilesInMemory>(memoryEntity);
+
+            inputDeps = Job.WithCode(() =>
+            {
+                memory.ResizeUninitialized(mapData.width * mapData.height);
+                for (int i = 0; i < memory.Length; ++i)
+                    memory[i] = false;
+            }).Schedule(inputDeps);
+
+            return inputDeps;
+        }
 ```
 
-Fairly self-evident what's going on there. Of note is that the `_mapQuery`, which is created to depend on `MapGenerator`:
+Nothing too crazy, we just resize the buffer to match the size of our map. Of note is the `_mapQuery` we create in `OnCreate` - it depends on `GenerateMap`:
 
+[FOV/InitializeTilesInMemorySystem.cs](FOV/InitializeTilesInMemorySystem.cs)
 ```
     _mapQuery = GetEntityQuery(
         ComponentType.ReadOnly<GenerateMap>(),
@@ -267,18 +291,22 @@ Fairly self-evident what's going on there. Of note is that the `_mapQuery`, whic
         );
 ```
 
-## Events in ECS
-Even though we don't *use* `GenerateMap` here, we can still create our query to depend on it, meaning the query will only return a map entity if it has the `GenerateMap` component attached to it. 
+## Reactive Systems
+Even though we don't *use* `GenerateMap` here, we can still create our query to depend on it, meaning the query will only return a map entity if it has the `GenerateMap` component attached to it.
 
-You may recall `GenerateMap` is a component that's only added to the map entity for one frame, immediately processed to generate the map, then destroyed. This is a fairly common "event" pattern in ECS, and by no coincidence we can rely on this behaviour to intialize our map-dependent data whenever the map gets regenerated. Then once the `GenerateMap` component is destroyed at the end of the frame, this system will no longer run since it's dependant on it. 
+You may recall from the previous chapters that `GenerateMap` is a component that's only added to the map entity for a single frame. It's created, immediately processed to generate the map, then destroyed. This is a fairly common "event" pattern in ECS, and by no coincidence we can rely on this behaviour to intialize our map-dependent data whenever the map gets regenerated. Then once the `GenerateMap` component is destroyed at the end of the frame, this system will no longer run. 
 
-This pattern is the ideal way to handle "events" in ECS - you generate a component or entity that a system depends on, then destroy it when processing is complete so that the system stops running. If you ever find yourself writing "dirty" flags on your components or running nested ifs inside `OnUpdate` you should stop and ask yourself if the situation couldn't be handled better via events.
+Systems that respond to "event" components and entities like this are called "Reactive Systems" and in my opinion should be considered the canonical way to handle "events" in ECS. They allow you to avoid coupling your systems to one another while making it obvious what's going on and they are inherently efficient since they only run when the thing they're concerned with actually exists. 
+
+If you ever find yourself sending "messages" between systems, writing "dirty" flags on your components or calling directly into one system from inside another system, you should stop and ask yourself if the situation couldn't be handled better via a reactive system. While it does involve writing more boilerplate, the headache it saves from not coupling your systems directly to one another is usually worth the extra work I've found.
+
+One final note on the subject - there are valid performance concerns for this pattern in some cases. Structural changes (like creating and destroying components or entities) are not free since they cause Unity to make changes to the underlying chunks that hold our data. There have been massive performance improvements on this front since the early days of Unity ECS - since we can now use EntityCommandBuffers inside bursted code, **in most cases the cost of simple structural changes should be of minimal concern when weighed against making your code readable and flexible**. However if it's something you're doing literally every frame (or multiple times per frame) you should certainly profile and consider if an alternative solution might be a better fit.
 
 ## Finishing up
 
 Moving on, with our memory initialized we can now update it in a separate system:
 
-###### FOV/UpdateTilesInMemorySystem.cs
+###### [FOV/UpdateTilesInMemorySystem.cs](FOV/UpdateTilesInMemorySystem.cs)
 ```
     var memoryEntity = _memoryQuery.GetSingletonEntity();
     var fovTiles = EntityManager.GetBuffer<TilesInView>(memoryEntity);
@@ -300,8 +328,9 @@ Moving on, with our memory initialized we can now update it in a separate system
     }).Schedule(inputDeps);
 ```
 
-Again, very straightforward. We run through any currently visible tiles and add them to our memory. The final step is to update our rendering process to account for our new memory. Surprise: It's also very straightforward:
+Again, very straightforward. We run through any currently visible tiles and add them to our memory. The final step is to update our rendering process to account for our new memory. It's also very straightforward:
 
+###### [Rendering/RenderSystem.cs](Rendering/RenderSystem.cs)
 ```
     var playerEntity = _playerQuery.GetSingletonEntity();
     var mapMemory = EntityManager.GetBuffer<TilesInMemory>(playerEntity);
@@ -355,10 +384,9 @@ We simply clear the console, draw the "memory" tiles first, then draw the curren
 
 ![](images~/fovmemory.gif)
 
-And that's it for this chapter. We learned how to implement a simple FOV system with memory, and briefly covered using interfaces with jobs and burst and how event-based processing is an ideal fit for ECS. 
+And that's it for this chapter. We learned how to implement a simple FOV system with "memory", briefly covered using interfaces with jobs and burst, and learned how Reactive Systems are an ideal fit for processing events in ECS. 
 
-As usual if you found yourself confused by any of the ECS related code you read, I encourage you to read over the learning material I provided in chapter 1.1.
-
+If you found yourself confused by any of the ECS related code you've read in this chapter, I encourage you to read over the learning material I provided in [chapter 1.1](../1.1-ECS/README.md#learning-the-basics-of-ecs).
 
 --------
 
