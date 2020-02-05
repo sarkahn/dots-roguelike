@@ -85,8 +85,10 @@ This is fairly straightforward - we pass in the relevant data that we just retri
 
 ## Visibility Map
 
-Now back to this our `VisibilityMap` constructor:
+Now back to our `VisibilityMap` constructor inside `FOVSystem`:
 
+
+###### [FOV/FOVSystem.cs](FOV/FOVSystem.cs)
 ```
     var visibilityMap = new VisibilityMap(
         mapData.width, mapData.height, 
@@ -142,7 +144,7 @@ The `VisiblityMap` struct is defined like this:
     }
 ```
 
-You can see very straightforward - it accepts our map data and the functions just operate on the data as you'd expect. Note that it also derives from the interface `IVisiblityMap`. This is an interface provided by RLTK:
+You can see it's very straightforward - it accepts our map data and the functions just operate on the data as you'd expect. Note that it also derives from the interface `IVisiblityMap`. This is an interface provided by RLTK:
 
 ###### RLTK/Runtime/RLTK/FieldOfView/IVisibilityMap.cs
 ```
