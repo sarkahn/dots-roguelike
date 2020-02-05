@@ -51,9 +51,9 @@ Generates a map more akin to the original "Rogue" maps of rooms and hallways.
 
 -----
 
-### [Part 1.4 - Field of View](Assets/Part1-HelloWorld/1.4-FieldOfView/README.md)
+### [Part 1.4 - Field of View, Interfaces, and Reactive Systems](Assets/Part1-HelloWorld/1.4-FieldOfView/README.md)
 
-Demonstrates how to create an FOV and "memory" system for exploring maps, how to use interfaces to create an API in jobs and burst, and gives a brief explanation of "events" in ECS.
+Demonstrates how to create an FOV and "memory" system for exploring maps, how to use interfaces to create an API in jobs and burst, and gives a brief explanation of "Reactive Systems" in ECS.
 
 ![](Assets/Common/demoimages~/1_4_small.gif)
 
