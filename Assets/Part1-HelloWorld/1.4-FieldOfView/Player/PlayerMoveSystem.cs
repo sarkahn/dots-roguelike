@@ -24,10 +24,15 @@ namespace RLTKTutorial.Part1_4
                 ComponentType.ReadWrite<Position>(),
                 ComponentType.ReadOnly<PlayerInput>(),
                 ComponentType.ReadOnly<Player>());
+            
+            _playerQuery.AddChangedVersionFilter(ComponentType.ReadWrite<PlayerInput>());
+            RequireForUpdate(_playerQuery);
         }
 
         protected override JobHandle OnUpdate(JobHandle inputDeps)
         {
+            if (_playerQuery.CalculateEntityCount() == 0)
+                return inputDeps;
 
             var playerEntity = _playerQuery.GetSingletonEntity();
             var inputFromEntity = GetComponentDataFromEntity<PlayerInput>(false);
@@ -61,9 +66,6 @@ namespace RLTKTutorial.Part1_4
                             posFromEntity[playerEntity] = p;
                         }
                     }
-
-                    // Reset input
-                    inputFromEntity[playerEntity] = default;
                 }).Schedule(inputDeps);
     
             return inputDeps;

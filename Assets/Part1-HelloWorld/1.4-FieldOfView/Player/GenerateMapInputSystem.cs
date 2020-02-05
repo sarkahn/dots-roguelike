@@ -12,26 +12,37 @@ namespace RLTKTutorial.Part1_4
     {
         EndSimulationEntityCommandBufferSystem _barrierSystem;
 
+        EntityQuery _inputQuery;
+        EntityQuery _mapQuery;
+
         protected override void OnCreate()
         {
             _barrierSystem = World.GetOrCreateSystem<EndSimulationEntityCommandBufferSystem>();
+
+            _inputQuery = GetEntityQuery(
+                ComponentType.ReadOnly<PlayerInput>()
+                );
+
+            _mapQuery = GetEntityQuery(
+                ComponentType.ReadOnly<TileBuffer>()
+                );
+
+            RequireForUpdate(_inputQuery);
+            RequireForUpdate(_mapQuery);
         }
 
         protected override JobHandle OnUpdate(JobHandle inputDeps)
         {
-            var playerEntity = GetSingletonEntity<Player>();
-            var inputFromEntity = GetComponentDataFromEntity<PlayerInput>(true);
+            var input = _inputQuery.GetSingleton<PlayerInput>();
 
-            var mapEntity = GetSingletonEntity<TileBuffer>();
+            var mapEntity = _mapQuery.GetSingletonEntity();
 
             var commandBuffer = _barrierSystem.CreateCommandBuffer();
 
             inputDeps = Job
                 .WithoutBurst()
-                .WithReadOnly(inputFromEntity)
                 .WithCode(() =>
             {
-                var input = inputFromEntity[playerEntity];
                 if(input.generateNewMap)
                 {
                     var genData = GenerateMap.Default;

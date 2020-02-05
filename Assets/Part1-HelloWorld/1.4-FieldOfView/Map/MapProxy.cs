@@ -1,6 +1,7 @@
 ﻿
 using System.Runtime.CompilerServices;
 using Unity.Entities;
+using Unity.Mathematics;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -10,6 +11,7 @@ namespace RLTKTutorial.Part1_4
     {
         public int width;
         public int height;
+        public int2 Size => new int2(width, height);
     }
 
     public class MapProxy : MonoBehaviour, IConvertGameObjectToEntity

@@ -4,7 +4,6 @@ using UnityEngine;
 
 namespace RLTKTutorial.Part1_4
 {
-
     public enum TileType : int
     {
         Floor = 0,

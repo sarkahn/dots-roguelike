@@ -18,9 +18,11 @@ namespace RLTKTutorial.Part1_4
             int2 pos = new int2((int)p.x, (int)p.y);
 
             dstManager.AddComponent<Player>(entity);
+            dstManager.AddComponent<PlayerInput>(entity);
             dstManager.AddComponentData<Position>(entity, pos);
             dstManager.AddComponentData<FOVRange>(entity, FOVRange.Default);
-            dstManager.AddBuffer<FOVTiles>(entity);
+            dstManager.AddBuffer<TilesInView>(entity);
+            dstManager.AddBuffer<TilesInMemory>(entity);
         }
 
         private void OnDrawGizmos()

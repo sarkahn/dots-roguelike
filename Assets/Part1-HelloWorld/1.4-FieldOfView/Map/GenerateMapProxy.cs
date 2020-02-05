@@ -10,9 +10,9 @@ namespace RLTKTutorial.Part1_4
     public struct GenerateMap : IComponentData
     {
         public int iterationCount;
-        public int seed;
         public int minRoomSize;
         public int maxRoomSize;
+        public int seed;
 
         public static GenerateMap Default => new GenerateMap
         {

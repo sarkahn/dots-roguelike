@@ -12,8 +12,11 @@ namespace RLTKTutorial.Part1_4
             AddSystem<PlayerInputSystem>();
             AddSystem<GenerateMapSystem>();
             AddSystem<GenerateMapInputSystem>();
-            AddSystem<RenderSystem>();
             AddSystem<ResizeMapInputSystem>();
+            AddSystem<FOVSystem>();
+            AddSystem<InitializeTilesInMemorySystem>();
+            AddSystem<UpdateTilesInMemorySystem>();
+            AddSystem<RenderSystem>();
         }
     }
 }

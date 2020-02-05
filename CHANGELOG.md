@@ -1,5 +1,9 @@
 # Change Log
 
+## [0.3.4] - 2020-02-05
+* Completed 1.4
+* Updated RLTK with FOV algorithms
+
 ## [0.3.3] - 2020-02-04
 * Updated a bunch of older readmes
 * Started 1.4
