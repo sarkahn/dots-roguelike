@@ -50,7 +50,7 @@ namespace RLTKTutorial.Part1_3
             int randomSeed = UnityEngine.Random.Range(1, int.MaxValue);
             
             NativeList<IntRect> rooms = new NativeList<IntRect>(50, Allocator.TempJob);
-
+            
             inputDeps = Job
                 .WithoutBurst()
                 .WithCode(() =>

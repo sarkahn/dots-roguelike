@@ -277,8 +277,6 @@ These tutorials will always be free and the code will always be open source. Wit
 
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=Y54CX7AXFKQXG)
 
-----------------------
-
 
 --------
 

@@ -5,7 +5,7 @@
 
 # 1.5 - Monsters and Refactoring
 
-In this chapter we're going to go over some code refactors and then add monsters to  our map.
+In this chapter we're going to go over some code refactoring and then add monsters to  our map.
 
 ## Refactoring
 
