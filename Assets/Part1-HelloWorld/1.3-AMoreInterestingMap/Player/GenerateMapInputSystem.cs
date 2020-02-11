@@ -22,7 +22,7 @@ namespace RLTKTutorial.Part1_3
             var playerEntity = GetSingletonEntity<Player>();
             var inputFromEntity = GetComponentDataFromEntity<PlayerInput>(true);
 
-            var mapEntity = GetSingletonEntity<TileBuffer>();
+            var mapEntity = GetSingletonEntity<MapTiles>();
 
             var commandBuffer = _barrierSystem.CreateCommandBuffer();
 

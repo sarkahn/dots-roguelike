@@ -11,80 +11,40 @@ namespace RLTKTutorial.Part1_2
     public class PlayerMoveSystem : JobComponentSystem
     {
         EntityQuery _mapQuery;
-        EntityQuery _playerQuery;
 
         protected override void OnCreate()
         {
             _mapQuery = GetEntityQuery(
-                ComponentType.ReadWrite<TileBuffer>(),
+                ComponentType.ReadOnly<MapTiles>(),
                 ComponentType.ReadOnly<MapData>()
                 );
-
-            _playerQuery = GetEntityQuery(
-                ComponentType.ReadWrite<Position>(),
-                ComponentType.ReadOnly<PlayerInput>(),
-                ComponentType.ReadOnly<Player>());
         }
 
         protected override JobHandle OnUpdate(JobHandle inputDeps)
         {
+            var mapEntity = GetSingletonEntity<MapTiles>();
+            var map = EntityManager.GetBuffer<MapTiles>(mapEntity);
+            var mapData = EntityManager.GetComponentData<MapData>(mapEntity);
 
-            var playerEntity = _playerQuery.GetSingletonEntity();
-            var inputFromEntity = GetComponentDataFromEntity<PlayerInput>(false);
-            var posFromEntity = GetComponentDataFromEntity<Position>(false);
-
-            var mapEntity = GetSingletonEntity<TileBuffer>();
-            var mapFromEntity = GetBufferFromEntity<TileBuffer>(false);
-            var mapDataFromEntity = GetComponentDataFromEntity<MapData>();
-
-            inputDeps = Job.WithCode(() =>
+            inputDeps = Entities
+                .WithReadOnly(map)
+                .ForEach((ref Position pos, in PlayerInput input) =>
             {
-                var input = inputFromEntity[playerEntity];
-                var hor = input.movement.x;
-                var ver = input.movement.y;
+                if (input.movement.x == 0 && input.movement.y == 0)
+                    return;
 
-                var pos = posFromEntity[playerEntity];
                 int2 p = pos;
 
-                p.x += (int)hor;
-                p.y += (int)ver;
-
-                var map = mapFromEntity[mapEntity];
-                var mapData = mapDataFromEntity[mapEntity];
+                p += (int2)input.movement;
 
                 int idx = p.y * mapData.width + p.x;
 
                 if (map[idx].value != TileType.Wall)
                 {
-                    posFromEntity[playerEntity] = p;
+                    pos = p;
                 }
             }).Schedule(inputDeps);
             
-            //inputDeps = Entities
-            //    .WithNativeDisableParallelForRestriction(posFromEntity)
-            //    .WithNativeDisableParallelForRestriction(inputFromEntity)
-            //    .ForEach((ref DynamicBuffer<TileBuffer> map, in MapData mapData) =>
-            //    {
-            //        var input = inputFromEntity[playerEntity];
-            //        var hor = input.movement.x;
-            //        var ver = input.movement.y;
-
-            //        var pos = posFromEntity[playerEntity];
-            //        int2 p = pos;
-
-            //        p.x += (int)hor;
-            //        p.y += (int)ver;
-
-            //        int idx = p.y * mapData.width + p.x;
-
-            //        if (map[idx].value != TileType.Wall)
-            //        {
-            //            posFromEntity[playerEntity] = p;
-            //        }
-            //        // Reset input
-            //        inputFromEntity[playerEntity] = default;
-            //    }).Schedule(inputDeps);
-    
             return inputDeps;
         }
     }

@@ -5,14 +5,14 @@ using UnityEngine;
 
 namespace RLTKTutorial.Part1_2
 {
-    public class Part1_2Bootstrap : Bootstrap
+    public class Part1_2Bootstrap : MonoBehaviour
     {
-        protected override void AddSystems()
+        void OnEnable()
         {
-            AddSystem<PlayerInputSystem>();
-            AddSystem<GenerateMapSystem>();
-            AddSystem<RenderSystem>();
-            AddSystem<ResizeMapInputSystem>();
+            Bootstrap.AddSystem<PlayerInputSystem>();
+            Bootstrap.AddSystem<GenerateMapSystem>();
+            Bootstrap.AddSystem<RenderSystem>();
+            Bootstrap.AddSystem<ResizeMapInputSystem>();
         }
     }
 }

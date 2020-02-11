@@ -1,17 +1,11 @@
 
-#### [« Previous: 1.3 - A More Interesting Map](../1.3-AMoreInterestingMap/README.md) —  [Next: In Progress... »]
+#### [« Previous: 1.3 - A More Interesting Map](../1.3-AMoreInterestingMap/README.md) —  [Next: 1.5 - Monsters and Refactoring » ](../1.5-Monsters/README.md)
 
 --------
 
 # 1.4 - Field of View, Interfaces, and Reactive Systems
 
-These tutorials will always be free and the code will always be open source. With that being said I put quite a lot of work into them. If you find them useful, please consider donating. Any amount you can spare would really help me out a great deal - thank you!
-
-[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=Y54CX7AXFKQXG)
-
------------
-
-This chapter covers the implementation of a "Field of View" system. It uses [RLTK's FOV algorithm](https://github.com/sarkahn/rltk_unity/tree/master/Assets/Runtime/RLTK/FieldOfView) to calculate visible points on the map. We also go over how to properly use interfaces to allow for 'function pointer-like' behaviour in Burst/Jobs and briefly cover "Reactive Systems" in ECS. 
+This chapter covers the implementation of a "Field of View" and "Memory" system. It uses [RLTK's FOV algorithm](https://github.com/sarkahn/rltk_unity/tree/master/Assets/Runtime/RLTK/FieldOfView) to calculate visible points on the map. We also go over how to properly use interfaces to allow for 'function pointer-like' behaviour in Burst/Jobs and briefly cover "Reactive Systems" in ECS. 
 
 ## The Data
 
@@ -46,7 +40,7 @@ Inside `FOVSystem` we read from the map and use our FOV components to calculate 
 protected override JobHandle OnUpdate(JobHandle inputDeps)
 {
     var mapEntity = _mapQuery.GetSingletonEntity();
-    var map = EntityManager.GetBuffer<TileBuffer>(mapEntity);
+    var map = EntityManager.GetBuffer<MapTiles>(mapEntity);
     var mapData = EntityManager.GetComponentData<MapData>(mapEntity);
 
     var fovEntity = _FOVQuery.GetSingletonEntity();
@@ -81,12 +75,11 @@ Most of that should be pretty straightforward if you're comfortable with ECS - w
     }).Schedule(inputDeps);
 ```
 
-This is fairly straightforward - we pass in the relevant data that we just retrieved to RLTK's FOV algorithm, clear our fovTiles buffer and rebuild it based on our results. This gives us a nice list of visible tiles for use in other systems.
+We pass in the relevant data that we just retrieved to RLTK's FOV algorithm, clear our fovTiles buffer and rebuild it based on our results. This gives us a nice list of visible tiles for use in other systems.
 
 ## Visibility Map
 
 Now back to our `VisibilityMap` constructor inside `FOVSystem`:
-
 
 ###### [FOV/FOVSystem.cs](FOV/FOVSystem.cs)
 ```
@@ -180,9 +173,9 @@ I should also note that while Burst does technically have a separate [FunctionPo
 
 ## Rendering
 
-Now that I've sufficiently extolled the virtues of interfaces we can get back to the actual example. With our `TilesInView` buffer populated we can change the renderer to draw based on those tiles:
+Now we've covered interfaces we can get back to the actual example. With our `TilesInView` buffer populated we can change the renderer to draw based on those tiles:
 
-###### Rendering/RenderSystem.cs
+###### [Rendering/RenderSystem.cs](Rendering/RenderSystem.cs)
 ```
     var mapEntity = _mapQuery.GetSingletonEntity();
     var mapData = _mapQuery.GetSingleton<MapData>();
@@ -232,7 +225,7 @@ We can improve on it though. We want to be able to remember the previous tiles w
 
 We just need to add a new "Memory" buffer to our player:
 
-###### FOV/TilesInMemory.cs
+###### [FOV/TilesInMemory.cs](FOV/TilesInMemory.cs)
 ```
     public struct TilesInMemory : IBufferElementData
     {
@@ -242,7 +235,7 @@ We just need to add a new "Memory" buffer to our player:
     }
 ```
 
-This buffer gets added with the everything else back in [PlayerProxy](Player/PlayerProxy.cs). Once it's on our player we need to intiialize it properly somewhere. Since we want it to be compeletely separate from everything else we'll create one system to intialize it and one to update it when needed. First, initialization:
+This buffer gets added with the everything else back in [PlayerProxy](Player/PlayerProxy.cs). Once it's on our player we need to initialize it properly somewhere. We create one system to intialize it and one to update it when needed. First, initialization:
 
 ###### [FOV/InitializeTilesInMemorySystem.cs](FOV/InitializeTilesInMemorySystem.cs)
 ```
@@ -300,9 +293,9 @@ You may recall from the previous chapters that `GenerateMap` is a component that
 
 Systems that respond to "event" components and entities like this are called "Reactive Systems" and in my opinion should be considered the canonical way to handle "events" in ECS. They allow you to avoid coupling your systems to one another while making it obvious what's going on and they are inherently efficient since they only run when the thing they're concerned with actually exists. 
 
-If you ever find yourself sending "messages" between systems, writing "dirty" flags on your components or calling directly into one system from inside another system, you should stop and ask yourself if the situation couldn't be handled better via a reactive system. While it does involve writing more boilerplate, the headache it saves from not coupling your systems directly to one another is usually worth the extra work I've found.
+If you ever find yourself sending "messages" between systems, writing "dirty" flags on your components or calling directly into one system from inside another system, you should stop and ask yourself if the situation couldn't be handled better via a reactive system. While it does involve writing more boilerplate, the headache it saves from not coupling your systems directly to one another is usually more than worth the extra work I've found.
 
-One final note on the subject - there are valid performance concerns for this pattern in some cases. Structural changes (like creating and destroying components or entities) are not free since they cause Unity to make changes to the underlying chunks that hold our data. There have been massive performance improvements on this front since the early days of Unity ECS - since we can now use EntityCommandBuffers inside bursted code, **in most cases the cost of simple structural changes should be of minimal concern when weighed against making your code readable and flexible**. However if it's something you're doing literally every frame (or multiple times per frame) you should certainly profile and consider if an alternative solution might be a better fit.
+One final note on the subject - there are valid performance concerns for this pattern in some cases. Structural changes (like creating and destroying components or entities) are not free since they cause Unity to make changes to the underlying chunks that hold our data. There have been massive performance improvements on this front since the early days of Unity ECS - since we can now use EntityCommandBuffers inside bursted code, **in most cases the cost of simple structural changes should be of minimal concern when weighed against the benefit making your code readable and flexible**. However if it's something you're doing literally every frame (or multiple times per frame) you should certainly profile and consider if an alternative solution might be a better fit.
 
 ## Finishing up
 
@@ -337,7 +330,7 @@ Again, very straightforward. We run through any currently visible tiles and add 
     var playerEntity = _playerQuery.GetSingletonEntity();
     var mapMemory = EntityManager.GetBuffer<TilesInMemory>(playerEntity);
 
-    var map = EntityManager.GetBuffer<TileBuffer>(mapEntity);
+    var map = EntityManager.GetBuffer<MapTiles>(mapEntity);
             
     _console.ClearScreen();
 
@@ -390,6 +383,13 @@ And that's it for this chapter. We learned how to implement a simple FOV system 
 
 If you found yourself confused by any of the ECS related code you've read in this chapter, I encourage you to read over the learning material I provided in [chapter 1.1](../1.1-ECS/README.md#learning-the-basics-of-ecs).
 
+----------------------
+
+These tutorials will always be free and the code will always be open source. With that being said I put quite a lot of work into them. If you find them useful, please consider donating. Any amount you can spare would really help me out a great deal - thank you!
+
+[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=Y54CX7AXFKQXG)
+
+
 --------
 
-#### [« Previous: 1.3 - A More Interesting Map](../1.3-AMoreInterestingMap/README.md) —  [Next: In Progress... »]
+#### [« Previous: 1.3 - A More Interesting Map](../1.3-AMoreInterestingMap/README.md) —  [Next: 1.5 - Monsters and Refactoring » ](../1.5-Monsters/README.md)

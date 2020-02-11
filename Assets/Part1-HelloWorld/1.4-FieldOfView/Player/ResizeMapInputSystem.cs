@@ -28,7 +28,7 @@ namespace RLTKTutorial.Part1_4
 
             _mapQuery = GetEntityQuery(
                 ComponentType.ReadWrite<MapData>(),
-                ComponentType.ReadOnly<TileBuffer>()
+                ComponentType.ReadOnly<MapTiles>()
                 );
 
             _inputQuery = GetEntityQuery(

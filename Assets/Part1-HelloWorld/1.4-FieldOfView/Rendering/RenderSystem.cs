@@ -28,7 +28,7 @@ namespace RLTKTutorial.Part1_4
         protected override void OnCreate()
         {
             _mapQuery = GetEntityQuery(
-                ComponentType.ReadOnly<TileBuffer>(),
+                ComponentType.ReadOnly<MapTiles>(),
                 ComponentType.ReadOnly<MapData>()
                 );
 
@@ -73,7 +73,7 @@ namespace RLTKTutorial.Part1_4
             var fovTiles = EntityManager.GetBuffer<TilesInView>(fovEntity).AsNativeArray();
             var mapMemory = EntityManager.GetBuffer<TilesInMemory>(fovEntity);
 
-            var map = EntityManager.GetBuffer<TileBuffer>(mapEntity);
+            var map = EntityManager.GetBuffer<MapTiles>(mapEntity);
             
             _console.ClearScreen();
 

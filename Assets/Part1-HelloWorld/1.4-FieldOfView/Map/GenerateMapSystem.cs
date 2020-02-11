@@ -16,7 +16,7 @@ namespace RLTKTutorial.Part1_4
     public class GenerateMapSystem : JobComponentSystem
     {
         EndSimulationEntityCommandBufferSystem _barrier;
-        EntityQuery _generateMapQuery;
+        EntityQuery _mapQuery;
         EntityQuery _playerQuery;
 
 
@@ -24,27 +24,27 @@ namespace RLTKTutorial.Part1_4
         {
             _barrier = World.GetOrCreateSystem<EndSimulationEntityCommandBufferSystem>();
 
-            _generateMapQuery = GetEntityQuery(
+            _mapQuery = GetEntityQuery(
                 ComponentType.ReadOnly<GenerateMap>(), 
                 ComponentType.ReadOnly<MapData>(),
-                ComponentType.ReadWrite<TileBuffer>()
+                ComponentType.ReadWrite<MapTiles>()
                 );
 
             _playerQuery = GetEntityQuery(
                 ComponentType.ReadOnly<Player>(),
                 ComponentType.ReadWrite<Position>());
 
-            RequireForUpdate(_generateMapQuery);
+            RequireForUpdate(_mapQuery);
         }
 
         protected override JobHandle OnUpdate(JobHandle inputDeps)
         {
             var commandBuffer = _barrier.CreateCommandBuffer();
             
-            var mapEntity = _generateMapQuery.GetSingletonEntity();
+            var mapEntity = _mapQuery.GetSingletonEntity();
             var genData = EntityManager.GetComponentData<GenerateMap>(mapEntity);
             var mapData = EntityManager.GetComponentData<MapData>(mapEntity);
-            var map = EntityManager.GetBuffer<TileBuffer>(mapEntity);
+            var map = EntityManager.GetBuffer<MapTiles>(mapEntity);
             
             // If the seed is '0' we want to pass in a random seed.
             int randomSeed = UnityEngine.Random.Range(1, int.MaxValue);
@@ -73,17 +73,17 @@ namespace RLTKTutorial.Part1_4
                     var p = rooms[0].Center;
                     pos = p;
                 }).Schedule(inputDeps);
+            
+            commandBuffer.RemoveComponent<GenerateMap>(_mapQuery);
+            _barrier.AddJobHandleForProducer(inputDeps);
 
             rooms.Dispose(inputDeps);
-            
-            commandBuffer.RemoveComponent<GenerateMap>(_generateMapQuery);
-            _barrier.AddJobHandleForProducer(inputDeps);
             
             return inputDeps;
         }
 
 
-        static void InitializeMap(DynamicBuffer<TileBuffer> map, int w, int h)
+        static void InitializeMap(DynamicBuffer<MapTiles> map, int w, int h)
         {
             map.ResizeUninitialized(w * h);
 
@@ -94,7 +94,7 @@ namespace RLTKTutorial.Part1_4
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         static int At(int x, int y, int width) => y * width + x;
 
-        static void GenerateRooms(DynamicBuffer<TileBuffer> map, MapData mapData, GenerateMap genData, NativeList<IntRect> rooms )
+        static void GenerateRooms(DynamicBuffer<MapTiles> map, MapData mapData, GenerateMap genData, NativeList<IntRect> rooms )
         {
             Random rand = new Random((uint)genData.seed);
             
@@ -141,7 +141,7 @@ namespace RLTKTutorial.Part1_4
         }
         
 
-        static void BuildRoom(DynamicBuffer<TileBuffer> map, MapData mapData, IntRect room)
+        static void BuildRoom(DynamicBuffer<MapTiles> map, MapData mapData, IntRect room)
         {
             for( int x = room.Min.x; x <= room.Max.x; ++x )
                 for( int y = room.Min.y; y <= room.Max.y; ++y )
@@ -150,7 +150,7 @@ namespace RLTKTutorial.Part1_4
                 }
         }
 
-        static void BuildHorizontalTunnel(DynamicBuffer<TileBuffer> map, MapData mapData, 
+        static void BuildHorizontalTunnel(DynamicBuffer<MapTiles> map, MapData mapData, 
             int x1, int x2, int y )
         {
             int xMin = math.min(x1, x2);
@@ -160,7 +160,7 @@ namespace RLTKTutorial.Part1_4
                 map[At(x, y,mapData.width)] = TileType.Floor;
         }
 
-        static void BuildVerticalTunnel(DynamicBuffer<TileBuffer> map, MapData mapData,
+        static void BuildVerticalTunnel(DynamicBuffer<MapTiles> map, MapData mapData,
             int y1, int y2, int x)
         {
             int yMin = math.min(y1, y2);

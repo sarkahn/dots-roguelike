@@ -5,12 +5,6 @@
 
 # 1.2 - Walking a Map
 
-These tutorials will always be free and the code will always be open source. With that being said I put quite a lot of work into them. If you find them useful, please consider donating. Any amount you can spare would really help me out a great deal - thank you!
-
-[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=Y54CX7AXFKQXG)
-
------------
-
 This chapter is focused on generating a map in ECS for the player to move around in. It also displays controls at runtime to control the map size.
 
 ## Representing the Map - aka Shared Data
@@ -18,7 +12,7 @@ This chapter is focused on generating a map in ECS for the player to move around
 For this example the map data is defined simply as a [DynamicBuffer](https://docs.unity3d.com/Packages/com.unity.entities@0.5/manual/dynamic_buffers.html) of `TileType`:
 
 
-###### TileType.cs
+###### [TileType.cs](Map/TileType.cs)
 ```
 public enum TileType : int
 {
@@ -27,13 +21,13 @@ public enum TileType : int
 };
 ```
 
-###### TileBuffer.cs
+###### [MapTiles.cs](Map/MapTiles.cs)
 ```
-public struct TileBuffer : IBufferElementData
+public struct MapTiles : IBufferElementData
 {
     public TileType value;
-    public static implicit operator TileType(TileBuffer b) => b.value;
-    public static implicit operator TileBuffer(TileType v) => new TileBuffer { value = v };
+    public static implicit operator TileType(MapTiles b) => b.value;
+    public static implicit operator MapTiles(TileType v) => new MapTiles{ value = v };
 }
 ```
 
@@ -45,9 +39,9 @@ In some cases doing that might make sense, but I've found it's a *huge* pain and
 
 Basically if you have some data **that will be shared between systems** and you can get away with representing your data as an `IComponentData` or a `DynamicBuffer`, you should do so. This will let you benefit from the inherent speed and data-separation that comes from ECS while not having to worry about the dependency-management headache. By defining your data inside components you can let Unity handle all dependency management for you and only focus on your logic.
 
-The TileBuffer alone can't entirely represent our map though. We also use a `MapData` component to hold the map dimensions size:
+Moving on - the MapTiles alone can't entirely represent our map. We also use a `MapData` component to hold the map dimensions:
 
-###### MapProxy.cs
+###### [MapProxy.cs](Map/MapProxy.cs)
 ```
 public struct MapData : IComponentData
 {
@@ -56,9 +50,9 @@ public struct MapData : IComponentData
 }
 ```
 
-So we can then represent our map as an Entity with a `MapData` component and a `TileBuffer`, to be queried in other systems. We create the initial empty map via a simple conversion script:
+So we can then represent our map as an Entity with a `MapData` component and a `MapTiles`, to be queried in other systems. We create the initial empty map via a simple conversion script:
 
-###### MapProxy.cs
+###### [MapProxy.cs](Map/MapProxy.cs)
 ```
     public class MapProxy : MonoBehaviour, IConvertGameObjectToEntity
     {
@@ -75,7 +69,7 @@ So we can then represent our map as an Entity with a `MapData` component and a `
                 height = _height,
             });
 
-            var buffer = dstManager.AddBuffer<TileBuffer>(entity);
+            var buffer = dstManager.AddBuffer<MapTiles>(entity);
 
         }
     }
@@ -85,7 +79,7 @@ This gives us a simple component we can add to a gameobject. We can then tweak t
 
 ## Map Generation
 
-That gives us a map entity, but it needs to be initialized somehow. For that we have the `GenerateMapProxy` MonoBehaviour:
+That gives us a map entity, but right now the map is empty. To populate it we use a map generatino system, but for that to work it needs the map generation parameters. We provide these via the `GenerateMap` component, which is added to map entity during conversion with the `GenerateMapProxy` MonoBehaviour:
 
 ###### GenerateMapProxy.cs
 ```
@@ -102,7 +96,9 @@ This uses the useful `[GenerateAuthoringComponent]` attribute. This will automat
 
 ![](images~/mapconversion.png)
 
-The actual map generation happens in `GenerateMapSystem`. The process is fairly straightforward - first we gather the relevant map and generation data from our map entity:
+Above you see the gameobject representation of our map. When we hit play, the conversion system will run and convert it into a pure entity for our systems to work with.
+
+Now, the actual map generation happens in `GenerateMapSystem`. The process is fairly straightforward - first we gather the relevant map and generation data from our map entity:
 
 ###### [GenerateMapSystem.cs](Map/GenerateMapSystem.cs)
 ```
@@ -113,12 +109,12 @@ protected override void OnUpdate()
     var mapEntity = _generateMapQuery.GetSingletonEntity();
     var genData = EntityManager.GetComponentData<GenerateMap>(mapEntity);
     var mapData = EntityManager.GetComponentData<MapData>(mapEntity);
-    var map = EntityManager.GetBuffer<TileBuffer>(mapEntity);
+    var map = EntityManager.GetBuffer<MapTiles>(mapEntity);
     ...
 }
 ```
 
-Then pass it into our job for the actual generation:
+We then pass it into our job for the actual generation:
 
 ###### [GenerateMapSystem.cs](Map/GenerateMapSystem.cs)
 ```
@@ -137,14 +133,18 @@ inputDeps = Job.WithCode(() =>
 }).Schedule(inputDeps);
 ```
 
-We use static methods inside the `GenerateMapSystem` class to make things a bit more readable. It's okay to use static methods in jobs as long as they aren't touching any outside mutable or managed data.
+We use static methods inside the `GenerateMapSystem` class to make things a bit more readable. It's okay to use static methods in jobs as long as they aren't touching any outside mutable or managed data. The first step, `InitializeMap` just sets all tiles to floors.
 
-`InitializeMap` is self-explanatory. Inside `BuildBorder` we set all the border tiles to walls:
+#### Placing the Borders
+
+Inside `BuildBorder` we set all the border tiles to walls:
+
+###### [GenerateMapSystem.cs](Map/GenerateMapSystem.cs)
 ```
 [MethodImpl(MethodImplOptions.AggressiveInlining)]
 static int At(int x, int y, int width) => y * width + x;
 
-static void BuildBorder(DynamicBuffer<TileBuffer> map, int w, int h)
+static void BuildBorder(DynamicBuffer<MapTiles> map, int w, int h)
 {
     for (int x = 0; x < w; ++x)
     {
@@ -160,9 +160,14 @@ static void BuildBorder(DynamicBuffer<TileBuffer> map, int w, int h)
 }
 ```
 
-In `GenerateWalls` we just do a big loop and randomly set tiles to walls as long as they aren't at the player position:
+
+#### Placing the Random Walls
+
+In `GenerateWalls` we just do a big loop using our `GenerateMap` parameters and randomly set tiles to walls as long as they aren't at the player position:
+
+###### [GenerateMapSystem.cs](Map/GenerateMapSystem.cs)
 ```
-static void GenerateWalls(DynamicBuffer<TileBuffer> map, int w, int h, GenerateMap genData )
+static void GenerateWalls(DynamicBuffer<MapTiles> map, int w, int h, GenerateMap genData )
 {
     Random rand = new Random((uint)genData.seed);
     for (int i = 0; i < genData.iterationCount; ++i)
@@ -178,9 +183,11 @@ static void GenerateWalls(DynamicBuffer<TileBuffer> map, int w, int h, GenerateM
 }
 ```
 
-"Random" in this case refers to Unity's job-safe [Random struct](https://docs.unity3d.com/Packages/com.unity.mathematics@1.1/api/Unity.Mathematics.Random.html?q=Random) from their DOTs Mathematics package.
+`Random` in this case refers to Unity's job-safe [Random struct](https://docs.unity3d.com/Packages/com.unity.mathematics@1.1/api/Unity.Mathematics.Random.html?q=Random) from their DOTs Mathematics package, not the  static "UnityEngine.Random" class.
 
-The remainder of `OnUpdate` simply sets the player's position in a standard `ForEach` and queues the `GenerateMap` component for removal.:
+#### Placing the Player
+
+The remainder of `OnUpdate` simply sets the player's position in a standard `ForEach` and queues the `GenerateMap` component for removal via an [EntityCommandBuffer](https://docs.unity3d.com/Packages/com.unity.entities@0.5/manual/entity_command_buffer.html):
 
 ```
 inputDeps = Entities
@@ -195,21 +202,56 @@ commandBuffer.RemoveComponent<GenerateMap>(_generateMapQuery);
 _barrier.AddJobHandleForProducer(inputDeps);
 ```
 
-When we want to generate a new map, we simply add a new `GenerateMap` component to the map and it runs through this whole process again. You can see an example of this inside the  `MapSizeControls` MonoBehaviour:
+#### Generating a new Map
 
-###### [MapSizeControls.cs](UI/MapSizeControls.cs)
+When we want to generate a new map, we simply add a new `GenerateMap` component to the map entity. The `GenerateMapSystem` is querying for this component, so whenever one is added it will automatically run through this whole process again and give us a shiny new map.
+
+You can see an example of us forcing a new map to generate inside the  `ResizeMapInputSystem`:
+
+###### [ResizeMapInputSystem.cs](Player/ResizeMapInputSystem.cs)
 ```
-var em = World.DefaultGameObjectInjectionWorld.EntityManager;
-var gen = new GenerateMap
-{
-    iterationCount = (int)_iterationsSlider.value,
-    playerPos = new int2(
-        UnityEngine.Random.Range(1, size.x - 1),
-        UnityEngine.Random.Range(1, size.y - 1)),
-    seed = UnityEngine.Random.Range(1, int.MaxValue)
-};
-em.AddComponentData(_mapEntity, gen);
+    protected override JobHandle OnUpdate(JobHandle inputDeps)
+    {
+        float2 resize = _resizeMapAction.triggered ?
+            (float2)_resizeMapAction.ReadValue<Vector2>() : float2.zero;
+            
+        if (math.lengthsq(resize) == 0)
+            return inputDeps;
+
+        var commandBuffer = _barrierSystem.CreateCommandBuffer();
+
+        var mapEntity = _mapQuery.GetSingletonEntity();
+        var mapData = EntityManager.GetComponentData<MapData>(mapEntity);
+            
+        inputDeps = Job.WithCode(() =>
+        {
+            mapData.width += (int)resize.x;
+            mapData.height += (int)resize.y;
+
+            mapData.width = math.max(3, mapData.width);
+            mapData.height = math.max(3, mapData.height);
+            commandBuffer.SetComponent<MapData>(mapEntity, mapData);
+                
+            var genData = GenerateMap.Default;
+            commandBuffer.AddComponent(mapEntity, genData);
+        }).Schedule(inputDeps);
+
+        _barrierSystem.AddJobHandleForProducer(inputDeps);
+  
+        return inputDeps;
+    }
 ```
+
+There's a lot of boilerplate here but what it accomplishes is very straightforward - if our "ResizeMap" controls are triggered then we execute a job. Inside the job we use an [EntityCommandBuffer](https://docs.unity3d.com/Packages/com.unity.entities@0.5/manual/entity_command_buffer.html) to resize our map and add a `GenerateMap` component to the map so the `GenerateMapSystem` will do it's thing.
+
+And that's it for this chapter. If you're confused about anything ecs-related you've seen so far, I encourage you to please refer back to the learning materials provided in [chapter 1.1](../1.1-ECS/README.md) to learn the basics of ECS and get a better feel for the API before continuing.
+
+----------------------
+
+These tutorials will always be free and the code will always be open source. With that being said I put quite a lot of work into them. If you find them useful, please consider donating. Any amount you can spare would really help me out a great deal - thank you!
+
+[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=Y54CX7AXFKQXG)
+
 
 --------
 

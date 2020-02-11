@@ -1,5 +1,10 @@
 # Change Log
 
+## [0.4] - 2020-02-11
+* Lots of tweaks and refactors of old chapters
+* Simplified bootstrap and made it add systems to entity debugger
+* Completed 1.5
+
 ## [0.3.4] - 2020-02-05
 * Completed 1.4
 * Updated RLTK with FOV algorithms

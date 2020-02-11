@@ -26,7 +26,7 @@ namespace RLTKTutorial.Part1_2
             _generateMapQuery = GetEntityQuery(
                 ComponentType.ReadOnly<GenerateMap>(), 
                 ComponentType.ReadOnly<MapData>(),
-                ComponentType.ReadWrite<TileBuffer>()
+                ComponentType.ReadWrite<MapTiles>()
                 );
 
             _playerQuery = GetEntityQuery(
@@ -43,7 +43,7 @@ namespace RLTKTutorial.Part1_2
             var mapEntity = _generateMapQuery.GetSingletonEntity();
             var genData = EntityManager.GetComponentData<GenerateMap>(mapEntity);
             var mapData = EntityManager.GetComponentData<MapData>(mapEntity);
-            var map = EntityManager.GetBuffer<TileBuffer>(mapEntity);
+            var map = EntityManager.GetBuffer<MapTiles>(mapEntity);
             
             // If the seed is '0' we want to pass in a random seed.
             int randomSeed = UnityEngine.Random.Range(1, int.MaxValue);
@@ -77,7 +77,7 @@ namespace RLTKTutorial.Part1_2
         }
 
 
-        static void InitializeMap(DynamicBuffer<TileBuffer> map, int w, int h)
+        static void InitializeMap(DynamicBuffer<MapTiles> map, int w, int h)
         {
             map.ResizeUninitialized(w * h);
 
@@ -88,7 +88,7 @@ namespace RLTKTutorial.Part1_2
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         static int At(int x, int y, int width) => y * width + x;
 
-        static void BuildBorder(DynamicBuffer<TileBuffer> map, int w, int h)
+        static void BuildBorder(DynamicBuffer<MapTiles> map, int w, int h)
         {
             for (int x = 0; x < w; ++x)
             {
@@ -103,7 +103,7 @@ namespace RLTKTutorial.Part1_2
             }
         }
 
-        static void GenerateWalls(DynamicBuffer<TileBuffer> map, int w, int h, GenerateMap genData )
+        static void GenerateWalls(DynamicBuffer<MapTiles> map, int w, int h, GenerateMap genData )
         {
             Random rand = new Random((uint)genData.seed);
             for (int i = 0; i < genData.iterationCount; ++i)

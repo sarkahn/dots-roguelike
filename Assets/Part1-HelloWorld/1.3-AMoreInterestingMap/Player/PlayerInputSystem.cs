@@ -46,7 +46,7 @@ namespace RLTKTutorial.Part1_3
                 input.generateNewMap = generateMap;
             }).Schedule(inputDeps);
 
-        return inputDeps;
+            return inputDeps;
         }
     }
 }

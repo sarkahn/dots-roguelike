@@ -36,13 +36,17 @@ namespace RLTKTutorial.Part1_4
         {
             if (_memoryQuery.CalculateEntityCount() == 0 || _mapQuery.CalculateEntityCount() == 0)
                 return inputDeps;
+            
+            var mapEntity = _mapQuery.GetSingletonEntity();
+            var mapData = EntityManager.GetComponentData<MapData>(mapEntity);
+
+            // Early out during map generation
+            if ( EntityManager.HasComponent<GenerateMap>(mapEntity))
+                return inputDeps;
 
             var memoryEntity = _memoryQuery.GetSingletonEntity();
             var fovTiles = EntityManager.GetBuffer<TilesInView>(memoryEntity);
             var memory = EntityManager.GetBuffer<TilesInMemory>(memoryEntity);
-
-            var mapEntity = _mapQuery.GetSingletonEntity();
-            var mapData = EntityManager.GetComponentData<MapData>(mapEntity);
             
             inputDeps = Job
                 .WithReadOnly(fovTiles)

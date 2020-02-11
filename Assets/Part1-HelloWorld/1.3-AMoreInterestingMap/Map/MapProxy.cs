@@ -27,7 +27,7 @@ namespace RLTKTutorial.Part1_3
                 height = _height,
             });
 
-            var buffer = dstManager.AddBuffer<TileBuffer>(entity);
+            var buffer = dstManager.AddBuffer<MapTiles>(entity);
             
         }
 

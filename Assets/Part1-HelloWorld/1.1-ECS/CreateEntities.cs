@@ -11,7 +11,6 @@ namespace RLTKTutorial.Part1_1
     {
         public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem)
         {
-            var em = dstManager;
             var player = entity;
             dstManager.AddComponentData<Position>(player, new float2(10, 8));
             dstManager.AddComponentData<Renderable>(player, new Renderable

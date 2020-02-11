@@ -17,7 +17,7 @@ namespace RLTKTutorial.Part1_4
         protected override void OnCreate()
         {
             _mapQuery = GetEntityQuery(
-                ComponentType.ReadOnly<TileBuffer>()
+                ComponentType.ReadOnly<MapTiles>()
                 );
 
             _FOVQuery = GetEntityQuery(
@@ -38,7 +38,7 @@ namespace RLTKTutorial.Part1_4
                 return inputDeps;
 
             var mapEntity = _mapQuery.GetSingletonEntity();
-            var map = EntityManager.GetBuffer<TileBuffer>(mapEntity);
+            var map = EntityManager.GetBuffer<MapTiles>(mapEntity);
             var mapData = EntityManager.GetComponentData<MapData>(mapEntity);
 
             var fovEntity = _FOVQuery.GetSingletonEntity();

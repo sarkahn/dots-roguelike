@@ -5,12 +5,6 @@
 
 # 1.3 - A More Interesting Map
 
-These tutorials will always be free and the code will always be open source. With that being said I put quite a lot of work into them. If you find them useful, please consider donating. Any amount you can spare would really help me out a great deal - thank you!
-
-[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=Y54CX7AXFKQXG)
-
------------
-
 In this chapter we create a more "rogue-like" map of rooms and tunnels.
 
 Most of the code is the same as the previous example. The biggest difference is in `GenerateMapSystem`. Instead of creating an empty map and placing random walls, we fill the entire map with walls and carve out our rooms and tunnels. Room placement happens in `GenerateRooms`. First we generate a randomly sized room:
@@ -18,7 +12,7 @@ Most of the code is the same as the previous example. The biggest difference is 
 
 ###### [GenerateMapSystem.cs](Map/GenerateMapSystem.cs)
 ```
-static void GenerateRooms(DynamicBuffer<TileBuffer> map, MapData mapData, GenerateMap genData, NativeList<IntRect> rooms )
+static void GenerateRooms(DynamicBuffer<MapTiles> map, MapData mapData, GenerateMap genData, NativeList<IntRect> rooms )
 {
     for( int i = 0; i < genData.iterationCount; ++i )
     {
@@ -36,7 +30,7 @@ static void GenerateRooms(DynamicBuffer<TileBuffer> map, MapData mapData, Genera
 
  The `GenerateMap` data has changed a little and now lets us customize the size and number of rooms we're generating. Notice we're also passing in a NativeList - we'll add any valid rooms to this list as we build them into the map. This is necessary to check for room overlaps and to place the player inside a room later on in `OnUpdate`.
 
-In this case we're defining "rooms" as a simple `IntRect`. `IntRect` is a simple struct included with RLTK and is a convenient way to represent and work with rectangles on your map.
+In this case we're defining "rooms" as an `IntRect`. `IntRect` is a simple struct included with RLTK and is a convenient way to represent and work with rectangles on your map.
 
 Next up we we check if the room we just generated overlaps any others in the map. If so, we ignore it and move on to try and generate another one:
 
@@ -84,7 +78,7 @@ The room and tunnel functions are what you'd expect - they carve out floor based
 
 ###### [GenerateMapSystem.cs](Map/GenerateMapSystem.cs)
 ```
-static void BuildRoom(DynamicBuffer<TileBuffer> map, MapData mapData, IntRect room)
+static void BuildRoom(DynamicBuffer<MapTiles> map, MapData mapData, IntRect room)
 {
     for( int x = room.Min.x; x <= room.Max.x; ++x )
         for( int y = room.Min.y; y <= room.Max.y; ++y )
@@ -96,7 +90,7 @@ static void BuildRoom(DynamicBuffer<TileBuffer> map, MapData mapData, IntRect ro
 
 The tunnel functions are the same, but they need to account for positions being passed in in any order:
 ```
-static void BuildHorizontalTunnel(DynamicBuffer<TileBuffer> map, MapData mapData, 
+static void BuildHorizontalTunnel(DynamicBuffer<MapTiles> map, MapData mapData, 
     int x1, int x2, int y )
 {
     int xMin = math.min(x1, x2);
@@ -128,6 +122,12 @@ Nothing too complicated, we just shove the player in middle of the first room we
 And that's pretty much it - with a few small tweaks we have a much nicer map to run around in:
 
 ![](images~/nicemap.gif)
+
+----------------------
+
+These tutorials will always be free and the code will always be open source. With that being said I put quite a lot of work into them. If you find them useful, please consider donating. Any amount you can spare would really help me out a great deal - thank you!
+
+[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=Y54CX7AXFKQXG)
 
 --------
 

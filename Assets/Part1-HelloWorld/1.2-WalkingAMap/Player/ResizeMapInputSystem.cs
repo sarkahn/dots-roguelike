@@ -28,7 +28,7 @@ namespace RLTKTutorial.Part1_2
 
             _mapQuery = GetEntityQuery(
                 ComponentType.ReadWrite<MapData>(),
-                ComponentType.ReadOnly<TileBuffer>()
+                ComponentType.ReadOnly<MapTiles>()
                 );
 
             _inputQuery = GetEntityQuery(
@@ -42,25 +42,24 @@ namespace RLTKTutorial.Part1_2
         {
             float2 resize = _resizeMapAction.triggered ?
                 (float2)_resizeMapAction.ReadValue<Vector2>() : float2.zero;
-
+            
             if (math.lengthsq(resize) == 0)
                 return inputDeps;
 
-            var mapEntity = _mapQuery.GetSingletonEntity();
-            var mapDataFromEntity = GetComponentDataFromEntity<MapData>(false);
-
             var commandBuffer = _barrierSystem.CreateCommandBuffer();
 
+            var mapEntity = _mapQuery.GetSingletonEntity();
+            var mapData = EntityManager.GetComponentData<MapData>(mapEntity);
+            
             inputDeps = Job.WithCode(() =>
             {
-                var mapData = mapDataFromEntity[mapEntity];
                 mapData.width += (int)resize.x;
                 mapData.height += (int)resize.y;
 
                 mapData.width = math.max(3, mapData.width);
                 mapData.height = math.max(3, mapData.height);
-                mapDataFromEntity[mapEntity] = mapData;
-
+                commandBuffer.SetComponent<MapData>(mapEntity, mapData);
+                
                 var genData = GenerateMap.Default;
                 commandBuffer.AddComponent(mapEntity, genData);
             }).Schedule(inputDeps);

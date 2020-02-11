@@ -15,7 +15,6 @@ namespace RLTKTutorial.Part1_3
         InputAction _resizeMapAction;
 
         EntityQuery _mapQuery;
-        EntityQuery _inputQuery;
 
         EndSimulationEntityCommandBufferSystem _barrierSystem;
 
@@ -28,11 +27,7 @@ namespace RLTKTutorial.Part1_3
 
             _mapQuery = GetEntityQuery(
                 ComponentType.ReadWrite<MapData>(),
-                ComponentType.ReadOnly<TileBuffer>()
-                );
-
-            _inputQuery = GetEntityQuery(
-                ComponentType.ReadOnly<PlayerInput>()
+                ComponentType.ReadOnly<MapTiles>()
                 );
 
             _barrierSystem = World.GetOrCreateSystem<EndSimulationEntityCommandBufferSystem>();
@@ -46,27 +41,26 @@ namespace RLTKTutorial.Part1_3
             if (math.lengthsq(resize) == 0)
                 return inputDeps;
 
-            var mapEntity = _mapQuery.GetSingletonEntity();
-            var mapDataFromEntity = GetComponentDataFromEntity<MapData>(false);
-
             var commandBuffer = _barrierSystem.CreateCommandBuffer();
+
+            var mapEntity = _mapQuery.GetSingletonEntity();
+            var mapData = EntityManager.GetComponentData<MapData>(mapEntity);
 
             inputDeps = Job.WithCode(() =>
             {
-                var mapData = mapDataFromEntity[mapEntity];
                 mapData.width += (int)resize.x;
                 mapData.height += (int)resize.y;
 
-                mapData.width = math.max(15, mapData.width);
-                mapData.height = math.max(15, mapData.height);
-                mapDataFromEntity[mapEntity] = mapData;
+                mapData.width = math.max(3, mapData.width);
+                mapData.height = math.max(3, mapData.height);
+                commandBuffer.SetComponent<MapData>(mapEntity, mapData);
 
                 var genData = GenerateMap.Default;
                 commandBuffer.AddComponent(mapEntity, genData);
             }).Schedule(inputDeps);
 
             _barrierSystem.AddJobHandleForProducer(inputDeps);
-  
+
             return inputDeps;
         }
     }

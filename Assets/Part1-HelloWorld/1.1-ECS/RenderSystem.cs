@@ -63,7 +63,7 @@ namespace RLTKTutorial.Part1_1
             _console.Update();
             _console.Draw();
 
-            return inputDeps;
+            return default;
         }
     }
 }

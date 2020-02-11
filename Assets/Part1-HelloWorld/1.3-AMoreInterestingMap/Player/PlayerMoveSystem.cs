@@ -16,7 +16,7 @@ namespace RLTKTutorial.Part1_3
         protected override void OnCreate()
         {
             _mapQuery = GetEntityQuery(
-                ComponentType.ReadWrite<TileBuffer>(),
+                ComponentType.ReadWrite<MapTiles>(),
                 ComponentType.ReadOnly<MapData>()
                 );
 
@@ -29,43 +29,29 @@ namespace RLTKTutorial.Part1_3
         protected override JobHandle OnUpdate(JobHandle inputDeps)
         {
 
-            var playerEntity = _playerQuery.GetSingletonEntity();
-            var inputFromEntity = GetComponentDataFromEntity<PlayerInput>(false);
-            var posFromEntity = GetComponentDataFromEntity<Position>(false);
+            var mapEntity = GetSingletonEntity<MapTiles>();
+            var map = EntityManager.GetBuffer<MapTiles>(mapEntity);
+            var mapData = EntityManager.GetComponentData<MapData>(mapEntity);
 
-            // We want to do the foreach over the map ( as opposed to the player )
-            // to avoid the "container is not suitable for parallel writing" 
-            // from passing the map into a foreach. 
-            // TODO : Clean this up a bit, maybe just get everything via query and 
-            // do the work inside Job.WithCode
             inputDeps = Entities
-                .WithNativeDisableParallelForRestriction(posFromEntity)
-                .WithNativeDisableParallelForRestriction(inputFromEntity)
-                .ForEach((ref DynamicBuffer<TileBuffer> map, in MapData mapData) =>
+                .WithReadOnly(map)
+                .ForEach((ref Position pos, in PlayerInput input) =>
                 {
-                    var input = inputFromEntity[playerEntity];
-                    var hor = input.movement.x;
-                    var ver = input.movement.y;
+                    if (input.movement.x == 0 && input.movement.y == 0)
+                        return;
 
-                    var pos = posFromEntity[playerEntity];
                     int2 p = pos;
 
-                    p.x += (int)hor;
-                    p.y += (int)ver;
+                    p += (int2)input.movement;
 
                     int idx = p.y * mapData.width + p.x;
-                    if( idx >= 0 && idx < map.Length )
-                    {
-                        if (map[idx].value != TileType.Wall)
-                        {
-                            posFromEntity[playerEntity] = p;
-                        }
-                    }
 
-                    // Reset input
-                    inputFromEntity[playerEntity] = default;
+                    if (map[idx].value != TileType.Wall)
+                    {
+                        pos = p;
+                    }
                 }).Schedule(inputDeps);
-    
+
             return inputDeps;
         }
     }

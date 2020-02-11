@@ -5,18 +5,18 @@ using UnityEngine;
 
 namespace RLTKTutorial.Part1_4
 {
-    public class Part1_4Bootstrap : Bootstrap
+    public class Part1_4Bootstrap : MonoBehaviour
     {
-        protected override void AddSystems()
+        void OnEnable()
         {
-            AddSystem<PlayerInputSystem>();
-            AddSystem<GenerateMapSystem>();
-            AddSystem<GenerateMapInputSystem>();
-            AddSystem<ResizeMapInputSystem>();
-            AddSystem<FOVSystem>();
-            AddSystem<InitializeTilesInMemorySystem>();
-            AddSystem<UpdateTilesInMemorySystem>();
-            AddSystem<RenderSystem>();
+            Bootstrap.AddSystem<PlayerInputSystem>();
+            Bootstrap.AddSystem<GenerateMapSystem>();
+            Bootstrap.AddSystem<GenerateMapInputSystem>();
+            Bootstrap.AddSystem<ResizeMapInputSystem>();
+            Bootstrap.AddSystem<FOVSystem>();
+            Bootstrap.AddSystem<InitializeTilesInMemorySystem>();
+            Bootstrap.AddSystem<UpdateTilesInMemorySystem>();
+            Bootstrap.AddSystem<RenderSystem>();
         }
     }
 }

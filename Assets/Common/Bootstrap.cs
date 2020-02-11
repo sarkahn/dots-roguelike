@@ -1,55 +1,34 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Unity.Entities;
 using UnityEngine;
 
 namespace RLTKTutorial
 {
-    public abstract class Bootstrap : MonoBehaviour
+    /// <summary>
+    /// Utility class for manually adding systems to the automatic update loop.
+    /// These systems will appear under "RLTKTutorialSystems" in the entity debugger.
+    /// </summary>
+    public static class Bootstrap
     {
-        protected abstract void AddSystems();
+        public class RLTKTutorialSystems : ComponentSystemGroup { }
 
-        BootstrapGroup _systemGroup;
-        List<System.Type> _systems = new List<System.Type>();
-
-        private void OnEnable()
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
+        static void Init()
         {
-            _systemGroup = World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<BootstrapGroup>();
-            
-            AddSystems();
-            foreach (var t in _systems)
-            {
-                var s = World.DefaultGameObjectInjectionWorld.GetOrCreateSystem(t);
-                _systemGroup.AddSystemToUpdateList(s);
-            }
+            DefaultWorldInitialization.AddSystemsToRootLevelSystemGroups(World.DefaultGameObjectInjectionWorld,
+               new List<Type>() {
+                        typeof(RLTKTutorialSystems)
+               });
         }
 
-        protected void AddSystem<T>() where T : ComponentSystemBase
+        public static void AddSystem<T>() where T : ComponentSystemBase
         {
-            _systems.Add(typeof(T));
+            var group = World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<RLTKTutorialSystems>();
+            var system = World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<T>();
+            group.AddSystemToUpdateList(system);
         }
 
-        private void OnDisable()
-        {
-            if (_systemGroup != null && World.DefaultGameObjectInjectionWorld != null)
-                World.DefaultGameObjectInjectionWorld.DestroySystem(_systemGroup);
-        }
-
-        private void Update()
-        {
-            _systemGroup.Update();
-        }
-
-
-        [DisableAutoCreation]
-        internal class BootstrapGroup : ComponentSystemGroup
-        {
-
-            protected override void OnCreate()
-            {
-            }
-        }
     }
-
-
 }

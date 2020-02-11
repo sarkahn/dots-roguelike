@@ -4,12 +4,6 @@
 
 # 1.1 - ECS
 
-These tutorials will always be free and the code will always be open source. With that being said I put quite a lot of work into them. If you find them useful, please consider donating. Any amount you can spare would really help me out a great deal - thank you!
-
-[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=Y54CX7AXFKQXG)
-
-----------------------
-
 In this chapter we use Unity's ECS system to track some entities and render them in the console using their positions. We also create a player that we can move around in the console.
 
 As of this writing Unity's ECS framework is **very much** in development. The API seems to be stabilizing but there's a good chance that some aspects could change in the future and things in this tutorial might not be up to date with the latest changes. This tutorial was written using the Entities package v[0.5.0].
@@ -24,7 +18,7 @@ to your code. It is. You take the additional work up front, to make life
 easier later.
 ```
 
-This, in my experience, has been the biggest benefit of ECS. It scales very well, it reduces coupling inherently by *forcing* you to separate your data from your behaviours and it forces you to think about and format your data in a way that your computer can process very efficiently.
+This, in my experience, this has been the biggest benefit of ECS. It scales very well, it reduces coupling inherently by *forcing* you to separate your data from your behaviours and it forces you to think about and format your data in a way that your computer can process very efficiently.
 
 I am not saying one can't accomplish these things in OOP. But the bottom line is ECS makes it easier for *me* to write cleaner and faster code.
 
@@ -52,7 +46,7 @@ If you're struggling and can't figure something out on your own with the resourc
 Now with all that being said, I'll give a brief overview of the different pieces of this chapter. First, rendering the console. Since we're using ECS, relying on the `SimpleConsoleProxy` is more trouble than it's worth. Instead we create and render a `SimpleConsole` entirely from code inside [RenderSystem.cs](RenderSystem.cs):
 
 
-###### RenderSystem.cs
+###### [RenderSystem.cs](RenderSystem.cs)
 ```
 [DisableAutoCreation]
 [AlwaysSynchronizeSystem]
@@ -60,14 +54,14 @@ public class RenderSystem : JobComponentSystem
 {
     SimpleConsole _console;
 
-    protected override void OnCreate()
-    {
-        _console = new SimpleConsole(40, 15);
-    }
-
     protected override void OnStartRunning()
     {
         RenderUtility.AdjustCameraToConsole(_console);
+    }
+
+    protected override void OnCreate()
+    {
+        _console = new SimpleConsole(40, 15);
     }
 
     protected override void OnDestroy()
@@ -95,27 +89,86 @@ public class RenderSystem : JobComponentSystem
 }
 ```
 
-I applied the [DisableAutoCreation] attribute because I want the systems for each chapter to be created only when that chapter's scene is loaded. This is accomplished with the [Part1_1Bootstrap](Part1_1Bootstrap.cs) class, which is derived from the utility [Bootstrap](../../Common/Bootstrap.cs) inside the "Common" folder.
+There's a lot going on in this class if you're just starting out so I'll give a brief overview of what each bit is doing.
 
-The lifetime isn't managed automatically by our `SimpleConsoleProxy` anymore so we have to do it ourselves. We create the console inside `OnCreate` and dispose in `OnDestroy`. 
 
-In the previous chapter we used the `LockCameraToConsole` component to adjust the Camera. That component is made to work with the `SimpleConsoleProxy`. Since we aren't using that we can instead use the RLTK class `RenderUtility` to automatically adjust the camera to our console's size inside `OnStartRunning`. We can't call that from `OnCreate` since the Camera's GameObject will not have been created yet at that point.
+#### Bootstrap
 
-Inside `OnUpdate` we clear the console and iterate over all our entities and draw them to the console. Finally we call `Update` and `Draw` to render the console:
+Unity's default behaviour is to add any system you write to the ECS update loop automatically. I applied the `[DisableAutoCreation]` attribute to every system in this tutorial because I want the systems for each chapter to be created only when that chapter's scene is loaded instad.
+
+This is accomplished with the [Part1_1Bootstrap](Part1_1Bootstrap.cs) class, which calls into the utility [Bootstrap](../../Common/Bootstrap.cs) static class inside the "Common" folder. This adds all the relevant systems to Unity's internal ECS loop. You can see the systems running in the Entity Debugger under "RLTKTutorialSystems":
+
+![](images~/debugger.png)
+
+
+#### Managing the Console Lifetime
+
+The lifetime of the console isn't managed automatically by our MonoBehaviour anymore, so we have manage it ourselves. We create the console inside `OnCreate` and dispose in `OnDestroy`:
+
+###### [RenderSystem.cs](RenderSystem.cs)
+```
+    protected override void OnCreate()
+    {
+        _console = new SimpleConsole(40, 15);
+    }
+
+    protected override void OnDestroy()
+    {
+        _console.Dispose();
+    }
+``` 
+
+#### Adjusting the Camera
+
+In the previous chapter we used the `LockCameraToConsole` component to adjust the Camera. That component is made to work with the `SimpleConsoleProxy`. 
+
+Since we aren't using that anymore we can instead use the RLTK class `RenderUtility` to automatically adjust the camera to our console's size inside `OnStartRunning`. We can't call that from `OnCreate` since the Camera's GameObject will not have been created yet at that point:
+
+###### [RenderSystem.cs](RenderSystem.cs)
+```
+    protected override void OnStartRunning()
+    {
+        RenderUtility.AdjustCameraToConsole(_console);
+    }
+```
+
+#### Drawing our Entities
+
+Inside `OnUpdate` we clear the console, iterate over all our entities, and draw them to the console. Note that because the console is a managed object we cannot do this inside a job, or use Burst. There is an API on the console for updating it in jobs, but it's been omitted to keep things simpler:
+
+###### [RenderSystem.cs](RenderSystem.cs)
+```
+    protected override JobHandle OnUpdate(JobHandle inputDeps)
+    {
+        _console.ClearScreen();
+
+        Entities
+            .WithoutBurst()
+            .ForEach((in Position pos, in Renderable renderable) =>
+        {
+            var p = (int2)pos.Value;
+            _console.Set(p.x, p.y, renderable.FGColor, renderable.BGColor, renderable.Glyph);
+        }).Run();
+
+        _console.Update();
+        _console.Draw();
+
+        return default;
+    }
+```
 
 ![](images~/someentities.png)
 
 ## Creating the Entities
 
-The entities (the yellow player and the little red smileys) are created from the [CreateEntities](CreateEntities.cs) script:
+The entities (the yellow player and the little red smileys) are created from the `CreateEntities` script:
 
-###### CreateEntities.cs
+###### [CreateEntities.cs](CreateEntities.cs)
 ```
 public class CreateEntities : MonoBehaviour, IConvertGameObjectToEntity
 {
     public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem)
     {
-        var em = dstManager;
         var player = entity;
         dstManager.AddComponentData<Position>(player, new float2(10, 8));
         dstManager.AddComponentData<Renderable>(player, new Renderable
@@ -146,8 +199,6 @@ public class CreateEntities : MonoBehaviour, IConvertGameObjectToEntity
 This is a nice and straightforward way to create entities using the [ConversionSystem](https://docs.unity3d.com/Packages/com.unity.entities@0.5/manual/gp_overview.html#gameobject-conversion). I didn't do it in this case, but since this is a MonoBehaviour you can easily expose values in the inspector that you can use to customize entity creation through the editor before you hit play - such as tweaking colors or changing the number of entities you spawn.
 
 Note the `conversionSystem.CreateAdditionalEntity` calls. You might intuitively think you should create additional entities via `dstManager.CreateEntity`, but inside an `IConvertGameObjectToEntity` script you must use `CreateAdditionalEntity` and pass in the converting GameObject for it to work properly.
-
-
 
 ## Movement
 
@@ -218,9 +269,16 @@ Once we read our input on the main thread and assign it to components, we then r
 ```
 
 
-And that's it for this chapter. If you feel confused about anything you've read on this page I strongly encourage you to refer back to the learning references linked earlier in this chapter.
+And that's it for this chapter. If you feel confused about anything you've read so far, I strongly encourage you to refer back to the learning references linked earlier in this chapter.
 
-The next chapter will focus on generating a map for the player to move around in.
+----------------------
+
+These tutorials will always be free and the code will always be open source. With that being said I put quite a lot of work into them. If you find them useful, please consider donating. Any amount you can spare would really help me out a great deal - thank you!
+
+[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=Y54CX7AXFKQXG)
+
+----------------------
+
 
 --------
 

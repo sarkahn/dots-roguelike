@@ -22,7 +22,7 @@ namespace RLTKTutorial.Part1_3
 
         protected override void OnStartRunning()
         {
-            var mapEntity = GetSingletonEntity<TileBuffer>();
+            var mapEntity = GetSingletonEntity<MapTiles>();
             var mapData = EntityManager.GetComponentData<MapData>(mapEntity);
             _console = new SimpleConsole(mapData.width, mapData.height);
 
@@ -54,7 +54,7 @@ namespace RLTKTutorial.Part1_3
             var tiles = _console.ReadAllTiles(Allocator.TempJob);
 
             Entities
-                .ForEach((ref DynamicBuffer<TileBuffer> map) =>
+                .ForEach((ref DynamicBuffer<MapTiles> map) =>
                 {
                     for (int i = 0; i < map.Length; ++i)
                     {

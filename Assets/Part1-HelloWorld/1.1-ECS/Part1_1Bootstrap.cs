@@ -6,14 +6,15 @@ using UnityEngine;
 
 namespace RLTKTutorial.Part1_1
 {
-    public class Part1_1Bootstrap : Bootstrap
+    public class Part1_1Bootstrap : MonoBehaviour
     {
-        protected override void AddSystems()
+        private void OnEnable()
         {
-            AddSystem<RenderSystem>();
-            AddSystem<MoveLeftSystem>();
-            AddSystem<MovePlayerSystem>();
-            AddSystem<ReadInputSystem>();
+            Bootstrap.AddSystem<RenderSystem>();
+            Bootstrap.AddSystem<MoveLeftSystem>();
+            Bootstrap.AddSystem<MovePlayerSystem>();
+            Bootstrap.AddSystem<ReadInputSystem>();
         }
+        
     }
 }
