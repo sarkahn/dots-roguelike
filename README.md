@@ -59,8 +59,6 @@ Demonstrates how to create an FOV and "memory" system for exploring maps, how to
 
 -----
 
------
-
 ### [Part 1.5 - Monsters and Refactoring](Assets/Part1-HelloWorld/1.5-Monsters/README.md)
 
 Goes over some code refactoring so our systems can apply behaviour to more entities than the just the player and generates some monsters in our map.

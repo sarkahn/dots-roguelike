@@ -13,7 +13,7 @@ In the last few chapters we introduced a lot of behaviour to the player - moveme
 
 For instance - we want enemies to have a field of view too so we know when they can see the player. We also want to generalize the concept of movement so all entities can move using the same system - we don't want to have to create a separate system for every entity type.
 
-## Reading Input vs Reading Intents
+#### Reading Input vs Reading Intents
 
 In the previous chapters we would write all our input to the `PlayerInput` component on our player entity, then read from that component in other systems to perform actions.
 
@@ -137,7 +137,7 @@ Now we need to respond to this movement. Refactoring the old `PlayerMoveSystem` 
     }
 ```
 
-We perform the same logic to see if it's a valid move, but now we're querying for the `Movement` components. Any entity can now have movement with a `Position` and `Movement` component.
+We perform the same logic to see if it's a valid move, but now we're querying for the `Movement` components. Any entity can now have the ability to move with a `Position` and `Movement` component.
 
 #### Field of View Changes
 
@@ -303,6 +303,7 @@ While we're mostly going to be creating entities through code, we can also use t
 
 The `RenderSystem` also needs to be changed to render any `Renderable` instead of just the player:
 
+###### [Rendering/RenderSystem.cs](Rendering/RenderSystem.cs)
 ```
 protected override JobHandle OnUpdate(JobHandle inputDeps)
 {
@@ -349,7 +350,7 @@ protected override void OnCreate()
 }
 ```
 
-Notice that we include "vision" (`TilesInView`) and movement components. Since we changed our systems earlier to apply to any entities with these components, they will "just work" for our newly created monsters.
+Notice that we include the renderable, "vision" (`TilesInView`) and movement components. Since we changed our systems earlier to apply to any entities with these components, they will "just work" for our newly created monsters.
 
 The only new components here are `Name` and `Monster`. `Monster` is just an empty tag component. `Name` is what you'd expect:
 
