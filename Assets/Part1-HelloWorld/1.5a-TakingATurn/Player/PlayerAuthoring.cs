@@ -6,7 +6,7 @@ using Unity.Mathematics;
 using UnityEngine;
 
 
-namespace RLTKTutorial.Part1_5
+namespace RLTKTutorial.Part1_5A
 {
     public struct Player : IComponentData
     { }
@@ -20,12 +20,14 @@ namespace RLTKTutorial.Part1_5
 
             dstManager.AddComponent<Player>(entity);
             dstManager.AddComponentData<Position>(entity, pos);
-            dstManager.AddComponentData<Name>(entity, new FixedString32("Player"));
             dstManager.AddComponentData<ViewRange>(entity, ViewRange.Default);
             dstManager.AddBuffer<TilesInView>(entity);
             dstManager.AddBuffer<TilesInMemory>(entity);
+            dstManager.AddComponentData<Name>(entity, new FixedString32("Player"));
             dstManager.AddComponent<Movement>(entity);
-
+            dstManager.AddComponent<Energy>(entity);
+            dstManager.AddComponentData<Speed>(entity, Speed.Default);
+            dstManager.AddComponent<Actor>(entity);
         }
 
         private void OnDrawGizmos()

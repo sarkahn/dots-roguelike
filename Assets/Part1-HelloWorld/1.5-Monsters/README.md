@@ -1,5 +1,5 @@
 
-#### [« Previous: 1.4 - Field of View, Interfaces, and Reactive Systems](../1.4-FieldOfView/README.md) —  [Next: In Progress... »]
+#### [« Previous: 1.4 - Field of View, Interfaces, and Reactive Systems](../1.4-FieldOfView/README.md) —  [Next: 1.5A - Taking Turns » ](../1.5A-TakingTurns/README.md)
 
 --------
 
@@ -484,4 +484,4 @@ These tutorials will always be free and the code will always be open source. Wit
 
 --------
 
-#### [« Previous: 1.4 - Field of View, Interfaces, and Reactive Systems](../1.4-FieldOfView/README.md) —  [Next: In Progress... »]
+#### [« Previous: 1.4 - Field of View, Interfaces, and Reactive Systems](../1.4-FieldOfView/README.md) —  [Next: 1.5A - Taking Turns » ](../1.5A-TakingTurns/README.md)
