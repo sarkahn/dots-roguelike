@@ -10,10 +10,10 @@ namespace RLTKTutorial.Part1_1
     {
         private void OnEnable()
         {
-            Bootstrap.AddSystem<RenderSystem>();
-            Bootstrap.AddSystem<MoveLeftSystem>();
-            Bootstrap.AddSystem<MovePlayerSystem>();
-            Bootstrap.AddSystem<ReadInputSystem>();
+            Bootstrap.AddSimSystem<RenderSystem>();
+            Bootstrap.AddSimSystem<MoveLeftSystem>();
+            Bootstrap.AddSimSystem<MovePlayerSystem>();
+            Bootstrap.AddSimSystem<ReadInputSystem>();
         }
         
     }

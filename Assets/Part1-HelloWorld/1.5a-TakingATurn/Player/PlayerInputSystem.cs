@@ -11,8 +11,8 @@ namespace RLTKTutorial.Part1_5A
 {
     [DisableAutoCreation]
     [AlwaysUpdateSystem]
-    [UpdateBefore(typeof(MoveSystem))]
-    public class PlayerInputSystem : JobComponentSystem
+    //[UpdateBefore(typeof(MoveSystem))]
+    public class PlayerInputSystem : SystemBase
     {
         TutorialControls _controls;
         InputAction _moveAction;
@@ -30,25 +30,23 @@ namespace RLTKTutorial.Part1_5A
             _quitAction = _controls.DefaultMapping.QuitGame;
         }
 
-        protected override JobHandle OnUpdate(JobHandle inputDeps)
+        protected override void OnUpdate()
         {
             var moveInput = _moveAction.triggered ? (float2)_moveAction.ReadValue<Vector2>() : float2.zero;
             
             if (moveInput.x == _previousMove.x && moveInput.y == _previousMove.y)
-                return inputDeps;
+                return;
             _previousMove = moveInput;
 
-            inputDeps = Entities
+            Entities
                 .WithAll<Player>()
                 .ForEach((ref Movement move) =>
                 {
                     move = (int2)moveInput;
-                }).Schedule(inputDeps);
+                }).Run();
 
             if (_quitAction.triggered)
                 Application.Quit();
-
-            return inputDeps;
         }
 
     }

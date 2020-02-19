@@ -1,6 +1,7 @@
 ﻿
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Collections;
 using Unity.Entities;
 using Unity.Jobs;
 using Unity.Mathematics;
@@ -9,12 +10,10 @@ using UnityEngine;
 namespace RLTKTutorial.Part1_5A
 {
     [DisableAutoCreation]
-    public class MoveSystem : JobComponentSystem
+    public class MoveSystem : SystemBase
     {
         EntityQuery _mapQuery;
         EntityQuery _moveQuery;
-
-        EndSimulationEntityCommandBufferSystem _barrier;
         
         protected override void OnCreate()
         {
@@ -29,27 +28,23 @@ namespace RLTKTutorial.Part1_5A
                 );
             
             _moveQuery.AddChangedVersionFilter(typeof(Movement));
-
-            RequireForUpdate(_mapQuery);
-            RequireForUpdate(_moveQuery);
-
-            _barrier = World.GetOrCreateSystem<EndSimulationEntityCommandBufferSystem>();
         }
 
-        protected override JobHandle OnUpdate(JobHandle inputDeps)
+        //protected override JobHandle OnUpdate(JobHandle inputDeps)
+        protected override void OnUpdate()
         {
             if (_moveQuery.CalculateEntityCount() == 0)
-                return inputDeps;
+                return;
 
             var mapEntity = _mapQuery.GetSingletonEntity();
             var map = EntityManager.GetBuffer<MapTiles>(mapEntity);
             var mapData = EntityManager.GetComponentData<MapData>(mapEntity);
 
-            var buffer = _barrier.CreateCommandBuffer().ToConcurrent();
+            var buffer = new EntityCommandBuffer(Allocator.Temp);
 
             var nameFromEntity = GetComponentDataFromEntity<Name>(true);
-
-            inputDeps = Entities
+            
+            Entities
                 //.WithReadOnly(nameFromEntity)
                 .WithReadOnly(map)
                 //.WithoutBurst()
@@ -64,26 +59,22 @@ namespace RLTKTutorial.Part1_5A
 
                 int2 dest = p.value + move.value;
                 int index = dest.y * mapData.width + dest.x;
-                
+
+                //if (math.lengthsq(move.value) != 0 && nameFromEntity.HasComponent(e)) Debug.Log($"{nameFromEntity[e].ToString()} moved");
+
                 move = int2.zero;
 
-                //if(nameFromEntity.HasComponent(e))
-                //    Debug.Log($"{nameFromEntity[e].ToString()} moved");
-
                 var performed = new ActionPerformed { cost = 100 };
-                buffer.AddComponent(entityInQueryIndex, e, performed);
+                buffer.AddComponent(e, performed);
 
                 if (index < 0 || index >= map.Length)
                     return;
 
                 if( map[index] != TileType.Wall )
                     p = dest;
-                
-            }).Schedule(inputDeps);
+            }).Run();
 
-            _barrier.AddJobHandleForProducer(inputDeps);
-
-            return inputDeps;
+            buffer.Playback(EntityManager);
         }
     }
 }

@@ -14,6 +14,10 @@ namespace RLTKTutorial.Part1_5A
         public FixedString32 value;
         public static implicit operator FixedString32(Name c) => c.value;
         public static implicit operator Name(FixedString32 v) => new Name { value = v };
+
+        public static implicit operator string(Name c) => c.value.ToString();
+        public static implicit operator Name(string v) => new Name { value = v };
+
         public override string ToString() => value.ToString();
     }
 }

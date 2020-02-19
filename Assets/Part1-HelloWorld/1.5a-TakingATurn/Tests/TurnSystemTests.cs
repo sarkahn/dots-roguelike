@@ -19,7 +19,6 @@ namespace RLTKTutorial.Part1_5A.Tests
             var em = m_Manager;
 
             AddSystem<GameTurnSystem>();
-            AddSystem<EndSimulationEntityCommandBufferSystem>();
 
             var slowUnit = em.CreateEntity(typeof(Actor), typeof(Speed), typeof(Energy));
             em.SetComponentData<Speed>(slowUnit, 25);
@@ -40,7 +39,6 @@ namespace RLTKTutorial.Part1_5A.Tests
             var em = m_Manager;
 
             AddSystem<GameTurnSystem>();
-            AddSystem<EndSimulationEntityCommandBufferSystem>();
 
             var slowUnit = em.CreateEntity(typeof(Actor), typeof(Speed), typeof(Energy));
             em.SetComponentData<Speed>(slowUnit, 25);
@@ -99,33 +97,10 @@ namespace RLTKTutorial.Part1_5A.Tests
         public void TurnSystemHandsOutTurnsAtEnergyThreshold()
         {
             AddSystem<GameTurnSystem>();
-            AddSystem<EndSimulationEntityCommandBufferSystem>();
 
             var em = m_Manager;
 
-            var fastUnit = em.CreateEntity(typeof(Actor), typeof(Energy));
-
-            em.SetComponentData<Energy>(fastUnit, 50);
-
-            Update();
-
-            Assert.IsFalse(em.HasComponent<TakingATurn>(fastUnit));
-
-            em.SetComponentData<Energy>(fastUnit, 100);
-
-            Update();
-
-            Assert.IsTrue(em.HasComponent<TakingATurn>(fastUnit));
-        }
-
-        [Test]
-        public void TurnSystemProcessesPerformedAction()
-        {
-            AddSystem<GameTurnSystem>();
-            AddSystem<EndSimulationEntityCommandBufferSystem>();
-
-            var em = m_Manager;
-
+            // Note: No Speed, so energy will not be increased by turn system
             var actor = em.CreateEntity(typeof(Actor), typeof(Energy));
 
             em.SetComponentData<Energy>(actor, 100);
@@ -133,6 +108,21 @@ namespace RLTKTutorial.Part1_5A.Tests
             Update();
 
             Assert.IsTrue(em.HasComponent<TakingATurn>(actor));
+        }
+
+        [Test]
+        public void TurnSystemProcessesPerformedAction()
+        {
+            AddSystem<GameTurnSystem>();
+
+            var em = m_Manager;
+
+            // No speed, energy will not be increased by turn system
+            var actor = em.CreateEntity(typeof(Actor), typeof(Energy));
+
+            em.SetComponentData<Energy>(actor, 100);
+
+            Update();
 
             em.AddComponentData(actor, new ActionPerformed
             {
@@ -141,8 +131,8 @@ namespace RLTKTutorial.Part1_5A.Tests
 
             Update();
 
-            Assert.IsTrue(!em.HasComponent<TakingATurn>(actor));
-            Assert.IsTrue(!em.HasComponent<ActionPerformed>(actor));
+            Assert.IsFalse(em.HasComponent<TakingATurn>(actor));
+            Assert.IsFalse(em.HasComponent<ActionPerformed>(actor));
             Assert.AreEqual(25, em.GetComponentData<Energy>(actor).value);
         }
 

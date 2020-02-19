@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Part1-HelloWorld/1.5-Monsters/1.5-Monsters.unity
-    guid: 670017303c3591247a2525d8c7a050d8
+    path: Assets/Part1-HelloWorld/1.5a-TakingATurn/1.5A-TakingATurn.unity
+    guid: 31ed83569920e9e4b99aa284c7322e3a
   m_configObjects: {}

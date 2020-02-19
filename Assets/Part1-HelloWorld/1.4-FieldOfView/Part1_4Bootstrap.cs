@@ -9,14 +9,14 @@ namespace RLTKTutorial.Part1_4
     {
         void OnEnable()
         {
-            Bootstrap.AddSystem<PlayerInputSystem>();
-            Bootstrap.AddSystem<GenerateMapSystem>();
-            Bootstrap.AddSystem<GenerateMapInputSystem>();
-            Bootstrap.AddSystem<ResizeMapInputSystem>();
-            Bootstrap.AddSystem<FOVSystem>();
-            Bootstrap.AddSystem<InitializeTilesInMemorySystem>();
-            Bootstrap.AddSystem<UpdateTilesInMemorySystem>();
-            Bootstrap.AddSystem<RenderSystem>();
+            Bootstrap.AddSimSystem<PlayerInputSystem>();
+            Bootstrap.AddSimSystem<GenerateMapSystem>();
+            Bootstrap.AddSimSystem<GenerateMapInputSystem>();
+            Bootstrap.AddSimSystem<ResizeMapInputSystem>();
+            Bootstrap.AddSimSystem<FOVSystem>();
+            Bootstrap.AddSimSystem<InitializeTilesInMemorySystem>();
+            Bootstrap.AddSimSystem<UpdateTilesInMemorySystem>();
+            Bootstrap.AddSimSystem<RenderSystem>();
         }
     }
 }

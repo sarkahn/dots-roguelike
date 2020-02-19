@@ -17,7 +17,7 @@ namespace RLTKTutorial.Part1_5A
     [DisableAutoCreation]
     [AlwaysSynchronizeSystem]
     [UpdateInGroup(typeof(PresentationSystemGroup))]
-    public class RenderSystem : JobComponentSystem
+    public class RenderSystem : SystemBase
     {
         SimpleConsole _console;
 
@@ -33,9 +33,7 @@ namespace RLTKTutorial.Part1_5A
                 );
 
             _playerQuery = GetEntityQuery(
-                ComponentType.ReadOnly<Player>(),
-                ComponentType.ReadOnly<TilesInView>(),
-                ComponentType.ReadOnly<TilesInMemory>()
+                ComponentType.ReadOnly<Player>()
                 );
 
             RequireForUpdate(_playerQuery);
@@ -56,7 +54,7 @@ namespace RLTKTutorial.Part1_5A
                 _console.Dispose();
         }
 
-        protected override JobHandle OnUpdate(JobHandle inputDeps)
+        protected override void OnUpdate()
         {
             var mapEntity = _mapQuery.GetSingletonEntity();
 
@@ -66,7 +64,7 @@ namespace RLTKTutorial.Part1_5A
             {
                 _console.Resize(mapData.width, mapData.height);
                 RenderUtility.AdjustCameraToConsole(_console);
-                return inputDeps;
+                return;
             }
 
             var map = EntityManager.GetBuffer<MapTiles>(mapEntity);
@@ -74,77 +72,192 @@ namespace RLTKTutorial.Part1_5A
             // The map has been resized but not yet updated
             if( (mapData.width * mapData.height) != map.Length )
             {
-                return inputDeps;
+                return;
             }
 
             if (_playerQuery.IsEmptyIgnoreFilter)
-                return inputDeps;
+                return;
+
+            // Since we're iterating all tiles in the map we can probably benefit from using burst.
+            // We can't use the console in a job since it's a managed object, so we'll work directly with tiles
+            var tiles = new NativeArray<Tile>(_console.CellCount, Allocator.Temp, NativeArrayOptions.ClearMemory);
 
             var playerEntity = _playerQuery.GetSingletonEntity();
-            var view = EntityManager.GetBuffer<TilesInView>(playerEntity);
-            var memory = EntityManager.GetBuffer<TilesInMemory>(playerEntity);
 
+            bool hasView = EntityManager.HasComponent<TilesInView>(playerEntity);
+            bool hasMemory = EntityManager.HasComponent<TilesInMemory>(playerEntity);
+            
             _console.ClearScreen();
 
-            Job
-                .WithoutBurst()
-                .WithCode(() =>
+            if (!hasMemory && !hasView)
+                RenderEverything(map, tiles, mapData.Size);
+            else
+            {
+                if (hasMemory)
+                {
+                    var memory = EntityManager.GetBuffer<TilesInMemory>(playerEntity);
+                    RenderMemory(map, memory, tiles, mapData.Size);
+                }
+
+                if (hasView)
+                {
+                    var view = EntityManager.GetBuffer<TilesInView>(playerEntity);
+                    RenderView(map, view, tiles, mapData.Size);
+                }
+                
+            }
+
+            _console.WriteAllTiles(tiles);
+
+            _console.Update();
+            _console.Draw();
+        }
+
+        void RenderView(
+            DynamicBuffer<MapTiles> map, 
+            DynamicBuffer<TilesInView> view, 
+            NativeArray<Tile> consoleTiles,
+            int2 mapSize)
+        {
+            Job.WithCode(() =>
             {
                 Color fg = default;
                 Color bg = Color.black;
                 char ch = default;
-                for( int x = 0; x < mapData.width; ++x )
-                    for( int y = 0; y < mapData.height; ++y )
-                    {
-                        int idx = y * mapData.width + x;
-                        if (memory[idx])
-                        {
-                            var tile = (TileType)map[idx];
-                            if( view[idx] )
-                                switch(tile)
-                                {
-                                    case TileType.Floor:
-                                        fg = new Color(0, .5f, .5f);
-                                        ch = '.';
-                                        break;
-                                    case TileType.Wall:
-                                        fg = new Color(0, 1, 0);
-                                        ch = '#';
-                                        break;
-                                }
-                            else
-                            {
-                                fg = new Color(0.1f, .1f, 0.1f);
-                                switch (tile)
-                                {
-                                    case TileType.Floor:
-                                        ch = '.';
-                                        break;
-                                    case TileType.Wall:
-                                        ch = '#';
-                                        break;
-                                }
-                            }
-
-                            _console.Set(x, y, fg, bg, ToCP437(ch));
-                        }
-                    }
-            }).Run();
-            
-
-            Entities
-                .WithoutBurst()
-                .ForEach((in Renderable render, in Position pos) =>
+                for( int i = 0; i < map.Length; ++i )
                 {
-                    int2 p = math.clamp(pos, 1, mapData.Size - 1);
-                    if( view[p.y * mapData.width + p.x] )
-                        _console.Set(p.x, p.y, render.fgColor, render.bgColor, render.glyph);
+                    if(view[i])
+                    {
+                        var tileType = (TileType)map[i];
+                        
+                        switch (tileType)
+                        {
+                            case TileType.Floor:
+                                fg = new Color(0, .5f, .5f);
+                                ch = '.';
+                                break;
+                            case TileType.Wall:
+                                fg = new Color(0, 1, 0);
+                                ch = '#';
+                                break;
+                        }
+
+                        consoleTiles[i] = new Tile
+                        {
+                            fgColor = fg,
+                            bgColor = bg,
+                            glyph = CodePage437.ToCP437(ch)
+                        };
+                    }
+                }
+            }).Run();
+
+            RenderEntitiesInView(consoleTiles, view, mapSize);
+        }
+
+        void RenderMemory(
+            DynamicBuffer<MapTiles> map,
+            DynamicBuffer<TilesInMemory> memory,
+            NativeArray<Tile> consoleTiles,
+            int2 mapSize)
+        {
+            Job.WithCode(() =>
+            {
+                Color fg = default;
+                Color bg = Color.black;
+                char ch = default;
+                for (int i = 0; i < map.Length; ++i)
+                {
+                    if (memory[i])
+                    {
+                        var tileType = (TileType)map[i];
+
+                        fg = new Color(0.1f, .1f, 0.1f);
+                        switch (tileType)
+                        {
+                            case TileType.Floor:
+                                ch = '.';
+                                break;
+                            case TileType.Wall:
+                                ch = '#';
+                                break;
+                        }
+
+                        consoleTiles[i] = new Tile
+                        {
+                            fgColor = fg,
+                            bgColor = bg,
+                            glyph = CodePage437.ToCP437(ch)
+                        };
+                    }
+                }
+            }).Run();
+        }
+
+        void RenderEntitiesInView(NativeArray<Tile> consoleTiles, DynamicBuffer<TilesInView> view, int2 mapSize)
+        {
+            Entities
+                .ForEach((in Position pos, in Renderable renderable) =>
+                {
+                    int2 p = pos.value;
+                    int i = p.y * mapSize.x + p.x;
+                    if(view[i])
+                    {
+                        consoleTiles[i] = new Tile
+                        {
+                            fgColor = renderable.fgColor,
+                            bgColor = renderable.bgColor,
+                            glyph = renderable.glyph
+                        };
+                    }
                 }).Run();
+        }
 
-            _console.Update();
-            _console.Draw();
 
-            return default;
+        void RenderEverything(DynamicBuffer<MapTiles> map, NativeArray<Tile> consoleTiles, int2 mapSize)
+        {
+            // Draw map tiles
+            Job.WithCode(() =>
+            {
+                for (int i = 0; i < map.Length; ++i)
+                {
+                    Tile t = new Tile();
+                    t.bgColor = Color.black;
+                    switch ((TileType)map[i])
+                    {
+                        case TileType.Floor:
+                            t.fgColor = new Color(0.5f, 0.5f, 0.5f);
+                            t.glyph = ToCP437('.');
+                            break;
+
+                        case TileType.Wall:
+                            t.fgColor = new Color(0, 1, 0);
+                            t.glyph = ToCP437('#');
+                            break;
+                    }
+
+                    consoleTiles[i] = t;
+                }
+            }).Run();
+
+            RenderAllEntities(consoleTiles, mapSize);
+        }
+
+        void RenderAllEntities(NativeArray<Tile> consoleTiles, int2 mapSize)
+        {
+            // Draw renderables
+            Entities
+                .ForEach((in Position pos, in Renderable renderable) =>
+                {
+                    int2 p = pos.value;
+                    int i = p.y * mapSize.x + p.x;
+                    consoleTiles[i] = new Tile
+                    {
+                        fgColor = renderable.fgColor,
+                        bgColor = renderable.bgColor,
+                        glyph = renderable.glyph
+                    };
+                }).Run();
         }
     }
 }

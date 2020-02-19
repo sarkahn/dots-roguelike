@@ -9,17 +9,17 @@ namespace RLTKTutorial.Part1_5
     {
         void OnEnable()
         {
-            Bootstrap.AddSystem<GenerateMapSystem>();
+            Bootstrap.AddSimSystem<GenerateMapSystem>();
 
-            Bootstrap.AddSystem<MapInputSystem>();
+            Bootstrap.AddSimSystem<MapInputSystem>();
 
-            Bootstrap.AddSystem<MoveSystem>();
-            Bootstrap.AddSystem<VisibilitySystem>();
-            Bootstrap.AddSystem<MonsterAISystem>();
-            Bootstrap.AddSystem<PlayerInputSystem>();
+            Bootstrap.AddSimSystem<MoveSystem>();
+            Bootstrap.AddSimSystem<VisibilitySystem>();
+            Bootstrap.AddSimSystem<MonsterAISystem>();
+            Bootstrap.AddSimSystem<PlayerInputSystem>();
 
 
-            Bootstrap.AddSystem<RenderSystem>();
+            Bootstrap.AddSimSystem<RenderSystem>();
         }
     }
 }

@@ -13,6 +13,9 @@ namespace RLTKTutorial.Part1_5A
 
     public class PlayerAuthoring : MonoBehaviour, IConvertGameObjectToEntity
     {
+        [SerializeField]
+        bool _fovEnabled = true;
+
         public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem)
         {
             var p = transform.position;
@@ -20,14 +23,18 @@ namespace RLTKTutorial.Part1_5A
 
             dstManager.AddComponent<Player>(entity);
             dstManager.AddComponentData<Position>(entity, pos);
-            dstManager.AddComponentData<ViewRange>(entity, ViewRange.Default);
-            dstManager.AddBuffer<TilesInView>(entity);
-            dstManager.AddBuffer<TilesInMemory>(entity);
             dstManager.AddComponentData<Name>(entity, new FixedString32("Player"));
             dstManager.AddComponent<Movement>(entity);
             dstManager.AddComponent<Energy>(entity);
             dstManager.AddComponentData<Speed>(entity, Speed.Default);
             dstManager.AddComponent<Actor>(entity);
+
+            if( _fovEnabled )
+            {
+                dstManager.AddBuffer<TilesInView>(entity);
+                dstManager.AddBuffer<TilesInMemory>(entity);
+                dstManager.AddComponentData<ViewRange>(entity, ViewRange.Default);
+            }
         }
 
         private void OnDrawGizmos()

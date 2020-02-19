@@ -9,10 +9,10 @@ namespace RLTKTutorial.Part1_2
     {
         void OnEnable()
         {
-            Bootstrap.AddSystem<PlayerInputSystem>();
-            Bootstrap.AddSystem<GenerateMapSystem>();
-            Bootstrap.AddSystem<RenderSystem>();
-            Bootstrap.AddSystem<ResizeMapInputSystem>();
+            Bootstrap.AddSimSystem<PlayerInputSystem>();
+            Bootstrap.AddSimSystem<GenerateMapSystem>();
+            Bootstrap.AddSimSystem<RenderSystem>();
+            Bootstrap.AddSimSystem<ResizeMapInputSystem>();
         }
     }
 }

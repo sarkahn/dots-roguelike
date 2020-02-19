@@ -21,6 +21,8 @@ namespace RLTKTutorial.Part1_5A
 
         EntityArchetype _monsterArchetype;
 
+        EntityQuery _monsterPrefabsQuery;
+
         
         protected override void OnCreate()
         {
@@ -49,6 +51,11 @@ namespace RLTKTutorial.Part1_5A
                 ComponentType.ReadOnly<Energy>()
                 );
 
+            _monsterPrefabsQuery = GetEntityQuery(
+                ComponentType.ReadOnly<Prefab>(),
+                ComponentType.ReadOnly<Monster>()
+                );
+
             RequireForUpdate(_mapQuery);
         }
 
@@ -68,7 +75,8 @@ namespace RLTKTutorial.Part1_5A
             genData.seed = genData.seed == 0 ? randomSeed : genData.seed;
             uint seed = (uint)genData.seed;
 
-            Debug.Log("GENERATING MAP");
+            Debug.Log("GENERATING MAP Size " + mapData.Size);
+
 
             inputDeps = Job
                 .WithCode(() =>
@@ -103,50 +111,43 @@ namespace RLTKTutorial.Part1_5A
                 }).Schedule(inputDeps);
 
 
-            FixedString32 goblinName = new FixedString32("Goblin");
-            FixedString32 orcName = new FixedString32("Orc");
-
-            var arch = _monsterArchetype;
+            var monsterPrefabs = _monsterPrefabsQuery.ToEntityArray(Allocator.TempJob);
 
             // Make monsters
-            inputDeps = Job.WithCode(() =>
+            inputDeps = Job
+                .WithCode(() =>
             {
                 Random rand = new Random(seed);
 
                 for ( int i = 1; i < rooms.Length; ++i )
                 {
                     var room = rooms[i];
-                    var monster = commandBuffer.CreateEntity(arch);
-                    bool flip = rand.NextBool();
 
-                    FixedString32 name = default;
-                    char c = default;
+                    for( int j = 0; j < genData.monstersPerRoom; ++j )
+                    {
+                        bool flip = rand.NextBool();
+                        Entity prefab = flip ? monsterPrefabs[0] : monsterPrefabs[1];
 
-                    if( flip )
-                    {
-                        c = 'g';
-                        name = goblinName;
+                        var monster = commandBuffer.Instantiate(prefab);
+
+                        commandBuffer.SetComponent<Position>(monster, RandomPointInRoom(ref rand, room));
                     }
-                    else
-                    {
-                        c = 'o';
-                        name = orcName;
-                    }
-                    commandBuffer.SetComponent(
-                        monster,
-                        new Renderable( c, Color.red )
-                        );
-                    commandBuffer.SetComponent<Position>(monster, room.Center);
-                    commandBuffer.SetComponent<ViewRange>(monster, 20);
-                    commandBuffer.SetComponent<Name>(monster, name);
-                    commandBuffer.SetComponent<Speed>(monster, 20);
                 }
             }).Schedule(inputDeps);
             
             commandBuffer.RemoveComponent<GenerateMap>(_mapQuery);
             _barrier.AddJobHandleForProducer(inputDeps);
+
+            monsterPrefabs.Dispose(inputDeps);
             
             return inputDeps;
+        }
+
+        static int2 RandomPointInRoom(ref Random rand, IntRect room)
+        {
+            int x = rand.NextInt(room.xMin, room.xMax + 1);
+            int y = rand.NextInt(room.yMin, room.yMax + 1);
+            return new int2(x, y);
         }
 
 

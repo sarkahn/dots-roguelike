@@ -15,8 +15,8 @@ using static RLTK.CodePage437;
 namespace RLTKTutorial.Part1_3
 {
     [DisableAutoCreation]
-    [AlwaysSynchronizeSystem]
-    public class RenderSystem : JobComponentSystem
+    [AlwaysUpdateSystem]
+    public class RenderSystem : SystemBase
     {
         SimpleConsole _console;
 
@@ -35,7 +35,7 @@ namespace RLTKTutorial.Part1_3
                 _console.Dispose();
         }
 
-        protected override JobHandle OnUpdate(JobHandle inputDeps)
+        protected override void OnUpdate()
         {
             var mapData = GetSingleton<MapData>();
             int2 mapSize = new int2(mapData.width, mapData.height);
@@ -44,7 +44,7 @@ namespace RLTKTutorial.Part1_3
             {
                 _console.Resize(mapData.width, mapData.height);
                 RenderUtility.AdjustCameraToConsole(_console);
-                return inputDeps;
+                return;
             }
 
             _console.ClearScreen();
@@ -92,8 +92,6 @@ namespace RLTKTutorial.Part1_3
 
             _console.Update();
             _console.Draw();
-
-            return default;
         }
     }
 }

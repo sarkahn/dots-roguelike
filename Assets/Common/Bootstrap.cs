@@ -12,21 +12,33 @@ namespace RLTKTutorial
     /// </summary>
     public static class Bootstrap
     {
-        public class RLTKTutorialSystems : ComponentSystemGroup { }
+        [UpdateInGroup(typeof(SimulationSystemGroup))]
+        public class RLTKSimSystems : ComponentSystemGroup { }
+
+        [UpdateInGroup(typeof(PresentationSystemGroup))]
+        public class RLTKRenderSystems : ComponentSystemGroup { }
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         static void Init()
         {
-            DefaultWorldInitialization.AddSystemsToRootLevelSystemGroups(World.DefaultGameObjectInjectionWorld,
-               new List<Type>() {
-                        typeof(RLTKTutorialSystems)
-               });
+            //DefaultWorldInitialization.AddSystemsToRootLevelSystemGroups(World.DefaultGameObjectInjectionWorld,
+             //  new List<Type>() {
+            //            typeof(RLTKSimSystems)
+             //  });
         }
 
-        public static void AddSystem<T>() where T : ComponentSystemBase
+        public static void AddSimSystem<T>() where T : ComponentSystemBase
         {
-            var group = World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<RLTKTutorialSystems>();
+            var group = World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<RLTKSimSystems>();
             var system = World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<T>();
+            group.AddSystemToUpdateList(system);
+        }
+
+        public static void AddRenderSystem<T>() where T : ComponentSystemBase
+        {
+            var group = World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<RLTKRenderSystems>();
+            var system = World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<T>();
+
             group.AddSystemToUpdateList(system);
         }
 
