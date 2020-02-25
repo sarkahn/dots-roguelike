@@ -30,6 +30,32 @@ namespace RLTKTutorial.Part1_5A
             _moveQuery.AddChangedVersionFilter(typeof(Movement));
         }
 
+        public void TryMove(Entity e, int2 p, int2 move)
+        {
+
+            var mapEntity = _mapQuery.GetSingletonEntity();
+            var map = EntityManager.GetBuffer<MapTiles>(mapEntity);
+            var mapData = EntityManager.GetComponentData<MapData>(mapEntity);
+
+            var nameFromEntity = GetComponentDataFromEntity<Name>(true);
+
+            if (move.x == 0 && move.y == 0)
+                return;
+
+            int2 dest = p + move;
+            int index = dest.y * mapData.width + dest.x;
+
+            //if (math.lengthsq(move.value) != 0 && nameFromEntity.HasComponent(e)) Debug.Log($"{nameFromEntity[e].ToString()} moved");
+
+            move = int2.zero;
+
+            if (index < 0 || index >= map.Length)
+                return;
+
+            if (map[index] != TileType.Wall)
+                p = dest;
+        }
+
         //protected override JobHandle OnUpdate(JobHandle inputDeps)
         protected override void OnUpdate()
         {
@@ -49,8 +75,6 @@ namespace RLTKTutorial.Part1_5A
                 .WithReadOnly(map)
                 //.WithoutBurst()
                 .WithAll<Actor>()
-                .WithAll<TakingATurn>()
-                .WithNone<ActionPerformed>()
                 .ForEach((int entityInQueryIndex, Entity e, ref Position p, ref Movement move) =>
             {
 
@@ -63,9 +87,6 @@ namespace RLTKTutorial.Part1_5A
                 //if (math.lengthsq(move.value) != 0 && nameFromEntity.HasComponent(e)) Debug.Log($"{nameFromEntity[e].ToString()} moved");
 
                 move = int2.zero;
-
-                var performed = new ActionPerformed { cost = 100 };
-                buffer.AddComponent(e, performed);
 
                 if (index < 0 || index >= map.Length)
                     return;

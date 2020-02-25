@@ -48,6 +48,10 @@ namespace RLTKTutorial.Part1_5A
         // to act they'll be added to this buffer
         NativeList<Entity> _turnBuffer;
 
+        Dictionary<int, TurnActionSystem> _dispatchMap = new Dictionary<int, TurnActionSystem>();
+
+        Entity _actingEntity;
+
         public NativeArray<Entity> CopyTurnBuffer(Allocator allocator) => 
             new NativeArray<Entity>(_turnBuffer, allocator);
         
@@ -68,9 +72,11 @@ namespace RLTKTutorial.Part1_5A
             _barrier = World.GetOrCreateSystem<EndSimulationEntityCommandBufferSystem>();
 
             _turnBuffer = new NativeList<Entity>(Allocator.Persistent);
+
+            _actingEntity = Entity.Null;
             
-            AddTurnActionSystem<MoveSystem>();
-            AddTurnActionSystem<MonsterAISystem>();
+            //AddTurnActionSystem<MoveSystem>();
+            //AddTurnActionSystem<MonsterAISystem>();
             
             RequireForUpdate(_actors);
         }
@@ -95,31 +101,39 @@ namespace RLTKTutorial.Part1_5A
         /// <para>The <see cref="GameTurnSystem"/> will not move to the next entity's turn until the currently
         /// acting entity has performed enough actions to fall below the <seealso cref="EnergyActionThreshold"/>.</para>
         /// </summary>
-        public void AddTurnActionSystem<T>() where T : ComponentSystemBase
+        // TODO : Some way to do this automatically per scene?
+        public void AddTurnActionSystem<T>() where T : TurnActionSystem
         {
-            var group = World.GetOrCreateSystem<GameTurnSystemGroup>();
-            group.AddSystemToUpdateList(World.GetOrCreateSystem<T>());
+            var system = World.GetOrCreateSystem<T>();
+            _dispatchMap.Add((int)system.ActorType, system);
         }
 
         protected override void OnUpdate()
         {
+            foreach (var pair in _dispatchMap)
+                pair.Value.OnFrameBegin();
+
             while (true)
             {
-                // Loop until somone has enough energy to take a turn
-                if ( _actorsTakingTurns.IsEmptyIgnoreFilter )
+                if( _actingEntity == Entity.Null )
                 {
-                    if( _turnBuffer.Length > 0 )
+                    // Loop until somone has enough energy to take a turn
+                    if (_turnBuffer.Length == 0)
                     {
-                        DistributeTurn();
-                        continue;
-                    }
-                    
-                    if( !_actorsWaitingForEnergy.IsEmptyIgnoreFilter )
                         DistributeEnergy();
 
-                    PopulateTurnBuffer();
+                        PopulateTurnBuffer();
 
-                    continue;
+                        continue;
+                    }
+
+                    CleanAndSortTurnBuffer();
+
+                    if (_turnBuffer.Length == 0)
+                        break;
+
+                    _actingEntity = _turnBuffer[0];
+                    _turnBuffer.RemoveAtSwapBack(0);
                 }
 
                 // Process actions. We break from the loop
@@ -131,7 +145,7 @@ namespace RLTKTutorial.Part1_5A
 
                 // If no actor is taking their turn and no actor is waiting for energy then there's nothing
                 // left to process and we should bail out to avoid an infinite loop
-                if (_actorsTakingTurns.IsEmptyIgnoreFilter && _actorsWaitingForEnergy.IsEmptyIgnoreFilter)
+                if (_turnBuffer.Length == 0 && _actors.IsEmptyIgnoreFilter)
                     break;
             }
 
@@ -149,7 +163,6 @@ namespace RLTKTutorial.Part1_5A
                 Entities
                     .WithStoreEntityQueryInField(ref _actorsWaitingForEnergy)
                     .WithAll<Actor>()
-                    .WithNone<TakingATurn>()
                     //.WithoutBurst()
                     .ForEach((int entityInQueryIndex, Entity e, ref Energy energy, in Speed speed) =>
                     {
@@ -168,46 +181,61 @@ namespace RLTKTutorial.Part1_5A
 
         /// <summary>
         /// Updates any systems in GameTurnSystem group, giving systems an opportunity to act.
-        /// Returns false if no action was performed.
+        /// Returns false if the current turn is not complete (meaning the system should return control to the program).
         /// </summary>
         bool ProcessTurnActions()
         {
-            bool actionPerformed = false;
+            var curr = _actingEntity;
+            var actorType = EntityManager.GetComponentData<Actor>(curr).actorType;
 
-            // Update "turn systems". This allows any entities with a 'TakingATurn' component to perform an
-            // action via a system. Systems that perform turn actions must be explicitly added to
-            // GameTurnSystemGroup via GameTurnSystemGroup.AddToSystemUpdateList.
-            // TODO: Make this less arcane
-            World.GetOrCreateSystem<GameTurnSystemGroup>().Update();
+            var actionSystem = _dispatchMap[(int)actorType];
 
-            var buffer = new EntityCommandBuffer(Allocator.Temp);
+            bool done = actionSystem.ProcessEntityTurn(curr);
 
-            Entities
-                //.WithoutBurst()
-                .WithAll<Actor>()
-                .WithAll<TakingATurn>()
-                .ForEach((int entityInQueryIndex, Entity e, ref Energy energy, in ActionPerformed action) =>
-                {
-                    //Debug.Log($"{EntityManager.GetComponentData<Name>(e).value.ToString()} is performing an action of cost {action.cost}");
+            if(done)
+            {
+                _actingEntity = Entity.Null;
+                return true;
+            }
+
+            return false;
+
+            //bool actionPerformed = false;
+
+            //// Update "turn systems". This allows any entities with a 'TakingATurn' component to perform an
+            //// action via a system. Systems that perform turn actions must be explicitly added to
+            //// GameTurnSystemGroup via GameTurnSystemGroup.AddToSystemUpdateList.
+            //// TODO: Make this less arcane
+            ////World.GetOrCreateSystem<GameTurnSystemGroup>().Update();
+
+
+            //var buffer = new EntityCommandBuffer(Allocator.Temp);
+
+            //Entities
+            //    //.WithoutBurst()
+            //    .WithAll<Actor>()
+            //    .WithAll<TakingATurn>()
+            //    .ForEach((int entityInQueryIndex, Entity e, ref Energy energy, in ActionPerformed action) =>
+            //    {
+            //        //Debug.Log($"{EntityManager.GetComponentData<Name>(e).value.ToString()} is performing an action of cost {action.cost}");
                     
-                    actionPerformed = true;
+            //        actionPerformed = true;
 
-                    if (action.cost > 0)
-                        energy -= action.cost;
-                    else
-                        energy = 0;
+            //        if (action.cost > 0)
+            //            energy -= action.cost;
+            //        else
+            //            energy = 0;
 
-                    buffer.RemoveComponent<ActionPerformed>(e);
+            //        buffer.RemoveComponent<ActionPerformed>(e);
 
-                    if (energy < EnergyActionThreshold)
-                    {
-                        buffer.RemoveComponent<TakingATurn>(e);
-                    }
-                }).Run();
+            //        if (energy < EnergyActionThreshold)
+            //        {
+            //            buffer.RemoveComponent<TakingATurn>(e);
+            //        }
+            //    }).Run();
 
-            buffer.Playback(EntityManager); 
+            //buffer.Playback(EntityManager); 
 
-            return actionPerformed;
         }
         
 
@@ -219,7 +247,6 @@ namespace RLTKTutorial.Part1_5A
             var turnBuffer = _turnBuffer;
             Entities
                 .WithAll<Actor>()
-                .WithNone<TakingATurn>()
                 .ForEach((int entityInQueryIndex, Entity e, in Energy energy) =>
                 {
                     if ( energy >= EnergyActionThreshold )
@@ -229,17 +256,16 @@ namespace RLTKTutorial.Part1_5A
         }
 
         /// <summary>
-        /// Distribute a turn to the next actor in the turn buffer.
-        /// Actors with higher speeds will always go first.
+        /// Clear any invalid entities from the turn bufffer and sort it in case
+        /// any energy values changed since the previous turn
         /// </summary>
         // TODO : Might make more sense for the actor with the highest energy to go first?
-        void DistributeTurn()
+        void CleanAndSortTurnBuffer()
         {
             var energyFromEntity = GetComponentDataFromEntity<Energy>(true);
             var speedSort = new SpeedSort(GetComponentDataFromEntity<Speed>(true));
             var turnBuffer = _turnBuffer;
-            var commandBuffer = new EntityCommandBuffer(Allocator.Temp);
-
+            
             Job
                 //.WithoutBurst()
                 .WithCode(() =>
@@ -255,18 +281,9 @@ namespace RLTKTutorial.Part1_5A
                 if (turnBuffer.Length == 0)
                     return;
 
-
-                //Debug.Log($"Distributing turn to {EntityManager.GetComponentData<Name>(turnBuffer[0]).value.ToString()}");
-
                 // Always sort before distributing a turn in case actor speeds changed between turns
                 turnBuffer.Sort(speedSort);
-
-                commandBuffer.AddComponent<TakingATurn>(turnBuffer[0]);
-                turnBuffer.RemoveAtSwapBack(0);
-
             }).Run();
-
-            commandBuffer.Playback(EntityManager);
         }
         
         static bool ActorCanAct(Entity e, ComponentDataFromEntity<Energy> energyFromEntity)

@@ -27,11 +27,12 @@ namespace RLTKTutorial
              //  });
         }
 
-        public static void AddSimSystem<T>() where T : ComponentSystemBase
+        public static T AddSimSystem<T>() where T : ComponentSystemBase
         {
             var group = World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<RLTKSimSystems>();
             var system = World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<T>();
             group.AddSystemToUpdateList(system);
+            return system;
         }
 
         public static void AddRenderSystem<T>() where T : ComponentSystemBase

@@ -13,11 +13,16 @@ namespace RLTKTutorial.Part1_5A
 
             Bootstrap.AddSimSystem<MapInputSystem>();
             Bootstrap.AddSimSystem<VisibilitySystem>();
-            Bootstrap.AddSimSystem<GameTurnSystem>();
 
             Bootstrap.AddSimSystem<PlayerInputSystem>();
 
             Bootstrap.AddRenderSystem<RenderSystem>();
+
+
+            var turnSystem = Bootstrap.AddSimSystem<GameTurnSystem>();
+            turnSystem.AddTurnActionSystem<PlayerTurnSystem>();
+            turnSystem.AddTurnActionSystem<MonsterTurnSystem>();
+
 
 
         }
