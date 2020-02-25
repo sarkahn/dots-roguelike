@@ -14,8 +14,6 @@ namespace RLTKTutorial.Part1_5A
             Bootstrap.AddSimSystem<MapInputSystem>();
             Bootstrap.AddSimSystem<VisibilitySystem>();
 
-            Bootstrap.AddSimSystem<PlayerInputSystem>();
-
             Bootstrap.AddRenderSystem<RenderSystem>();
 
             Bootstrap.AddSimSystem<MoveSystem>();

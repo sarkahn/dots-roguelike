@@ -78,26 +78,6 @@ namespace RLTKTutorial.Part1_5A
 
         void StandAndDeliver(int playerIndex, EntityCommandBuffer buffer)
         {
-            Entities
-                .WithoutBurst()
-                .WithAll<Monster>()
-                .ForEach((int entityInQueryIndex, Entity e, in DynamicBuffer<TilesInView> view, in Name name) =>
-                {
-                    var action = new ActionPerformed();
-
-                    if (view[playerIndex])
-                    {
-                        //Debug.Log($"{name} shouts angrily at {playerName}");
-                        action.cost = 100;
-                    }
-                    else
-                    {
-                        //Debug.Log($"{name} stands around");
-                        action.cost = 50;
-                    }
-
-                    buffer.AddComponent(e, action);
-                }).Run();
         }
 
         void Wander(Entity e)

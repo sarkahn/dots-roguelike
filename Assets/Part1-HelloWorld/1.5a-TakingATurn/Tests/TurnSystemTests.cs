@@ -81,7 +81,7 @@ namespace RLTKTutorial.Part1_5A.Tests
             Update();
 
             // Perform an action
-            em.AddComponentData(fastUnit, new ActionPerformed { cost = 100 });
+            //em.AddComponentData(fastUnit, new ActionPerformed { cost = 100 });
 
             // Process action
             Update();
@@ -124,15 +124,15 @@ namespace RLTKTutorial.Part1_5A.Tests
 
             Update();
 
-            em.AddComponentData(actor, new ActionPerformed
-            {
-                cost = 75
-            });
+            //em.AddComponentData(actor, new ActionPerformed
+            //{
+            //    cost = 75
+            //});
 
             Update();
 
             //Assert.IsFalse(em.HasComponent<TakingATurn>(actor));
-            Assert.IsFalse(em.HasComponent<ActionPerformed>(actor));
+            //Assert.IsFalse(em.HasComponent<ActionPerformed>(actor));
             Assert.AreEqual(25, em.GetComponentData<Energy>(actor).value);
         }
 
@@ -158,21 +158,21 @@ namespace RLTKTutorial.Part1_5A.Tests
             Assert.AreEqual(3, World.GetOrCreateSystem<GameTurnSystem>().CopyTurnBuffer(Allocator.Temp).Length);
 
            // Assert.IsTrue(em.HasComponent<TakingATurn>(fastestest));
-            em.AddComponentData(fastestest, new ActionPerformed { cost = 100 });
+            //em.AddComponentData(fastestest, new ActionPerformed { cost = 100 });
             
             Update();
 
             Assert.AreEqual(2, World.GetOrCreateSystem<GameTurnSystem>().CopyTurnBuffer(Allocator.Temp).Length);
 
             //Assert.IsTrue(em.HasComponent<TakingATurn>(fastest));
-            em.AddComponentData(fastest, new ActionPerformed { cost = 100 });
+            //em.AddComponentData(fastest, new ActionPerformed { cost = 100 });
 
             Update();
             
             Assert.AreEqual(1, World.GetOrCreateSystem<GameTurnSystem>().CopyTurnBuffer(Allocator.Temp).Length);
 
             //Assert.IsTrue(em.HasComponent<TakingATurn>(faster));
-            em.AddComponentData(faster, new ActionPerformed { cost = 100 });
+            //em.AddComponentData(faster, new ActionPerformed { cost = 100 });
 
             Update();
 

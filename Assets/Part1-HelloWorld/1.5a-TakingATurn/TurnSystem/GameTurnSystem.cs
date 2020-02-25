@@ -134,7 +134,6 @@ namespace RLTKTutorial.Part1_5A
                 // when waiting for player input).
                 if (!ProcessTurnActions())
                     break;
-
             }
         }
 
