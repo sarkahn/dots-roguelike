@@ -7,11 +7,15 @@ using UnityEngine;
 
 namespace RLTKTutorial.Part1_5A
 {
+    /// <summary>
+    /// A base class for systems which perform an action during an <see cref="Actor"/>'s turn.
+    /// Must be added via <see cref="GameTurnSystem.AddTurnActionSystem{T}"/>.
+    /// </summary>
     public abstract class TurnActionSystem : SystemBase
     {
         /// <summary>
         /// Determines which system will be called by the <see cref="GameTurnSystem"/> when
-        /// an <see cref="Actor"/> is processed.
+        /// an <see cref="Actor"/>'s turn comes around.
         /// </summary>
         public abstract ActorType ActorType { get; }
 
@@ -34,10 +38,16 @@ namespace RLTKTutorial.Part1_5A
             return energy < Energy.ActionThreshold;
         }
 
-        protected abstract int OnTakeTurn(Entity e);
+        /// <summary>
+        /// Called by <see cref="GameTurnSystem"/> when an actor's turn comes
+        /// around. Should return the energy cost of any action taken on their turn.
+        /// </summary>
+        /// <returns>The energy cost of any action taken on their turn.</returns>
+        protected abstract int OnTakeTurn(Entity actor);
 
         /// <summary>
-        /// Called once for each system at the beginning of that turn's frame.
+        /// Called once for each <see cref="TurnActionSystem"/> at the beginning of 
+        /// <see cref="GameTurnSystem.OnUpdate"/>.
         /// </summary>
         public virtual void OnFrameBegin() { }
 

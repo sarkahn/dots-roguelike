@@ -32,10 +32,8 @@ namespace RLTKTutorial.Part1_5A
 
         }
 
-        protected override int OnTakeTurn(Entity e)
+        protected override int OnTakeTurn(Entity actor)
         {
-            //Debug.Log("Taking player turn");
-
             int2 move = (int2)(_moveAction.triggered ? (float2)_moveAction.ReadValue<Vector2>() : float2.zero);
 
             if (move.x == _previousMove.x && move.y == _previousMove.y)
@@ -43,12 +41,10 @@ namespace RLTKTutorial.Part1_5A
 
             _previousMove = move;
 
-            EntityManager.SetComponentData<Movement>(e, move);
+            EntityManager.SetComponentData<Movement>(actor, move);
 
             if (move.x == 0 && move.y == 0)
                 return 0;
-
-            //_moveSystem.TryMove(e, move);
 
             if (_quitAction.triggered)
                 Application.Quit();
