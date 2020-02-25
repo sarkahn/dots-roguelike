@@ -6,6 +6,7 @@ using Unity.Mathematics;
 
 namespace RLTKTutorial.Part1_5A
 {
+    [DisableAutoCreation]
     public class PlayerTurnSystem : TurnActionSystem
     {
         public override ActorType ActorType => ActorType.Player;
@@ -14,7 +15,9 @@ namespace RLTKTutorial.Part1_5A
         InputAction _moveAction;
         InputAction _quitAction;
 
-        float2 _previousMove;
+        int2 _previousMove;
+
+        MoveSystem _moveSystem;
 
         protected override void OnCreate()
         {
@@ -25,23 +28,27 @@ namespace RLTKTutorial.Part1_5A
             _moveAction = _controls.DefaultMapping.Move;
             _quitAction = _controls.DefaultMapping.QuitGame;
 
-            Debug.Log("Player turn OnCreate");
+            _moveSystem = World.GetOrCreateSystem<MoveSystem>();
+
         }
 
         protected override int OnTakeTurn(Entity e)
         {
             //Debug.Log("Taking player turn");
 
-            var moveInput = _moveAction.triggered ? (float2)_moveAction.ReadValue<Vector2>() : float2.zero;
+            int2 move = (int2)(_moveAction.triggered ? (float2)_moveAction.ReadValue<Vector2>() : float2.zero);
 
-            if (moveInput.x == _previousMove.x && moveInput.y == _previousMove.y)
+            if (move.x == _previousMove.x && move.y == _previousMove.y)
                 return 0;
 
-            Debug.Log("MOVING PLAYER?");
+            _previousMove = move;
 
-            _previousMove = moveInput;
+            EntityManager.SetComponentData<Movement>(e, move);
 
-            EntityManager.SetComponentData<Movement>(e, (int2)moveInput);
+            if (move.x == 0 && move.y == 0)
+                return 0;
+
+            //_moveSystem.TryMove(e, move);
 
             if (_quitAction.triggered)
                 Application.Quit();

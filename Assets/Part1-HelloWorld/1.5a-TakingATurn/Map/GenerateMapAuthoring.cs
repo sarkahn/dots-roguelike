@@ -13,7 +13,7 @@ namespace RLTKTutorial.Part1_5A
         public int minRoomSize;
         public int maxRoomSize;
         public int seed;
-        public int monstersPerRoom;
+        public int monsterCount;
         public static GenerateMap Default =>
             new GenerateMap
             {
@@ -21,7 +21,7 @@ namespace RLTKTutorial.Part1_5A
                 minRoomSize = 6,
                 maxRoomSize = 10,
                 seed = 0,
-                monstersPerRoom = 1
+                monsterCount = 15
             };
     }
 

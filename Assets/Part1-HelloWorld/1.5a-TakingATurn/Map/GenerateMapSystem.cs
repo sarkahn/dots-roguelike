@@ -13,20 +13,21 @@ using Random = Unity.Mathematics.Random;
 namespace RLTKTutorial.Part1_5A
 {
     [DisableAutoCreation]
-    public class GenerateMapSystem : JobComponentSystem
+    public class GenerateMapSystem : SystemBase
     {
-        BeginSimulationEntityCommandBufferSystem _barrier;
+        EndSimulationEntityCommandBufferSystem _barrier;
         EntityQuery _mapQuery;
         EntityQuery _playerQuery;
 
         EntityArchetype _monsterArchetype;
 
         EntityQuery _monsterPrefabsQuery;
+        EntityQuery _monstersQuery;
 
         
         protected override void OnCreate()
         {
-            _barrier = World.GetOrCreateSystem<BeginSimulationEntityCommandBufferSystem>();
+            _barrier = World.GetOrCreateSystem<EndSimulationEntityCommandBufferSystem>();
 
             _mapQuery = GetEntityQuery(
                 ComponentType.ReadOnly<GenerateMap>(), 
@@ -59,10 +60,10 @@ namespace RLTKTutorial.Part1_5A
             RequireForUpdate(_mapQuery);
         }
 
-        protected override JobHandle OnUpdate(JobHandle inputDeps)
+        protected override void OnUpdate()
         {
             var commandBuffer = _barrier.CreateCommandBuffer();
-            var conCommandBuffer = commandBuffer.ToConcurrent();
+
 
             var mapEntity = _mapQuery.GetSingletonEntity();
             var genData = EntityManager.GetComponentData<GenerateMap>(mapEntity);
@@ -76,10 +77,8 @@ namespace RLTKTutorial.Part1_5A
             uint seed = (uint)genData.seed;
 
             Debug.Log("GENERATING MAP Size " + mapData.Size);
-
-
-            inputDeps = Job
-                .WithCode(() =>
+            
+            Job.WithCode(() =>
             {
                 int w = mapData.width;
                 int h = mapData.height;
@@ -90,57 +89,36 @@ namespace RLTKTutorial.Part1_5A
                 
                 GenerateRooms(map, mapData, genData, rooms);
 
-            }).Schedule(inputDeps);
+            }).Schedule();
 
-            inputDeps = Entities
+            Entities
                 .WithReadOnly(rooms)
                 .WithAll<Player>()
                 .ForEach((int entityInQueryIndex, Entity e, ref Position p) =>
                 {
                     p.value = rooms[0].Center;
-                }).Schedule(inputDeps);
+                }).Schedule();
 
             // Destroy existing monsters
-            inputDeps = Entities
+            Entities
                 .WithNone<Player>()
                 .WithAll<Renderable>()
                 .WithAll<Position>()
                 .ForEach((int entityInQueryIndex, Entity e) =>
                 {
-                    conCommandBuffer.DestroyEntity(entityInQueryIndex, e);
-                }).Schedule(inputDeps);
+                    commandBuffer.DestroyEntity(e);
+                }).Schedule();
 
 
-            var monsterPrefabs = _monsterPrefabsQuery.ToEntityArray(Allocator.TempJob);
-
-            // Make monsters
-            inputDeps = Job
-                .WithCode(() =>
-            {
-                Random rand = new Random(seed);
-
-                for ( int i = 1; i < rooms.Length; ++i )
-                {
-                    var room = rooms[i];
-
-                    for( int j = 0; j < genData.monstersPerRoom; ++j )
-                    {
-                        bool flip = rand.NextBool();
-                        Entity prefab = flip ? monsterPrefabs[0] : monsterPrefabs[1];
-
-                        var monster = commandBuffer.Instantiate(prefab);
-
-                        commandBuffer.SetComponent<Position>(monster, RandomPointInRoom(ref rand, room));
-                    }
-                }
-            }).Schedule(inputDeps);
-            
             commandBuffer.RemoveComponent<GenerateMap>(_mapQuery);
-            _barrier.AddJobHandleForProducer(inputDeps);
 
-            monsterPrefabs.Dispose(inputDeps);
-            
-            return inputDeps;
+            _barrier.CreateCommandBuffer().AddComponent<ChangeMonsterCount>(mapEntity, new ChangeMonsterCount { count = genData.monsterCount });
+
+            _barrier.AddJobHandleForProducer(Dependency);
+
+
+            //Dependency = deps;
+
         }
 
         static int2 RandomPointInRoom(ref Random rand, IntRect room)

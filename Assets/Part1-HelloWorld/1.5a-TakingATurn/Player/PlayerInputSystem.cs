@@ -11,7 +11,6 @@ namespace RLTKTutorial.Part1_5A
 {
     [DisableAutoCreation]
     [AlwaysUpdateSystem]
-    //[UpdateBefore(typeof(MoveSystem))]
     public class PlayerInputSystem : SystemBase
     {
         TutorialControls _controls;
@@ -21,7 +20,7 @@ namespace RLTKTutorial.Part1_5A
         float2 _previousMove;
 
         protected override void OnCreate()
-        {
+        { 
             base.OnCreate();
 
             _controls = new TutorialControls();

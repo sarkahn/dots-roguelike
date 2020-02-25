@@ -32,15 +32,12 @@ namespace RLTKTutorial.Part1_5A
     /// </summary>
     [DisableAutoCreation]
     [UpdateInGroup(typeof(LateSimulationSystemGroup))]
+    [UpdateBefore(typeof(MoveSystem))]
     public class GameTurnSystem : SystemBase
     {
-        const int EnergyActionThreshold = 100;
-
         EndSimulationEntityCommandBufferSystem _barrier;
 
         EntityQuery _actorsWaitingForEnergy;
-
-        EntityQuery _actorsTakingTurns;
 
         EntityQuery _actors;
 
@@ -62,11 +59,6 @@ namespace RLTKTutorial.Part1_5A
 
             _actors = GetEntityQuery(
                 ComponentType.ReadOnly<Actor>()
-                );
-
-            _actorsTakingTurns = GetEntityQuery(
-                ComponentType.ReadOnly<Actor>(),
-                ComponentType.ReadOnly<TakingATurn>()
                 );
 
             _barrier = World.GetOrCreateSystem<EndSimulationEntityCommandBufferSystem>();
@@ -113,7 +105,7 @@ namespace RLTKTutorial.Part1_5A
             foreach (var pair in _dispatchMap)
                 pair.Value.OnFrameBegin();
 
-            while (true)
+            while (!_actors.IsEmptyIgnoreFilter)
             {
                 if( _actingEntity == Entity.Null )
                 {
@@ -143,13 +135,7 @@ namespace RLTKTutorial.Part1_5A
                 if (!ProcessTurnActions())
                     break;
 
-                // If no actor is taking their turn and no actor is waiting for energy then there's nothing
-                // left to process and we should bail out to avoid an infinite loop
-                if (_turnBuffer.Length == 0 && _actors.IsEmptyIgnoreFilter)
-                    break;
             }
-
-            //Debug.Log("Waiting for action");
         }
 
         /// <summary>
@@ -172,7 +158,7 @@ namespace RLTKTutorial.Part1_5A
 
                         energy += value;
 
-                        if (energy >= EnergyActionThreshold)
+                        if (energy >= Energy.ActionThreshold)
                             canAct = true;
                     }).Run();
             }
@@ -187,7 +173,6 @@ namespace RLTKTutorial.Part1_5A
         {
             var curr = _actingEntity;
             var actorType = EntityManager.GetComponentData<Actor>(curr).actorType;
-
             var actionSystem = _dispatchMap[(int)actorType];
 
             bool done = actionSystem.ProcessEntityTurn(curr);
@@ -199,43 +184,6 @@ namespace RLTKTutorial.Part1_5A
             }
 
             return false;
-
-            //bool actionPerformed = false;
-
-            //// Update "turn systems". This allows any entities with a 'TakingATurn' component to perform an
-            //// action via a system. Systems that perform turn actions must be explicitly added to
-            //// GameTurnSystemGroup via GameTurnSystemGroup.AddToSystemUpdateList.
-            //// TODO: Make this less arcane
-            ////World.GetOrCreateSystem<GameTurnSystemGroup>().Update();
-
-
-            //var buffer = new EntityCommandBuffer(Allocator.Temp);
-
-            //Entities
-            //    //.WithoutBurst()
-            //    .WithAll<Actor>()
-            //    .WithAll<TakingATurn>()
-            //    .ForEach((int entityInQueryIndex, Entity e, ref Energy energy, in ActionPerformed action) =>
-            //    {
-            //        //Debug.Log($"{EntityManager.GetComponentData<Name>(e).value.ToString()} is performing an action of cost {action.cost}");
-                    
-            //        actionPerformed = true;
-
-            //        if (action.cost > 0)
-            //            energy -= action.cost;
-            //        else
-            //            energy = 0;
-
-            //        buffer.RemoveComponent<ActionPerformed>(e);
-
-            //        if (energy < EnergyActionThreshold)
-            //        {
-            //            buffer.RemoveComponent<TakingATurn>(e);
-            //        }
-            //    }).Run();
-
-            //buffer.Playback(EntityManager); 
-
         }
         
 
@@ -249,7 +197,7 @@ namespace RLTKTutorial.Part1_5A
                 .WithAll<Actor>()
                 .ForEach((int entityInQueryIndex, Entity e, in Energy energy) =>
                 {
-                    if ( energy >= EnergyActionThreshold )
+                    if ( energy >= Energy.ActionThreshold )
                         if( !turnBuffer.Contains(e))
                             turnBuffer.Add(e);
                 }).Run();
@@ -290,7 +238,7 @@ namespace RLTKTutorial.Part1_5A
         {
             return e != Entity.Null
                 && energyFromEntity.Exists(e)
-                && energyFromEntity[e].value >= EnergyActionThreshold;
+                && energyFromEntity[e].value >= Energy.ActionThreshold;
         }
         
         struct SpeedSort : IComparer<Entity>

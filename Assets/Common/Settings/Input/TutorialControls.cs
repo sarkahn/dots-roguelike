@@ -1,4 +1,4 @@
-// GENERATED AUTOMATICALLY FROM 'Assets/Common/Settings/TutorialControls.inputactions'
+// GENERATED AUTOMATICALLY FROM 'Assets/Common/Settings/Input/TutorialControls.inputactions'
 
 using System;
 using System.Collections;
@@ -49,6 +49,14 @@ public class @TutorialControls : IInputActionCollection, IDisposable
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": ""RepeatedPress(delay=0.2,rate=0.01)""
+                },
+                {
+                    ""name"": ""ChangeMonsterCount"",
+                    ""type"": ""Value"",
+                    ""id"": ""434a0adf-81c6-4403-a253-35bff1b6d9a3"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": ""RepeatedPress(delay=0.2)""
                 }
             ],
             ""bindings"": [
@@ -249,6 +257,39 @@ public class @TutorialControls : IInputActionCollection, IDisposable
                     ""action"": ""QuitGame"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Plus/Minus"",
+                    ""id"": ""8983ede2-d14c-4764-ae63-8f4422a746ce"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ChangeMonsterCount"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""49eff16a-0728-4cc4-b68a-2a3008ecb695"",
+                    ""path"": ""<Keyboard>/minus"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ChangeMonsterCount"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""e31db841-3cb8-474c-8eeb-ebb8d1b66f74"",
+                    ""path"": ""<Keyboard>/equals"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ChangeMonsterCount"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -261,6 +302,7 @@ public class @TutorialControls : IInputActionCollection, IDisposable
         m_DefaultMapping_GenerateMap = m_DefaultMapping.FindAction("GenerateMap", throwIfNotFound: true);
         m_DefaultMapping_ResizeMap = m_DefaultMapping.FindAction("ResizeMap", throwIfNotFound: true);
         m_DefaultMapping_QuitGame = m_DefaultMapping.FindAction("QuitGame", throwIfNotFound: true);
+        m_DefaultMapping_ChangeMonsterCount = m_DefaultMapping.FindAction("ChangeMonsterCount", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -314,6 +356,7 @@ public class @TutorialControls : IInputActionCollection, IDisposable
     private readonly InputAction m_DefaultMapping_GenerateMap;
     private readonly InputAction m_DefaultMapping_ResizeMap;
     private readonly InputAction m_DefaultMapping_QuitGame;
+    private readonly InputAction m_DefaultMapping_ChangeMonsterCount;
     public struct DefaultMappingActions
     {
         private @TutorialControls m_Wrapper;
@@ -322,6 +365,7 @@ public class @TutorialControls : IInputActionCollection, IDisposable
         public InputAction @GenerateMap => m_Wrapper.m_DefaultMapping_GenerateMap;
         public InputAction @ResizeMap => m_Wrapper.m_DefaultMapping_ResizeMap;
         public InputAction @QuitGame => m_Wrapper.m_DefaultMapping_QuitGame;
+        public InputAction @ChangeMonsterCount => m_Wrapper.m_DefaultMapping_ChangeMonsterCount;
         public InputActionMap Get() { return m_Wrapper.m_DefaultMapping; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -343,6 +387,9 @@ public class @TutorialControls : IInputActionCollection, IDisposable
                 @QuitGame.started -= m_Wrapper.m_DefaultMappingActionsCallbackInterface.OnQuitGame;
                 @QuitGame.performed -= m_Wrapper.m_DefaultMappingActionsCallbackInterface.OnQuitGame;
                 @QuitGame.canceled -= m_Wrapper.m_DefaultMappingActionsCallbackInterface.OnQuitGame;
+                @ChangeMonsterCount.started -= m_Wrapper.m_DefaultMappingActionsCallbackInterface.OnChangeMonsterCount;
+                @ChangeMonsterCount.performed -= m_Wrapper.m_DefaultMappingActionsCallbackInterface.OnChangeMonsterCount;
+                @ChangeMonsterCount.canceled -= m_Wrapper.m_DefaultMappingActionsCallbackInterface.OnChangeMonsterCount;
             }
             m_Wrapper.m_DefaultMappingActionsCallbackInterface = instance;
             if (instance != null)
@@ -359,6 +406,9 @@ public class @TutorialControls : IInputActionCollection, IDisposable
                 @QuitGame.started += instance.OnQuitGame;
                 @QuitGame.performed += instance.OnQuitGame;
                 @QuitGame.canceled += instance.OnQuitGame;
+                @ChangeMonsterCount.started += instance.OnChangeMonsterCount;
+                @ChangeMonsterCount.performed += instance.OnChangeMonsterCount;
+                @ChangeMonsterCount.canceled += instance.OnChangeMonsterCount;
             }
         }
     }
@@ -369,5 +419,6 @@ public class @TutorialControls : IInputActionCollection, IDisposable
         void OnGenerateMap(InputAction.CallbackContext context);
         void OnResizeMap(InputAction.CallbackContext context);
         void OnQuitGame(InputAction.CallbackContext context);
+        void OnChangeMonsterCount(InputAction.CallbackContext context);
     }
 }

@@ -35,7 +35,7 @@ namespace RLTKTutorial.Part1_5A
             _playerQuery = GetEntityQuery(
                 ComponentType.ReadOnly<Player>()
                 );
-
+            
             RequireForUpdate(_playerQuery);
             RequireForUpdate(_mapQuery);
         }
@@ -45,7 +45,6 @@ namespace RLTKTutorial.Part1_5A
             var mapData = _mapQuery.GetSingleton<MapData>();
             _console = new SimpleConsole(mapData.width, mapData.height);
 
-            RenderUtility.AdjustCameraToConsole(_console);
         }
 
         protected override void OnDestroy()
@@ -66,6 +65,8 @@ namespace RLTKTutorial.Part1_5A
                 RenderUtility.AdjustCameraToConsole(_console);
                 return;
             }
+
+            RenderUtility.AdjustCameraToConsole(_console);
 
             var map = EntityManager.GetBuffer<MapTiles>(mapEntity);
 

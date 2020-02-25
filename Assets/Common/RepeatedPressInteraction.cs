@@ -24,7 +24,10 @@ public class RepeatedPressInteraction : IInputInteraction
 
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
-    private static void InitializeInPlayer() { }
+    private static void InitializeInPlayer()
+    {
+        InputSystem.RegisterInteraction<RepeatedPressInteraction>();
+    }
 
     // ------ Properties ------
 

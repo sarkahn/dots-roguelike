@@ -30,13 +30,16 @@ namespace RLTKTutorial.Part1_5A
             dstManager.AddComponent<Position>(entity);
             dstManager.AddComponent<Movement>(entity);
             dstManager.AddComponent<TilesInView>(entity);
-            dstManager.AddComponent<Actor>(entity);
             dstManager.AddComponent<Energy>(entity);
             dstManager.AddComponent<Prefab>(entity);
 
             dstManager.AddComponentData<ViewRange>(entity, _viewRange);
             dstManager.AddComponentData<Speed>(entity, _speed);
             dstManager.AddComponentData<Name>(entity, name);
+            dstManager.AddComponentData<Actor>(entity, new Actor
+            {
+                actorType = ActorType.Monster
+            });
 
             dstManager.AddComponentData<Renderable>(entity, new Renderable
             {

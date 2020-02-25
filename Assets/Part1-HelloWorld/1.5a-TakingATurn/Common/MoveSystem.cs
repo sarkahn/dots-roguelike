@@ -30,7 +30,8 @@ namespace RLTKTutorial.Part1_5A
             _moveQuery.AddChangedVersionFilter(typeof(Movement));
         }
 
-        public void TryMove(Entity e, int2 p, int2 move)
+
+        public void TryMove(Entity e, int2 move)
         {
 
             var mapEntity = _mapQuery.GetSingletonEntity();
@@ -39,21 +40,20 @@ namespace RLTKTutorial.Part1_5A
 
             var nameFromEntity = GetComponentDataFromEntity<Name>(true);
 
-            if (move.x == 0 && move.y == 0)
-                return;
+            int2 p = EntityManager.GetComponentData<Position>(e);
 
             int2 dest = p + move;
             int index = dest.y * mapData.width + dest.x;
 
             //if (math.lengthsq(move.value) != 0 && nameFromEntity.HasComponent(e)) Debug.Log($"{nameFromEntity[e].ToString()} moved");
 
-            move = int2.zero;
-
             if (index < 0 || index >= map.Length)
                 return;
 
             if (map[index] != TileType.Wall)
                 p = dest;
+
+            EntityManager.SetComponentData<Position>(e, p);
         }
 
         //protected override JobHandle OnUpdate(JobHandle inputDeps)

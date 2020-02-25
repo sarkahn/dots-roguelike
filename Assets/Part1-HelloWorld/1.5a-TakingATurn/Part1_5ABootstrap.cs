@@ -18,13 +18,13 @@ namespace RLTKTutorial.Part1_5A
 
             Bootstrap.AddRenderSystem<RenderSystem>();
 
+            Bootstrap.AddSimSystem<MoveSystem>();
+
+            Bootstrap.AddSimSystem<ChangeMonsterCountSystem>();
 
             var turnSystem = Bootstrap.AddSimSystem<GameTurnSystem>();
             turnSystem.AddTurnActionSystem<PlayerTurnSystem>();
             turnSystem.AddTurnActionSystem<MonsterTurnSystem>();
-
-
-
         }
     }
 }

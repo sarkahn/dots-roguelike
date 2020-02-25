@@ -31,7 +31,7 @@ namespace RLTKTutorial.Part1_5A
             energy -= cost;
             EntityManager.SetComponentData(e, energy);
 
-            return energy < 100;
+            return energy < Energy.ActionThreshold;
         }
 
         protected abstract int OnTakeTurn(Entity e);
@@ -42,8 +42,7 @@ namespace RLTKTutorial.Part1_5A
         public virtual void OnFrameBegin() { }
 
         protected override void OnUpdate()
-        {
-        }
+        {}
     }
 
 }

@@ -16,6 +16,9 @@ namespace RLTKTutorial.Part1_5A
         [SerializeField]
         bool _fovEnabled = true;
 
+        [SerializeField]
+        public int _speed = 25;
+
         public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem)
         {
             var p = transform.position;
@@ -26,8 +29,11 @@ namespace RLTKTutorial.Part1_5A
             dstManager.AddComponentData<Name>(entity, new FixedString32("Player"));
             dstManager.AddComponent<Movement>(entity);
             dstManager.AddComponent<Energy>(entity);
-            dstManager.AddComponentData<Speed>(entity, Speed.Default);
-            dstManager.AddComponent<Actor>(entity);
+            dstManager.AddComponentData<Speed>(entity, _speed);
+            dstManager.AddComponentData<Actor>(entity, new Actor
+            {
+                actorType = ActorType.Player
+            });
 
             if( _fovEnabled )
             {

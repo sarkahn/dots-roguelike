@@ -69,7 +69,6 @@ namespace RLTKTutorial.Part1_5A
             Entities
                 .WithoutBurst()
                 .WithAll<Monster>()
-                .WithAll<TakingATurn>()
                 .WithNone<ActionPerformed>()
                 .ForEach((int entityInQueryIndex, Entity e, in DynamicBuffer<TilesInView> view, in Name name) =>
                 {
@@ -95,7 +94,6 @@ namespace RLTKTutorial.Part1_5A
             var rand = _rand;
             Entities
                 .WithAll<Monster>()
-                .WithAll<TakingATurn>()
                 .WithNone<ActionPerformed>()
                 .ForEach((int entityInQueryIndex, Entity e, in DynamicBuffer<TilesInView> view, in Name name) =>
                 {

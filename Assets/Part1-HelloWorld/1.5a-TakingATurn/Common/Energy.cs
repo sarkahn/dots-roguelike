@@ -12,5 +12,7 @@ namespace RLTKTutorial.Part1_5A
         public int value;
         public static implicit operator int(Energy c) => c.value;
         public static implicit operator Energy(int v) => new Energy { value = v };
+
+        public const int ActionThreshold = 100;
     }
 }

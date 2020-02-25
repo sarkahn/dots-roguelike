@@ -6,17 +6,19 @@ using Random = Unity.Mathematics.Random;
 
 namespace RLTKTutorial.Part1_5A
 {
-	public class MonsterTurnSystem : TurnActionSystem
+    [DisableAutoCreation]
+    public class MonsterTurnSystem : TurnActionSystem
 	{
 		public override ActorType ActorType => ActorType.Monster;
 
         EntityQuery _playerQuery;
-        EntityQuery _mapQuery;
 
         Random _rand;
 
         Entity _playerEntity;
         MapData _mapData;
+
+        MoveSystem _moveSystem;
 
         bool _dontRun;
         
@@ -30,16 +32,15 @@ namespace RLTKTutorial.Part1_5A
                 ComponentType.ReadOnly<Name>()
                 );
 
-            _mapQuery = GetEntityQuery(
-                ComponentType.ReadOnly<MapData>()
-                );
 
             _rand = new Random((uint)UnityEngine.Random.Range(1, int.MaxValue));
         }
 
         public override void OnFrameBegin()
         {
-            var mapEntity = _mapQuery.GetSingletonEntity();
+            var mapEntity = GetSingletonEntity<MapData>();
+
+            _moveSystem = World.GetOrCreateSystem<MoveSystem>();
 
             // Early out if the map is regenerating.
             if (EntityManager.HasComponent<GenerateMap>(mapEntity)
@@ -61,8 +62,6 @@ namespace RLTKTutorial.Part1_5A
             if (_dontRun)
                 return -1;
 
-            Debug.Log("Taking monster turn");
-
             var playerPos = (int2)EntityManager.GetComponentData<Position>(_playerEntity);
             var playerName = EntityManager.GetComponentData<Name>(_playerEntity);
 
@@ -82,8 +81,6 @@ namespace RLTKTutorial.Part1_5A
             Entities
                 .WithoutBurst()
                 .WithAll<Monster>()
-                .WithAll<TakingATurn>()
-                .WithNone<ActionPerformed>()
                 .ForEach((int entityInQueryIndex, Entity e, in DynamicBuffer<TilesInView> view, in Name name) =>
                 {
                     var action = new ActionPerformed();
