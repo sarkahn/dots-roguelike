@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -642,7 +642,7 @@ MonoBehaviour:
     minRoomSize: 6
     maxRoomSize: 10
     seed: 0
-    monsterCount: 150
+    monsterCount: 500
 --- !u!1 &1097498738
 GameObject:
   m_ObjectHideFlags: 0

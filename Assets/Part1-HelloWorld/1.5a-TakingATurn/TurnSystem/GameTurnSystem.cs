@@ -82,13 +82,13 @@ namespace RLTKTutorial.Part1_5A
                         continue;
                     }
 
-                    CleanAndSortTurnBuffer();
+                    int i = GetNextActorIndex();
 
-                    if (_turnBuffer.Length == 0)
+                    if (i == -1)
                         break;
 
-                    _actingEntity = _turnBuffer[0];
-                    _turnBuffer.RemoveAtSwapBack(0);
+                    _actingEntity = _turnBuffer[i];
+                    _turnBuffer.RemoveAtSwapBack(i);
                 }
 
                 // Process actions. We break from the loop
@@ -169,12 +169,14 @@ namespace RLTKTutorial.Part1_5A
         /// any relevant actor state changed between turns.
         /// </summary>
         // TODO : Might make more sense for the actor with the highest energy to go first?
-        void CleanAndSortTurnBuffer()
+        int GetNextActorIndex()
         {
             var energyFromEntity = GetComponentDataFromEntity<Energy>(true);
             var speedSort = new SpeedSort(GetComponentDataFromEntity<Speed>(true));
             var turnBuffer = _turnBuffer;
-            
+            var speedFromEntity = GetComponentDataFromEntity<Speed>(true);
+            int index = -1;
+
             Job
                 //.WithoutBurst()
                 .WithCode(() =>
@@ -190,9 +192,20 @@ namespace RLTKTutorial.Part1_5A
                 if (turnBuffer.Length == 0)
                     return;
 
-                // Always sort before distributing a turn in case actor speeds changed between turns
-                turnBuffer.Sort(speedSort);
+                int highestSpeed = int.MinValue;
+
+                for( int i = 0; i < turnBuffer.Length; ++i )
+                {
+                    int speed = speedFromEntity[turnBuffer[i]];
+                    if (speed > highestSpeed)
+                    {
+                        highestSpeed = speed;
+                        index = i;
+                    }
+                }
             }).Run();
+
+            return index;
         }
         
         static bool ActorCanAct(Entity e, ComponentDataFromEntity<Energy> energyFromEntity)
