@@ -6,6 +6,7 @@ using Unity.Entities;
 
 using RLTKTutorial.Common.Tests;
 using Unity.Collections;
+using System.Linq;
 
 namespace RLTKTutorial.Part1_5A.Tests
 {
