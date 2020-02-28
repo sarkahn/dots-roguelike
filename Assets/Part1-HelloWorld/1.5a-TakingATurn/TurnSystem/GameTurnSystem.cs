@@ -68,119 +68,81 @@ namespace RLTKTutorial.Part1_5A
             foreach (var pair in _dispatchMap)
                 pair.Value.OnFrameBegin();
 
+            World.GetOrCreateSystem<MoveSystem>().OnFrameBegin();
+
             while (!_actors.IsEmptyIgnoreFilter)
             {
-                if( _actingEntity == Entity.Null )
+                while( _actingEntity == Entity.Null )
                 {
-                    // Loop until somone has enough energy to take a turn
                     if (_turnBuffer.Length == 0)
-                    {
-                        DistributeEnergy();
-
                         PopulateTurnBuffer();
 
-                        continue;
-                    }
-
-                    int i = GetNextActorIndex();
-
-                    if (i == -1)
-                        break;
-
-                    _actingEntity = _turnBuffer[i];
-                    _turnBuffer.RemoveAtSwapBack(i);
+                    _actingEntity = GetNextActor();
                 }
 
-                // Process actions. We break from the loop
-                // if an actor is taking their turn but does not
-                // perform any actions (generally this will only happen
-                // when waiting for player input).
-                if (!ProcessTurnActions())
+                // Allows the currently acting entity to take a turn. Will return false
+                // if the actor has not finished their turn this frame. Generally this will
+                // only happen when waiting for player input.
+                if (!PerformTurnActions(_actingEntity))
                     break;
+                else
+                    _actingEntity = Entity.Null;
             }
         }
 
         /// <summary>
-        /// Add energy to waiting entities in a loop until at least one entity is ready to act.
+        /// Distributes energy in a loop and populates the turn buffer.
         /// </summary>
-        void DistributeEnergy()
+        void PopulateTurnBuffer()
         {
-            bool canAct = false;
-            while (!canAct)
+            var turnBuffer = _turnBuffer;
+            while (turnBuffer.Length == 0)
             {
                 Entities
                     .WithAll<Actor>()
-                    //.WithoutBurst()
-                    .ForEach((int entityInQueryIndex, Entity e, ref Energy energy, in Speed speed) =>
+                    .ForEach((Entity e, ref Energy energy, in Speed speed) =>
                     {
                         int value = speed.value == 0 ? Speed.Default.value : speed.value;
-
-                        //Debug.Log($"Distributing {value} energy to {EntityManager.GetComponentData<Name>(e).value}");
 
                         energy += value;
 
                         if (energy >= Energy.ActionThreshold)
-                            canAct = true;
+                            turnBuffer.Add(e);
                     }).Run();
             }
         }
 
         /// <summary>
-        /// Passes an actor to the appropriate system to take it's turn based on it's
-        /// <seealso cref="ActorType"/>
+        /// Passes the actor to the appropriate system to take a turn. The system is determined by
+        /// the actor's <seealso cref="ActorType"/>
         /// </summary>
         /// <returns></returns>
-        bool ProcessTurnActions()
+        bool PerformTurnActions(Entity e)
         {
-            var curr = _actingEntity;
-            var actorType = EntityManager.GetComponentData<Actor>(curr).actorType;
+            var actorType = EntityManager.GetComponentData<Actor>(e).actorType;
             var actionSystem = _dispatchMap[(int)actorType];
 
-            bool done = actionSystem.ProcessEntityTurn(curr);
-
-            if(done)
-            {
-                _actingEntity = Entity.Null;
-                return true;
-            }
-
-            return false;
+            return actionSystem.ProcessEntityTurn(e);
         }
         
 
         /// <summary>
-        /// Add any entities above the energy threshold to the turn buffer.
-        /// </summary>
-        void PopulateTurnBuffer()
-        {
-            var turnBuffer = _turnBuffer;
-            Entities
-                .WithAll<Actor>()
-                .ForEach((int entityInQueryIndex, Entity e, in Energy energy) =>
-                {
-                    if ( energy >= Energy.ActionThreshold )
-                        if( !turnBuffer.Contains(e))
-                            turnBuffer.Add(e);
-                }).Run();
-        }
-
-        /// <summary>
-        /// Clear any invalid entities from the turn buffer and sort it in case
-        /// any relevant actor state changed between turns.
+        /// Retrieve the next entity from the turn buffer. Returns <see cref="Entity.Null"/>
+        /// once the buffer is empty.
         /// </summary>
         // TODO : Might make more sense for the actor with the highest energy to go first?
-        int GetNextActorIndex()
+        Entity GetNextActor()
         {
             var energyFromEntity = GetComponentDataFromEntity<Energy>(true);
-            var speedSort = new SpeedSort(GetComponentDataFromEntity<Speed>(true));
             var turnBuffer = _turnBuffer;
             var speedFromEntity = GetComponentDataFromEntity<Speed>(true);
+            Entity e = Entity.Null;
             int index = -1;
 
             Job
-                //.WithoutBurst()
                 .WithCode(() =>
             {
+
                 // Remove anyone that's lost the ability to act
                 for (int i = 0; i < turnBuffer.Length; ++i)
                     if (!ActorCanAct(turnBuffer[i], energyFromEntity))
@@ -205,9 +167,15 @@ namespace RLTKTutorial.Part1_5A
                 }
             }).Run();
 
-            return index;
+            if (index != -1)
+            {
+                e = _turnBuffer[index];
+                _turnBuffer.RemoveAtSwapBack(index);
+            }
+
+            return e;
         }
-        
+
         static bool ActorCanAct(Entity e, ComponentDataFromEntity<Energy> energyFromEntity)
         {
             return e != Entity.Null

@@ -14,7 +14,11 @@ namespace RLTKTutorial.Part1_5A
     {
         EntityQuery _mapQuery;
         EntityQuery _moveQuery;
-        
+
+        Entity _mapEntity;
+        DynamicBuffer<MapTiles> _map;
+        MapData _mapData;
+
         protected override void OnCreate()
         {
             _mapQuery = GetEntityQuery(
@@ -30,72 +34,34 @@ namespace RLTKTutorial.Part1_5A
             _moveQuery.AddChangedVersionFilter(typeof(Movement));
         }
 
+        public void OnFrameBegin()
+        {
+            _mapEntity = _mapQuery.GetSingletonEntity();
+            _map = EntityManager.GetBuffer<MapTiles>(_mapEntity);
+            _mapData = EntityManager.GetComponentData<MapData>(_mapEntity);
+        }
 
         public void TryMove(Entity e, int2 move)
         {
-
-            var mapEntity = _mapQuery.GetSingletonEntity();
-            var map = EntityManager.GetBuffer<MapTiles>(mapEntity);
-            var mapData = EntityManager.GetComponentData<MapData>(mapEntity);
-
-            var nameFromEntity = GetComponentDataFromEntity<Name>(true);
+            if (move.x == 0 && move.y == 0)
+                return;
 
             int2 p = EntityManager.GetComponentData<Position>(e);
 
             int2 dest = p + move;
-            int index = dest.y * mapData.width + dest.x;
+            int index = dest.y * _mapData.width + dest.x;
 
-            //if (math.lengthsq(move.value) != 0 && nameFromEntity.HasComponent(e)) Debug.Log($"{nameFromEntity[e].ToString()} moved");
-
-            if (index < 0 || index >= map.Length)
+            if (index < 0 || index >= _map.Length)
                 return;
 
-            if (map[index] != TileType.Wall)
+            if (_map[index] != TileType.Wall)
                 p = dest;
 
             EntityManager.SetComponentData<Position>(e, p);
         }
 
-        //protected override JobHandle OnUpdate(JobHandle inputDeps)
         protected override void OnUpdate()
         {
-            if (_moveQuery.CalculateEntityCount() == 0)
-                return;
-
-            var mapEntity = _mapQuery.GetSingletonEntity();
-            var map = EntityManager.GetBuffer<MapTiles>(mapEntity);
-            var mapData = EntityManager.GetComponentData<MapData>(mapEntity);
-
-            var buffer = new EntityCommandBuffer(Allocator.Temp);
-
-            var nameFromEntity = GetComponentDataFromEntity<Name>(true);
-            
-            Entities
-                //.WithReadOnly(nameFromEntity)
-                .WithReadOnly(map)
-                //.WithoutBurst()
-                .WithAll<Actor>()
-                .ForEach((int entityInQueryIndex, Entity e, ref Position p, ref Movement move) =>
-            {
-
-                if (move.value.x == 0 && move.value.y == 0)
-                    return;
-
-                int2 dest = p.value + move.value;
-                int index = dest.y * mapData.width + dest.x;
-
-                //if (math.lengthsq(move.value) != 0 && nameFromEntity.HasComponent(e)) Debug.Log($"{nameFromEntity[e].ToString()} moved");
-
-                move = int2.zero;
-
-                if (index < 0 || index >= map.Length)
-                    return;
-
-                if( map[index] != TileType.Wall )
-                    p = dest;
-            }).Run();
-
-            buffer.Playback(EntityManager);
         }
     }
 }

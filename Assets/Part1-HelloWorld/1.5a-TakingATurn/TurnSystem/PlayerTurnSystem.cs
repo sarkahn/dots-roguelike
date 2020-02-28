@@ -29,27 +29,29 @@ namespace RLTKTutorial.Part1_5A
             _quitAction = _controls.DefaultMapping.QuitGame;
 
             _moveSystem = World.GetOrCreateSystem<MoveSystem>();
-
         }
 
         protected override int OnTakeTurn(Entity actor)
         {
             int2 move = (int2)(_moveAction.triggered ? (float2)_moveAction.ReadValue<Vector2>() : float2.zero);
 
-            if (move.x == _previousMove.x && move.y == _previousMove.y)
-                return 0;
+            int cost = Energy.ActionThreshold;
 
-            _previousMove = move;
-
-            EntityManager.SetComponentData<Movement>(actor, move);
-
-            if (move.x == 0 && move.y == 0)
-                return 0;
+            if ((_previousMove.x == move.x && _previousMove.y == move.y)
+             || (move.x == 0 && move.y == 0) )
+            {
+                cost = 0;
+            }
+            else
+                _moveSystem.TryMove(actor, move);
 
             if (_quitAction.triggered)
                 Application.Quit();
 
-            return 100;
+            _previousMove = move;
+
+
+            return cost;
         }
     }
 }

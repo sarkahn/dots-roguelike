@@ -57,41 +57,14 @@ namespace RLTKTutorial.Part1_5A
         }
 
         protected override int OnTakeTurn(Entity e)
-		{
-
-            if (_dontRun)
-                return -1;
-
-            var playerPos = (int2)EntityManager.GetComponentData<Position>(_playerEntity);
-            var playerName = EntityManager.GetComponentData<Name>(_playerEntity);
-
-            int playerIndex = playerPos.y * _mapData.width + playerPos.x;
-
-            //StandAndDeliver(playerIndex, buffer);
-            Wander(e);
-
-            return 100;
-        }
-
-        
-
-
-        void StandAndDeliver(int playerIndex, EntityCommandBuffer buffer)
         {
+            var dir = GetRandomDirection(ref _rand);
+
+            _moveSystem.TryMove(e, dir);
+
+            return Energy.ActionThreshold;
         }
 
-        void Wander(Entity e)
-        {
-            var rand = _rand;
-
-            // Could do a foreach on all monsters in OnFrameBegin and cache this value for every
-            // monster.
-            var dir = GetRandomDirection(ref rand);
-
-            EntityManager.SetComponentData<Movement>(e, dir);
-
-            _rand = rand;
-        }
 
         static int2 GetRandomDirection(ref Random rand)
         {

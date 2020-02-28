@@ -201,6 +201,8 @@ namespace RLTKTutorial.Part1_5A.Tests
 
             Update();
 
+            
+
             //Assert.IsTrue(em.HasComponent<TakingATurn>(fastestest));
 
             //Assert.IsFalse(em.HasComponent<TakingATurn>(fast));
