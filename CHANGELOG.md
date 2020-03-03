@@ -1,5 +1,12 @@
 # Change Log
 
+## [0.4.1] - 2020-03-03
+* Completed 1.5a
+* Further simplified bootstrap
+* Added "ChangeMonsterCount" system to handle monster spawning/removal
+* Simplified UI a bit, added UI for monster count
+* Added "MapState" system for storing walkability/map contents
+
 ## [0.4] - 2020-02-11
 * Lots of tweaks and refactors of old chapters
 * Simplified bootstrap and made it add systems to entity debugger

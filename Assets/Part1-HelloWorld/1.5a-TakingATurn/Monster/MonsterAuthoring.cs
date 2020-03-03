@@ -22,24 +22,26 @@ namespace RLTKTutorial.Part1_5A
         int _speed = 25;
 
         [SerializeField]
+        int _health = 100;
+
+        [SerializeField]
         int _viewRange = 8;
 
         public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem)
         {
             dstManager.AddComponent<Monster>(entity);
             dstManager.AddComponent<Position>(entity);
-            dstManager.AddComponent<Movement>(entity);
             dstManager.AddComponent<TilesInView>(entity);
             dstManager.AddComponent<Energy>(entity);
             dstManager.AddComponent<Prefab>(entity);
+            dstManager.AddComponent<Actor>(entity);
+
+            dstManager.AddComponent<Collidable>(entity);
 
             dstManager.AddComponentData<ViewRange>(entity, _viewRange);
             dstManager.AddComponentData<Speed>(entity, _speed);
             dstManager.AddComponentData<Name>(entity, name);
-            dstManager.AddComponentData<Actor>(entity, new Actor
-            {
-                actorType = ActorType.Monster
-            });
+            dstManager.AddComponentData<Health>(entity, _health);
 
             dstManager.AddComponentData<Renderable>(entity, new Renderable
             {

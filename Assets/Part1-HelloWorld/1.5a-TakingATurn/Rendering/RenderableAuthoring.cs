@@ -5,7 +5,6 @@ using UnityEngine;
 
 namespace RLTKTutorial.Part1_5A
 {
-    
     public struct Renderable : IComponentData
     {
         public byte glyph;

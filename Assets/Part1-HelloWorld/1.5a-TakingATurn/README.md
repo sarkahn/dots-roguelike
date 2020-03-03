@@ -5,298 +5,267 @@
 
 # 1.5A - TakingTurns
 
-
 In this chapter we'll go over my implementation of a turn-based system in ECS. There are [many ways to implement turns in a Roguelike](http://www.roguebasin.com/index.php?title=Time_Systems), this is just one way. 
 
-## Energy
+## Actors
 
-For my game I wanted to implement an "energy" system like the one in Dwarf Fortress or ADOM. It's a simple and flexible system that allows entities to act in order based on their speed. It also handles state changes during processing very well. If you're not familiar, the basic flow goes like this:
+The concept is simple - all actors have energy and speed. Every frame all actors have their energy incremented by their speed, and once an actor has enough energy to act it's given the opportunity to take a turn and energy distribution stops. This is handled in `TurnBeginSystem`:
 
-1. Give energy to all actors in a loop based on their speed. If any have enough energy to act, add them to the turn buffer. Repeat while the turn buffer is empty.
-2. Remove the fastest entity from the turn buffer and let them take their turn. Repeat until the turn buffer is empty.
-3. Return to 1.
-
-This loop only returns control to the game when an actor has a turn but hasn't yet taken an action. In most cases this only happens when waiting for the player's input, so almost all non-player actions happen in a single frame and appear "instant" from the perspective of the player. Technically it's turned based but if the user is constantly making inputs it should "feel" realtime.
-
-Unfortunately the requirements of this system means it doesn't really fit nicely into the typical Unity ECS workflow. In Unity's ECS the api is built around the idea of doing `ForEach` jobs over massive amounts of entities in multi-threaded jobs across multiple chunks. Realistically the only part where we can benefit from a standard `ForEach` is distributing the energy and populating the turn buffer. And it's important to note we can't rely on threaded jobs at all - it's a fixed requirement that our turn system blocks the main thread until the player can input. This is important to keep input feeling responsive even if you have hundreds or thousands of entities all taking turns between player inputs. 
-
-## The Turn System
-
-The turn system is designed to run the main loop we described above but in context of ECS. It's fairly straightforward until we get to the part where we process the entity's turn. The top level loop looks like this:
-
-###### [TurnSystem/GameTurnSystem.cs](TurnSystem/GameTurnSystem.cs)
+###### [TurnSystem/TurnBeginSystem.cs](TurnSystem/TurnBeginSystem.cs)
 ```csharp
-protected override void OnUpdate()
+public class TurnBeginSystem : SystemBase
 {
-    while (!_actors.IsEmptyIgnoreFilter)
-    {
-        while( _actingEntity == Entity.Null )
-        {
-            if (_turnBuffer.Length == 0)
-                PopulateTurnBuffer();
+    EntityQuery _actingActors;
 
-            _actingEntity = GetNextActor();
-        }
-
-        if (!PerformTurnActions(_actingEntity))
-            break;
-        else
-            _actingEntity = Entity.Null;
-    }
-}
-```
-
-The logic is fairly straightforward - distribute energy, get the next actor, take a turn. As mentioned earlier, we only exit the loop when an actor is taking a turn but doesn't perform any actions. It's worth noting this works for any actor, not just the player. So if for example anything happens during a non-player turn that needs to be seen by the player, we can just delay that turn from completing for a few seconds, then finish the turn and let the loop continue.
-
-We track the currently acting `Entity` and the state of the turn buffer to ensure we're doing things in the proper order. Energy is only distributed until we have actors in the turn buffer, and we skip energy distribution until all actors who are able to act have taken their turn.
-
-## Populating the Turn Buffer
-
-We'll go over each function to get a better idea of what's happening in the loop. First, `PopulateTurnbuffer`:
-
-###### [TurnSystem/GameTurnSystem.cs](TurnSystem/GameTurnSystem.cs)
-```csharp
-void PopulateTurnBuffer()
-{
-    var turnBuffer = _turnBuffer;
-    while (turnBuffer.Length == 0)
-    {
-        Entities
-            .WithAll<Actor>()
-            .ForEach((Entity e, ref Energy energy, in Speed speed) =>
-            {
-                int value = speed.value == 0 ? Speed.Default.value : speed.value;
-
-                energy += value;
-
-                if (energy >= Energy.ActionThreshold)
-                    turnBuffer.Add(e);
-            }).Run();
-    }
-}
-```
-
-We continually distribute energy until someone has enough to act, then we add them to the turn buffer. Nothing surprising there. 
-
-## Getting the next Actor
-
-Next is `GetNextActor`:
-
-###### [TurnSystem/GameTurnSystem.cs](TurnSystem/GameTurnSystem.cs)
-```csharp
-Entity GetNextActor()
-{
-    var energyFromEntity = GetComponentDataFromEntity<Energy>(true);
-    var speedFromEntity = GetComponentDataFromEntity<Speed>(true);
-    
-    var turnBuffer = _turnBuffer;
-
-    int index = -1;
-    Entity e = Entity.Null;
-
-    Job
-        .WithCode(() =>
-    {
-        // Remove anyone that's lost the ability to act
-        for (int i = 0; i < turnBuffer.Length; ++i)
-            if (!ActorCanAct(turnBuffer[i], energyFromEntity))
-            {
-                turnBuffer.RemoveAtSwapBack(i);
-                i--;
-            }
-
-        if (turnBuffer.Length == 0)
-            return;
-
-        int highestSpeed = int.MinValue;
-        for( int i = 0; i < turnBuffer.Length; ++i )
-        {
-            int speed = speedFromEntity[turnBuffer[i]];
-            if (speed > highestSpeed)
-            {
-                highestSpeed = speed;
-                index = i;
-            }
-        }
-    }).Run();
-
-    if (index != -1)
-    {
-        e = _turnBuffer[index];
-        _turnBuffer.RemoveAtSwapBack(index);
-    }
-
-    return e;
-}
-```
-
-It's a bit long but the logic is extremely straightforward. First we clean the turn buffer in case any relevant state has changed since the previous turn (IE: Dead actors, energy changes, etc). If the turn buffer isn't empty after that we do a single iteration over the list to find the fastest entity, and return that entity for processing.
-
-## Perform Turn Actions
-
-Once we have the actor whose turn is next we call `PerformTurnActions` back in `OnUpdate`:
-
-
-###### [TurnSystem/GameTurnSystem.cs](TurnSystem/GameTurnSystem.cs)
-```csharp
-bool PerformTurnActions(Entity e)
-{
-    var actorType = EntityManager.GetComponentData<Actor>(e).actorType;
-    var actionSystem = _dispatchMap[(int)actorType];
-
-    return actionSystem.ProcessEntityTurn(e);
-}
-```
-
-Here we pass the actor to the appropriate system given it's actor type, allowing it to take it's turn. The "dispatchMap" is just a dictionary mapping actor types to the action system that processes them. These are added explicitly to the `GameTurnSystem` in the bootstrap class for this scene. 
-
-## Action Systems
-
-Any system that processes an actor's turn will derive from `TurnActionSystem`, which allows derived classes to define behaviour in the `OnTakeTurn` function:
-
-```csharp
-public abstract class TurnActionSystem : SystemBase
-{
-    public abstract ActorType ActorType { get; }
-
-    public bool ProcessEntityTurn(Entity e)
-    {
-        int cost = OnTakeTurn(e);
-
-        if (cost <= 0)
-            return false;
-
-        var energy = EntityManager.GetComponentData<Energy>(e);
-        energy -= cost;
-        EntityManager.SetComponentData(e, energy);
-
-        return energy < Energy.ActionThreshold;
-    }
-
-    protected abstract int OnTakeTurn(Entity actor);
-
-    public virtual void OnFrameBegin() {}
-
-    protected override void OnUpdate() {}
-}
-```
-
-`ProcessEntityTurn` is what gets called by the Turn System. It returns whether or not the current turn is complete based on the cost of any actions performed in the `OnTakeTurn` function and the current energy level of the actor.
-
-Inside `OnTakeTurn` derived classes can fully define what an actor is going to do during their turn. In this example there's two `TurnActionSystem`s - one for the player and one for the monsters.
-
-## Monster Turns
-
-In the monster system we simply have them wander in a random direction whenever their turn comes around.
-
-###### [TurnSystem/MonsterTurnSystem.cs](TurnSystem/MonsterTurnSystem.cs)
-```csharp
-public class MonsterTurnSystem : TurnActionSystem
-{
-    Random _rand;
-    MoveSystem _moveSystem;
+    BeginSimulationEntityCommandBufferSystem _beginSimBarrier;
 
     protected override void OnCreate()
     {
-        _moveSystem = World.GetOrCreateSystem<MoveSystem>();
-        _rand = new Random((uint)UnityEngine.Random.Range(1, int.MaxValue));
+        base.OnCreate();
+
+        _actingActors = GetEntityQuery(
+            ComponentType.ReadOnly<Actor>(),
+            ComponentType.ReadOnly<TakingATurn>()
+            );
+
+        _beginSimBarrier = World.GetOrCreateSystem<BeginSimulationEntityCommandBufferSystem>();
     }
 
-    protected override int OnTakeTurn(Entity e)
+    protected override void OnUpdate()
     {
+        // Don't start any new turns until all current turns are complete
+        if (!_actingActors.IsEmptyIgnoreFilter)
+            return;
 
-        var dir = GetRandomDirection(ref _rand);
+        var buffer = _beginSimBarrier.CreateCommandBuffer().ToConcurrent();
 
-        _moveSystem.TryMove(e, dir);
-
-        return Energy.ActionThreshold;
-    }
-
-    static int2 GetRandomDirection(ref Random rand)
-    {
-        int i = rand.NextInt(0, 5);
-        switch (i)
+        Entities.ForEach((Entity e, int entityInQueryIndex, ref Energy energy, in Speed speed) =>
         {
-            case 0: return new int2(-1, 0);
-            case 1: return new int2(1, 0);
-            case 2: return new int2(0, -1);
-            case 3: return new int2(0, 1);
-        }
-        return default;
+            energy += speed;
+            if (energy >= Energy.ActionThreshold)
+                buffer.AddComponent<TakingATurn>(entityInQueryIndex, e);
+        }).ScheduleParallel();
+
+        _beginSimBarrier.AddJobHandleForProducer(Dependency);
     }
 }
 ```
 
-We use the `MoveSystem` to handle moving entities on the map. The return value of the `OnTakeTurn` function is the cost of our action - in this case it's the total amount of energy required for an entity to act. 
+We can see from the code above that often many actors will be getting a turn at the same time within a frame. Because of this we need to carefully consider how turns are processed. In order to avoid conflicting actions (like two actors moving into the same tile) certain actions - movement, for one - need to be processed immediately and in order so that the next actor taking a turn has up-to-date information when deciding what to do.
 
-The base class will subtract that cost from the entity's energy in `OnProcessEntityTurn` and report to the Turn System that the monster's turn is complete, allowing the turn system to immediately move to the next monster without returning control to the game.
+There's a few of important take-aways from this fact:
 
-## Player Turns
+1. Any actions that must happen immediately (like movement) can't be separated into their own system and can't run in a multi-threaded job - they must be processed in sequence in whatever system processes actor turns. 
+2. Any actions that *don't* need to happen immediately can be deferred and processed in an isolated system that schedules jobs in the regular ECS way.
+3. All deferred actions must completely resolve before the next turn processing system updates, so that all game state is properly up to date for the next turn.
 
-For the player though we want to ensure that Turn processing stops between inputs:
+By relying on deferred actions wherever possible we can avoid having to define all our behaviour in the system that processes actor turns. This is an important benefit of ECS - if we attach too much behaviour to a single system then we're basically just writing [OOP god objects](https://en.wikipedia.org/wiki/God_object) and we have to pay all the costs that come along with that. With deferred actions we have to be more aware of the order our systems are updating in and when their jobs are completing in order to maintain proper game state, but it will save a headache in the long run by keeping our behaviour simple and separated.
 
-###### [TurnSystem/PlayerTurnSystem.cs](TurnSystem/PlayerTurnSystem.cs)
-```csharp
-protected override int OnTakeTurn(Entity actor)
-{
-    int2 move = (int2)(_moveAction.triggered ? (float2)_moveAction.ReadValue<Vector2>() : float2.zero);
+## Processing a Turn
 
-    int cost = Energy.ActionThreshold;
+First we need to figure out what actions an entity is going to take during their turn. For the monsters this happens in `MonsterTurnSystem`:
 
-    if ((_previousMove.x == move.x && _previousMove.y == move.y)
-        || (move.x == 0 && move.y == 0) )
-    {
-        cost = 0;
-    }
-    else
-        _moveSystem.TryMove(actor, move);
-
-    if (_quitAction.triggered)
-        Application.Quit();
-
-    _previousMove = move;
-
-
-    return cost;
-}
-```
-
-In this case we return 0 any time there's no input or a repeated input. In effect this returns control to the game for a single frame between inputs if, for example, the player is holding down a move direction. Back in `ProcessEntityTurn` we can see the effect of returning 0 cost from `OnTakeTurn`:
-
-###### [TurnSystem/TurnActionSystem.cs](TurnSystem/TurnActionSystem.cs)
-```csharp
-    public bool ProcessEntityTurn(Entity e)
-    {
-        int cost = OnTakeTurn(e);
-
-        if (cost <= 0)
-            return false;
-
-        var energy = EntityManager.GetComponentData<Energy>(e);
-        energy -= cost;
-        EntityManager.SetComponentData(e, energy);
-
-        return energy < Energy.ActionThreshold;
-    }
-```
-
-If it has no cost to subtract from the entity's energy it immediately returns false. As mentioned earlier, back in `GameTurnSystem` when an entity taking their turn returns false it's a signal to break from the turn loop:
-
-###### [TurnSystem/GameTurnSystem.cs](TurnSystem/GameTurnSystem.cs)
+###### [Monster/MonsterTurnSystem.cs](Monster/MonsterTurnSystem.cs)
 ```csharp
 protected override void OnUpdate()
 {
-    while (!_actors.IsEmptyIgnoreFilter)
-    {
-        ...
+    var rand = _rand;
 
-        if (!PerformTurnActions(_actingEntity))
-            break;
-        else
-            _actingEntity = Entity.Null;
-    }
+    var mapEntity = _mapQuery.GetSingletonEntity();
+    var mapState = EntityManager.GetBuffer<MapState>(mapEntity);
+    var mapData = EntityManager.GetComponentData<MapData>(mapEntity);
+
+    Entities
+        .WithAll<Monster>()
+        .WithAll<TakingATurn>()
+        .WithStoreEntityQueryInField(ref _monsterQuery)
+        .ForEach((Entity e, ref Position pos, ref Energy energy) =>
+        {
+            // Come on man
+            var r = rand[0];
+
+            var dir = GetRandomDirection(ref r);
+            rand[0] = r;
+
+            int2 dest = pos + dir;
+            int destIndex = dest.y * mapData.width + dest.x;
+
+            if( MapUtility.CellIsUnblocked( destIndex, mapState ))
+            {
+                int oldIndex = MapUtility.PosToIndex(pos, mapData.width);
+                pos = dest;
+
+                MapUtility.MoveActor(e, oldIndex, destIndex, mapState);
+            }
+
+            energy -= Energy.ActionThreshold;
+        }).Run();
 }
 ```
+
+We include the `TakingATurn` component in the ForEach query to ensure this system only runs when the entity has a turn. We also subtract our energy at the end of our turn to represent the cost of our action.
+
+All this system does is move the monster in a random direction. We use the `MapUtility` class to check if we can move and to update the [MapState buffer](Map/MapState/UpdateMapStateSystem.cs). As you'd expect this buffer represents the current state of the map, including which tiles are pathable and what entities, if any, exist in a given cell. Since all entities are processed in sequence and we're checking the `MapState` before they move and updating it afterwards, we know there can be no possibility of any monster moving on top of another.
+
+Later on in the frame in `LateSimulationSystemGroup` the `TurnEndSystem` will check all actors taking a turn and remove their turn if their energy falls below the threshold. This will effectively prevent entities from taking any more actions on the next frame once they've spent too much energy:
+
+###### [TurnSystem/TurnEndSystem.cs](TurnSystem/TurnEndSystem.cs)
+```csharp
+protected override void OnUpdate()
+{
+    var buffer = _endSimBarrier.CreateCommandBuffer().ToConcurrent();
+
+    Entities
+        .WithAll<TakingATurn>()
+        .WithAll<Actor>()
+        .ForEach((Entity e, int entityInQueryIndex, in Energy energy) =>
+        {
+            if (energy < Energy.ActionThreshold)
+                buffer.RemoveComponent<TakingATurn>(entityInQueryIndex, e);
+        }).ScheduleParallel();
+
+    _endSimBarrier.AddJobHandleForProducer(Dependency);
+}
+```
+
+## Deferred Actions
+
+In `MonsterTurnSystem` all the monsters do is move, which as mentioned previously is an immediate action by necessity. In `PlayerTurnSystem` we have the possibility to attack a monster. 
+
+Unlike movement, attacks can be processed as a deferred action - the results of one actor attacking another aren't required to be known by the next actor taking their turn within the frame. If an actor gets attacked and moves during processing, it doesn't matter. If it turns out the actor dies as a result of the attack, it will  be removed by another system before rendering occurs so the player will never notice the move.
+
+Here's how turn processing looks for the player:
+
+###### [Player/PlayerTurnSystem.cs](Player/PlayerTurnSystem.cs)
+```csharp
+protected override void OnUpdate()
+{
+    // Input processing and gathering relevant job data
+    ...
+
+    var monsterFromEntity = GetComponentDataFromEntity<Monster>(true);
+
+    Entities
+        .WithReadOnly(monsterFromEntity)
+        .WithAll<Player>()
+        .WithAll<TakingATurn>()
+        .ForEach((Entity e, ref Energy energy, ref Position pos) =>
+        {
+            int2 dest = pos + dir;
+            int destIndex = dest.y * mapData.width + dest.x;
+
+            // Don't use up an action if we don't do anything meaningful
+            int cost = 0;
+
+            if ( MapUtility.CellIsUnblocked(destIndex, mapState) )
+            {
+                int oldIndex = pos.value.y * mapData.width + pos.value.x;
+                pos = dest;
+
+                // Immediately update map state so the next actors have up to date state.
+                MapUtility.MoveActor(e, oldIndex, destIndex, mapState);
+
+                cost = Energy.ActionThreshold;
+            }
+            else
+            {
+                var cell = mapState[destIndex];
+
+                if (monsterFromEntity.Exists(cell.content))
+                {
+                    buffer.AddComponent(e, new Attacking
+                    {
+                        target = cell.content
+                    });
+
+                    cost = Energy.ActionThreshold;
+                }
+            }
+
+            energy -= cost;
+        }).Run();
+}
+```
+
+The movement code is identical to the monster's system - if we try to move and the tile is empty, we set our new position use the `MapUtility` to update map state.
+
+If the cell is occupied however we check if it contains a monster. If it does, we then add our `Attacking` component to be processed by the `CombatSystem`:
+
+###### [Combat/CombatSystem.cs](Combat/CombatSystem.cs)
+```csharp
+[UpdateBefore(typeof(DeathSystem))]
+public class CombatSystem : SystemBase
+{
+	EntityQuery _combatQuery;
+
+	EndSimulationEntityCommandBufferSystem _endSimBarrier;
+
+	protected override void OnCreate()
+	{
+		base.OnCreate();
+
+		_endSimBarrier = World.GetOrCreateSystem<EndSimulationEntityCommandBufferSystem>();
+	}
+
+	protected override void OnUpdate()
+	{
+		var healthFromEntity = GetComponentDataFromEntity<Health>(false);
+
+		Entities
+			.WithStoreEntityQueryInField(ref _combatQuery)
+			.ForEach((in Attacking combat, in Strength strength) =>
+			{
+				healthFromEntity[combat.target] -= strength;
+			}).Schedule();
+
+		_endSimBarrier.CreateCommandBuffer().RemoveComponent<Attacking>(_combatQuery);
+		_endSimBarrier.AddJobHandleForProducer(Dependency);
+	}
+}
+```
+
+It's fairly straightforward, we decrement the health and remove the combat component. Once we've moved away from the "processing everything in order" restriction of immediate actions we can just schedule jobs like normal. We do have to pay attention to the update order of these deferred systems though. It's important for deferred actions to be completely resolved before the next turn update, or it could cause incorrect state to be carried into the next turn. 
+
+In this case we update all deferred systems in `LateSimulationSystemGroup` and specify the correct order via [UpdateBefore and UpdateAfter](https://docs.unity3d.com/Packages/com.unity.entities@0.7/manual/system_update_order.html). After `CombatSystem` has run the `DeathSystem` handles removing actors that have lost all their health:
+
+###### [Combat/DeathSystem.cs](Combat/DeathSystem.cs)
+```csharp
+public class DeathSystem : SystemBase
+{
+    EndSimulationEntityCommandBufferSystem _barrier;
+
+    protected override void OnCreate()
+    {
+        base.OnCreate();
+
+        _barrier = World.GetOrCreateSystem<EndSimulationEntityCommandBufferSystem>();
+    }
+
+    protected override void OnUpdate()
+    {
+        var buffer = _barrier.CreateCommandBuffer().ToConcurrent();
+
+        Entities
+            .WithChangeFilter<Health>()
+            .ForEach((int entityInQueryIndex, Entity e, in Health health) =>
+            {
+                if (health <= 0)
+                {
+                    buffer.DestroyEntity(entityInQueryIndex, e);
+                }
+            }).ScheduleParallel();
+
+        _barrier.AddJobHandleForProducer(Dependency);
+    }
+} 
+```
+
+Another simple and straightforward system - it just checks health and destroys entities. This is separate from the `CombatSystem` because an entity's health could be affected by anything, and we would always want the `DeathSystem` to remove an entity with no health, regardless of how it happened.
+
+And finally, the results:
+
+![](images~/melee.gif)
+*Carving a path through a hallway full of monsters*.
 
 ----------------------
 

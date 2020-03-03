@@ -12,7 +12,7 @@ namespace RLTKTutorial.Part1_5A
         public int width;
         public int height;
         public int2 Size => new int2(width, height);
-        public int ToalSize => width * height;
+        public int TotalSize => width * height;
     }
 
     public class MapAuthoring : MonoBehaviour, IConvertGameObjectToEntity
@@ -32,8 +32,7 @@ namespace RLTKTutorial.Part1_5A
 
             dstManager.AddBuffer<MapTiles>(entity);
             dstManager.AddBuffer<MapRooms>(entity);
-
-            dstManager.AddComponent<MapInput>(entity);
+            dstManager.AddBuffer<MapState>(entity);
         }
 
         private void OnDrawGizmos()

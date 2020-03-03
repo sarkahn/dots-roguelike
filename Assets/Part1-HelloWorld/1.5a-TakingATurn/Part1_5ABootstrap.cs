@@ -9,20 +9,23 @@ namespace RLTKTutorial.Part1_5A
     {
         void OnEnable()
         {
-            Bootstrap.AddSimSystem<GenerateMapSystem>();
+            Bootstrap.AddInitSystem<TurnBeginSystem>();
+
+            Bootstrap.AddSimSystem<PlayerTurnSystem>();
+            Bootstrap.AddSimSystem<MonsterTurnSystem>();
 
             Bootstrap.AddSimSystem<MapInputSystem>();
+            Bootstrap.AddSimSystem<GenerateMapSystem>();
+            Bootstrap.AddSimSystem<UpdateMapStateSystem>();
             Bootstrap.AddSimSystem<VisibilitySystem>();
-
-            Bootstrap.AddRenderSystem<RenderSystem>();
-
-            Bootstrap.AddSimSystem<MoveSystem>();
 
             Bootstrap.AddSimSystem<ChangeMonsterCountSystem>();
 
-            var turnSystem = Bootstrap.AddSimSystem<GameTurnSystem>();
-            turnSystem.AddTurnActionSystem<PlayerTurnSystem>();
-            turnSystem.AddTurnActionSystem<MonsterTurnSystem>();
+            Bootstrap.AddLateSimSystem<CombatSystem>();
+            Bootstrap.AddLateSimSystem<DeathSystem>();
+            Bootstrap.AddLateSimSystem<TurnEndSystem>();
+
+            Bootstrap.AddRenderSystem<RenderSystem>();
         }
     }
 }

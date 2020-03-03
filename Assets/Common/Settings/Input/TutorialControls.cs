@@ -24,7 +24,7 @@ public class @TutorialControls : IInputActionCollection, IDisposable
                     ""id"": ""0b87067b-513e-4be1-b906-637b3f915ddd"",
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
-                    ""interactions"": ""RepeatedPress(delay=0.3)""
+                    ""interactions"": ""RepeatedPress(delay=0.35)""
                 },
                 {
                     ""name"": ""GenerateMap"",
@@ -54,6 +54,14 @@ public class @TutorialControls : IInputActionCollection, IDisposable
                     ""name"": ""ChangeMonsterCount"",
                     ""type"": ""Value"",
                     ""id"": ""434a0adf-81c6-4403-a253-35bff1b6d9a3"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": ""RepeatedPress(delay=0.2)""
+                },
+                {
+                    ""name"": ""ChangeMonsterCountLarge"",
+                    ""type"": ""Value"",
+                    ""id"": ""4706da07-c465-43e6-beb0-b8f7c95f0ab5"",
                     ""expectedControlType"": ""Axis"",
                     ""processors"": """",
                     ""interactions"": ""RepeatedPress(delay=0.2)""
@@ -259,7 +267,7 @@ public class @TutorialControls : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""Plus/Minus"",
+                    ""name"": ""1D Axis"",
                     ""id"": ""8983ede2-d14c-4764-ae63-8f4422a746ce"",
                     ""path"": ""1DAxis"",
                     ""interactions"": """",
@@ -290,6 +298,39 @@ public class @TutorialControls : IInputActionCollection, IDisposable
                     ""action"": ""ChangeMonsterCount"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""8d61c6c4-9ee2-4b44-8450-f8ff69cd67dc"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ChangeMonsterCountLarge"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Negative"",
+                    ""id"": ""bfffcaf2-dc0c-4ac1-b86f-4bedbb3b0f45"",
+                    ""path"": ""<Keyboard>/numpadMinus"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ChangeMonsterCountLarge"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Positive"",
+                    ""id"": ""75f89e86-4c63-4607-a0c8-bee2991fb34d"",
+                    ""path"": ""<Keyboard>/numpadPlus"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ChangeMonsterCountLarge"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -303,6 +344,7 @@ public class @TutorialControls : IInputActionCollection, IDisposable
         m_DefaultMapping_ResizeMap = m_DefaultMapping.FindAction("ResizeMap", throwIfNotFound: true);
         m_DefaultMapping_QuitGame = m_DefaultMapping.FindAction("QuitGame", throwIfNotFound: true);
         m_DefaultMapping_ChangeMonsterCount = m_DefaultMapping.FindAction("ChangeMonsterCount", throwIfNotFound: true);
+        m_DefaultMapping_ChangeMonsterCountLarge = m_DefaultMapping.FindAction("ChangeMonsterCountLarge", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -357,6 +399,7 @@ public class @TutorialControls : IInputActionCollection, IDisposable
     private readonly InputAction m_DefaultMapping_ResizeMap;
     private readonly InputAction m_DefaultMapping_QuitGame;
     private readonly InputAction m_DefaultMapping_ChangeMonsterCount;
+    private readonly InputAction m_DefaultMapping_ChangeMonsterCountLarge;
     public struct DefaultMappingActions
     {
         private @TutorialControls m_Wrapper;
@@ -366,6 +409,7 @@ public class @TutorialControls : IInputActionCollection, IDisposable
         public InputAction @ResizeMap => m_Wrapper.m_DefaultMapping_ResizeMap;
         public InputAction @QuitGame => m_Wrapper.m_DefaultMapping_QuitGame;
         public InputAction @ChangeMonsterCount => m_Wrapper.m_DefaultMapping_ChangeMonsterCount;
+        public InputAction @ChangeMonsterCountLarge => m_Wrapper.m_DefaultMapping_ChangeMonsterCountLarge;
         public InputActionMap Get() { return m_Wrapper.m_DefaultMapping; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -390,6 +434,9 @@ public class @TutorialControls : IInputActionCollection, IDisposable
                 @ChangeMonsterCount.started -= m_Wrapper.m_DefaultMappingActionsCallbackInterface.OnChangeMonsterCount;
                 @ChangeMonsterCount.performed -= m_Wrapper.m_DefaultMappingActionsCallbackInterface.OnChangeMonsterCount;
                 @ChangeMonsterCount.canceled -= m_Wrapper.m_DefaultMappingActionsCallbackInterface.OnChangeMonsterCount;
+                @ChangeMonsterCountLarge.started -= m_Wrapper.m_DefaultMappingActionsCallbackInterface.OnChangeMonsterCountLarge;
+                @ChangeMonsterCountLarge.performed -= m_Wrapper.m_DefaultMappingActionsCallbackInterface.OnChangeMonsterCountLarge;
+                @ChangeMonsterCountLarge.canceled -= m_Wrapper.m_DefaultMappingActionsCallbackInterface.OnChangeMonsterCountLarge;
             }
             m_Wrapper.m_DefaultMappingActionsCallbackInterface = instance;
             if (instance != null)
@@ -409,6 +456,9 @@ public class @TutorialControls : IInputActionCollection, IDisposable
                 @ChangeMonsterCount.started += instance.OnChangeMonsterCount;
                 @ChangeMonsterCount.performed += instance.OnChangeMonsterCount;
                 @ChangeMonsterCount.canceled += instance.OnChangeMonsterCount;
+                @ChangeMonsterCountLarge.started += instance.OnChangeMonsterCountLarge;
+                @ChangeMonsterCountLarge.performed += instance.OnChangeMonsterCountLarge;
+                @ChangeMonsterCountLarge.canceled += instance.OnChangeMonsterCountLarge;
             }
         }
     }
@@ -420,5 +470,6 @@ public class @TutorialControls : IInputActionCollection, IDisposable
         void OnResizeMap(InputAction.CallbackContext context);
         void OnQuitGame(InputAction.CallbackContext context);
         void OnChangeMonsterCount(InputAction.CallbackContext context);
+        void OnChangeMonsterCountLarge(InputAction.CallbackContext context);
     }
 }

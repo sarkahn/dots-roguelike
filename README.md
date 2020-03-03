@@ -61,6 +61,14 @@ Goes over some code refactoring so our systems can apply behaviour to more entit
 
 -----
 
+### [Part 1.5A - Taking a Turn](Assets/Part1-HelloWorld/1.5A-TakingATurn/README.md)
+
+Covers an implementation of a turn-based system in Unity's ECS framework, as well as introducing the first parts of a combat system.
+
+![](Assets/Common/demoimages~/1_5A_small.gif)
+
+-----
+
 These tutorials will always be free and the code will always be open source. With that being said I put quite a lot of work into them. If you find them useful, please consider donating. Any amount you can spare would really help me out a great deal - thank you!
 
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=Y54CX7AXFKQXG)

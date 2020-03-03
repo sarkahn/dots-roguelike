@@ -17,10 +17,11 @@ namespace RLTKTutorial.Part1_5A
         EntityQuery _changeMonsterCountQuery;
         EntityQuery _monsterPrefabsQuery;
         EntityQuery _monstersQuery;
+        EntityQuery _mapQuery;
 
         BeginSimulationEntityCommandBufferSystem _barrier;
 
-        public int MonsterCount { get; private set; } = 0;
+        public int MonsterCount => _monstersQuery.CalculateEntityCount();
 
         protected override void OnCreate()
         {
@@ -37,6 +38,11 @@ namespace RLTKTutorial.Part1_5A
 
             _changeMonsterCountQuery = GetEntityQuery(
                 ComponentType.ReadOnly<ChangeMonsterCount>()
+                );
+
+            _mapQuery = GetEntityQuery(
+                ComponentType.ReadWrite<MapState>(),
+                ComponentType.ReadOnly<MapData>()
                 );
 
             _barrier = World.GetOrCreateSystem<BeginSimulationEntityCommandBufferSystem>();
@@ -63,25 +69,56 @@ namespace RLTKTutorial.Part1_5A
             uint seed = (uint)UnityEngine.Random.Range(1, int.MaxValue);
             Random rand = new Random(seed);
 
-            var prefabs = _monsterPrefabsQuery.ToEntityArray(Allocator.TempJob);
-
             var buffer = _barrier.CreateCommandBuffer();
 
             var roomsEntity = GetSingletonEntity<MapRooms>();
             var rooms = EntityManager.GetBuffer<MapRooms>(roomsEntity);
 
-            for( int i = 0; i < target - current; ++i)
+            if (rooms.Length <= 1)
+                return;
+
+            var prefabs = _monsterPrefabsQuery.ToEntityArray(Allocator.TempJob);
+
+            var mapEntity = _mapQuery.GetSingletonEntity();
+            var mapState = EntityManager.GetBuffer<MapState>(mapEntity);
+            int mapWidth = EntityManager.GetComponentData<MapData>(mapEntity).width;
+
+            Job
+                .WithReadOnly(prefabs)
+                .WithReadOnly(rooms)
+                .WithCode(() =>
             {
-                int prefabIndex = rand.NextInt(0, prefabs.Length);
-                var monster = buffer.Instantiate(prefabs[prefabIndex]);
+                for (int i = 0; i < target - current; ++i)
+                {
+                    int prefabIndex = rand.NextInt(0, prefabs.Length);
 
-                var room = rooms[rand.NextInt(1, rooms.Length)];
-                var p = RandomPointInRoom(ref rand, room);
-                buffer.SetComponent<Position>(monster, p);
-            }
+                    // Try to find a viable spot up to 5 times
+                    for( int j = 0; j < 5; ++j )
+                    {
+                        var room = rooms[rand.NextInt(1, rooms.Length)];
+                        var p = RandomPointInRoom(ref rand, room);
 
-            prefabs.Dispose();
+                        int index = MapUtility.PosToIndex(p, mapWidth);
 
+                        if (mapState[index].blocked)
+                            continue;
+
+                        var monster = buffer.Instantiate(prefabs[prefabIndex]);
+
+                        mapState[index] = new MapState
+                        {
+                            blocked = true,
+                            content = monster
+                        };
+
+                        buffer.SetComponent<Position>(monster, p);
+                        buffer.SetComponent<Speed>(monster, rand.NextInt(20, 30));
+                        break;
+                    }
+                }
+            }).Schedule();
+
+            prefabs.Dispose(Dependency);
         }
 
         static int2 RandomPointInRoom(ref Random rand, IntRect room)
@@ -91,25 +128,21 @@ namespace RLTKTutorial.Part1_5A
             return new int2(x, y);
         }
 
-
         protected override void OnUpdate()
         {
             var e = GetSingletonEntity<ChangeMonsterCount>();
             var spawn = EntityManager.GetComponentData<ChangeMonsterCount>(e);
 
             int monsterCount = _monstersQuery.CalculateEntityCount();
-            int target = math.max(0, spawn.count);
+            int target = math.max(0, spawn.value);
 
             _barrier.CreateCommandBuffer().RemoveComponent<ChangeMonsterCount>(e);
-
             _barrier.AddJobHandleForProducer(Dependency);
 
             if (monsterCount == target)
                 return;
 
-            SetMonsterCount(monsterCount, spawn.count);
-
-            MonsterCount = target;
+            SetMonsterCount(monsterCount, spawn.value);
         }
     }
 }

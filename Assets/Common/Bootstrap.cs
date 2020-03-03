@@ -12,33 +12,33 @@ namespace RLTKTutorial
     /// </summary>
     public static class Bootstrap
     {
-        [UpdateInGroup(typeof(SimulationSystemGroup))]
-        public class RLTKSimSystems : ComponentSystemGroup { }
 
-        [UpdateInGroup(typeof(PresentationSystemGroup))]
-        public class RLTKRenderSystems : ComponentSystemGroup { }
-
-        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
-        static void Init()
+        public static void AddInitSystem<T>() where T : ComponentSystemBase
         {
-            //DefaultWorldInitialization.AddSystemsToRootLevelSystemGroups(World.DefaultGameObjectInjectionWorld,
-             //  new List<Type>() {
-            //            typeof(RLTKSimSystems)
-             //  });
+            AddSystemToGroup<T, InitializationSystemGroup>();
         }
 
-        public static T AddSimSystem<T>() where T : ComponentSystemBase
+        public static void AddSimSystem<T>() where T : ComponentSystemBase
         {
-            var group = World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<RLTKSimSystems>();
-            var system = World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<T>();
-            group.AddSystemToUpdateList(system);
-            return system;
+            AddSystemToGroup<T, SimulationSystemGroup>();
+        }
+
+        public static void AddLateSimSystem<T>() where T: ComponentSystemBase
+        {
+            AddSystemToGroup<T, LateSimulationSystemGroup>();
         }
 
         public static void AddRenderSystem<T>() where T : ComponentSystemBase
         {
-            var group = World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<RLTKRenderSystems>();
-            var system = World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<T>();
+            AddSystemToGroup<T,PresentationSystemGroup>();
+        }
+
+        static void AddSystemToGroup<TSystem,TGroup>()
+            where TSystem : ComponentSystemBase
+            where TGroup : ComponentSystemGroup
+        {
+            var group = World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<TGroup>();
+            var system = World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<TSystem>();
 
             group.AddSystemToUpdateList(system);
         }

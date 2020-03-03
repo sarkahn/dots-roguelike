@@ -15,21 +15,19 @@ using static RLTK.CodePage437;
 namespace RLTKTutorial.Part1_5A
 {
     [DisableAutoCreation]
-    [AlwaysSynchronizeSystem]
-    [UpdateInGroup(typeof(PresentationSystemGroup))]
     public class RenderSystem : SystemBase
     {
         SimpleConsole _console;
 
         EntityQuery _mapQuery;
-
         EntityQuery _playerQuery;
 
         protected override void OnCreate()
         {
             _mapQuery = GetEntityQuery(
                 ComponentType.ReadOnly<MapTiles>(),
-                ComponentType.ReadOnly<MapData>()
+                ComponentType.ReadOnly<MapData>(),
+                ComponentType.Exclude<GenerateMap>()
                 );
 
             _playerQuery = GetEntityQuery(
@@ -38,13 +36,6 @@ namespace RLTKTutorial.Part1_5A
             
             RequireForUpdate(_playerQuery);
             RequireForUpdate(_mapQuery);
-        }
-
-        protected override void OnStartRunning()
-        {
-            var mapData = _mapQuery.GetSingleton<MapData>();
-            _console = new SimpleConsole(mapData.width, mapData.height);
-
         }
 
         protected override void OnDestroy()
@@ -56,13 +47,14 @@ namespace RLTKTutorial.Part1_5A
         protected override void OnUpdate()
         {
             var mapEntity = _mapQuery.GetSingletonEntity();
-
-            var mapData = _mapQuery.GetSingleton<MapData>();
+            var mapData = EntityManager.GetComponentData<MapData>(mapEntity);
             
-            if(mapData.width != _console.Width || mapData.height != _console.Height)
+            if( _console == null)
+                _console = new SimpleConsole(mapData.width, mapData.height);
+
+            if (mapData.width != _console.Width || mapData.height != _console.Height)
             {
                 _console.Resize(mapData.width, mapData.height);
-                RenderUtility.AdjustCameraToConsole(_console);
                 return;
             }
 
@@ -70,14 +62,14 @@ namespace RLTKTutorial.Part1_5A
 
             var map = EntityManager.GetBuffer<MapTiles>(mapEntity);
 
-            // The map has been resized but not yet updated
-            if( (mapData.width * mapData.height) != map.Length )
-            {
-                return;
-            }
+            //// The map has been resized but not yet updated
+            //if( (mapData.width * mapData.height) != map.Length )
+            //{
+            //    return;
+            //}
 
-            if (_playerQuery.IsEmptyIgnoreFilter)
-                return;
+            //if (_playerQuery.IsEmptyIgnoreFilter)
+            //    return;
 
             // Since we're iterating all tiles in the map we can probably benefit from using burst.
             // We can't use the console in a job since it's a managed object, so we'll work directly with tiles

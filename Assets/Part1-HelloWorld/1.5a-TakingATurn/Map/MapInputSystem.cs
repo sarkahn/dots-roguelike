@@ -10,31 +10,31 @@ using UnityEngine.InputSystem;
 namespace RLTKTutorial.Part1_5A
 {
     [DisableAutoCreation]
+    [UpdateBefore(typeof(GenerateMapSystem))]
     public class MapInputSystem : SystemBase
     {
-        TutorialControls _controls;
-
-        BeginSimulationEntityCommandBufferSystem _barrierSystem;
-        
         EntityQuery _mapQuery;
-
         EntityQuery _monstersQuery;
 
+        EndSimulationEntityCommandBufferSystem _endSimBarrier;
+
+        TutorialControls _controls;
         InputAction _generateMapAction;
         InputAction _resizeMapAction;
-
         InputAction _changeMonsterCount;
-
-        float2 _prevResize;
+        InputAction _changeMonsterCountLarge;
 
         protected override void OnCreate()
         {
-            _barrierSystem = World.GetOrCreateSystem<BeginSimulationEntityCommandBufferSystem>();
+            _endSimBarrier = World.GetOrCreateSystem<EndSimulationEntityCommandBufferSystem>();
 
             _mapQuery = GetEntityQuery(
-                ComponentType.ReadOnly<MapInput>(),
-                ComponentType.ReadWrite<MapData>()
+                ComponentType.ReadWrite<MapData>(),
+                // Don't update if the map is generating
+                ComponentType.Exclude<GenerateMap>(),
+                ComponentType.Exclude<ChangeMonsterCount>()
                 );
+            RequireForUpdate(_mapQuery);
 
             _monstersQuery = GetEntityQuery(ComponentType.ReadOnly<Monster>());
 
@@ -44,71 +44,58 @@ namespace RLTKTutorial.Part1_5A
             _generateMapAction = _controls.DefaultMapping.GenerateMap;
             _resizeMapAction = _controls.DefaultMapping.ResizeMap;
             _changeMonsterCount = _controls.DefaultMapping.ChangeMonsterCount;
-
-            RequireForUpdate(_mapQuery);
+            _changeMonsterCountLarge = _controls.DefaultMapping.ChangeMonsterCountLarge;
         }
 
         protected override void OnUpdate()
         {
+            var resize = _resizeMapAction.triggered ? (float2)_resizeMapAction.ReadValue<Vector2>() : float2.zero;
+
+            int changeMonsterCount = 0;
+            if( _changeMonsterCount.triggered )
+                changeMonsterCount = (int)_changeMonsterCount.ReadValue<float>() * 10;
+
+            if (_changeMonsterCountLarge.triggered)
+                changeMonsterCount = (int)_changeMonsterCountLarge.ReadValue<float>() * 100;
+           
             var mapEntity = _mapQuery.GetSingletonEntity();
 
-            // Early out if map is generating
-            if (EntityManager.HasComponent<GenerateMap>(mapEntity) || EntityManager.HasComponent<ChangeMonsterCount>(mapEntity))
-                return;
-
-            var resize = _resizeMapAction.triggered ? (float2)_resizeMapAction.ReadValue<Vector2>() : float2.zero;
-            var generateMap = _generateMapAction.triggered;
-
-            // Ignore repeated inputs
-            if ( generateMap || (resize.x != 0 || resize.y != 0) )
+            if( _resizeMapAction.triggered)
                 Generate(mapEntity, resize);
 
-            if(_changeMonsterCount.triggered )
-            {
-                float val = _changeMonsterCount.ReadValue<float>();
-                if (val != 0)
-                    ChangeMonsterCount(mapEntity, (int)(10 * val));
-            }
-
+            if( changeMonsterCount != 0 )
+                ChangeMonsterCount(mapEntity, changeMonsterCount);
         }
 
         void Generate(Entity mapEntity, float2 resize)
         {
             var mapData = EntityManager.GetComponentData<MapData>(mapEntity);
 
-            var commandBuffer = _barrierSystem.CreateCommandBuffer();
-
             int monsterCount = _monstersQuery.CalculateEntityCount();
+            var commandBuffer = _endSimBarrier.CreateCommandBuffer();
 
-            Job.WithCode(() =>
-            {
-                var genData = GenerateMap.Default;
-                genData.monsterCount = monsterCount;
-                commandBuffer.AddComponent(mapEntity, genData);
+            var genData = GenerateMap.Default;
+            genData.monsterCount = monsterCount;
+            commandBuffer.AddComponent(mapEntity, genData);
 
-                mapData.width += (int)resize.x;
-                mapData.height += (int)resize.y;
+            mapData.width += (int)resize.x;
+            mapData.height += (int)resize.y;
 
-                mapData.width = math.max(15, mapData.width);
-                mapData.height = math.max(15, mapData.height);
+            mapData.width = math.max(15, mapData.width);
+            mapData.height = math.max(15, mapData.height);
 
-                commandBuffer.SetComponent(mapEntity, mapData);
-            }).Schedule();
-
-            _barrierSystem.AddJobHandleForProducer(Dependency);
+            commandBuffer.SetComponent(mapEntity, mapData);
         }
 
         void ChangeMonsterCount(Entity mapEntity, int change)
         {
-            var currentCount = _monstersQuery.CalculateEntityCount();
-            var commandBuffer = _barrierSystem.CreateCommandBuffer();
+            var monsterCount = _monstersQuery.CalculateEntityCount();
+            var commandBuffer = _endSimBarrier.CreateCommandBuffer();
 
-            commandBuffer.AddComponent<ChangeMonsterCount>(mapEntity, new ChangeMonsterCount
+            commandBuffer.AddComponent(mapEntity, new ChangeMonsterCount
             {
-                count = math.max(0, currentCount + change)
+                value = math.max(0, monsterCount + change)
             }); 
-
-            _barrierSystem.AddJobHandleForProducer(Dependency);
         }
     }
 }

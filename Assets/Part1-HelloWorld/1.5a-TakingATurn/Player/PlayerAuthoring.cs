@@ -9,7 +9,9 @@ using UnityEngine;
 namespace RLTKTutorial.Part1_5A
 {
     public struct Player : IComponentData
-    { }
+    {
+        public bool takingTurn;
+    }
 
     public class PlayerAuthoring : MonoBehaviour, IConvertGameObjectToEntity
     {
@@ -27,13 +29,12 @@ namespace RLTKTutorial.Part1_5A
             dstManager.AddComponent<Player>(entity);
             dstManager.AddComponentData<Position>(entity, pos);
             dstManager.AddComponentData<Name>(entity, new FixedString32("Player"));
-            dstManager.AddComponent<Movement>(entity);
             dstManager.AddComponent<Energy>(entity);
+            dstManager.AddComponent<Actor>(entity);
+
             dstManager.AddComponentData<Speed>(entity, _speed);
-            dstManager.AddComponentData<Actor>(entity, new Actor
-            {
-                actorType = ActorType.Player
-            });
+
+            dstManager.AddComponent<Collidable>(entity);
 
             if( _fovEnabled )
             {
