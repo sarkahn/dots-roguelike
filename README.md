@@ -61,7 +61,7 @@ Goes over some code refactoring so our systems can apply behaviour to more entit
 
 -----
 
-### [Part 1.5A - Taking a Turn](Assets/Part1-HelloWorld/1.5A-TakingATurn/README.md)
+### [Part 1.5A - Taking a Turn](Assets/Part1-HelloWorld/1.5a-TakingATurn/README.md)
 
 Covers an implementation of a turn-based system in Unity's ECS framework, as well as introducing the first parts of a combat system.
 
