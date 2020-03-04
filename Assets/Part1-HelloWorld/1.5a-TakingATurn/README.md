@@ -1,9 +1,9 @@
 
-#### [« Previous: 1.5 - Monsters and Refactoring](../1.5-Monsters/README.md) — [Next: In Progress... »]
+#### [Â« Previous: 1.5 - Monsters and Refactoring](../1.5-Monsters/README.md) â€” [Next: In Progress... Â»]
 
 --------
 
-# 1.5A - TakingTurns
+# 1.5A - Taking A Turn
 
 In this chapter we'll go over my implementation of a turn-based system in ECS. There are [many ways to implement turns in a Roguelike](http://www.roguebasin.com/index.php?title=Time_Systems), this is just one way. 
 
@@ -277,4 +277,4 @@ These tutorials will always be free and the code will always be open source. Wit
 
 --------
 
-#### [« Previous: 1.5 - Monsters and Refactoring](../1.5-Monsters/README.md) — [Next: In Progress... »]
+#### [Â« Previous: 1.5 - Monsters and Refactoring](../1.5-Monsters/README.md) â€” [Next: In Progress... Â»]
