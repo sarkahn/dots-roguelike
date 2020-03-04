@@ -265,6 +265,7 @@ Another simple and straightforward system - it just checks health and destroys e
 And finally, the results:
 
 ![](images~/melee.gif)
+
 *Carving a path through a hallway full of monsters*.
 
 ----------------------
