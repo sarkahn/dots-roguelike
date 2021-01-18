@@ -1,9 +1,9 @@
 MIT License
 
-Copyright (c) 2020 Sark
+Copyright (c) 2021 Sark
 
-This project is a port of https://github.com/thebracket/rustrogueliketutorial
-(Copyright 2019 Herbert     Wolverson (DBA Bracket Productions))
+This project is based on the Rust framework "RLTK: https://github.com/thebracket/rustrogueliketutorial
+(Copyright 2021 Herbert     Wolverson (DBA Bracket Productions))
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
