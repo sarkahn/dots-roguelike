@@ -3,13 +3,11 @@ using Unity.Jobs;
 using Unity.Mathematics;
 
 using Sark.Common.GridUtil;
-using Sark.Pathfinding;
 
-namespace DotsRogue
+namespace Sark.Pathfinding
 {
     public struct PathingMap : IPathingMap<int>
     {
-        //GridData2D<MapTile> map;
         GridData2D<bool> map;
 
         public PathingMap(GridData2D<bool> map)
@@ -43,6 +41,9 @@ namespace DotsRogue
             var p2 = map.IndexToPos(b);
             return Grid2D.ManhattanDistance(p1, p2);
         }
+
+        public int PosToIndex(int2 p) => map.PosToIndex(p);
+        public int2 IndexToPos(int i) => map.IndexToPos(i);
 
         bool IsObstacle(int2 p)
         {

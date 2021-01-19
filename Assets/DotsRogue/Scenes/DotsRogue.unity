@@ -331,7 +331,7 @@ MonoBehaviour:
   - {fileID: 117605178951017470, guid: b84720b1cb9f4634dbf2cc5532e11c5d, type: 3}
   - {fileID: 117605178951017470, guid: 231ab1bec93b723479588ef776ca73ad, type: 3}
   _genSettings:
-    Seed: 7
+    Seed: 5
     Iterations: 200
     MinRoomSize: 5
     MaxRoomSize: 10

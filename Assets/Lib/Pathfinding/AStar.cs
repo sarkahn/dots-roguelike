@@ -4,8 +4,6 @@ using System;
 
 using Sark.Common.NativeListExtensions;
 
-using DotsRogue;
-
 namespace Sark.Pathfinding
 {
     // https://www.redblobgames.com/pathfinding/a-star/implementation.html

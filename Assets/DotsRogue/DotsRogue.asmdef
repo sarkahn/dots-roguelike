@@ -11,7 +11,8 @@
         "Unity.Burst",
         "Sark.Common.Runtime",
         "Sark.EntityUtils.Runtime",
-        "Sark.RNG.Runtime"
+        "Sark.RNG.Runtime",
+        "Sark.Pathfinding.Runtime"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

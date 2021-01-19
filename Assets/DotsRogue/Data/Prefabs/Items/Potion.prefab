@@ -58,9 +58,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89249733abac31a4f98cf88af5091c3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _glyph: 161
-  _fgColor: {r: 0.5058824, g: 0.10196079, b: 0.454902, a: 1}
-  _bgColor: {r: 0, g: 0, b: 0, a: 1}
+  Glyph: 161
+  FGColor: {r: 1, g: 0.0683719, b: 0, a: 1}
+  BGColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!114 &-3622633318566476719
 MonoBehaviour:
   m_ObjectHideFlags: 0
