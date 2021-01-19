@@ -1,5 +1,7 @@
 # Unity ECS Roguelike
-A "traditional" ascii roguelike built using Unity's ECS/DOTS framework. This project is based on the excellent [Rust Roguelike Tutorial](https://bfnightly.bracketproductions.com/rustbook/) by TheBracket. Pull requests and bug reports are welcome!
+A "traditional" ascii roguelike built using Unity's ECS/DOTS framework. This project is based on the excellent [Rust Roguelike Tutorial](https://bfnightly.bracketproductions.com/rustbook/) by TheBracket. 
+
+Contributions are welcome, feel free to create a pull request or open an issue for any suggestions, requests, or bug reports!
 
 ![](Images/game.gif)
 
