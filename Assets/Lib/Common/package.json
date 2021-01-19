@@ -1,0 +1,23 @@
+{
+  "name": "com.sark.common",
+  "displayName": "Sark-Common",
+  "version": "0.2.2",
+  "unity": "2020.2",
+  "unityRelease": "0b10",
+  "description": "Some common utilities.",
+  "keywords": [
+    "utilities"
+  ],
+  "dependencies": {
+    "com.unity.mathematics": "1.1.0",
+    "com.unity.collections": "0.14.0-preview.16"
+  },
+  "author": {
+    "name": "Sark",
+    "email": "sarkahn@gmail.com",
+    "url": "https://github.com/sarkahn/"
+  },
+  "publishConfig": {
+    "registry": "https://package.openupm.com"
+  }
+}

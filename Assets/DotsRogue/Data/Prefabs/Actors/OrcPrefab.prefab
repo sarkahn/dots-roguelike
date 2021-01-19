@@ -1,0 +1,160 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3001529280802628162
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3001529280802628167}
+  - component: {fileID: 3001529280802628160}
+  - component: {fileID: 3001529280802628161}
+  - component: {fileID: 3001529280802628166}
+  - component: {fileID: 6320625105680632598}
+  - component: {fileID: -1229177787002976417}
+  - component: {fileID: 6550663770250546215}
+  - component: {fileID: -2436888272580642069}
+  - component: {fileID: -7309699698039288928}
+  - component: {fileID: 4591759789382037042}
+  m_Layer: 0
+  m_Name: OrcPrefab
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3001529280802628167
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3001529280802628162}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3001529280802628160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3001529280802628162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89249733abac31a4f98cf88af5091c3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Glyph: 111
+  FGColor: {r: 1, g: 0, b: 0.016376019, a: 1}
+  BGColor: {r: 0, g: 0, b: 0, a: 1}
+--- !u!114 &3001529280802628161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3001529280802628162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a6a85acee516b941b3bbc8ed6bf17c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _name: Orc
+--- !u!114 &3001529280802628166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3001529280802628162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26b66030127ee564a9136285d9d02f7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6320625105680632598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3001529280802628162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f905bad1eecdaf943b05106744859dc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Range: 6
+--- !u!114 &-1229177787002976417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3001529280802628162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82b6894cefe33b144bb2def38e722a51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6550663770250546215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3001529280802628162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56a55e8a3be1aef4e99d414318c5c7f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Speed: 20
+--- !u!114 &-2436888272580642069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3001529280802628162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6560d39b7f68abd45aec90baafd1feb9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-7309699698039288928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3001529280802628162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0ce43c4e0abe4947be41db7c42a113f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HitPoints: 25
+  Defense: 1
+--- !u!114 &4591759789382037042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3001529280802628162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 161ac8d58c35d51428f6549fec313886, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AttackDice:
+    numDice: 2
+    sides: 3

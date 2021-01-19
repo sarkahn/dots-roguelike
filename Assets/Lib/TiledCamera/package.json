@@ -1,0 +1,21 @@
+{
+  "name": "com.sark.tiled_camera",
+  "displayName": "Tiled Camera",
+  "version": "0.1.1",
+  "unity": "2020.2",
+  "unityRelease": "0b10",
+  "description": "A simple wrapper around PixelPerfectCamera with a few extra utilities. Lets you define your pixel perfect viewport in terms of tiles.",
+  "keywords": [
+    "tiledcamera",
+    "pixelperfect"
+  ],
+  "dependencies": {
+    "com.unity.render-pipelines.universal": "10.1.0",
+    "com.unity.mathematics": "1.1.0"
+  },
+  "author": {
+    "name": "Sark",
+    "email": "sarkahn@gmail.com",
+    "url": "https://github.com/sarkahn/"
+  }
+}

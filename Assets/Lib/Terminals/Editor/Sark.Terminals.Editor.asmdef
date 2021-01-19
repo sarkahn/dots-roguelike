@@ -1,0 +1,22 @@
+{
+    "name": "Sark.Terminals.Editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:9357f8cb40704de4f9d1e288171926c6",
+        "GUID:984f67c051652c44697c9cd3c5ba47e3",
+        "GUID:734d92eba21c94caba915361bd5ac177",
+        "GUID:8819f35a0fc84499b990e90a4ca1911f",
+        "GUID:d8b63aba1907145bea998dd612889d6b"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

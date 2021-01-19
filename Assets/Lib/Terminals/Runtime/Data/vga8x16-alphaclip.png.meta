@@ -1,0 +1,6951 @@
+fileFormatVersion: 2
+guid: cbad275ee8978854c978520a1d250ab3
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 4151343300359833640
+    second: vga8x16-alphaclip_0
+  - first:
+      213: 2459738082722079788
+    second: vga8x16-alphaclip_1
+  - first:
+      213: 4837533567713963358
+    second: vga8x16-alphaclip_2
+  - first:
+      213: 6592075159808264519
+    second: vga8x16-alphaclip_3
+  - first:
+      213: 4996778312154593655
+    second: vga8x16-alphaclip_4
+  - first:
+      213: 6175221183502241447
+    second: vga8x16-alphaclip_5
+  - first:
+      213: 8809218367416051150
+    second: vga8x16-alphaclip_6
+  - first:
+      213: -5470504429414091060
+    second: vga8x16-alphaclip_7
+  - first:
+      213: -3873159796403983454
+    second: vga8x16-alphaclip_8
+  - first:
+      213: -8218101514538621137
+    second: vga8x16-alphaclip_9
+  - first:
+      213: 38253931881956457
+    second: vga8x16-alphaclip_10
+  - first:
+      213: 1603108021219429946
+    second: vga8x16-alphaclip_11
+  - first:
+      213: 417878798356120865
+    second: vga8x16-alphaclip_12
+  - first:
+      213: 5354542336993943894
+    second: vga8x16-alphaclip_13
+  - first:
+      213: -2120724035936224931
+    second: vga8x16-alphaclip_14
+  - first:
+      213: 1948312790090279158
+    second: vga8x16-alphaclip_15
+  - first:
+      213: -3862767257136649757
+    second: vga8x16-alphaclip_16
+  - first:
+      213: -1458603804492619553
+    second: vga8x16-alphaclip_17
+  - first:
+      213: 7937737864042533388
+    second: vga8x16-alphaclip_18
+  - first:
+      213: -3933731730524316992
+    second: vga8x16-alphaclip_19
+  - first:
+      213: 4701757936668368122
+    second: vga8x16-alphaclip_20
+  - first:
+      213: 7666405307502287557
+    second: vga8x16-alphaclip_21
+  - first:
+      213: 1123138240851937227
+    second: vga8x16-alphaclip_22
+  - first:
+      213: -5525982160933186991
+    second: vga8x16-alphaclip_23
+  - first:
+      213: 8601500585997582884
+    second: vga8x16-alphaclip_24
+  - first:
+      213: 2602400333014187836
+    second: vga8x16-alphaclip_25
+  - first:
+      213: -84188828213768129
+    second: vga8x16-alphaclip_26
+  - first:
+      213: -2978181925094986877
+    second: vga8x16-alphaclip_27
+  - first:
+      213: 7978039616081307419
+    second: vga8x16-alphaclip_28
+  - first:
+      213: -6579189420401998740
+    second: vga8x16-alphaclip_29
+  - first:
+      213: -7329127128089605599
+    second: vga8x16-alphaclip_30
+  - first:
+      213: -8291440480900361928
+    second: vga8x16-alphaclip_31
+  - first:
+      213: 129712748249389691
+    second: vga8x16-alphaclip_32
+  - first:
+      213: -2996425916654669841
+    second: vga8x16-alphaclip_33
+  - first:
+      213: 3159508291484551705
+    second: vga8x16-alphaclip_34
+  - first:
+      213: 3739971287324367121
+    second: vga8x16-alphaclip_35
+  - first:
+      213: 4327137628502921064
+    second: vga8x16-alphaclip_36
+  - first:
+      213: -5351360943144858763
+    second: vga8x16-alphaclip_37
+  - first:
+      213: 8206730668250535848
+    second: vga8x16-alphaclip_38
+  - first:
+      213: 2419282281999317820
+    second: vga8x16-alphaclip_39
+  - first:
+      213: 708515787215626231
+    second: vga8x16-alphaclip_40
+  - first:
+      213: 6099229504924960885
+    second: vga8x16-alphaclip_41
+  - first:
+      213: -1771820823025381704
+    second: vga8x16-alphaclip_42
+  - first:
+      213: 5626925307732624151
+    second: vga8x16-alphaclip_43
+  - first:
+      213: -4637679159744533532
+    second: vga8x16-alphaclip_44
+  - first:
+      213: -922644131418007881
+    second: vga8x16-alphaclip_45
+  - first:
+      213: -6909343246197220438
+    second: vga8x16-alphaclip_46
+  - first:
+      213: 4719052588017684395
+    second: vga8x16-alphaclip_47
+  - first:
+      213: 1100567300612099417
+    second: vga8x16-alphaclip_48
+  - first:
+      213: -6524219682810020249
+    second: vga8x16-alphaclip_49
+  - first:
+      213: -5105873118647176980
+    second: vga8x16-alphaclip_50
+  - first:
+      213: 20257533510660765
+    second: vga8x16-alphaclip_51
+  - first:
+      213: -2853103549222143011
+    second: vga8x16-alphaclip_52
+  - first:
+      213: 4989150401558667958
+    second: vga8x16-alphaclip_53
+  - first:
+      213: -575423189120495532
+    second: vga8x16-alphaclip_54
+  - first:
+      213: 3491195557676973518
+    second: vga8x16-alphaclip_55
+  - first:
+      213: 440859963839722353
+    second: vga8x16-alphaclip_56
+  - first:
+      213: -5009591608943866336
+    second: vga8x16-alphaclip_57
+  - first:
+      213: 732416048938659420
+    second: vga8x16-alphaclip_58
+  - first:
+      213: 2366460747528615844
+    second: vga8x16-alphaclip_59
+  - first:
+      213: 1588782244606937232
+    second: vga8x16-alphaclip_60
+  - first:
+      213: -9047346063978399653
+    second: vga8x16-alphaclip_61
+  - first:
+      213: 7240030799276097244
+    second: vga8x16-alphaclip_62
+  - first:
+      213: 7785772444361513977
+    second: vga8x16-alphaclip_63
+  - first:
+      213: 5935790286218903218
+    second: vga8x16-alphaclip_64
+  - first:
+      213: 1814796872334833990
+    second: vga8x16-alphaclip_65
+  - first:
+      213: -8170728733800181747
+    second: vga8x16-alphaclip_66
+  - first:
+      213: 8342098695837892599
+    second: vga8x16-alphaclip_67
+  - first:
+      213: -1280069758587907622
+    second: vga8x16-alphaclip_68
+  - first:
+      213: -1477489816943483750
+    second: vga8x16-alphaclip_69
+  - first:
+      213: 8776312651091547119
+    second: vga8x16-alphaclip_70
+  - first:
+      213: 5560411929070804983
+    second: vga8x16-alphaclip_71
+  - first:
+      213: 4573189298767889692
+    second: vga8x16-alphaclip_72
+  - first:
+      213: -6264003288943114194
+    second: vga8x16-alphaclip_73
+  - first:
+      213: 1547027158557707428
+    second: vga8x16-alphaclip_74
+  - first:
+      213: 2362517959041374218
+    second: vga8x16-alphaclip_75
+  - first:
+      213: -996688233470566466
+    second: vga8x16-alphaclip_76
+  - first:
+      213: 7042685287331097504
+    second: vga8x16-alphaclip_77
+  - first:
+      213: 5373941550448199660
+    second: vga8x16-alphaclip_78
+  - first:
+      213: 8703770042025058466
+    second: vga8x16-alphaclip_79
+  - first:
+      213: 8819232818069963461
+    second: vga8x16-alphaclip_80
+  - first:
+      213: -8904477261981528440
+    second: vga8x16-alphaclip_81
+  - first:
+      213: 140899332771988734
+    second: vga8x16-alphaclip_82
+  - first:
+      213: 6272711742032675553
+    second: vga8x16-alphaclip_83
+  - first:
+      213: 487239790743793590
+    second: vga8x16-alphaclip_84
+  - first:
+      213: 6374344644403975907
+    second: vga8x16-alphaclip_85
+  - first:
+      213: 4308132394023475919
+    second: vga8x16-alphaclip_86
+  - first:
+      213: 1064307023943816049
+    second: vga8x16-alphaclip_87
+  - first:
+      213: 2177710251668944542
+    second: vga8x16-alphaclip_88
+  - first:
+      213: -3904544770932691495
+    second: vga8x16-alphaclip_89
+  - first:
+      213: -9075878224133355932
+    second: vga8x16-alphaclip_90
+  - first:
+      213: 7018259086035263343
+    second: vga8x16-alphaclip_91
+  - first:
+      213: 8833681022032597427
+    second: vga8x16-alphaclip_92
+  - first:
+      213: -6676618966624887186
+    second: vga8x16-alphaclip_93
+  - first:
+      213: 4372314851811101790
+    second: vga8x16-alphaclip_94
+  - first:
+      213: 7930232144497526687
+    second: vga8x16-alphaclip_95
+  - first:
+      213: -2483457691322442271
+    second: vga8x16-alphaclip_96
+  - first:
+      213: -4705343388356464439
+    second: vga8x16-alphaclip_97
+  - first:
+      213: -3215487592145021262
+    second: vga8x16-alphaclip_98
+  - first:
+      213: 5460680056659011277
+    second: vga8x16-alphaclip_99
+  - first:
+      213: -1132562078411092178
+    second: vga8x16-alphaclip_100
+  - first:
+      213: -5107080457143014896
+    second: vga8x16-alphaclip_101
+  - first:
+      213: 6982980002101368585
+    second: vga8x16-alphaclip_102
+  - first:
+      213: 2540206329480486846
+    second: vga8x16-alphaclip_103
+  - first:
+      213: -2929616060478916744
+    second: vga8x16-alphaclip_104
+  - first:
+      213: 8729173571796606688
+    second: vga8x16-alphaclip_105
+  - first:
+      213: 6699999097723967858
+    second: vga8x16-alphaclip_106
+  - first:
+      213: -2038879699907977459
+    second: vga8x16-alphaclip_107
+  - first:
+      213: 8948232770392110641
+    second: vga8x16-alphaclip_108
+  - first:
+      213: -6335476166084742503
+    second: vga8x16-alphaclip_109
+  - first:
+      213: -8395777047769377952
+    second: vga8x16-alphaclip_110
+  - first:
+      213: -9065384820391594073
+    second: vga8x16-alphaclip_111
+  - first:
+      213: -4642347345891323812
+    second: vga8x16-alphaclip_112
+  - first:
+      213: 8382522804379754517
+    second: vga8x16-alphaclip_113
+  - first:
+      213: -1987542789306393155
+    second: vga8x16-alphaclip_114
+  - first:
+      213: 8472003964443051397
+    second: vga8x16-alphaclip_115
+  - first:
+      213: -6676299037393917758
+    second: vga8x16-alphaclip_116
+  - first:
+      213: 5094194232461767834
+    second: vga8x16-alphaclip_117
+  - first:
+      213: -6097382688090088184
+    second: vga8x16-alphaclip_118
+  - first:
+      213: -4508243941598594786
+    second: vga8x16-alphaclip_119
+  - first:
+      213: 1123703541695727463
+    second: vga8x16-alphaclip_120
+  - first:
+      213: 4113773099157625599
+    second: vga8x16-alphaclip_121
+  - first:
+      213: 5663441196728213413
+    second: vga8x16-alphaclip_122
+  - first:
+      213: -3480868021494933533
+    second: vga8x16-alphaclip_123
+  - first:
+      213: -5671140365769915101
+    second: vga8x16-alphaclip_124
+  - first:
+      213: -8226453890602493626
+    second: vga8x16-alphaclip_125
+  - first:
+      213: -8820843848818746138
+    second: vga8x16-alphaclip_126
+  - first:
+      213: -3092867159931335158
+    second: vga8x16-alphaclip_127
+  - first:
+      213: 7070170374227551093
+    second: vga8x16-alphaclip_128
+  - first:
+      213: 8220728710439282786
+    second: vga8x16-alphaclip_129
+  - first:
+      213: 8889313744521412329
+    second: vga8x16-alphaclip_130
+  - first:
+      213: 2403084592647561124
+    second: vga8x16-alphaclip_131
+  - first:
+      213: -8700768515117430619
+    second: vga8x16-alphaclip_132
+  - first:
+      213: -3477136762812938789
+    second: vga8x16-alphaclip_133
+  - first:
+      213: -416346576457056666
+    second: vga8x16-alphaclip_134
+  - first:
+      213: 182694153959433604
+    second: vga8x16-alphaclip_135
+  - first:
+      213: 8699533715385148653
+    second: vga8x16-alphaclip_136
+  - first:
+      213: -8231836781748323009
+    second: vga8x16-alphaclip_137
+  - first:
+      213: 605892287867238087
+    second: vga8x16-alphaclip_138
+  - first:
+      213: 7502505628085511431
+    second: vga8x16-alphaclip_139
+  - first:
+      213: 7075801618488666171
+    second: vga8x16-alphaclip_140
+  - first:
+      213: -7690322325699223158
+    second: vga8x16-alphaclip_141
+  - first:
+      213: 2188973311278407907
+    second: vga8x16-alphaclip_142
+  - first:
+      213: -5544431410856984988
+    second: vga8x16-alphaclip_143
+  - first:
+      213: 3431965556607763372
+    second: vga8x16-alphaclip_144
+  - first:
+      213: -2716580536068451316
+    second: vga8x16-alphaclip_145
+  - first:
+      213: -6394192410923621366
+    second: vga8x16-alphaclip_146
+  - first:
+      213: 8324953538182183373
+    second: vga8x16-alphaclip_147
+  - first:
+      213: 4340591238522123628
+    second: vga8x16-alphaclip_148
+  - first:
+      213: -4607920073645235753
+    second: vga8x16-alphaclip_149
+  - first:
+      213: 8079030137932156934
+    second: vga8x16-alphaclip_150
+  - first:
+      213: -3702085043641900141
+    second: vga8x16-alphaclip_151
+  - first:
+      213: 3652541233465321572
+    second: vga8x16-alphaclip_152
+  - first:
+      213: -8588036602321261628
+    second: vga8x16-alphaclip_153
+  - first:
+      213: -8287404506124750237
+    second: vga8x16-alphaclip_154
+  - first:
+      213: 614741010435436594
+    second: vga8x16-alphaclip_155
+  - first:
+      213: -7941213006480919452
+    second: vga8x16-alphaclip_156
+  - first:
+      213: -7571901250883318885
+    second: vga8x16-alphaclip_157
+  - first:
+      213: -2903669389455079523
+    second: vga8x16-alphaclip_158
+  - first:
+      213: -4460838916648828178
+    second: vga8x16-alphaclip_159
+  - first:
+      213: -4991169708565302778
+    second: vga8x16-alphaclip_160
+  - first:
+      213: -7128497552969280567
+    second: vga8x16-alphaclip_161
+  - first:
+      213: 5878046356374443750
+    second: vga8x16-alphaclip_162
+  - first:
+      213: -8216514738269176571
+    second: vga8x16-alphaclip_163
+  - first:
+      213: -84742428266941946
+    second: vga8x16-alphaclip_164
+  - first:
+      213: -6988439676261453059
+    second: vga8x16-alphaclip_165
+  - first:
+      213: 2890780233393569354
+    second: vga8x16-alphaclip_166
+  - first:
+      213: -4118422974639554387
+    second: vga8x16-alphaclip_167
+  - first:
+      213: 5929210917256911522
+    second: vga8x16-alphaclip_168
+  - first:
+      213: 7960233911232044286
+    second: vga8x16-alphaclip_169
+  - first:
+      213: 3378350165113006944
+    second: vga8x16-alphaclip_170
+  - first:
+      213: -200683042381590044
+    second: vga8x16-alphaclip_171
+  - first:
+      213: -2754866173291063063
+    second: vga8x16-alphaclip_172
+  - first:
+      213: -8058603264829318502
+    second: vga8x16-alphaclip_173
+  - first:
+      213: -8504625177222889528
+    second: vga8x16-alphaclip_174
+  - first:
+      213: -1599349369446263410
+    second: vga8x16-alphaclip_175
+  - first:
+      213: 1726753225879501832
+    second: vga8x16-alphaclip_176
+  - first:
+      213: 2314383796933112870
+    second: vga8x16-alphaclip_177
+  - first:
+      213: 7083722235676569555
+    second: vga8x16-alphaclip_178
+  - first:
+      213: 1393425905278779024
+    second: vga8x16-alphaclip_179
+  - first:
+      213: 7606487604291199191
+    second: vga8x16-alphaclip_180
+  - first:
+      213: -8349114499064193849
+    second: vga8x16-alphaclip_181
+  - first:
+      213: -79061601583694354
+    second: vga8x16-alphaclip_182
+  - first:
+      213: 8356639144739426581
+    second: vga8x16-alphaclip_183
+  - first:
+      213: 2019077994168562859
+    second: vga8x16-alphaclip_184
+  - first:
+      213: -5809772564436741436
+    second: vga8x16-alphaclip_185
+  - first:
+      213: -6960969467927471549
+    second: vga8x16-alphaclip_186
+  - first:
+      213: -3778264338859236970
+    second: vga8x16-alphaclip_187
+  - first:
+      213: 3680756683044950850
+    second: vga8x16-alphaclip_188
+  - first:
+      213: 8074792630662955648
+    second: vga8x16-alphaclip_189
+  - first:
+      213: 486884591984698056
+    second: vga8x16-alphaclip_190
+  - first:
+      213: 2580708221998671913
+    second: vga8x16-alphaclip_191
+  - first:
+      213: 5329698138174128534
+    second: vga8x16-alphaclip_192
+  - first:
+      213: -6803646837518576366
+    second: vga8x16-alphaclip_193
+  - first:
+      213: 5913243358673837232
+    second: vga8x16-alphaclip_194
+  - first:
+      213: 2946144568149209459
+    second: vga8x16-alphaclip_195
+  - first:
+      213: -2113786532272586992
+    second: vga8x16-alphaclip_196
+  - first:
+      213: 21550953991324942
+    second: vga8x16-alphaclip_197
+  - first:
+      213: -7571558984646119531
+    second: vga8x16-alphaclip_198
+  - first:
+      213: -7593442750698054722
+    second: vga8x16-alphaclip_199
+  - first:
+      213: -1032149346699016221
+    second: vga8x16-alphaclip_200
+  - first:
+      213: -2275489679221826022
+    second: vga8x16-alphaclip_201
+  - first:
+      213: -8912224545044100703
+    second: vga8x16-alphaclip_202
+  - first:
+      213: -7032087746976275685
+    second: vga8x16-alphaclip_203
+  - first:
+      213: -4852018239982788239
+    second: vga8x16-alphaclip_204
+  - first:
+      213: 5654934542957906170
+    second: vga8x16-alphaclip_205
+  - first:
+      213: -6869198085313242638
+    second: vga8x16-alphaclip_206
+  - first:
+      213: -2542088929573723192
+    second: vga8x16-alphaclip_207
+  - first:
+      213: 4990614284064411168
+    second: vga8x16-alphaclip_208
+  - first:
+      213: -79306195817886956
+    second: vga8x16-alphaclip_209
+  - first:
+      213: 6076791492689070891
+    second: vga8x16-alphaclip_210
+  - first:
+      213: -8074168660843221010
+    second: vga8x16-alphaclip_211
+  - first:
+      213: 3559161650472892557
+    second: vga8x16-alphaclip_212
+  - first:
+      213: -6397667498003187005
+    second: vga8x16-alphaclip_213
+  - first:
+      213: -1892941337022361836
+    second: vga8x16-alphaclip_214
+  - first:
+      213: -2640234699108100087
+    second: vga8x16-alphaclip_215
+  - first:
+      213: -1669555867666497409
+    second: vga8x16-alphaclip_216
+  - first:
+      213: 1533719540573423470
+    second: vga8x16-alphaclip_217
+  - first:
+      213: 4162195160141150374
+    second: vga8x16-alphaclip_218
+  - first:
+      213: -1020822601476336145
+    second: vga8x16-alphaclip_219
+  - first:
+      213: 5481117933432679947
+    second: vga8x16-alphaclip_220
+  - first:
+      213: -3863205800465327314
+    second: vga8x16-alphaclip_221
+  - first:
+      213: -6210457335176775936
+    second: vga8x16-alphaclip_222
+  - first:
+      213: 6757234126055179442
+    second: vga8x16-alphaclip_223
+  - first:
+      213: 4321227627971967703
+    second: vga8x16-alphaclip_224
+  - first:
+      213: 449717461797621027
+    second: vga8x16-alphaclip_225
+  - first:
+      213: -8772672514164891918
+    second: vga8x16-alphaclip_226
+  - first:
+      213: 607996047379107787
+    second: vga8x16-alphaclip_227
+  - first:
+      213: 5940513145926434050
+    second: vga8x16-alphaclip_228
+  - first:
+      213: -6236725225653603556
+    second: vga8x16-alphaclip_229
+  - first:
+      213: -1105256689682102154
+    second: vga8x16-alphaclip_230
+  - first:
+      213: -4548140366601756754
+    second: vga8x16-alphaclip_231
+  - first:
+      213: -4321803928119584541
+    second: vga8x16-alphaclip_232
+  - first:
+      213: -653163030968142611
+    second: vga8x16-alphaclip_233
+  - first:
+      213: 6273116014439848142
+    second: vga8x16-alphaclip_234
+  - first:
+      213: -2563526465809243219
+    second: vga8x16-alphaclip_235
+  - first:
+      213: 5321702932313157727
+    second: vga8x16-alphaclip_236
+  - first:
+      213: -9167045602397363998
+    second: vga8x16-alphaclip_237
+  - first:
+      213: 2652291773342168862
+    second: vga8x16-alphaclip_238
+  - first:
+      213: -189994086730461362
+    second: vga8x16-alphaclip_239
+  - first:
+      213: 3693937199948294117
+    second: vga8x16-alphaclip_240
+  - first:
+      213: -6598497926720784425
+    second: vga8x16-alphaclip_241
+  - first:
+      213: -5085691020171534856
+    second: vga8x16-alphaclip_242
+  - first:
+      213: -5142277751456341355
+    second: vga8x16-alphaclip_243
+  - first:
+      213: -2815385388131843846
+    second: vga8x16-alphaclip_244
+  - first:
+      213: -8104966433051594657
+    second: vga8x16-alphaclip_245
+  - first:
+      213: -4553307367636634603
+    second: vga8x16-alphaclip_246
+  - first:
+      213: 4587824928536870635
+    second: vga8x16-alphaclip_247
+  - first:
+      213: -1684535704934633126
+    second: vga8x16-alphaclip_248
+  - first:
+      213: 2418206937518672210
+    second: vga8x16-alphaclip_249
+  - first:
+      213: -5853210199630217510
+    second: vga8x16-alphaclip_250
+  - first:
+      213: 4886270613306398252
+    second: vga8x16-alphaclip_251
+  - first:
+      213: -7465364487801333204
+    second: vga8x16-alphaclip_252
+  - first:
+      213: 8958580059922823195
+    second: vga8x16-alphaclip_0
+  - first:
+      213: -6835104608762177370
+    second: vga8x16-alphaclip_1
+  - first:
+      213: 7138326461739252353
+    second: vga8x16-alphaclip_2
+  - first:
+      213: 2782113952116578042
+    second: vga8x16-alphaclip_3
+  - first:
+      213: 8945952559687774372
+    second: vga8x16-alphaclip_4
+  - first:
+      213: -5062557036071850046
+    second: vga8x16-alphaclip_5
+  - first:
+      213: 4594608791867819705
+    second: vga8x16-alphaclip_6
+  - first:
+      213: 3418178200054843180
+    second: vga8x16-alphaclip_7
+  - first:
+      213: 632111269872125086
+    second: vga8x16-alphaclip_8
+  - first:
+      213: -4636683559514445771
+    second: vga8x16-alphaclip_9
+  - first:
+      213: 2526755875493934963
+    second: vga8x16-alphaclip_10
+  - first:
+      213: -4079496353188658052
+    second: vga8x16-alphaclip_11
+  - first:
+      213: 2904885671879589134
+    second: vga8x16-alphaclip_12
+  - first:
+      213: 3202919795844465647
+    second: vga8x16-alphaclip_13
+  - first:
+      213: 6208858492118191130
+    second: vga8x16-alphaclip_14
+  - first:
+      213: -2948327062937687288
+    second: vga8x16-alphaclip_15
+  - first:
+      213: 8366992923613981904
+    second: vga8x16-alphaclip_16
+  - first:
+      213: 5198650587432520200
+    second: vga8x16-alphaclip_17
+  - first:
+      213: 8134225870297644488
+    second: vga8x16-alphaclip_18
+  - first:
+      213: 575189730760234771
+    second: vga8x16-alphaclip_19
+  - first:
+      213: -5259750998580313696
+    second: vga8x16-alphaclip_20
+  - first:
+      213: 1100449419473931663
+    second: vga8x16-alphaclip_21
+  - first:
+      213: 4683820362269911132
+    second: vga8x16-alphaclip_22
+  - first:
+      213: -3320476694810670614
+    second: vga8x16-alphaclip_23
+  - first:
+      213: -5096112152104212292
+    second: vga8x16-alphaclip_24
+  - first:
+      213: 4744536778678693029
+    second: vga8x16-alphaclip_25
+  - first:
+      213: 8341886999157798371
+    second: vga8x16-alphaclip_26
+  - first:
+      213: -3730216199819177511
+    second: vga8x16-alphaclip_27
+  - first:
+      213: 4556696935405050334
+    second: vga8x16-alphaclip_28
+  - first:
+      213: 4771405802840152687
+    second: vga8x16-alphaclip_29
+  - first:
+      213: 2812915474715606305
+    second: vga8x16-alphaclip_30
+  - first:
+      213: 4416864638603213000
+    second: vga8x16-alphaclip_31
+  - first:
+      213: -1282870965081125146
+    second: vga8x16-alphaclip_32
+  - first:
+      213: -5421434008717182508
+    second: vga8x16-alphaclip_33
+  - first:
+      213: -8015695590700174050
+    second: vga8x16-alphaclip_34
+  - first:
+      213: -8675208739439839353
+    second: vga8x16-alphaclip_35
+  - first:
+      213: -8105213757416310689
+    second: vga8x16-alphaclip_36
+  - first:
+      213: -978394398860637746
+    second: vga8x16-alphaclip_37
+  - first:
+      213: -8723494741666029508
+    second: vga8x16-alphaclip_38
+  - first:
+      213: -8441375294547653653
+    second: vga8x16-alphaclip_39
+  - first:
+      213: 8484095363004735530
+    second: vga8x16-alphaclip_40
+  - first:
+      213: -5900326930037392156
+    second: vga8x16-alphaclip_41
+  - first:
+      213: -849364934938061741
+    second: vga8x16-alphaclip_42
+  - first:
+      213: 8228691832966204791
+    second: vga8x16-alphaclip_43
+  - first:
+      213: 8911686902447527124
+    second: vga8x16-alphaclip_44
+  - first:
+      213: -2710009317393387269
+    second: vga8x16-alphaclip_45
+  - first:
+      213: 3896693880938284372
+    second: vga8x16-alphaclip_46
+  - first:
+      213: -5622398587458594554
+    second: vga8x16-alphaclip_47
+  - first:
+      213: -7874197002595973097
+    second: vga8x16-alphaclip_48
+  - first:
+      213: 3841162889309242626
+    second: vga8x16-alphaclip_49
+  - first:
+      213: 6722048988927506707
+    second: vga8x16-alphaclip_50
+  - first:
+      213: 7648872359026985409
+    second: vga8x16-alphaclip_51
+  - first:
+      213: -8252226453446774492
+    second: vga8x16-alphaclip_52
+  - first:
+      213: -5496213652350107545
+    second: vga8x16-alphaclip_53
+  - first:
+      213: -3411175672447116655
+    second: vga8x16-alphaclip_54
+  - first:
+      213: -9006696925637342111
+    second: vga8x16-alphaclip_55
+  - first:
+      213: -4281713561346746334
+    second: vga8x16-alphaclip_56
+  - first:
+      213: -415003380759329198
+    second: vga8x16-alphaclip_57
+  - first:
+      213: -1493725377830869748
+    second: vga8x16-alphaclip_58
+  - first:
+      213: 1513750011491055984
+    second: vga8x16-alphaclip_59
+  - first:
+      213: 7293223529331945618
+    second: vga8x16-alphaclip_60
+  - first:
+      213: 1270134943851028412
+    second: vga8x16-alphaclip_61
+  - first:
+      213: 6297109620020381083
+    second: vga8x16-alphaclip_62
+  - first:
+      213: -3058892185483722841
+    second: vga8x16-alphaclip_63
+  - first:
+      213: -6600461195836439209
+    second: vga8x16-alphaclip_64
+  - first:
+      213: -7084627002444065237
+    second: vga8x16-alphaclip_65
+  - first:
+      213: -1666842244434407561
+    second: vga8x16-alphaclip_66
+  - first:
+      213: 5493718129847311815
+    second: vga8x16-alphaclip_67
+  - first:
+      213: -2624248648456265851
+    second: vga8x16-alphaclip_68
+  - first:
+      213: -4124410927760748247
+    second: vga8x16-alphaclip_69
+  - first:
+      213: -418802461359422231
+    second: vga8x16-alphaclip_70
+  - first:
+      213: -2122200368220609986
+    second: vga8x16-alphaclip_71
+  - first:
+      213: -3209940265630191410
+    second: vga8x16-alphaclip_72
+  - first:
+      213: -2493091242767285220
+    second: vga8x16-alphaclip_73
+  - first:
+      213: 424310259721872406
+    second: vga8x16-alphaclip_74
+  - first:
+      213: -7590824320718009401
+    second: vga8x16-alphaclip_75
+  - first:
+      213: 3252106957968329802
+    second: vga8x16-alphaclip_76
+  - first:
+      213: -3813439080760931943
+    second: vga8x16-alphaclip_77
+  - first:
+      213: 6818821700605133230
+    second: vga8x16-alphaclip_78
+  - first:
+      213: 1026904105452977261
+    second: vga8x16-alphaclip_79
+  - first:
+      213: 4158461365499559058
+    second: vga8x16-alphaclip_80
+  - first:
+      213: 6280604509928117771
+    second: vga8x16-alphaclip_81
+  - first:
+      213: -7296280732711030729
+    second: vga8x16-alphaclip_82
+  - first:
+      213: 3140776901044936016
+    second: vga8x16-alphaclip_83
+  - first:
+      213: -5947627662306959995
+    second: vga8x16-alphaclip_84
+  - first:
+      213: -9059934916199182382
+    second: vga8x16-alphaclip_85
+  - first:
+      213: 1966705707748923093
+    second: vga8x16-alphaclip_86
+  - first:
+      213: -1211264192224529340
+    second: vga8x16-alphaclip_87
+  - first:
+      213: 6794219854877270021
+    second: vga8x16-alphaclip_88
+  - first:
+      213: 2260424549553209223
+    second: vga8x16-alphaclip_89
+  - first:
+      213: 2306590234634878009
+    second: vga8x16-alphaclip_90
+  - first:
+      213: -99592654024484987
+    second: vga8x16-alphaclip_91
+  - first:
+      213: -3324561541337461929
+    second: vga8x16-alphaclip_92
+  - first:
+      213: -711342034637828271
+    second: vga8x16-alphaclip_93
+  - first:
+      213: 8266360049768369553
+    second: vga8x16-alphaclip_94
+  - first:
+      213: -8927450040500858344
+    second: vga8x16-alphaclip_95
+  - first:
+      213: -8748142868161371224
+    second: vga8x16-alphaclip_96
+  - first:
+      213: 3669991273070204729
+    second: vga8x16-alphaclip_97
+  - first:
+      213: 8378753717758158758
+    second: vga8x16-alphaclip_98
+  - first:
+      213: -99888084492792853
+    second: vga8x16-alphaclip_99
+  - first:
+      213: 3594041893776290988
+    second: vga8x16-alphaclip_100
+  - first:
+      213: 4677182863279462940
+    second: vga8x16-alphaclip_101
+  - first:
+      213: 6394814247364164718
+    second: vga8x16-alphaclip_102
+  - first:
+      213: 1704496148084384009
+    second: vga8x16-alphaclip_103
+  - first:
+      213: -4729513383841199439
+    second: vga8x16-alphaclip_104
+  - first:
+      213: 6965810823121118549
+    second: vga8x16-alphaclip_105
+  - first:
+      213: -288843842373201514
+    second: vga8x16-alphaclip_106
+  - first:
+      213: -4921920496989675635
+    second: vga8x16-alphaclip_107
+  - first:
+      213: 8024552353401711351
+    second: vga8x16-alphaclip_108
+  - first:
+      213: 2456130931175695204
+    second: vga8x16-alphaclip_109
+  - first:
+      213: -4986751942088977511
+    second: vga8x16-alphaclip_110
+  - first:
+      213: 2776311234110969268
+    second: vga8x16-alphaclip_111
+  - first:
+      213: -7697061852300406819
+    second: vga8x16-alphaclip_112
+  - first:
+      213: 8171175212786488948
+    second: vga8x16-alphaclip_113
+  - first:
+      213: 6424561451307637922
+    second: vga8x16-alphaclip_114
+  - first:
+      213: -3521930929750110529
+    second: vga8x16-alphaclip_115
+  - first:
+      213: -9117879801009994087
+    second: vga8x16-alphaclip_116
+  - first:
+      213: -8434733592146434417
+    second: vga8x16-alphaclip_117
+  - first:
+      213: 9112376566856813066
+    second: vga8x16-alphaclip_118
+  - first:
+      213: -4480555936741866333
+    second: vga8x16-alphaclip_119
+  - first:
+      213: 6366311747377569500
+    second: vga8x16-alphaclip_120
+  - first:
+      213: 5644194699662923395
+    second: vga8x16-alphaclip_121
+  - first:
+      213: -7064558247367192910
+    second: vga8x16-alphaclip_122
+  - first:
+      213: -8072229796875075845
+    second: vga8x16-alphaclip_123
+  - first:
+      213: 352503624189418329
+    second: vga8x16-alphaclip_124
+  - first:
+      213: -4447066664246019228
+    second: vga8x16-alphaclip_125
+  - first:
+      213: 4560694742644753818
+    second: vga8x16-alphaclip_126
+  - first:
+      213: 6616081928680918722
+    second: vga8x16-alphaclip_127
+  - first:
+      213: 5193414010395095731
+    second: vga8x16-alphaclip_128
+  - first:
+      213: -7743582906321366020
+    second: vga8x16-alphaclip_129
+  - first:
+      213: -8215554623569391433
+    second: vga8x16-alphaclip_130
+  - first:
+      213: 2765827795243925838
+    second: vga8x16-alphaclip_131
+  - first:
+      213: -6178665507251970473
+    second: vga8x16-alphaclip_132
+  - first:
+      213: -4932533568612206977
+    second: vga8x16-alphaclip_133
+  - first:
+      213: -558979456698304206
+    second: vga8x16-alphaclip_134
+  - first:
+      213: 2223190473154958701
+    second: vga8x16-alphaclip_135
+  - first:
+      213: -5794778302499592871
+    second: vga8x16-alphaclip_136
+  - first:
+      213: -5693035575392979401
+    second: vga8x16-alphaclip_137
+  - first:
+      213: -3633641245026325534
+    second: vga8x16-alphaclip_138
+  - first:
+      213: 1543605278445460726
+    second: vga8x16-alphaclip_139
+  - first:
+      213: -1675770717909880323
+    second: vga8x16-alphaclip_140
+  - first:
+      213: -1259347138760566428
+    second: vga8x16-alphaclip_141
+  - first:
+      213: -7181778247675148675
+    second: vga8x16-alphaclip_142
+  - first:
+      213: 1918192923392735672
+    second: vga8x16-alphaclip_143
+  - first:
+      213: 4660338991955350462
+    second: vga8x16-alphaclip_144
+  - first:
+      213: 1842399534837463720
+    second: vga8x16-alphaclip_145
+  - first:
+      213: -7119825070908538164
+    second: vga8x16-alphaclip_146
+  - first:
+      213: 3955443598167780792
+    second: vga8x16-alphaclip_147
+  - first:
+      213: 8612826419057870649
+    second: vga8x16-alphaclip_148
+  - first:
+      213: -2376249166221515883
+    second: vga8x16-alphaclip_149
+  - first:
+      213: 3751046132501917118
+    second: vga8x16-alphaclip_150
+  - first:
+      213: 2509727522507410113
+    second: vga8x16-alphaclip_151
+  - first:
+      213: -410925477346673418
+    second: vga8x16-alphaclip_152
+  - first:
+      213: 7353580610927227903
+    second: vga8x16-alphaclip_153
+  - first:
+      213: 1811314744437501850
+    second: vga8x16-alphaclip_154
+  - first:
+      213: 4206478455606656532
+    second: vga8x16-alphaclip_155
+  - first:
+      213: 896715203882817354
+    second: vga8x16-alphaclip_156
+  - first:
+      213: 6029507892280173978
+    second: vga8x16-alphaclip_157
+  - first:
+      213: -2264990656612418909
+    second: vga8x16-alphaclip_158
+  - first:
+      213: 6343168440922719227
+    second: vga8x16-alphaclip_159
+  - first:
+      213: 6930442599066630019
+    second: vga8x16-alphaclip_160
+  - first:
+      213: 1850801081334756675
+    second: vga8x16-alphaclip_161
+  - first:
+      213: 3858203168974326695
+    second: vga8x16-alphaclip_162
+  - first:
+      213: 7431484628791523973
+    second: vga8x16-alphaclip_163
+  - first:
+      213: 4218024742023119719
+    second: vga8x16-alphaclip_164
+  - first:
+      213: -5196743058116981277
+    second: vga8x16-alphaclip_165
+  - first:
+      213: 5160092453309880943
+    second: vga8x16-alphaclip_166
+  - first:
+      213: 5283087383304698504
+    second: vga8x16-alphaclip_167
+  - first:
+      213: 6510194886941532861
+    second: vga8x16-alphaclip_168
+  - first:
+      213: 821932236488589619
+    second: vga8x16-alphaclip_169
+  - first:
+      213: 7969874103738016083
+    second: vga8x16-alphaclip_170
+  - first:
+      213: -3770690874316963399
+    second: vga8x16-alphaclip_171
+  - first:
+      213: 419737087998681213
+    second: vga8x16-alphaclip_172
+  - first:
+      213: 3918082649882207999
+    second: vga8x16-alphaclip_173
+  - first:
+      213: 2289600231016677151
+    second: vga8x16-alphaclip_174
+  - first:
+      213: 3986108229419941110
+    second: vga8x16-alphaclip_175
+  - first:
+      213: -4903061602924892125
+    second: vga8x16-alphaclip_176
+  - first:
+      213: 4347444957249496059
+    second: vga8x16-alphaclip_177
+  - first:
+      213: -2414501407251603439
+    second: vga8x16-alphaclip_178
+  - first:
+      213: -5996571280893167281
+    second: vga8x16-alphaclip_179
+  - first:
+      213: 3720160948795701152
+    second: vga8x16-alphaclip_180
+  - first:
+      213: 7005063497825810244
+    second: vga8x16-alphaclip_181
+  - first:
+      213: -3642048446689333317
+    second: vga8x16-alphaclip_182
+  - first:
+      213: 8435055621062206837
+    second: vga8x16-alphaclip_183
+  - first:
+      213: -5927502269475344173
+    second: vga8x16-alphaclip_184
+  - first:
+      213: 1633034473530741613
+    second: vga8x16-alphaclip_185
+  - first:
+      213: -3914583342580162393
+    second: vga8x16-alphaclip_186
+  - first:
+      213: 2656760179522555702
+    second: vga8x16-alphaclip_187
+  - first:
+      213: 9126151368595928690
+    second: vga8x16-alphaclip_188
+  - first:
+      213: -3033302741239544272
+    second: vga8x16-alphaclip_189
+  - first:
+      213: -1269249122748584071
+    second: vga8x16-alphaclip_190
+  - first:
+      213: 7758521064786524613
+    second: vga8x16-alphaclip_191
+  - first:
+      213: -2595164815388147893
+    second: vga8x16-alphaclip_192
+  - first:
+      213: 7385737898783563439
+    second: vga8x16-alphaclip_193
+  - first:
+      213: 7125534005995733460
+    second: vga8x16-alphaclip_194
+  - first:
+      213: 8324781326827933415
+    second: vga8x16-alphaclip_195
+  - first:
+      213: 5633318544443414572
+    second: vga8x16-alphaclip_196
+  - first:
+      213: -2060857867730344454
+    second: vga8x16-alphaclip_197
+  - first:
+      213: -1638962842879411651
+    second: vga8x16-alphaclip_198
+  - first:
+      213: -2182970288046595142
+    second: vga8x16-alphaclip_199
+  - first:
+      213: -8039067781586015855
+    second: vga8x16-alphaclip_200
+  - first:
+      213: 1236076359633506101
+    second: vga8x16-alphaclip_201
+  - first:
+      213: -4769481953983371608
+    second: vga8x16-alphaclip_202
+  - first:
+      213: 5290799616388910745
+    second: vga8x16-alphaclip_203
+  - first:
+      213: -6809052184948315595
+    second: vga8x16-alphaclip_204
+  - first:
+      213: -3615404258788038680
+    second: vga8x16-alphaclip_205
+  - first:
+      213: -7389200647870255284
+    second: vga8x16-alphaclip_206
+  - first:
+      213: 2727983656436843541
+    second: vga8x16-alphaclip_207
+  - first:
+      213: 3586713574456013746
+    second: vga8x16-alphaclip_208
+  - first:
+      213: -8354095416069668259
+    second: vga8x16-alphaclip_209
+  - first:
+      213: -916821756009296464
+    second: vga8x16-alphaclip_210
+  - first:
+      213: -4768832743880866812
+    second: vga8x16-alphaclip_211
+  - first:
+      213: 6312913882666304750
+    second: vga8x16-alphaclip_212
+  - first:
+      213: -7966130756301644898
+    second: vga8x16-alphaclip_213
+  - first:
+      213: -9180834573912053201
+    second: vga8x16-alphaclip_214
+  - first:
+      213: 3721111099053471392
+    second: vga8x16-alphaclip_215
+  - first:
+      213: -1080469372172759711
+    second: vga8x16-alphaclip_216
+  - first:
+      213: -7594193282354372846
+    second: vga8x16-alphaclip_217
+  - first:
+      213: -7345911333020586201
+    second: vga8x16-alphaclip_218
+  - first:
+      213: -1557776502054348331
+    second: vga8x16-alphaclip_219
+  - first:
+      213: 6879070608861433740
+    second: vga8x16-alphaclip_220
+  - first:
+      213: 902400756247106493
+    second: vga8x16-alphaclip_221
+  - first:
+      213: 5206891210909093846
+    second: vga8x16-alphaclip_222
+  - first:
+      213: -5155208949649343516
+    second: vga8x16-alphaclip_223
+  - first:
+      213: 170172546445089218
+    second: vga8x16-alphaclip_224
+  - first:
+      213: -363184943475808079
+    second: vga8x16-alphaclip_225
+  - first:
+      213: 4526128803340806334
+    second: vga8x16-alphaclip_226
+  - first:
+      213: -3148066326170237428
+    second: vga8x16-alphaclip_227
+  - first:
+      213: 4689672097352764692
+    second: vga8x16-alphaclip_228
+  - first:
+      213: -8740386643535835272
+    second: vga8x16-alphaclip_229
+  - first:
+      213: 5125110019575654565
+    second: vga8x16-alphaclip_230
+  - first:
+      213: 5488823806288234639
+    second: vga8x16-alphaclip_231
+  - first:
+      213: 4345823585351538771
+    second: vga8x16-alphaclip_232
+  - first:
+      213: -468842538254500804
+    second: vga8x16-alphaclip_233
+  - first:
+      213: 8807571186780245107
+    second: vga8x16-alphaclip_234
+  - first:
+      213: -7870843369227419365
+    second: vga8x16-alphaclip_235
+  - first:
+      213: -2414676416347351098
+    second: vga8x16-alphaclip_236
+  - first:
+      213: 4843560085327376100
+    second: vga8x16-alphaclip_237
+  - first:
+      213: -3888571650664642923
+    second: vga8x16-alphaclip_238
+  - first:
+      213: -1641203545628668022
+    second: vga8x16-alphaclip_239
+  - first:
+      213: -5924544404334112512
+    second: vga8x16-alphaclip_240
+  - first:
+      213: -7867081546495718598
+    second: vga8x16-alphaclip_241
+  - first:
+      213: -3585032362666737879
+    second: vga8x16-alphaclip_242
+  - first:
+      213: 1059189012658832215
+    second: vga8x16-alphaclip_243
+  - first:
+      213: 2452008540523240769
+    second: vga8x16-alphaclip_244
+  - first:
+      213: -7072333723204388994
+    second: vga8x16-alphaclip_245
+  - first:
+      213: 8446309454641693644
+    second: vga8x16-alphaclip_246
+  - first:
+      213: 9082307581676263479
+    second: vga8x16-alphaclip_247
+  - first:
+      213: 4481491938079617102
+    second: vga8x16-alphaclip_248
+  - first:
+      213: 931983465603269436
+    second: vga8x16-alphaclip_249
+  - first:
+      213: -8996396989015866470
+    second: vga8x16-alphaclip_250
+  - first:
+      213: 5174878783397497692
+    second: vga8x16-alphaclip_251
+  - first:
+      213: 7511561307925045888
+    second: vga8x16-alphaclip_252
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_0
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 240
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b18f8939915435c70800000000000000
+      internalID: 8958580059922823195
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_1
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 240
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a858108294d421a0800000000000000
+      internalID: -6835104608762177370
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_2
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 240
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 18a3db2b81e601360800000000000000
+      internalID: 7138326461739252353
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_3
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 240
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af6119036ed0c9620800000000000000
+      internalID: 2782113952116578042
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_4
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 240
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a0bfa19478662c70800000000000000
+      internalID: 8945952559687774372
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_5
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 240
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2cf68c1c23f2eb9b0800000000000000
+      internalID: -5062557036071850046
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_6
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 240
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b60b295a5453cf30800000000000000
+      internalID: 4594608791867819705
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_7
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 240
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c27c04176fecf6f20800000000000000
+      internalID: 3418178200054843180
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_8
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 240
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e94cf33d9d5b5c800800000000000000
+      internalID: 632111269872125086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_9
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 240
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5386f3b6ed037afb0800000000000000
+      internalID: -4636683559514445771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_10
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 240
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 37772f8d417d01320800000000000000
+      internalID: 2526755875493934963
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_11
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 240
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c7440bd4ea7b267c0800000000000000
+      internalID: -4079496353188658052
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_12
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 240
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e0d3189b02a305820800000000000000
+      internalID: 2904885671879589134
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_13
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 240
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe34063a59e037c20800000000000000
+      internalID: 3202919795844465647
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_14
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 240
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a1c4f5317eb4a2650800000000000000
+      internalID: 6208858492118191130
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 224
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 80badeb38207517d0800000000000000
+      internalID: -2948327062937687288
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_16
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 224
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0dce73adbb78d1470800000000000000
+      internalID: 8366992923613981904
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_17
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 224
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 80a8a476a21552840800000000000000
+      internalID: 5198650587432520200
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_18
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 224
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8cd32e1055392e070800000000000000
+      internalID: 8134225870297644488
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_19
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 224
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3179a6c330c7bf700800000000000000
+      internalID: 575189730760234771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_20
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 224
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a14d9a855c9107b0800000000000000
+      internalID: -5259750998580313696
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_21
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 224
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f8d4705aae4954f00800000000000000
+      internalID: 1100449419473931663
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_22
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 224
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c58e6d4bdc5400140800000000000000
+      internalID: 4683820362269911132
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_23
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 224
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae9c8d8e90c4be1d0800000000000000
+      internalID: -3320476694810670614
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_24
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 224
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb8e64e7ff8f649b0800000000000000
+      internalID: -5096112152104212292
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_25
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 224
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ac6be4001bf7d140800000000000000
+      internalID: 4744536778678693029
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_26
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 224
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e5ff3d470654c370800000000000000
+      internalID: 8341886999157798371
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_27
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 224
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d1de5a312c9b3cc0800000000000000
+      internalID: -3730216199819177511
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_28
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 224
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed9dde768b3ac3f30800000000000000
+      internalID: 4556696935405050334
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_29
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 224
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f6a56853c40773240800000000000000
+      internalID: 4771405802840152687
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_30
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 224
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 12d7f9588bb790720800000000000000
+      internalID: 2812915474715606305
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_31
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 208
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c8bdecbcfadb4d30800000000000000
+      internalID: 4416864638603213000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_32
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 208
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ee4da977a3523ee0800000000000000
+      internalID: -1282870965081125146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_33
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 208
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d9b0393e7233c4b0800000000000000
+      internalID: -5421434008717182508
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_34
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 208
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e15b6a8445782c090800000000000000
+      internalID: -8015695590700174050
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_35
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 208
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 787f25d5d977b9780800000000000000
+      internalID: -8675208739439839353
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_36
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 208
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f587798e70f748f80800000000000000
+      internalID: -8105213757416310689
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_37
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 208
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec90ead5a7b0c62f0800000000000000
+      internalID: -978394398860637746
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_38
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 208
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c30220360cbefe680800000000000000
+      internalID: -8723494741666029508
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_39
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 208
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: beb8ab8d4e53ada80800000000000000
+      internalID: -8441375294547653653
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_40
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 208
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a20af6038cf8db570800000000000000
+      internalID: 8484095363004735530
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_41
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 208
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ec337c1be3dd1ea0800000000000000
+      internalID: -5900326930037392156
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_42
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 208
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 354185087137634f0800000000000000
+      internalID: -849364934938061741
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_43
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 208
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 77dcb16ef9f223270800000000000000
+      internalID: 8228691832966204791
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_44
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 208
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d4d2e9850cacab70800000000000000
+      internalID: 8911686902447527124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_45
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 208
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf0b4c252ec146ad0800000000000000
+      internalID: -2710009317393387269
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_46
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 192
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 455c3cb6076d31630800000000000000
+      internalID: 3896693880938284372
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_47
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 192
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6095fd0064a39f1b0800000000000000
+      internalID: -5622398587458594554
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_48
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 192
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 71842d0ab8b39b290800000000000000
+      internalID: -7874197002595973097
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_49
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 192
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 205c0b5eb4d8e4530800000000000000
+      internalID: 3841162889309242626
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_50
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 192
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3193cc3c0f3894d50800000000000000
+      internalID: 6722048988927506707
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_51
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 192
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c98b1492e0462a60800000000000000
+      internalID: 7648872359026985409
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_52
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 192
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 421393443c33a7d80800000000000000
+      internalID: -8252226453446774492
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_53
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 192
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 760050aadc689b3b0800000000000000
+      internalID: -5496213652350107545
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_54
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 192
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 19ad5519cc119a0d0800000000000000
+      internalID: -3411175672447116655
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_55
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 192
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 16c88cb9dd8c10380800000000000000
+      internalID: -9006696925637342111
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_56
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 192
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 22854f1933c4494c0800000000000000
+      internalID: -4281713561346746334
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_57
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 192
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 256014dbf9c9d3af0800000000000000
+      internalID: -415003380759329198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_58
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 192
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c05a766dea8354be0800000000000000
+      internalID: -1493725377830869748
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_59
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 192
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 079faa18d9be10510800000000000000
+      internalID: 1513750011491055984
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_60
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 192
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 290f955a82cb63560800000000000000
+      internalID: 7293223529331945618
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_61
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 192
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cbf1d01800d60a110800000000000000
+      internalID: 1270134943851028412
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_62
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 176
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b95820df5d3d36750800000000000000
+      internalID: 6297109620020381083
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_63
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 176
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7af360693c1ac85d0800000000000000
+      internalID: -3058892185483722841
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_64
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 176
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7554b6c53837664a0800000000000000
+      internalID: -6600461195836439209
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_65
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 176
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b265e29f6495ead90800000000000000
+      internalID: -7084627002444065237
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_66
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 176
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 77f4fdb5fcf2ed8e0800000000000000
+      internalID: -1666842244434407561
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_67
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 176
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7cd1ca9388b9d3c40800000000000000
+      internalID: 5493718129847311815
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_68
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 176
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 58f177212cbc49bd0800000000000000
+      internalID: -2624248648456265851
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_69
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 176
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 921d41ffc1623c6c0800000000000000
+      internalID: -4124410927760748247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_70
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 176
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9e4cc9b516d103af0800000000000000
+      internalID: -418802461359422231
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_71
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 176
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e32e10e420e6c82e0800000000000000
+      internalID: -2122200368220609986
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_72
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 176
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec0b3ecd5500473d0800000000000000
+      internalID: -3209940265630191410
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_73
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 176
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c14083249b2c66dd0800000000000000
+      internalID: -2493091242767285220
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_74
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 176
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 614a641eee373e500800000000000000
+      internalID: 424310259721872406
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_75
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 176
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7cb053b8f79f7a690800000000000000
+      internalID: -7590824320718009401
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_76
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 176
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a4c47414c0ec12d20800000000000000
+      internalID: 3252106957968329802
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_77
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 176
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 99907aa4c51f31bc0800000000000000
+      internalID: -3813439080760931943
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_78
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 160
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea14b43853251ae50800000000000000
+      internalID: 6818821700605133230
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_79
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 160
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6c3ae7d7db404e00800000000000000
+      internalID: 1026904105452977261
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_80
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 160
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 29c79c65492d5b930800000000000000
+      internalID: 4158461365499559058
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_81
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 160
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b065bf49680392750800000000000000
+      internalID: 6280604509928117771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_82
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 160
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7307b39b4576eba90800000000000000
+      internalID: -7296280732711030729
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_83
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 160
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 05d198173f7469b20800000000000000
+      internalID: 3140776901044936016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_84
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 160
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 58d18eb2728c57da0800000000000000
+      internalID: -5947627662306959995
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_85
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 160
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2df0acff135a44280800000000000000
+      internalID: -9059934916199182382
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_86
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 160
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d69b10db642b4b10800000000000000
+      internalID: 1966705707748923093
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_87
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 160
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4447e4d72a9b03fe0800000000000000
+      internalID: -1211264192224529340
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_88
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 160
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 500addfe5fae94e50800000000000000
+      internalID: 6794219854877270021
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_89
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 160
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 78ff0bdc624ae5f10800000000000000
+      internalID: 2260424549553209223
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_90
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 160
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 93cfbc9f897a20020800000000000000
+      internalID: 2306590234634878009
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_91
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 160
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 587d1a2420d2e9ef0800000000000000
+      internalID: -99592654024484987
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_92
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 160
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 75bc7a674e8ccd1d0800000000000000
+      internalID: -3324561541337461929
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_93
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 160
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 15fcb97303ec026f0800000000000000
+      internalID: -711342034637828271
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_94
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 144
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 19d8cef0ba208b270800000000000000
+      internalID: 8266360049768369553
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_95
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 144
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81256e1ec735b1480800000000000000
+      internalID: -8927450040500858344
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_96
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 144
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a3efda396a589680800000000000000
+      internalID: -8748142868161371224
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_97
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 144
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 93712205e9d6ee230800000000000000
+      internalID: 3669991273070204729
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_98
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 144
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a7657f1d10574470800000000000000
+      internalID: 8378753717758158758
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_99
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 144
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: beb438ef0502d9ef0800000000000000
+      internalID: -99888084492792853
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_100
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 144
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca478627f0a90e130800000000000000
+      internalID: 3594041893776290988
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_101
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 144
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c1a115b8801b8e040800000000000000
+      internalID: 4677182863279462940
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_102
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 144
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e6c7fb24da1feb850800000000000000
+      internalID: 6394814247364164718
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_103
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 144
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9016793473697a710800000000000000
+      internalID: 1704496148084384009
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_104
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 144
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ba80bba2a46d5eb0800000000000000
+      internalID: -4729513383841199439
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_105
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 144
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 555a4b489088ba060800000000000000
+      internalID: 6965810823121118549
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_106
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 144
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69159c34e02ddfbf0800000000000000
+      internalID: -288843842373201514
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_107
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 144
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d8f573ca263d1bbb0800000000000000
+      internalID: -4921920496989675635
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_108
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 144
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7faa80a79dfec5f60800000000000000
+      internalID: 8024552353401711351
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_109
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 144
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 463a39a911ee51220800000000000000
+      internalID: 2456130931175695204
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_110
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9931cc4978f7bcab0800000000000000
+      internalID: -4986751942088977511
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_111
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 128
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b55c1f9b50778620800000000000000
+      internalID: 2776311234110969268
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_112
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 128
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ddf8c6fa60b8e2590800000000000000
+      internalID: -7697061852300406819
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_113
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 128
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4769d933098d56170800000000000000
+      internalID: 8171175212786488948
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_114
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 128
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ac1cd6e990a82950800000000000000
+      internalID: 6424561451307637922
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_115
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 128
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fbe88c8ba769f1fc0800000000000000
+      internalID: -3521930929750110529
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_116
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 128
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 996071c21a8c67180800000000000000
+      internalID: -9117879801009994087
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_117
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 128
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f86ae01bc7ec1fa80800000000000000
+      internalID: -8434733592146434417
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_118
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 128
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a0a0817453aa57e70800000000000000
+      internalID: 9112376566856813066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_119
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 128
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a4cb325d1ed1d1c0800000000000000
+      internalID: -4480555936741866333
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_120
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 128
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cde16d7ddcea95850800000000000000
+      internalID: 6366311747377569500
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_121
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 128
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3861d84dc25345e40800000000000000
+      internalID: 5644194699662923395
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_122
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 128
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2be4f9224b5a5fd90800000000000000
+      internalID: -7064558247367192910
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_123
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 128
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bfeffeba4cda9ff80800000000000000
+      internalID: -8072229796875075845
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_124
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 128
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 95b19d5bd2854e400800000000000000
+      internalID: 352503624189418329
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_125
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 128
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 46b72213e68d842c0800000000000000
+      internalID: -4447066664246019228
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_126
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 112
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a95055074b7da4f30800000000000000
+      internalID: 4560694742644753818
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_127
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 112
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ce48ebe57b01db50800000000000000
+      internalID: 6616081928680918722
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_128
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 112
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b2f22dc686b21840800000000000000
+      internalID: 5193414010395095731
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_129
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 112
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf39debbf54498490800000000000000
+      internalID: -7743582906321366020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_130
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 112
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b01455099c7cfd80800000000000000
+      internalID: -8215554623569391433
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_131
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 112
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e418a6dc9b1326620800000000000000
+      internalID: 2765827795243925838
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_132
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 112
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 75e99460578f04aa0800000000000000
+      internalID: -6178665507251970473
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_133
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 112
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f76fd206ade1c8bb0800000000000000
+      internalID: -4932533568612206977
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_134
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 112
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 239b1ce452b1e38f0800000000000000
+      internalID: -558979456698304206
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_135
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 112
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d651f64d4fb5ade10800000000000000
+      internalID: 2223190473154958701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_136
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 112
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 955ee5ff5dfc49fa0800000000000000
+      internalID: -5794778302499592871
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_137
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 112
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7363a03ae464ef0b0800000000000000
+      internalID: -5693035575392979401
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_138
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 112
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2eb6ffc1a86b29dc0800000000000000
+      internalID: -3633641245026325534
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_139
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 112
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6fcd82782dcfb6510800000000000000
+      internalID: 1543605278445460726
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_140
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 112
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df1faf129677eb8e0800000000000000
+      internalID: -1675770717909880323
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_141
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 112
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 46995491376e58ee0800000000000000
+      internalID: -1259347138760566428
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_142
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 96
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d7602b30cb2355c90800000000000000
+      internalID: -7181778247675148675
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_143
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 96
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b9fd710d4ace9a10800000000000000
+      internalID: 1918192923392735672
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_144
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 96
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb396642f99dca040800000000000000
+      internalID: 4660338991955350462
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_145
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 96
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8aaf4509d94819910800000000000000
+      internalID: 1842399534837463720
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_146
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 96
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc2839902dc413d90800000000000000
+      internalID: -7119825070908538164
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_147
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 96
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8bd22e5eefe84e630800000000000000
+      internalID: 3955443598167780792
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_148
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 96
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9374b04def7e68770800000000000000
+      internalID: 8612826419057870649
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_149
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 96
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5936c8529fdd50fd0800000000000000
+      internalID: -2376249166221515883
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_150
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 96
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ebd21e765946e0430800000000000000
+      internalID: 3751046132501917118
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_151
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 96
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ca431672e754d220800000000000000
+      internalID: 2509727522507410113
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_152
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 96
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6fcf79d94791c4af0800000000000000
+      internalID: -410925477346673418
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_153
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 96
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff3748dca9a2d0660800000000000000
+      internalID: 7353580610927227903
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_154
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 96
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a9fef9ec925132910800000000000000
+      internalID: 1811314744437501850
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_155
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 96
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 41eb4c55ed9606a30800000000000000
+      internalID: 4206478455606656532
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_156
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 96
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a4790281ab5c17c00800000000000000
+      internalID: 896715203882817354
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_157
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 96
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a9526c97b7d1da350800000000000000
+      internalID: 6029507892280173978
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_158
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 80
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3aab90d8ff22190e0800000000000000
+      internalID: -2264990656612418909
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_159
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 80
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf3caa7e616770850800000000000000
+      internalID: 6343168440922719227
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_160
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 80
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 387f99523d0ed2060800000000000000
+      internalID: 6930442599066630019
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_161
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 80
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 345fdda07cd5fa910800000000000000
+      internalID: 1850801081334756675
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_162
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 80
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ab400e27571b8530800000000000000
+      internalID: 3858203168974326695
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_163
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 80
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 58af4ec65efe12760800000000000000
+      internalID: 7431484628791523973
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_164
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 80
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 763c812a72f698a30800000000000000
+      internalID: 4218024742023119719
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_165
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 80
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3edc5ffd8b571e7b0800000000000000
+      internalID: -5196743058116981277
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_166
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 80
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f6a95b73fb45c9740800000000000000
+      internalID: 5160092453309880943
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_167
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 80
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 88a793febfb415940800000000000000
+      internalID: 5283087383304698504
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_168
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 80
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db2e6b6d1cbd85a50800000000000000
+      internalID: 6510194886941532861
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_169
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 80
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3314859a307186b00800000000000000
+      internalID: 821932236488589619
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_170
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 80
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 351a3e9654eaa9e60800000000000000
+      internalID: 7969874103738016083
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_171
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 80
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b1c786b0a0dbabc0800000000000000
+      internalID: -3770690874316963399
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_172
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 80
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d70e73d58a433d500800000000000000
+      internalID: 419737087998681213
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_173
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 80
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff6a9d24963df5630800000000000000
+      internalID: 3918082649882207999
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_174
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f1fb66f774b46cf10800000000000000
+      internalID: 2289600231016677151
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_175
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 64
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6fc36dab050815730800000000000000
+      internalID: 3986108229419941110
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_176
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 64
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 320fdcd1373d4fbb0800000000000000
+      internalID: -4903061602924892125
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_177
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 64
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf36b65a72a355c30800000000000000
+      internalID: 4347444957249496059
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_178
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 64
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 110661f33c7fd7ed0800000000000000
+      internalID: -2414501407251603439
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_179
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 64
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f49bd04f036e7cca0800000000000000
+      internalID: -5996571280893167281
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_180
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 64
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a77f343caaa0a330800000000000000
+      internalID: 3720160948795701152
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_181
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 64
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 44776f8032cf63160800000000000000
+      internalID: 7005063497825810244
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_182
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bbfa150fb38d47dc0800000000000000
+      internalID: -3642048446689333317
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_183
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 64
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 575231285665f0570800000000000000
+      internalID: 8435055621062206837
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_184
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 64
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3d0b99657184dbda0800000000000000
+      internalID: -5927502269475344173
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_185
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 64
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6354c49334b9a610800000000000000
+      internalID: 1633034473530741613
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_186
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 64
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a029d5b03b9ca9c0800000000000000
+      internalID: -3914583342580162393
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_187
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 64
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63f48d1ae45bed420800000000000000
+      internalID: 2656760179522555702
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_188
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 64
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 276fa9b315a96ae70800000000000000
+      internalID: 9126151368595928690
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_189
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 64
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 036c23c5a3b87e5d0800000000000000
+      internalID: -3033302741239544272
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_190
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 48
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 97f281bc5a8b26ee0800000000000000
+      internalID: -1269249122748584071
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_191
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 48
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c97cf05dcdcbab60800000000000000
+      internalID: 7758521064786524613
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_192
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 48
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b4f7235a95f1cfbd0800000000000000
+      internalID: -2595164815388147893
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_193
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 48
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fae5225dc796f7660800000000000000
+      internalID: 7385737898783563439
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_194
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 48
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d1875efc6bf2e260800000000000000
+      internalID: 7125534005995733460
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_195
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 48
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ee426a9280978370800000000000000
+      internalID: 8324781326827933415
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_196
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 48
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c289b2c9e519d2e40800000000000000
+      internalID: 5633318544443414572
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_197
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 48
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af52d5d20bc5663e0800000000000000
+      internalID: -2060857867730344454
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_198
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 48
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d3abb1e5afb3149e0800000000000000
+      internalID: -1638962842879411651
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_199
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 48
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab320c1c61884b1e0800000000000000
+      internalID: -2182970288046595142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_200
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 48
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1992749027e7f6090800000000000000
+      internalID: -8039067781586015855
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_201
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 48
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 53f863b66ec672110800000000000000
+      internalID: 1236076359633506101
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_202
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 48
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a66f22ce656fcdb0800000000000000
+      internalID: -4769481953983371608
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_203
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 48
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 99e42a02832bc6940800000000000000
+      internalID: 5290799616388910745
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_204
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 48
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 53aee0b1d136181a0800000000000000
+      internalID: -6809052184948315595
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_205
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 48
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8e7218b5bf083ddc0800000000000000
+      internalID: -3615404258788038680
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_206
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 32
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c4f6b911929447990800000000000000
+      internalID: -7389200647870255284
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_207
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 32
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5144dfa9eaebbd520800000000000000
+      internalID: 2727983656436843541
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_208
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 32
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b3b5842ef096c130800000000000000
+      internalID: 3586713574456013746
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_209
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 32
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d52c2712b7a401c80800000000000000
+      internalID: -8354095416069668259
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_210
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 32
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0bd47be687bc643f0800000000000000
+      internalID: -916821756009296464
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_211
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 32
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 404cab3c2e3b1ddb0800000000000000
+      internalID: -4768832743880866812
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_212
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 32
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee405f1aab9fb9750800000000000000
+      internalID: 6312913882666304750
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_213
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 32
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9b9354984e927190800000000000000
+      internalID: -7966130756301644898
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_214
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 32
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f2ae850e89f179080800000000000000
+      internalID: -9180834573912053201
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_215
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 32
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a678dc44da04a330800000000000000
+      internalID: 3721111099053471392
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_216
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 32
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 16d04f0a4d66101f0800000000000000
+      internalID: -1080469372172759711
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_217
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 32
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 21f1c9902710c9690800000000000000
+      internalID: -7594193282354372846
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_218
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 32
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 72faacb10941e0a90800000000000000
+      internalID: -7345911333020586201
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_219
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 32
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d9999b568aa16ae0800000000000000
+      internalID: -1557776502054348331
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_220
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 32
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c8f040a954e577f50800000000000000
+      internalID: 6879070608861433740
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_221
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 32
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db31729e4b8f58c00800000000000000
+      internalID: 902400756247106493
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_222
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 16
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6df075218f7924840800000000000000
+      internalID: 5206891210909093846
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_223
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 16
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4eb7c3516c40578b0800000000000000
+      internalID: -5155208949649343516
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_224
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 16
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c9126587039c5200800000000000000
+      internalID: 170172546445089218
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_225
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 16
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b8aa58d735b5faf0800000000000000
+      internalID: -363184943475808079
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_226
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 16
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb8eaca8a2a00de30800000000000000
+      internalID: 4526128803340806334
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_227
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 16
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c0601430b52df44d0800000000000000
+      internalID: -3148066326170237428
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_228
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 16
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 41dc5c3fcef051140800000000000000
+      internalID: 4689672097352764692
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_229
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 16
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 87f4a7008a8e3b680800000000000000
+      internalID: -8740386643535835272
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_230
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 16
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a82a97a86c002740800000000000000
+      internalID: 5125110019575654565
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_231
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 16
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f888488bb283c2c40800000000000000
+      internalID: 5488823806288234639
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_232
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 16
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 358946596877f4c30800000000000000
+      internalID: 4345823585351538771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_233
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 16
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3c7fbb02365e79f0800000000000000
+      internalID: -468842538254500804
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_234
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 16
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 37c80027457ca3a70800000000000000
+      internalID: 8807571186780245107
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_235
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 16
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b11067e38a525c290800000000000000
+      internalID: -7870843369227419365
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_236
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 16
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6c75a14c7985d7ed0800000000000000
+      internalID: -2414676416347351098
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_237
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 16
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4eee23e3c38c73340800000000000000
+      internalID: 4843560085327376100
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_238
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 596ca7eafa4090ac0800000000000000
+      internalID: -3888571650664642923
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_239
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 0
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a8f01ba12164939e0800000000000000
+      internalID: -1641203545628668022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_240
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 0
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 00113abf04ac7cda0800000000000000
+      internalID: -5924544404334112512
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_241
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 0
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a3b871ad30382d290800000000000000
+      internalID: -7867081546495718598
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_242
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 92f38fa7f086f3ec0800000000000000
+      internalID: -3585032362666737879
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_243
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 0
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 753c6819bcef2be00800000000000000
+      internalID: 1059189012658832215
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_244
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 14d9c1cb6c8470220800000000000000
+      internalID: 2452008540523240769
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_245
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 0
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e77f26713f50add90800000000000000
+      internalID: -7072333723204388994
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_246
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc301f2d2b1573570800000000000000
+      internalID: 8446309454641693644
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_247
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 0
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 73896aa10a6da0e70800000000000000
+      internalID: 9082307581676263479
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_248
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 0
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4033097c25713e30800000000000000
+      internalID: 4481491938079617102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_249
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 0
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3302db26021fec00800000000000000
+      internalID: 931983465603269436
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_250
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a93c05b7a90662380800000000000000
+      internalID: -8996396989015866470
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_251
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 0
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5b0d18f5dcd0d740800000000000000
+      internalID: 5174878783397497692
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vga8x16-alphaclip_252
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 0
+        width: 8
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 082e07b263d6e3860800000000000000
+      internalID: 7511561307925045888
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

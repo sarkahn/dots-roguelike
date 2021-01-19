@@ -1,0 +1,18 @@
+{
+    "name": "Sark.RNG.Runtime.GeometryExtensions",
+    "rootNamespace": "",
+    "references": [
+        "Unity.Mathematics",
+        "Sark.Common.Runtime",
+        "Unity.Collections"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

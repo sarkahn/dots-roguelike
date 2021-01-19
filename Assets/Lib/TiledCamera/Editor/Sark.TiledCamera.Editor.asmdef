@@ -1,0 +1,20 @@
+{
+    "name": "Sark.TiledCamera.Editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:d8b63aba1907145bea998dd612889d6b",
+        "GUID:15fc0a57446b3144c949da3e2b9737a9",
+        "GUID:ee83c71eeb028bc488a0d56ff3deada8"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
