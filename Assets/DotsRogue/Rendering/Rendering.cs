@@ -37,6 +37,13 @@ namespace DotsRogue
             Glyph = ToCP437(c);
         }
 
+        public Renderable(Tile t)
+        {
+            FGColor = t.FGColor;
+            BGColor = t.BGColor;
+            Glyph = (byte)t.Glyph;
+        }
+
         public Tile ToTile() =>
             new Tile
             {
@@ -44,16 +51,6 @@ namespace DotsRogue
                 BGColor = this.BGColor,
                 Glyph = this.Glyph
             };
-
-        public static void AddToEntity(EntityManager em, Entity e, char glyph, Color fgColor, Color bgColor = default)
-        {
-            em.AddComponentData(e, new Renderable
-            {
-                Glyph = ToCP437(glyph),
-                FGColor = fgColor,
-                BGColor = bgColor == default ? Color.black : bgColor,
-            });
-        }
     }
 
     [UpdateInGroup(typeof(PresentationSystemGroup))]

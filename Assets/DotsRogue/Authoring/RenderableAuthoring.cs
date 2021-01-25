@@ -4,6 +4,7 @@ using UnityEngine;
 using static Sark.Terminals.CodePage437;
 using UnityColor = UnityEngine.Color;
 using TinyColor = UnityEngine.Color;
+using Sark.Terminals;
 
 namespace DotsRogue.Authoring
 {
@@ -14,9 +15,28 @@ namespace DotsRogue.Authoring
         public UnityColor FGColor = UnityColor.white;
         public UnityColor BGColor = UnityColor.black;
 
+        [Tooltip("An optional authoring tile to use for rendering. If set, this will override inspector settings.")]
+        public AuthoringTile Tile = null;
+
         public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem)
         {
-            Renderable.AddToEntity(dstManager, entity, Glyph, ConvertColor(FGColor), ConvertColor(BGColor));
+            if(Tile != null)
+            {
+                var tile = Tile.ToTerminalTile();
+                dstManager.AddComponentData(entity, new Renderable
+                {
+                    Glyph = ToCP437(Glyph),
+                    FGColor = ConvertColor(FGColor),
+                    BGColor = ConvertColor(BGColor)
+                });
+            }
+
+            dstManager.AddComponentData(entity, new Renderable
+            {
+                Glyph = ToCP437(Glyph),
+                FGColor = ConvertColor(FGColor),
+                BGColor = ConvertColor(BGColor)
+            });
         }
 
 

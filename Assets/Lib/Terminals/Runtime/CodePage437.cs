@@ -14,6 +14,12 @@ namespace Sark.Terminals
             return bytes;
         }
 
+        public static bool TryGetByte(char c, out byte b)
+        {
+            b = ToCP437(c);
+            return b != 0;
+        }
+
         //public static string CP437ToString(NativeArray<byte> bytes)
         //{
         //    StringBuilder sb = new StringBuilder();
