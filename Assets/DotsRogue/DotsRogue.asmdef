@@ -12,7 +12,8 @@
         "Sark.Common.Runtime",
         "Sark.EntityUtils.Runtime",
         "Sark.RNG.Runtime",
-        "Sark.Pathfinding.Runtime"
+        "Sark.Pathfinding.Runtime",
+        "Sark.Terminals.Runtime"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

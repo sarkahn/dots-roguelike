@@ -11,7 +11,7 @@ namespace Sark.Terminals
 {
     public struct TerminalAccessor
     {
-        GridData2D<Tile> tiles;
+        GridData2D<TerminalTile> tiles;
 
         public int Width => tiles.Width;
         public int Height => tiles.Height;
@@ -20,31 +20,31 @@ namespace Sark.Terminals
 
         public int2 Center => Size / 2;
 
-        public Tile this[int i]
+        public TerminalTile this[int i]
         {
             get => tiles[i];
             set => tiles[i] = value;
         }
 
-        public Tile this[int x, int y]
+        public TerminalTile this[int x, int y]
         {
             get => tiles[x, y];
             set => tiles[x, y] = value;
         }
 
-        public Tile this[int2 p]
+        public TerminalTile this[int2 p]
         {
             get => tiles[p];
             set => tiles[p] = value;
         }
 
         public TerminalAccessor(DynamicBuffer<TerminalTilesBuffer> tiles, int2 size) :
-            this(tiles.Reinterpret<Tile>().AsNativeArray(), size)
+            this(tiles.Reinterpret<TerminalTile>().AsNativeArray(), size)
         { }
 
-        public TerminalAccessor(NativeArray<Tile> tiles, int2 size)
+        public TerminalAccessor(NativeArray<TerminalTile> tiles, int2 size)
         {
-            this.tiles = new GridData2D<Tile>(tiles, size);
+            this.tiles = new GridData2D<TerminalTile>(tiles, size);
         }
 
         public int PosToIndex(int x, int y) => tiles.PosToIndex(x, y);
@@ -110,7 +110,7 @@ namespace Sark.Terminals
 
         public void ClearTile(int x, int y)
         {
-            this[x, y] = Tile.Default;
+            this[x, y] = TerminalTile.Default;
         }
 
         public void SetCharFGColor(int x, int y, char c, Color fg)
@@ -128,19 +128,19 @@ namespace Sark.Terminals
             SetByteFGColorBGColor(x, y, ToCP437(c), fg, bg);
         }
 
-        public Tile GetTile(int x, int y)
+        public TerminalTile GetTile(int x, int y)
             => tiles[x, y];
 
-        public void SetTile(int x, int y, Tile t)
+        public void SetTile(int x, int y, TerminalTile t)
             => tiles[x, y] = t;
 
-        public NativeArray<Tile> ReadTiles(int x, int y,
+        public NativeArray<TerminalTile> ReadTiles(int x, int y,
             int len, Allocator allocator)
         {
-            var buff = new NativeArray<Tile>(len, allocator);
+            var buff = new NativeArray<TerminalTile>(len, allocator);
             len = math.min(len, tiles.Length - x);
             int i = Grid2D.PosToIndex(x, y, Width);
-            NativeArray<Tile>.Copy(tiles.Array, i, buff, 0, len);
+            NativeArray<TerminalTile>.Copy(tiles.Array, i, buff, 0, len);
 
             return buff;
         }
@@ -148,7 +148,7 @@ namespace Sark.Terminals
         public void ClearScreen()
         {
             for (int i = 0; i < tiles.Length; ++i)
-                tiles[i] = Tile.Default;
+                tiles[i] = TerminalTile.Default;
         }
 
         public void Print(int2 xy, FixedString128 str) => Print(xy.x, xy.y, str);
@@ -241,7 +241,7 @@ namespace Sark.Terminals
             {
                 for(int y = yOrigin; y < yOrigin + height; ++y)
                 {
-                    tiles[x, y] = Tile.Default;
+                    tiles[x, y] = TerminalTile.Default;
                 }
             }
             DrawBox(xOrigin, yOrigin, width, height);

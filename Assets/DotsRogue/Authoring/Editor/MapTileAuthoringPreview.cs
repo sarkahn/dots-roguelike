@@ -1,19 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
-namespace Sark.Terminals.Authoring
+namespace DotsRogue.Authoring
 {
-    [CustomPreview(typeof(AuthoringTile))]
-    public class EditorTilePreview : ObjectPreview
+    [CustomPreview(typeof(MapTileAuthoring))]
+    public class MapTileAuthoringPreview : ObjectPreview
     {
         Sprite[] _sprites;
-        
-        Sprite[] GetSprites(AuthoringTile tar)
+
+        Sprite[] GetSprites(MapTileAuthoring tar)
         {
-            if(_sprites == null)
+            if (_sprites == null)
             {
                 var mat = Resources.Load<Material>("Terminal8x8");
                 if (mat == null || mat.mainTexture == null)
@@ -25,6 +23,8 @@ namespace Sark.Terminals.Authoring
                     return null;
 
                 var sprites = assets.Where(q => q is Sprite).Cast<Sprite>().ToArray();
+                int maxLen = sprites.Max(x => x.name.Length);
+                sprites = sprites.OrderBy(s => s.name.PadLeft(maxLen, '0')).ToArray();
                 _sprites = sprites;
             }
             return _sprites;
@@ -32,7 +32,7 @@ namespace Sark.Terminals.Authoring
 
         public override bool HasPreviewGUI()
         {
-            var tar = target as AuthoringTile;
+            var tar = target as MapTileAuthoring;
             _sprites = GetSprites(tar);
             return tar != null && _sprites != null &&
                 tar.GlyphIndex >= 0 && tar.GlyphIndex < _sprites.Length;
@@ -40,10 +40,12 @@ namespace Sark.Terminals.Authoring
 
         public override void OnPreviewGUI(Rect r, GUIStyle background)
         {
-            var tar = target as AuthoringTile;
+            var tar = target as MapTileAuthoring;
             if (tar == null)
                 return;
 
+            // Assumes a "Code Page 437 Sprite Sheet". 16 sprites x 16 sprites,
+            // all the same size.
             var sprites = GetSprites(tar);
             int i = tar.GlyphIndex;
             if (sprites == null || i < 0 || i >= sprites.Length)
@@ -70,5 +72,5 @@ namespace Sark.Terminals.Authoring
 
             GUI.color = guiFG;
         }
-    } 
+    }  
 }

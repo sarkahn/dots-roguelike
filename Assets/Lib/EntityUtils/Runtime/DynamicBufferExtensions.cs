@@ -19,7 +19,8 @@ namespace Sark.EntityUtils.DynamicBufferExtensions
         {
             unsafe
             {
-                UnsafeUtility.MemClear(buffer.GetUnsafePtr(), buffer.Length);
+                UnsafeUtility.MemClear(buffer.GetUnsafePtr(), 
+                    UnsafeUtility.SizeOf<T>() * buffer.Length);
             }
         }
     } 

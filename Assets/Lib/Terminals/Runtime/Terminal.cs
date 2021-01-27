@@ -7,13 +7,14 @@ using Debug = UnityEngine.Debug;
 
 namespace Sark.Terminals
 {
-    public struct Tile
+    [System.Serializable]
+    public struct TerminalTile
     {
         public ushort Glyph;
         public Color FGColor;
         public Color BGColor;
 
-        public static Tile Default => new Tile
+        public static TerminalTile Default => new TerminalTile
         {
             Glyph = 0,
             FGColor = Color.white,
@@ -100,9 +101,9 @@ namespace Sark.Terminals
     [InternalBufferCapacity(0)]
     public struct TerminalTilesBuffer : IBufferElementData
     {
-        public Tile Value;
-        public static implicit operator Tile(TerminalTilesBuffer b) => b.Value;
-        public static implicit operator TerminalTilesBuffer(Tile v) =>
+        public TerminalTile Value;
+        public static implicit operator TerminalTile(TerminalTilesBuffer b) => b.Value;
+        public static implicit operator TerminalTilesBuffer(TerminalTile v) =>
             new TerminalTilesBuffer { Value = v };
     }
 
@@ -144,10 +145,10 @@ namespace Sark.Terminals
                     int len = termSize.Length;
                     Debug.Log("Terminal Resized");
                     tilesBuffer.ResizeUninitialized(len);
-                    var tiles = tilesBuffer.Reinterpret<Tile>().AsNativeArray();
+                    var tiles = tilesBuffer.Reinterpret<TerminalTile>().AsNativeArray();
                     for (int i = 0; i < tiles.Length; ++i)
                     {
-                        tiles[i] = new Tile
+                        tiles[i] = new TerminalTile
                         {
                             FGColor = Color.white,
                             BGColor = Color.black,

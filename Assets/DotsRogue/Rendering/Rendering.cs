@@ -37,15 +37,15 @@ namespace DotsRogue
             Glyph = ToCP437(c);
         }
 
-        public Renderable(Tile t)
+        public Renderable(TerminalTile t)
         {
             FGColor = t.FGColor;
             BGColor = t.BGColor;
             Glyph = (byte)t.Glyph;
         }
 
-        public Tile ToTile() =>
-            new Tile
+        public TerminalTile ToTile() =>
+            new TerminalTile
             {
                 FGColor = this.FGColor,
                 BGColor = this.BGColor,
@@ -185,6 +185,7 @@ namespace DotsRogue
         void RenderMapInView(BufferJobData<MapViewBuffer> viewData, TerminalJobContext termData)
         {
             var mapData = new MapJobContext(this, GetSingletonEntity<Map>(), true);
+            var tileAssetsCTX = new MapTileAssetsBufferJobContext(this, true);
 
             Job.WithReadOnly(mapData)
                .WithReadOnly(viewData)
@@ -194,29 +195,22 @@ namespace DotsRogue
                    var term = termData.GetAccessor();
                    var view = viewData.GetArray<bool>();
 
+                   var tileAssets = tileAssetsCTX.Tiles;
+
                    term.DrawBorder();
                    term.Print(5, 5, "Hello world");
 
                    if (view.Length == 0)
                        return;
 
-                   Tile t = Tile.Default;
+                   TerminalTile t = TerminalTile.Default;
 
                    for (int i = 0; i < view.Length; ++i)
                    {
                        if (view[i])
                        {
-                           switch (map[i])
-                           {
-                               case MapTile.Floor:
-                                   t.FGColor = FloorColor;
-                                   t.Glyph = FloorGlyph;
-                                   break;
-                               case MapTile.Wall:
-                                   t.FGColor = WallColor;
-                                   t.Glyph = WallGlyph;
-                                   break;
-                           }
+                           int tileType = (int)map[i];
+                           t = tileAssets[tileType];
                            term[i] = t;
                        }
                    }
@@ -265,6 +259,8 @@ namespace DotsRogue
             var mapData = new MapJobContext(this, mapEntity, true);
             var memoryData = new BufferJobData<MapMemoryBuffer>(this, memoryEntity, true);
 
+            var tileAssetsCTX = new MapTileAssetsBufferJobContext(this, true);
+
             Job
                 //.WithoutBurst()
                 .WithReadOnly(mapData)
@@ -274,6 +270,7 @@ namespace DotsRogue
                     var map = mapData.Grid;
                     var memory = memoryData.GetArray<bool>();
                     var term = terminalData.GetAccessor();
+                    var tileAssets = tileAssetsCTX.Tiles;
 
                     if (memory.Length == 0)
                         return;
@@ -282,18 +279,8 @@ namespace DotsRogue
                     {
                         if (memory[i])
                         {
-                            Tile t = Tile.Default;
-                            switch (map[i])
-                            {
-                                case MapTile.Floor:
-                                    t.Glyph = FloorGlyph;
-                                    t.FGColor = FloorColor;
-                                    break;
-                                case MapTile.Wall:
-                                    t.Glyph = WallGlyph;
-                                    t.FGColor = WallColor;
-                                    break;
-                            }
+                            int tileType = (int)map[i];
+                            var t = tileAssets[tileType];
                             t.FGColor = t.FGColor.ToGreyscale();
                             term[i] = t;
                         }
@@ -310,6 +297,7 @@ namespace DotsRogue
         void RenderFullMap(TerminalJobContext termCTX)
         {
             var mapCTX = new MapJobContext(this, GetSingletonEntity<Map>(), true);
+            var tileAssetsCTX = new MapTileAssetsBufferJobContext(this, true);
 
             Job
                 //.WithoutBurst()
@@ -318,26 +306,15 @@ namespace DotsRogue
                 {
                     var map = mapCTX.Grid;
                     var term = termCTX.GetAccessor();
+                    var tileAssets = tileAssetsCTX.Tiles;
 
                     //Debug.Log($"Rendering everything...Map size {map.Size}. Terminal size {term.Size}");
 
                     for (int i = 0; i < map.Length; ++i)
                     {
-                        Tile t = Tile.Default;
-                        switch (map[i])
-                        {
-                            case MapTile.Floor:
-                                t.FGColor = FloorColor;
-                                t.Glyph = FloorGlyph;
-                                break;
-
-                            case MapTile.Wall:
-                                t.FGColor = WallColor;
-                                t.Glyph = WallGlyph;
-                                break;
-                        }
-
-                        term[i] = t;
+                        int tileType = (int)map[i];
+                        var tile = tileAssets[tileType];
+                        term[i] = tile;
                     }
                 }).Schedule();
         }

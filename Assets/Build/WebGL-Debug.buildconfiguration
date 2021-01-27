@@ -16,14 +16,8 @@
         {
             "$type": "Unity.Build.Classic.ClassicBuildProfile, Unity.Build.Classic",
             "$version": 1,
-            "Platform": "WebGL",
-            "Configuration": 1,
-            "Incremental": false
-        },
-        {
-            "$type": "Unity.Build.Classic.PlayerConnectionSettings, Unity.Build.Classic",
-            "Mode": 1,
-            "WaitForConnection": true
+            "Platform": "webgl",
+            "Configuration": 1
         }
     ]
 }

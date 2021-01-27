@@ -1,8 +1,6 @@
 ﻿using Unity.Entities;
 using Unity.Mathematics;
 
-using Sark.Common.GridUtil;
-
 namespace DotsRogue
 {
     public struct Position : IComponentData
@@ -55,7 +53,7 @@ namespace DotsRogue
 
                 int2 next = position + (int2)movement;
 
-                if(map[next] == MapTile.Floor)
+                if(map[next] == MapTileType.Floor)
                 {
                     position += (int2)movement;
                 }

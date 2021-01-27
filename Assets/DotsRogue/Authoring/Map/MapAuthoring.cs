@@ -5,7 +5,7 @@ using Unity.Entities;
 using Unity.Mathematics;
 using UnityEngine;
 
-namespace DotsRogue
+namespace DotsRogue.Authoring
 {
     [ConverterVersion("Ahhh", 12)]
     public class MapAuthoring : MonoBehaviour, IConvertGameObjectToEntity, IDeclareReferencedPrefabs
@@ -25,6 +25,12 @@ namespace DotsRogue
         List<GameObject> _itemPrefabs;
 
         [SerializeField]
+        MapTileAuthoring _wallTile;
+
+        [SerializeField]
+        MapTileAuthoring _floorTile;
+
+        [SerializeField]
         GenMapSettings _genSettings = GenMapSettings.Default;
 
         public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem)
@@ -34,13 +40,12 @@ namespace DotsRogue
             buffer.ResizeUninitialized(len);
             unsafe
             {
-                UnsafeUtility.MemClear(buffer.GetUnsafePtr(), buffer.Length);// *
-                //UnsafeUtility.SizeOf<MapTilesBuffer>());
+                UnsafeUtility.MemClear(buffer.GetUnsafePtr(), buffer.Length *
+                UnsafeUtility.SizeOf<MapTilesBuffer>());
             }
 
             dstManager.AddComponent<Map>(entity);
             dstManager.AddComponentData<MapSize>(entity, _size);
-            //Map.AddToEntity(dstManager, entity, _size);
 
             var playerPrefab = _playerPrefab == null ? Entity.Null : 
                 conversionSystem.GetPrimaryEntity(_playerPrefab);
@@ -56,6 +61,13 @@ namespace DotsRogue
 
             if (_genSettings.Seed == 0)
                 _genSettings.Seed = (uint)UnityEngine.Random.Range(1, int.MaxValue);
+
+            var tiles = dstManager.AddBuffer<MapTileAssetsBuffer>(entity);
+
+            // Each index of the buffer should map to it's corresponding "tile type"
+            /// <seealso cref="MapTileType"/>
+            tiles.Add(_wallTile.ToTerminalTile());
+            tiles.Add(_floorTile.ToTerminalTile());
 
             GenerateMap.AddToEntity(dstManager, entity,
                 _genSettings,

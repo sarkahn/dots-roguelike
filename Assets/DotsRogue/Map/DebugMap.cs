@@ -41,11 +41,11 @@ namespace DotsRogue
 
                 tilesBuffer.ResizeUninitialized(size.x * size.y);
                 
-                var map = new GridData2D<MapTile>(tilesBuffer.
-                    Reinterpret<MapTile>().AsNativeArray(), size);
+                var map = new GridData2D<MapTileType>(tilesBuffer.
+                    Reinterpret<MapTileType>().AsNativeArray(), size);
 
                 for (int i = 0; i < map.Length; ++i)
-                    map[i] = MapTile.Floor;
+                    map[i] = MapTileType.Floor;
 
                 foreach(var spawn in spawnsBuffer)
                 {

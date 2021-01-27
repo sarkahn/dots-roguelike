@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &4314732635539946439
+--- !u!1 &93990348127156252
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,23 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4314732635539946433}
-  - component: {fileID: 4314732635539946438}
+  - component: {fileID: 4309116547988263799}
+  - component: {fileID: 2046655952025897718}
+  - component: {fileID: -7002779429306058359}
   m_Layer: 0
-  m_Name: Authoring Tile
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4314732635539946433
+--- !u!4 &4309116547988263799
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4314732635539946439}
+  m_GameObject: {fileID: 93990348127156252}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -31,18 +32,30 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4314732635539946438
+--- !u!114 &2046655952025897718
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4314732635539946439}
+  m_GameObject: {fileID: 93990348127156252}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 66c9906876ec28f4a8d4b21302ad548a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ForegroundColor: {r: 1, g: 0, b: 0, a: 1}
+  ForegroundColor: {r: 0, g: 0.9921569, b: 0, a: 1}
   BackgroundColor: {r: 0, g: 0, b: 0, a: 1}
-  Glyph: 97
+  Glyph: 35
+--- !u!114 &-7002779429306058359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 93990348127156252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af892e4287c1f436baf5a5063049521a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

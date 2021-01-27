@@ -21,16 +21,5 @@ namespace Sark.Terminals.Authoring
 
             Selection.activeGameObject = go;
         }
-
-        [MenuItem("GameObject/Terminals/Create Authoring Tile", false, 11)]
-        public static void CreateAuthoringTile()
-        {
-            var go = new GameObject("Authoring Tile");
-            Undo.RegisterCreatedObjectUndo(go, "CreateAuthoringTile");
-
-            go.AddComponent<AuthoringTile>();
-
-            Selection.activeGameObject = go;
-        }
     } 
 }

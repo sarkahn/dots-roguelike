@@ -4,7 +4,7 @@ using UnityEngine;
 
 using Sark.EntityUtils.DynamicBufferExtensions;
 
-namespace DotsRogue
+namespace DotsRogue.Authoring
 {
     [RequireComponent(typeof(MapAuthoring))]
     public class MapStateAuthoring : MonoBehaviour, IConvertGameObjectToEntity

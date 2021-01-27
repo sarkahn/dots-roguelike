@@ -75,8 +75,6 @@ namespace DotsRogue
         //{ }
 
         EntityQuery _movedActors;
-        EntityQuery _addedActors;
-        EntityQuery _removedActors;
         EntityQuery _mapChanged;
         EntityQuery _actorsOnMap;
 
@@ -87,19 +85,8 @@ namespace DotsRogue
 
             _movedActors = GetEntityQuery(
                 ComponentType.ReadOnly<Position>(),
-                //ComponentType.ReadOnly<OnMap>(),
                 ComponentType.ReadOnly<PathBlocker>());
             _movedActors.AddChangedVersionFilter(typeof(Position));
-
-            _addedActors = GetEntityQuery(
-                ComponentType.ReadOnly<Position>(),
-                ComponentType.ReadOnly<PathBlocker>()
-                //ComponentType.Exclude<OnMap>()
-                );
-
-            //_removedActors = GetEntityQuery(
-            //    ComponentType.Exclude<Position>(),
-            //    ComponentType.ReadOnly<OnMap>());
 
             _mapChanged = GetEntityQuery(
                 ComponentType.ReadOnly<MapTilesBuffer>(),
@@ -109,7 +96,6 @@ namespace DotsRogue
             _actorsOnMap = EntityManager.CreateEntityQuery(
                 ComponentType.ReadOnly<Position>(),
                 ComponentType.ReadOnly<PathBlocker>()
-                //ComponentType.ReadOnly<OnMap>()
                 );
         }
 
@@ -123,15 +109,6 @@ namespace DotsRogue
 
             if (!changed)
                 return;
-
-            //EntityManager.AddComponent<OnMap>(_addedActors);
-            //EntityManager.RemoveComponent<OnMap>(_removedActors);
-
-            //Debug.Log("UPDATING MAP STATE");
-
-            //if (_mapChanged.CalculateEntityCount() == 0 &&
-            //    _movedActors.CalculateEntityCount() == 0)
-            //    return;
 
             var mapEntity = GetSingletonEntity<Map>();
             var mapData = new MapJobContext(this, mapEntity, true);
@@ -151,7 +128,7 @@ namespace DotsRogue
 
                     for (int i = 0; i < obstacles.Length; ++i)
                     {
-                        obstacles[i] = map[i] == MapTile.Wall;
+                        obstacles[i] = map[i] == MapTileType.Wall;
                     }
 
                     //Clear entities too since we're rebuilding entities state
@@ -194,20 +171,9 @@ namespace DotsRogue
                 var positions = chunk.GetNativeArray(PosHandle);
                 var entities = chunk.GetNativeArray(EntityHandle);
 
-                //var mapState = StateData.GetGridData();
                 var obstacles = StateData.Obstacles;
                 var mapEntities = StateData.Entities;
-                //var map = MapData.GetGridData();
 
-                //for(int i = 0; i < obstacles.Length; ++i)
-                //{
-                //    // Clear entities
-                //    mapEntities[i] = default;
-                //    if (map[i] == MapTile.Wall)
-                //        obstacles[i] = true;
-                //    else
-                //        obstacles[i] = false;
-                //}
 
                 // Update from entities
                 for (int entityIndex = 0; entityIndex < chunk.Count; ++entityIndex)

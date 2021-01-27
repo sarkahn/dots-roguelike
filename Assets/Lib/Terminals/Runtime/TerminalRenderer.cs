@@ -130,7 +130,7 @@ namespace Sark.Terminals
                     float2 uvUp = new float2(0, uvSize.y);
 
                     var vertData = vertDataBuffer.Reinterpret<VertTileData>().AsNativeArray();
-                    var tiles = tilesBuffer.Reinterpret<Tile>().AsNativeArray();
+                    var tiles = tilesBuffer.Reinterpret<TerminalTile>().AsNativeArray();
 
                     for (int tileIndex = 0; tileIndex < tiles.Length; ++tileIndex)
                     {

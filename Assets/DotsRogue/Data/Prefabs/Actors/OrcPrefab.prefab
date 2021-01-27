@@ -54,6 +54,7 @@ MonoBehaviour:
   Glyph: 111
   FGColor: {r: 1, g: 0, b: 0.016376019, a: 1}
   BGColor: {r: 0, g: 0, b: 0, a: 1}
+  Tile: {fileID: 0}
 --- !u!114 &3001529280802628161
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -116,7 +117,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56a55e8a3be1aef4e99d414318c5c7f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 20
+  Speed: 15
 --- !u!114 &-2436888272580642069
 MonoBehaviour:
   m_ObjectHideFlags: 0

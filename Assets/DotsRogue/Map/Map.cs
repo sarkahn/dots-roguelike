@@ -6,6 +6,7 @@ using Unity.Mathematics;
 
 using Sark.Common.Geometry;
 using Sark.Common.GridUtil;
+using Sark.Terminals;
 
 using Input = UnityEngine.Input;
 using KeyCode = UnityEngine.KeyCode;
@@ -87,7 +88,7 @@ namespace DotsRogue
             MonstersPerRoomMin = 0,
             MonstersPerRoomMax = 4,
             ItemsPerRoomMin = 0,
-            ItemsPerRoomMax = 2
+            ItemsPerRoomMax = 2,
         };
     }
 
@@ -107,17 +108,43 @@ namespace DotsRogue
             new ItemPrefabsBuffer { Value = v };
     }
 
-    public enum MapTile : byte
+    public enum MapTileType : byte
     {
         Wall,
         Floor
     };
 
+    public struct MapTileAssetsBuffer : IBufferElementData
+    {
+        public TerminalTile value;
+        public static implicit operator TerminalTile(MapTileAssetsBuffer b) => b.value;
+        public static implicit operator MapTileAssetsBuffer(TerminalTile v) =>
+            new MapTileAssetsBuffer { value = v };
+    }
+
+    public struct MapTileAssetsBufferJobContext
+    {
+        BufferFromEntity<MapTileAssetsBuffer> bfe;
+        public Entity entity;
+
+        public MapTileAssetsBufferJobContext(SystemBase sys, bool readOnly) : 
+            this(sys, sys.GetSingletonEntity<MapTileAssetsBuffer>(), readOnly)
+        { }
+
+        public MapTileAssetsBufferJobContext(SystemBase sys, Entity entity, bool readOnly)
+        {
+            bfe = sys.GetBufferFromEntity<MapTileAssetsBuffer>(readOnly);
+            this.entity = entity;
+        }
+
+        public NativeArray<TerminalTile> Tiles => bfe[entity].Reinterpret<TerminalTile>().AsNativeArray(); 
+    }
+
     public struct MapTilesBuffer : IBufferElementData
     {
-        public MapTile Value;
-        public static implicit operator MapTile(MapTilesBuffer b) => b.Value;
-        public static implicit operator MapTilesBuffer(MapTile v) =>
+        public MapTileType Value;
+        public static implicit operator MapTileType(MapTilesBuffer b) => b.Value;
+        public static implicit operator MapTilesBuffer(MapTileType v) =>
             new MapTilesBuffer { Value = v };
     }
 
@@ -128,8 +155,8 @@ namespace DotsRogue
         public Entity entity;
 
         public int2 Size => sizeFromEntity[entity];
-        public GridData2D<MapTile> Grid => new GridData2D<MapTile>(
-            tilesFromEntity[entity].Reinterpret<MapTile>().AsNativeArray(),
+        public GridData2D<MapTileType> Grid => new GridData2D<MapTileType>(
+            tilesFromEntity[entity].Reinterpret<MapTileType>().AsNativeArray(),
             Size
             );
 
@@ -365,7 +392,7 @@ namespace DotsRogue
                         UnsafeUtility.MemClear(tilesBuffer.GetUnsafePtr(), tilesBuffer.Length);
                     }
 
-                    var tiles = tilesBuffer.Reinterpret<MapTile>().AsNativeArray();
+                    var tiles = tilesBuffer.Reinterpret<MapTileType>().AsNativeArray();
 
                     for(int i = 0; i < gen.Iterations; ++i)
                     {
@@ -400,20 +427,20 @@ namespace DotsRogue
                 }).Schedule();
         }
 
-        static void BuildRoom(NativeArray<MapTile> tiles, int mapWidth, Rect2D room)
+        static void BuildRoom(NativeArray<MapTileType> tiles, int mapWidth, Rect2D room)
         {
             for (int x = room.Min.x; x <= room.Max.x; ++x)
                 for (int y = room.Min.y; y <= room.Max.y; ++y)
                 {
                     int i = Grid2D.PosToIndex(x, y, mapWidth);
-                    tiles[i] = MapTile.Floor;
+                    tiles[i] = MapTileType.Floor;
                 }
         }
 
         static void BuildTunnelsBetweenRooms(
             Rect2D roomA, 
             Rect2D roomB,
-            NativeArray<MapTile> tiles, 
+            NativeArray<MapTileType> tiles, 
             int mapWidth, 
             NativeReference<Random> rng)
         {
@@ -432,7 +459,7 @@ namespace DotsRogue
             }
         }
 
-        static void BuildHorizontalTunnel(NativeArray<MapTile> tiles, int mapWidth,
+        static void BuildHorizontalTunnel(NativeArray<MapTileType> tiles, int mapWidth,
             int x1, int x2, int y)
         {
             int xMin = math.min(x1, x2);
@@ -441,11 +468,11 @@ namespace DotsRogue
             for (int x = xMin; x <= xMax; ++x)
             {
                 int i = Grid2D.PosToIndex(x, y, mapWidth);
-                tiles[i] = MapTile.Floor;
+                tiles[i] = MapTileType.Floor;
             }
         }
 
-        static void BuildVerticalTunnel(NativeArray<MapTile> tiles, int mapWidth,
+        static void BuildVerticalTunnel(NativeArray<MapTileType> tiles, int mapWidth,
             int y1, int y2, int x)
         {
             int yMin = math.min(y1, y2);
@@ -454,7 +481,7 @@ namespace DotsRogue
             for (int y = yMin; y <= yMax; ++y)
             {
                 int i = Grid2D.PosToIndex(x, y, mapWidth);
-                tiles[i] = MapTile.Floor;
+                tiles[i] = MapTileType.Floor;
             }
         }
     }

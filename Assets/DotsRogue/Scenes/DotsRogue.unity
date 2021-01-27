@@ -330,6 +330,8 @@ MonoBehaviour:
   _itemPrefabs:
   - {fileID: 117605178951017470, guid: b84720b1cb9f4634dbf2cc5532e11c5d, type: 3}
   - {fileID: 117605178951017470, guid: 231ab1bec93b723479588ef776ca73ad, type: 3}
+  _wallTile: {fileID: 2046655952025897718, guid: 1a46f651c609a7948a31d27cbb16ac15, type: 3}
+  _floorTile: {fileID: 2046655952025897718, guid: 6e80155cf01df5a4695013d4b22568f0, type: 3}
   _genSettings:
     Seed: 5
     Iterations: 200

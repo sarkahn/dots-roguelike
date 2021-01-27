@@ -50,7 +50,7 @@ namespace DotsRogue
         int width;
         int height;
 
-        NativeArray<MapTile> tiles;
+        NativeArray<MapTileType> tiles;
 
         NativeArray<bool> view;
         NativeArray<bool> memory;
@@ -68,7 +68,7 @@ namespace DotsRogue
             if (!IsInBounds(p))
                 return true;
             int i = Grid2D.PosToIndex(p, Width);
-            return tiles[i] == MapTile.Wall;
+            return tiles[i] == MapTileType.Wall;
         }
 
         public void SetVisible(int2 p)
@@ -83,7 +83,7 @@ namespace DotsRogue
         }
 
         public VisibilityMap(int width, int height,
-            NativeArray<MapTile> map,
+            NativeArray<MapTileType> map,
             NativeArray<bool> view,
             NativeArray<bool> memory = default)
         {
@@ -97,7 +97,7 @@ namespace DotsRogue
 
     public struct VisibilityMapGrid : IVisibilityMap
     {
-        GridData2D<MapTile> map;
+        GridData2D<MapTileType> map;
 
         NativeArray<bool> view;
         NativeArray<bool> memory;
@@ -115,7 +115,7 @@ namespace DotsRogue
             if (!IsInBounds(p))
                 return true;
             int i = Grid2D.PosToIndex(p, Width);
-            return map[i] == MapTile.Wall;
+            return map[i] == MapTileType.Wall;
         }
 
         public void SetVisible(int2 p)
@@ -129,7 +129,7 @@ namespace DotsRogue
                 memory[i] = true;
         }
 
-        public VisibilityMapGrid(GridData2D<MapTile> map,
+        public VisibilityMapGrid(GridData2D<MapTileType> map,
             NativeArray<bool> view,
             NativeArray<bool> memory = default)
         {

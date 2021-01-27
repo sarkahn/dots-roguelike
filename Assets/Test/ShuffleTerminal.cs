@@ -17,7 +17,7 @@ public class ShuffleTerminal : SystemBase
             .WithAll<ShuffleTerminalOnClick>()
             .ForEach((ref DynamicBuffer<TerminalTilesBuffer> tilesBuffer) =>
             {
-                var tiles = tilesBuffer.Reinterpret<Tile>().AsNativeArray();
+                var tiles = tilesBuffer.Reinterpret<TerminalTile>().AsNativeArray();
                 for(int i = 0; i < tiles.Length; ++i)
                 {
                     var t = tiles[i];
