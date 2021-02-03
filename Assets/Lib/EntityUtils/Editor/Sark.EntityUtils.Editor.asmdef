@@ -1,14 +1,8 @@
 {
-    "name": "Sark.Terminals.Tests.Editor",
+    "name": "Sark.EntityUtils.Editor",
     "rootNamespace": "",
     "references": [
-        "UnityEngine.TestRunner",
-        "UnityEditor.TestRunner",
-        "Sark.Common.Runtime",
-        "Unity.Mathematics",
-        "Unity.Collections",
-        "Unity.Burst",
-        "Sark.Terminal.Runtime"
+        "GUID:734d92eba21c94caba915361bd5ac177"
     ],
     "includePlatforms": [
         "Editor"
@@ -19,7 +13,7 @@
     "precompiledReferences": [
         "nunit.framework.dll"
     ],
-    "autoReferenced": false,
+    "autoReferenced": true,
     "defineConstraints": [
         "UNITY_INCLUDE_TESTS"
     ],

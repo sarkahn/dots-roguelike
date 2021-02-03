@@ -1,0 +1,18 @@
+{
+    "name": "Sark.Particles.Authoring",
+    "rootNamespace": "",
+    "references": [
+        "GUID:cd323583efe562c4d8bdec2ce4bc4185",
+        "GUID:734d92eba21c94caba915361bd5ac177",
+        "GUID:8819f35a0fc84499b990e90a4ca1911f"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

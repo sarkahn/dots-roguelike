@@ -5,9 +5,9 @@ using Color32 = UnityEngine.Color32;
 
 namespace Sark.Particles2D
 {
+    // Components
     public struct Particle2DEmitter : IComponentData
     { }
-
 
     public struct Particle2DCountAlive : IComponentData
     {
@@ -25,6 +25,33 @@ namespace Sark.Particles2D
             new Particle2DCountMax { value = v };
     }
 
+    public struct Particle2DEmissionRate : IComponentData
+    {
+        public float value;
+        public static implicit operator float(Particle2DEmissionRate b) => b.value;
+        public static implicit operator Particle2DEmissionRate(float v) =>
+            new Particle2DEmissionRate { value = v };
+    }
+
+
+    public struct Particle2DEmissionTimer : IComponentData
+    {
+        public float value;
+        public static implicit operator float(Particle2DEmissionTimer b) => b.value;
+        public static implicit operator Particle2DEmissionTimer(float v) =>
+            new Particle2DEmissionTimer { value = v };
+    }
+
+
+    public struct Particle2DNewParticleLifetime : IComponentData
+    {
+        public float value;
+        public static implicit operator float(Particle2DNewParticleLifetime b) => b.value;
+        public static implicit operator Particle2DNewParticleLifetime(float v) =>
+            new Particle2DNewParticleLifetime { value = v };
+    }
+
+    // Buffers
     public struct Particle2DPosition : IBufferElementData
     {
         public float2 value;
@@ -33,12 +60,12 @@ namespace Sark.Particles2D
             new Particle2DPosition { value = v };
     }
 
-    public struct Particle2DColor : IBufferElementData
+    public struct Particle2DAcceleration : IBufferElementData
     {
-        public Color32 value;
-        public static implicit operator Color32(Particle2DColor b) => b.value;
-        public static implicit operator Particle2DColor(Color32 v) =>
-            new Particle2DColor { value = v };
+        public float2 value;
+        public static implicit operator float2(Particle2DAcceleration b) => b.value;
+        public static implicit operator Particle2DAcceleration(float2 v) =>
+            new Particle2DAcceleration { value = v };
     }
 
     public struct Particle2DVelocity : IBufferElementData
@@ -49,12 +76,12 @@ namespace Sark.Particles2D
             new Particle2DVelocity { value = v };
     }
 
-    public struct Particle2DAcceleration : IBufferElementData
+    public struct Particle2DColor : IBufferElementData
     {
-        public float2 value;
-        public static implicit operator float2(Particle2DAcceleration b) => b.value;
-        public static implicit operator Particle2DAcceleration(float2 v) =>
-            new Particle2DAcceleration { value = v };
+        public Color32 value;
+        public static implicit operator Color32(Particle2DColor b) => b.value;
+        public static implicit operator Particle2DColor(Color32 v) =>
+            new Particle2DColor { value = v };
     }
 
     public struct Particle2DGlyph : IBufferElementData
@@ -67,9 +94,16 @@ namespace Sark.Particles2D
 
     public struct Particle2DLifetime : IBufferElementData
     {
-        public float value;
-        public static implicit operator float(Particle2DLifetime b) => b.value;
-        public static implicit operator Particle2DLifetime(float v) =>
-            new Particle2DLifetime { value = v };
-    } 
+        public float remaining;
+        public float total;
+        public float RemainingNormalized => remaining / total;
+    }
+
+    public struct Particle2DExpiredIndex : IBufferElementData
+    {
+        public int value;
+        public static implicit operator int(Particle2DExpiredIndex b) => b.value;
+        public static implicit operator Particle2DExpiredIndex(int v) =>
+            new Particle2DExpiredIndex { value = v };
+    }
 }
