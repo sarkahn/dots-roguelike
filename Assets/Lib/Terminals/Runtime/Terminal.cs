@@ -89,7 +89,7 @@ namespace Sark.Terminals
 
         public TerminalAccessor GetAccessor()
         {
-            return new TerminalAccessor(tilesFromEntity[entity], Size);
+            return new TerminalAccessor(Tiles, Size, WorldPos);
         }
 
         public void SetDirty()
@@ -113,7 +113,7 @@ namespace Sark.Terminals
     public struct TerminalBorderOnCreate : IComponentData
     {}
 
-    //[UpdateInGroup(typeof(InitializationSystemGroup))]
+    [UpdateInGroup(typeof(InitializationSystemGroup))]
     public class TerminalInitSystem : SystemBase
     {
         void CheckComponent<T>(Entity e) where T : unmanaged, IComponentData

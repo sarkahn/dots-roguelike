@@ -123,5 +123,7 @@ namespace Sark.Common
             t = repeat(t, len * 2);
             return len - math.abs(t - len);
         }
+
+
     }
 }

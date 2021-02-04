@@ -140,10 +140,6 @@ namespace DotsRogue
 
         void DoMove()
         {
-            Entities.WithStructuralChanges().ForEach((Entity e) =>
-            {
-                UnityEngine.Debug.Log(e);
-            }).Run();
             int2 moveInput = GetMoveInput();
             bool wait = GetWaitInput();
 

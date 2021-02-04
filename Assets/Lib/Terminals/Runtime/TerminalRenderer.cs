@@ -51,8 +51,8 @@ namespace Sark.Terminals
             new TerminalMeshTileDataBuffer { Value = v };
     }
 
-    //[UpdateInGroup(typeof(InitializationSystemGroup))]
-    //[UpdateAfter(typeof(TerminalInitSystem))]
+    [UpdateInGroup(typeof(InitializationSystemGroup))]
+    [UpdateAfter(typeof(TerminalInitSystem))]
     public class TerminalRenderInitSystem : SystemBase
     {
         static float4 FromColor(Color c) =>
@@ -180,7 +180,7 @@ namespace Sark.Terminals
     }
 
     [UpdateInGroup(typeof(PresentationSystemGroup))]
-    public class UpdateTerminalRenderSystem : SystemBase
+    public class TerminalRenderSystem : SystemBase
     {
         public static readonly VertexAttributeDescriptor[] Descriptors = new[]
         {

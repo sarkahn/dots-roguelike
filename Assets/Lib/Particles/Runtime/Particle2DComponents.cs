@@ -96,7 +96,7 @@ namespace Sark.Particles2D
     {
         public float remaining;
         public float total;
-        public float RemainingNormalized => remaining / total;
+        public float RemainingNormalized => 1f - (remaining / total);
     }
 
     public struct Particle2DExpiredIndex : IBufferElementData
@@ -105,5 +105,13 @@ namespace Sark.Particles2D
         public static implicit operator int(Particle2DExpiredIndex b) => b.value;
         public static implicit operator Particle2DExpiredIndex(int v) =>
             new Particle2DExpiredIndex { value = v };
+    }
+
+    public struct Particle2DInitializedIndex : IBufferElementData
+    {
+        public int value;
+        public static implicit operator int(Particle2DInitializedIndex b) => b.value;
+        public static implicit operator Particle2DInitializedIndex(int v) =>
+            new Particle2DInitializedIndex { value = v };
     }
 }

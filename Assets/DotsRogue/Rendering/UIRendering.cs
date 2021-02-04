@@ -55,6 +55,9 @@ namespace DotsRogue
                 {
                     var term = jobData.GetAccessor();
 
+                    if (term.Length == 0)
+                        return;
+
                     term.ClearScreen();
                     term.DrawBorder();
 
@@ -176,7 +179,8 @@ namespace DotsRogue
             .WithChangeFilter<TerminalTilesBuffer>()
             .WithAll<MapRenderTerminal>()
             .ForEach((ref DynamicBuffer<TerminalTilesBuffer> tilesBuffer,
-            in TerminalSize size) =>
+            in TerminalSize size,
+            in Translation translation) =>
             {
                 Debug.Log("Showing inventory");
                 if (playerItems.Length == 0)
@@ -186,7 +190,7 @@ namespace DotsRogue
                     return;
                 }
 
-                var term = new TerminalAccessor(tilesBuffer, size);
+                var term = new TerminalAccessor(tilesBuffer, size, translation.Value);
 
                 // Could stand to be cleaned up! Too many magic numbers.
                 int longest = 0;
@@ -277,8 +281,11 @@ namespace DotsRogue
             var viewFromEntity = GetBufferFromEntity<MapViewBuffer>(true);
 
             var termFromEntity = GetComponentDataFromEntity<Terminal>(false);
+            var posFromEntity = GetComponentDataFromEntity<Translation>(true);
             float dt = (float)Time.ElapsedTime;
-            Job.WithCode(() =>
+            Job .WithReadOnly(viewFromEntity)
+                .WithReadOnly(posFromEntity)
+                .WithCode(() =>
             {
                 var xy = xyRef.Value;
                 if (!InBounds(xy, termDataRef.Value.size))
@@ -301,7 +308,8 @@ namespace DotsRogue
                 Color col = Color.Lerp(col0, col1, t);
 
                 var tiles = GetBuffer<TerminalTilesBuffer>(termEntity);
-                var term = new TerminalAccessor(tiles, termDataRef.Value.size);
+                var worldPos = posFromEntity[termEntity].Value;
+                var term = new TerminalAccessor(tiles, termDataRef.Value.size, worldPos);
                 term.SetBGColor(xy.x, xy.y, col);
 
                 // Force the renderer to refresh next frame. Is there a better way to do this?
@@ -340,7 +348,7 @@ namespace DotsRogue
                 });
             }).Schedule();
 
-            Job.WithCode(() =>
+            Job .WithReadOnly(posFromEntity).WithCode(() =>
             {
                 if (targets.Length == 0)
                     return;
@@ -348,7 +356,8 @@ namespace DotsRogue
                 var xy = xyRef.Value;
 
                 var tiles = GetBuffer<TerminalTilesBuffer>(termEntity);
-                var term = new TerminalAccessor(tiles, termDataRef.Value.size);
+                float3 worldPos = posFromEntity[termEntity].Value;
+                var term = new TerminalAccessor(tiles, termDataRef.Value.size, worldPos);
 
                 int width = 0;
                 foreach (var pair in targets)

@@ -1,17 +1,17 @@
 {
-    "name": "Sark.Particles.Runtime",
+    "name": "Sark.Particles.Runtime.Rendering",
     "rootNamespace": "",
     "references": [
         "GUID:734d92eba21c94caba915361bd5ac177",
-        "GUID:d8b63aba1907145bea998dd612889d6b",
-        "GUID:2665a8d13d1b3f18800f46e256720795",
         "GUID:e0cd26848372d4e5c891c569017e11f1",
-        "GUID:a5baed0c9693541a5bd947d336ec7659",
-        "GUID:5a555ed4d6ca3d44787aad986ac3b9e7"
+        "GUID:d8b63aba1907145bea998dd612889d6b",
+        "GUID:cd323583efe562c4d8bdec2ce4bc4185",
+        "GUID:9357f8cb40704de4f9d1e288171926c6",
+        "GUID:a5baed0c9693541a5bd947d336ec7659"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
-    "allowUnsafeCode": true,
+    "allowUnsafeCode": false,
     "overrideReferences": false,
     "precompiledReferences": [],
     "autoReferenced": true,

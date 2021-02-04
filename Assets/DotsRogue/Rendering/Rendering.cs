@@ -197,9 +197,6 @@ namespace DotsRogue
 
                    var tileAssets = tileAssetsCTX.Tiles;
 
-                   term.DrawBorder();
-                   term.Print(5, 5, "Hello world");
-
                    if (view.Length == 0)
                        return;
 
@@ -310,7 +307,7 @@ namespace DotsRogue
 
                     //Debug.Log($"Rendering everything...Map size {map.Size}. Terminal size {term.Size}");
 
-                    for (int i = 0; i < map.Length; ++i)
+                    for (int i = 0; i < map.Length && i < term.Length; ++i)
                     {
                         int tileType = (int)map[i];
                         var tile = tileAssets[tileType];

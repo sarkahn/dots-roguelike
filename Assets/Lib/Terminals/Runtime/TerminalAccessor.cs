@@ -18,7 +18,11 @@ namespace Sark.Terminals
         public int Length => tiles.Length;
         public int2 Size => tiles.Size;
 
+        float3 worldPos;
+
         public int2 Center => Size / 2;
+        public float3 WorldCenter => worldPos + new float3(Center, 0);
+        public float3 WorldPos => worldPos;
 
         public TerminalTile this[int i]
         {
@@ -38,13 +42,21 @@ namespace Sark.Terminals
             set => tiles[p] = value;
         }
 
-        public TerminalAccessor(DynamicBuffer<TerminalTilesBuffer> tiles, int2 size) :
-            this(tiles.Reinterpret<TerminalTile>().AsNativeArray(), size)
+        public bool InBounds(int i) =>
+            tiles.InBounds(i);
+        public bool InBounds(int2 p) =>
+            tiles.InBounds(p);
+
+        public TerminalAccessor(
+            DynamicBuffer<TerminalTilesBuffer> tiles, int2 size, float3 worldPos) :
+            this(tiles.Reinterpret<TerminalTile>().AsNativeArray(), size, worldPos)
         { }
 
-        public TerminalAccessor(NativeArray<TerminalTile> tiles, int2 size)
+        public TerminalAccessor(NativeArray<TerminalTile> tiles, int2 size, float3 worldPos)
         {
             this.tiles = new GridData2D<TerminalTile>(tiles, size);
+            this.worldPos = worldPos;
+            this.worldPos.xy -= size / 2;
         }
 
         public int PosToIndex(int x, int y) => tiles.PosToIndex(x, y);
@@ -333,5 +345,12 @@ namespace Sark.Terminals
             for (int i = v; i < width; ++i)
                 SetCharFGColor(x + i, y, '░', emptyColor);
         }
+
+        public float3 WorldToLocal(float3 worldPos) => worldPos - this.worldPos;
+        public float2 WorldToLocal(float2 worldPos) => worldPos.xy - this.worldPos.xy;
+        public int2 WorldToLocalIndex2D(float3 worldPos) =>
+            (int2)math.floor(WorldToLocal(worldPos.xy));
+        public int2 WorldToLocalIndex2D(float2 worldPos) =>
+            (int2)math.floor(WorldToLocal(worldPos));
     }
 }

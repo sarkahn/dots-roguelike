@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Entities;
+using Unity.Transforms;
 using UnityEngine;
 
 namespace Sark.Terminals.Debugging
@@ -22,9 +23,10 @@ namespace Sark.Terminals.Debugging
                 .WithStoreEntityQueryInField(ref _eq)
                 .WithAll<TerminalBorderOnCreate>()
                 .ForEach((ref DynamicBuffer<TerminalTilesBuffer> tilesBuffer,
-                in TerminalSize size) =>
+                in TerminalSize size,
+                in Translation translation) =>
                 {
-                    var term = new TerminalAccessor(tilesBuffer, size);
+                    var term = new TerminalAccessor(tilesBuffer, size, translation.Value);
                     term.DrawBorder();
                 }).Schedule();
             ecb.RemoveComponent<TerminalBorderOnCreate>(_eq);

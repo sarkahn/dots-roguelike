@@ -7,8 +7,8 @@ public class ParticleTests : ECSTestBase
     [Test]
     public void Test()
     {
-        AddSystemToWorld<Particle2DMainUpdateSystem>();
-        AddSystemToWorld<Particle2DCleanupParticlesSystem>();
+        AddSystemToWorld<Particle2DSteeringSystem>();
+        AddSystemToWorld<Particle2DCleanupSystem>();
 
         
     }
