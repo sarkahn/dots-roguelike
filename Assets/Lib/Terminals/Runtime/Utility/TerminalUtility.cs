@@ -3,6 +3,8 @@ using Unity.Mathematics;
 using Sark.Common;
 using Unity.Entities;
 using Unity.Transforms;
+using Unity.Rendering;
+using UnityEngine;
 
 namespace Sark.Terminals
 {
@@ -10,15 +12,31 @@ namespace Sark.Terminals
     {
         public static TerminalBuilder MakeTerminal(EntityManager em)
         {
-            var entity = em.CreateEntity();
-            em.AddComponents(entity, TerminalComponents);
-            em.SetComponentData<TileSize>(entity, new float2(1, 1));
-            em.SetComponentData<TerminalSize>(entity, new int2(10, 10));
+            var e = em.CreateEntity();
+            return AddComponents(em, e);
+        }
+
+        public static TerminalBuilder AddComponents(EntityManager em, Entity e)
+        {
+            em.AddComponents(e, TerminalComponents);
+            em.SetComponentData<TileSize>(e, new float2(1, 1));
+            em.SetComponentData<TerminalSize>(e, new int2(10, 10));
+
+            var mesh = new Mesh();
+            mesh.MarkDynamic();
+            var mat = Resources.Load<Material>("Terminal8x8");
+            var desc = new RenderMeshDescription(mesh, mat);
+
+            RenderMeshUtility.AddComponents(e, em, desc);
+
+            em.AddBuffer<TerminalMeshTileDataBuffer>(e);
+            em.AddBuffer<TerminalMeshIndexBuffer>(e);
+            em.AddBuffer<TerminalMeshVertsBuffer>(e);
 
 #if UNITY_EDITOR
-            em.SetName(entity, "Terminal");
+            em.SetName(e, "Terminal");
 #endif
-            return new TerminalBuilder(em, entity);
+            return new TerminalBuilder(em, e);
         }
 
         public static int2 WorldToTileIndex(float3 worldPos,

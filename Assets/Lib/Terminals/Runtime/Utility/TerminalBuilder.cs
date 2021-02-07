@@ -4,6 +4,8 @@ using Unity.Mathematics;
 using Unity.Transforms;
 
 using Sark.Terminals.Utility;
+using Unity.Rendering;
+using UnityEngine;
 
 namespace Sark.Terminals
 {
@@ -41,6 +43,8 @@ namespace Sark.Terminals
             return this;
         }
 
+        public TerminalBuilder WithPosition(float x, float y, float z = 0) =>
+            WithPosition(new float3(x, y, z));
         public TerminalBuilder WithPosition(float3 pos)
         {
             em.SetComponentData<Translation>(e, new Translation
@@ -51,16 +55,19 @@ namespace Sark.Terminals
             return this;
         }
 
-        public TerminalBuilder WithCenteredPosition(float x, float y, float z = 0)
-            => WithCenteredPosition(new float3(x, y, z));
-        public TerminalBuilder WithCenteredPosition(float3 pos)
+        public TerminalBuilder WithAlignment(float xAlign, float yAlign) =>
+            WithAlignment(new float2(xAlign, yAlign));
+        public TerminalBuilder WithAlignment(float2 align)
         {
+            float3 p = em.GetComponentData<Translation>(e).Value;
             float2 size = em.GetComponentData<TerminalSize>(e).Value;
             float2 tileSize = em.GetComponentData<TileSize>(e).Value;
-            pos.xy -= (size * tileSize / 2);
+
+            float2 halfSize = size * tileSize / 2;
+            p.xy += halfSize * align;
             em.SetComponentData<Translation>(e, new Translation
             {
-                Value = pos
+                Value = p
             });
             return this;
         }
