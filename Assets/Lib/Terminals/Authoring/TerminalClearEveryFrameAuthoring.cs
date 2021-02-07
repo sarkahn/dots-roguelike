@@ -1,7 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using Unity.Entities;
 using UnityEngine;
+
+using Sark.Terminals.Utility;
 
 namespace Sark.Terminals.Authoring
 {

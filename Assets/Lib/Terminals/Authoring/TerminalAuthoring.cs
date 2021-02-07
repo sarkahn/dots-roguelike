@@ -37,6 +37,7 @@ namespace Sark.Terminals.Authoring
             }
             Terminal.AddToEntity(dstManager, entity, Size.x, Size.y, TileSize.x, TileSize.y);
         }
+
         static Color ColorFromName(string name)
         {
             var hash = CalculateHash(name);

@@ -339,9 +339,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d3561291b78d0243bfbad1cfb869f80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxParticles: 1493
-  Lifetime: 1.5
-  EmissionRate: 149
+  MaxParticles: 20000
+  Lifetime: 30
+  EmissionRate: 300
 --- !u!4 &63499489
 Transform:
   m_ObjectHideFlags: 0
@@ -514,7 +514,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 12.5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -753,9 +753,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0.037037037
+    y: 0
     width: 1
-    height: 0.9259259
+    height: 1
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60

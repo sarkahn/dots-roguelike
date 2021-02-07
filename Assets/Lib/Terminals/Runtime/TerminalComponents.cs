@@ -1,9 +1,7 @@
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
-
 using Color = UnityEngine.Color;
-using Debug = UnityEngine.Debug;
 
 namespace Sark.Terminals
 {
@@ -109,55 +107,4 @@ namespace Sark.Terminals
 
     public struct UpdateTerminal : IComponentData
     { }
-
-    public struct TerminalBorderOnCreate : IComponentData
-    {}
-
-    [UpdateInGroup(typeof(InitializationSystemGroup))]
-    public class TerminalInitSystem : SystemBase
-    {
-        void CheckComponent<T>(Entity e) where T : unmanaged, IComponentData
-        {
-            bool exists = HasComponent<T>(e);
-            Debug.Log($"Has {typeof(T)} : {exists}");
-        }
-
-        static void CheckBuffer<T>(Entity e, BufferFromEntity<T> bfe) where T : unmanaged, IBufferElementData
-        {
-            bool exists = bfe.HasComponent(e);
-            Debug.Log($"Has {typeof(T)} : {exists}");
-        }
-
-        static void PrintHasComponent<T>(bool hasComponent)
-        {
-            Debug.Log($"Has {typeof(T)} : {hasComponent}");
-        }
-
-        protected override void OnUpdate()
-        {
-            Entities
-                .WithChangeFilter<TerminalSize>()
-                .WithName("ResizeTerminal")
-                .ForEach((Entity e,
-                ref DynamicBuffer<TerminalTilesBuffer> tilesBuffer,
-                in TerminalSize termSize) =>
-                {
-                    int len = termSize.Length;
-                    Debug.Log("Terminal Resized");
-                    tilesBuffer.ResizeUninitialized(len);
-                    var tiles = tilesBuffer.Reinterpret<TerminalTile>().AsNativeArray();
-                    for (int i = 0; i < tiles.Length; ++i)
-                    {
-                        tiles[i] = new TerminalTile
-                        {
-                            FGColor = Color.white,
-                            BGColor = Color.black,
-                            Glyph = 3
-                        };
-                    }
-                }).Schedule();
-        }
-
-
-    }
 }

@@ -9,6 +9,7 @@ namespace Sark.Terminals.Authoring
     {
         private void OnEnable()
         {
+            
             var renderer = GetComponent<MeshRenderer>();
             if (renderer.sharedMaterial == null)
             {

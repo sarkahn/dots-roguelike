@@ -1,11 +1,26 @@
 using Unity.Mathematics;
 
 using Sark.Common;
+using Unity.Entities;
+using Unity.Transforms;
 
 namespace Sark.Terminals
 {
     public static class TerminalUtility
     {
+        public static TerminalBuilder MakeTerminal(EntityManager em)
+        {
+            var entity = em.CreateEntity();
+            em.AddComponents(entity, TerminalComponents);
+            em.SetComponentData<TileSize>(entity, new float2(1, 1));
+            em.SetComponentData<TerminalSize>(entity, new int2(10, 10));
+
+#if UNITY_EDITOR
+            em.SetName(entity, "Terminal");
+#endif
+            return new TerminalBuilder(em, entity);
+        }
+
         public static int2 WorldToTileIndex(float3 worldPos,
             float3 terminalPos,
             int2 terminalSize,
@@ -32,5 +47,15 @@ namespace Sark.Terminals
             worldPos.xy += halfSize;
             return worldPos;
         }
+
+        public static readonly ComponentTypes TerminalComponents = 
+            new ComponentTypes(new ComponentType[]
+        {
+            ComponentType.ReadOnly<Terminal>(),
+            ComponentType.ReadOnly<TerminalSize>(),
+            ComponentType.ReadOnly<TileSize>(),
+            ComponentType.ReadOnly<TerminalTilesBuffer>(),
+            ComponentType.ReadOnly<Translation>()
+        });
     } 
 }
