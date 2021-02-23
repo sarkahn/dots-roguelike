@@ -26,16 +26,11 @@ namespace Sark.Terminals.Authoring
 
         public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem)
         {
-            if (_snapToGrid)
-            {
-                float3 pos = transform.position;
-                pos = TerminalUtility.PositionSnap(pos, Size, TileSize);
-                dstManager.AddComponentData<Translation>(entity, new Translation
-                {
-                    Value = pos
-                });
-            }
-            Terminal.AddToEntity(dstManager, entity, Size.x, Size.y, TileSize.x, TileSize.y);
+            //Terminal.AddToEntity(dstManager, entity, Size.x, Size.y, TileSize.x, TileSize.y);
+            TerminalUtility.AddComponents(dstManager, entity)
+                .WithTileSize(TileSize)
+                .WithSize(Size)
+                .WithPosition(transform.position);
         }
 
         static Color ColorFromName(string name)

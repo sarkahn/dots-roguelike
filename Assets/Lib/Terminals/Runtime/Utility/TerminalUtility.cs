@@ -3,13 +3,15 @@ using Unity.Mathematics;
 using Sark.Common;
 using Unity.Entities;
 using Unity.Transforms;
-using Unity.Rendering;
-using UnityEngine;
 
 namespace Sark.Terminals
 {
     public static class TerminalUtility
     {
+        public static TerminalBuilder MakeTerminal()
+        {
+            return MakeTerminal(World.DefaultGameObjectInjectionWorld.EntityManager);
+        }
         public static TerminalBuilder MakeTerminal(EntityManager em)
         {
             var e = em.CreateEntity();
@@ -21,17 +23,6 @@ namespace Sark.Terminals
             em.AddComponents(e, TerminalComponents);
             em.SetComponentData<TileSize>(e, new float2(1, 1));
             em.SetComponentData<TerminalSize>(e, new int2(10, 10));
-
-            var mesh = new Mesh();
-            mesh.MarkDynamic();
-            var mat = Resources.Load<Material>("Terminal8x8");
-            var desc = new RenderMeshDescription(mesh, mat);
-
-            RenderMeshUtility.AddComponents(e, em, desc);
-
-            em.AddBuffer<TerminalMeshTileDataBuffer>(e);
-            em.AddBuffer<TerminalMeshIndexBuffer>(e);
-            em.AddBuffer<TerminalMeshVertsBuffer>(e);
 
 #if UNITY_EDITOR
             em.SetName(e, "Terminal");
@@ -66,6 +57,13 @@ namespace Sark.Terminals
             return worldPos;
         }
 
+        public static TerminalAccessor GetTerminalAccessor(EntityManager em, Entity termEntity)
+        {
+            var size = em.GetComponentData<TerminalSize>(termEntity);
+            var tiles = em.GetBuffer<TerminalTilesBuffer>(termEntity);
+            return new TerminalAccessor(tiles, size);
+        }
+
         public static readonly ComponentTypes TerminalComponents = 
             new ComponentTypes(new ComponentType[]
         {
@@ -73,7 +71,8 @@ namespace Sark.Terminals
             ComponentType.ReadOnly<TerminalSize>(),
             ComponentType.ReadOnly<TileSize>(),
             ComponentType.ReadOnly<TerminalTilesBuffer>(),
-            ComponentType.ReadOnly<Translation>()
+            ComponentType.ReadOnly<Translation>(),
+            ComponentType.ReadOnly<GridToWorld>()
         });
     } 
 }

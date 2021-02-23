@@ -1,4 +1,6 @@
+using Unity.Collections;
 using Unity.Entities;
+using Unity.Mathematics;
 
 namespace Sark.Terminals.Utility
 {
@@ -10,6 +12,12 @@ namespace Sark.Terminals.Utility
 
     public struct TerminalClearEveryFrame : IComponentData
     {}
+
+    public struct TerminalAddText : IComponentData
+    {
+        public FixedString128 str;
+        public int2 position;
+    }
 
     public struct TerminalFillOnce : IComponentData
     {

@@ -1,38 +1,14 @@
+using System.Collections;
+using System.Collections.Generic;
 using Unity.Entities;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Rendering;
-using Unity.Rendering;
 
-namespace Sark.Terminals
+namespace Sark.Terminals.Rendering
 {
-    [UpdateInGroup(typeof(InitializationSystemGroup))]
-    [UpdateAfter(typeof(TerminalRenderInitSystem))]
-    public class TerminalUpdateRenderMeshBoundsSystem : SystemBase
-    {
-        protected override void OnUpdate()
-        {
-            Entities
-                .WithName("UpdateRenderMeshBounds")
-                .WithChangeFilter<TerminalSize>()
-                .ForEach((
-                    ref RenderBounds bounds,
-                    in TerminalSize size,
-                    in TileSize tileSize) =>
-                {
-                    float2 halfSize = (size.Value * tileSize.Value) / 2;
-                    var aabb = new AABB
-                    {
-                        Center = new float3(halfSize, 0),
-                        Extents = new float3(halfSize, 2)
-                    };
-                    bounds.Value = aabb;
-                }).Schedule();
-        }
-    }
-
     [UpdateInGroup(typeof(PresentationSystemGroup))]
-    public class TerminalRenderMeshSystem : SystemBase
+    public class TerminalGameObjectHybridRenderSystem : SystemBase
     {
         public static readonly VertexAttributeDescriptor[] Descriptors = new[]
         {
@@ -65,29 +41,25 @@ namespace Sark.Terminals
 
         protected override void OnUpdate()
         {
+
             Entities
-            .WithName("UpdateTerminalRenderMeshVerts")
-            .WithStructuralChanges()
-            .WithChangeFilter<TerminalMeshVertsBuffer>()
+            .WithName("TerminalGOHybridUpdateVerts")
+            .WithoutBurst()
+            .WithChangeFilter<TerminalMeshDataVertices>()
             .ForEach((Entity e,
-                RenderMesh renderMesh,
-                in DynamicBuffer<TerminalMeshVertsBuffer> meshVertsBuffer,
-                in DynamicBuffer<TerminalMeshIndexBuffer> meshIndexBuffer,
+                MeshFilter filter,
+                in DynamicBuffer<TerminalMeshDataVertices> meshVertsBuffer,
+                in DynamicBuffer<TerminalMeshDataIndices> meshIndexBuffer,
                 in TerminalSize size) =>
             {
-                if (renderMesh.mesh == null)
-                {
-                    var newMesh = new Mesh();
-                    newMesh.MarkDynamic();
-                    renderMesh.mesh = newMesh;
-                }
-
-                var mesh = renderMesh.mesh;
-
+                //Debug.Log("Update Terminal MeshData verts");
                 int tileCount = size.Length;
+                if (filter == null || meshVertsBuffer.Length == 0)
+                    return;
 
                 var verts = meshVertsBuffer.Reinterpret<float3>().AsNativeArray();
                 var indices = meshIndexBuffer.Reinterpret<ushort>().AsNativeArray();
+                var mesh = filter.sharedMesh;
 
                 mesh.Clear();
                 mesh.SetVertexBufferParams(4 * tileCount, Descriptors);
@@ -99,25 +71,24 @@ namespace Sark.Terminals
                 mesh.SetSubMesh(0, new SubMeshDescriptor(0, indices.Length), Flags);
 
                 mesh.RecalculateBounds();
-
-                renderMesh.mesh = mesh;
-                EntityManager.SetSharedComponentData(e, renderMesh);
             }).Run();
 
             Entities
-            .WithStructuralChanges()
-            .WithName("UpdateRenderMeshTileData")
-            .WithChangeFilter<TerminalMeshTileDataBuffer>()
-            .ForEach((Entity e, RenderMesh renderMesh,
-            in DynamicBuffer<TerminalMeshTileDataBuffer> tileDataBuffer) =>
+            .WithoutBurst()
+            .WithName("TerminalGOHybridUpdateTiles")
+            .WithChangeFilter<TerminalMeshDataTiles>()
+            .ForEach((Entity e, MeshFilter filter,
+            in DynamicBuffer<TerminalMeshDataTiles> tileDataBuffer) =>
             {
-                Debug.Log("Updating rendermesh data");
+                if (filter == null || tileDataBuffer.Length == 0)
+                    return;
+                //Debug.Log("Updating terminal mesh data (rendering)");
 
                 var tileData = tileDataBuffer.Reinterpret<VertTileData>().AsNativeArray();
-                var mesh = renderMesh.mesh;
+                var mesh = filter.sharedMesh;
                 mesh.SetVertexBufferData(tileData, 0, 0, tileData.Length, 1, Flags);
-                EntityManager.SetSharedComponentData(e, renderMesh);
             }).Run();
+
         }
     }
 }

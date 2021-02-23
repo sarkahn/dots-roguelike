@@ -39,7 +39,6 @@ namespace Sark.Terminals
         }
     }
 
-
     public struct TerminalSize : IComponentData
     {
         public int2 Value;
@@ -87,7 +86,7 @@ namespace Sark.Terminals
 
         public TerminalAccessor GetAccessor()
         {
-            return new TerminalAccessor(Tiles, Size, WorldPos);
+            return new TerminalAccessor(Tiles, Size);
         }
 
         public void SetDirty()

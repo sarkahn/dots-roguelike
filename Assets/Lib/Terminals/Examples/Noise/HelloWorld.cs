@@ -31,7 +31,7 @@ namespace Sark.Terminals.Examples
             {
                 if (tilesBuffer.Length == 0)
                     return;
-                var term = new TerminalAccessor(tilesBuffer, size, translation.Value);
+                var term = new TerminalAccessor(tilesBuffer, size);
                 term.ClearScreen();
                 term.DrawBorder();
                 term.Print(5, 5, "Hello, world!");

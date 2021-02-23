@@ -2,6 +2,7 @@ using Sark.Terminals;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
+using UnityEngine;
 using Color32 = UnityEngine.Color32;
 
 namespace Sark.Particles2D
@@ -22,11 +23,11 @@ namespace Sark.Particles2D
         {
             var termFromEntity = GetBufferFromEntity<TerminalTilesBuffer>(false);
             var termSizeFromEntity = GetComponentDataFromEntity<TerminalSize>(true);
-            var posFromEntity = GetComponentDataFromEntity<Translation>(true);
+            var gridToWorldFromEntity = GetComponentDataFromEntity<GridToWorld>(true);
 
             Entities
                 .WithReadOnly(termSizeFromEntity)
-                .WithReadOnly(posFromEntity)
+                .WithReadOnly(gridToWorldFromEntity)
                 .ForEach((
                 in DynamicBuffer<Particle2DPosition> posBuffer,
                 in DynamicBuffer<Particle2DColor> colBuffer,
@@ -36,24 +37,28 @@ namespace Sark.Particles2D
             {
                 int2 size = termSizeFromEntity[target];
                 var tileBuffer = termFromEntity[target];
-                var term = new TerminalAccessor(tileBuffer, size, posFromEntity[target].Value);
+                var term = new TerminalAccessor(tileBuffer, size);
                 if (term.Length == 0)
                     return;
+
+                var gridToWorld = gridToWorldFromEntity[target];
 
                 var positions = posBuffer.Reinterpret<float2>().AsNativeArray();
                 var colors = colBuffer.Reinterpret<Color32>().AsNativeArray();
                 var glyphs = glyphBuffer.Reinterpret<byte>().AsNativeArray();
-
+                //Debug.Log("Drawing particles");
                 for(int i = 0; i < alive; ++i)
                 {
-                    float2 worldPos = positions[i];
-                    int2 xy = term.WorldToLocalIndex2D(worldPos);
+                    float3 worldPos = new float3(positions[i], 0);
+                    int2 xy = gridToWorld.WorldToGridPosition(worldPos);//term.WorldToLocalIndex2D(worldPos);
 
                     if (!term.InBounds(xy))
                         continue;
 
                     var tile = term[xy];
                     tile.BGColor = colors[i];
+                    tile.Glyph = CodePage437.ToCP437('*');
+                    tile.FGColor = Color.blue;
                     term[xy] = tile;
                 }
             }).Schedule();

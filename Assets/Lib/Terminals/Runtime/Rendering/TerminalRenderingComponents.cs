@@ -2,18 +2,8 @@ using System.Runtime.InteropServices;
 using Unity.Entities;
 using Unity.Mathematics;
 
-namespace Sark.Terminals
+namespace Sark.Terminals.Rendering
 {
-    public struct TerminalRenderer
-    {
-        public static void AddToEntity(EntityManager em, Entity e)
-        {
-            em.AddBuffer<TerminalMeshTileDataBuffer>(e);
-            em.AddBuffer<TerminalMeshIndexBuffer>(e);
-            em.AddBuffer<TerminalMeshVertsBuffer>(e);
-        }
-    }
-
     [StructLayout(LayoutKind.Sequential)]
     public struct VertTileData
     {
@@ -22,29 +12,29 @@ namespace Sark.Terminals
         public float4 BGColor;
     }
 
-    public struct TerminalMeshVertsBuffer : IBufferElementData
+    public struct TerminalMeshDataVertices : IBufferElementData
     {
         public float3 Value;
-        public static implicit operator float3(TerminalMeshVertsBuffer b) => b.Value;
-        public static implicit operator TerminalMeshVertsBuffer(float3 v) =>
-            new TerminalMeshVertsBuffer { Value = v };
+        public static implicit operator float3(TerminalMeshDataVertices b) => b.Value;
+        public static implicit operator TerminalMeshDataVertices(float3 v) =>
+            new TerminalMeshDataVertices { Value = v };
     }
 
-    public struct TerminalMeshIndexBuffer : IBufferElementData
+    public struct TerminalMeshDataIndices : IBufferElementData
     {
         public ushort Value;
-        public static implicit operator ushort(TerminalMeshIndexBuffer b) => b.Value;
-        public static implicit operator TerminalMeshIndexBuffer(ushort v) =>
-            new TerminalMeshIndexBuffer { Value = v };
+        public static implicit operator ushort(TerminalMeshDataIndices b) => b.Value;
+        public static implicit operator TerminalMeshDataIndices(ushort v) =>
+            new TerminalMeshDataIndices { Value = v };
     }
 
     [InternalBufferCapacity(10)]
-    public struct TerminalMeshTileDataBuffer : IBufferElementData
+    public struct TerminalMeshDataTiles : IBufferElementData
     {
         public VertTileData Value;
-        public static implicit operator VertTileData(TerminalMeshTileDataBuffer b) => b.Value;
-        public static implicit operator TerminalMeshTileDataBuffer(VertTileData v) =>
-            new TerminalMeshTileDataBuffer { Value = v };
+        public static implicit operator VertTileData(TerminalMeshDataTiles b) => b.Value;
+        public static implicit operator TerminalMeshDataTiles(VertTileData v) =>
+            new TerminalMeshDataTiles { Value = v };
     }
 
 }

@@ -1,31 +1,31 @@
 using System.Runtime.InteropServices;
 using Unity.Entities;
 using Unity.Mathematics;
-using UnityEngine;
-using UnityEngine.Rendering;
 
 using Sark.Common.GridUtil;
 
-namespace Sark.Terminals
+using Debug = UnityEngine.Debug;
+using Color = UnityEngine.Color;
+
+namespace Sark.Terminals.Rendering
 {
     [UpdateInGroup(typeof(InitializationSystemGroup))]
     [UpdateAfter(typeof(TerminalResizeSystem))]
-    public class TerminalRenderInitSystem : SystemBase
+    public class TerminalMeshDataResizeSystem : SystemBase
     {
-
         protected override void OnUpdate()
         {
         Entities
-            .WithName("ResizeTerminalMeshData")
+            .WithName("TerminalResizeMeshData")
             .WithChangeFilter<TerminalSize>()
             .ForEach((
-                ref DynamicBuffer<TerminalMeshVertsBuffer> vertsBuffer,
-                ref DynamicBuffer<TerminalMeshIndexBuffer> indexBuffer,
-                ref DynamicBuffer<TerminalMeshTileDataBuffer> tileDataBuffer,
+                ref DynamicBuffer<TerminalMeshDataVertices> vertsBuffer,
+                ref DynamicBuffer<TerminalMeshDataIndices> indexBuffer,
+                ref DynamicBuffer<TerminalMeshDataTiles> tileDataBuffer,
                 in TerminalSize size,
                 in TileSize tileSize) =>
             {
-                Debug.Log("TerminalBuffer Size Change");
+                //Debug.Log("Resize Terminal MeshData");
                 int tileCount = size.Length;
                 vertsBuffer.ResizeUninitialized(tileCount * 4);
                 indexBuffer.ResizeUninitialized(tileCount * 6);
@@ -74,19 +74,19 @@ namespace Sark.Terminals
         }
     }
 
-    [UpdateInGroup(typeof(InitializationSystemGroup))]
-    public class TerminalUpdateRenderDataSystem : SystemBase
+    [UpdateInGroup(typeof(SimulationSystemGroup), OrderLast = true)]
+    public class TerminalUpdateMeshDataTilesSystem : SystemBase
     {
         protected override void OnUpdate()
         {
             Entities
-           .WithName("UpdateTerminalRenderDataFromTileData")
+           .WithName("TerminalUpdateMeshDataTiles")
            .WithChangeFilter<TerminalTilesBuffer>()
            .ForEach((
-               ref DynamicBuffer<TerminalMeshTileDataBuffer> vertDataBuffer,
+               ref DynamicBuffer<TerminalMeshDataTiles> vertDataBuffer,
                in DynamicBuffer<TerminalTilesBuffer> tilesBuffer) =>
            {
-               //Debug.Log("Updating tile data");
+               //Debug.Log("Updating terminal MeshData tiles");
                float2 uvSize = 1f / 16f;
                float2 uvRight = new float2(uvSize.x, 0);
                float2 uvUp = new float2(0, uvSize.y);
@@ -142,88 +142,5 @@ namespace Sark.Terminals
 
         static float4 FromColor(Color c) =>
             new float4(c.r, c.g, c.b, c.a);
-    }
-
-    [UpdateInGroup(typeof(PresentationSystemGroup))]
-    public class TerminalRenderSystem : SystemBase
-    {
-        public static readonly VertexAttributeDescriptor[] Descriptors = new[]
-        {
-            // Positions
-            new VertexAttributeDescriptor(
-                VertexAttribute.Position,
-                VertexAttributeFormat.Float32,
-                3, 0),
-            // UVs
-            new VertexAttributeDescriptor(
-                VertexAttribute.TexCoord0,
-                VertexAttributeFormat.Float32,
-                2, 1),
-            // Foreground Colors
-            new VertexAttributeDescriptor(
-                VertexAttribute.TexCoord1,
-                VertexAttributeFormat.Float32,
-                4, 1),
-            // Background Colors
-            new VertexAttributeDescriptor(
-                VertexAttribute.TexCoord2,
-                VertexAttributeFormat.Float32,
-                4, 1),
-        };
-
-        static readonly MeshUpdateFlags Flags = MeshUpdateFlags.DontValidateIndices |
-        MeshUpdateFlags.DontNotifyMeshUsers |
-        MeshUpdateFlags.DontRecalculateBounds |
-        MeshUpdateFlags.DontResetBoneBounds;
-
-        protected override void OnUpdate()
-        {
-            Entities
-            .WithName("UpdateTerminalMeshVerts")
-            .WithoutBurst()
-            .WithChangeFilter<TerminalMeshVertsBuffer>()
-            .ForEach((Entity e,
-                MeshFilter filter,
-                in DynamicBuffer<TerminalMeshVertsBuffer> meshVertsBuffer,
-                in DynamicBuffer<TerminalMeshIndexBuffer> meshIndexBuffer,
-                in TerminalSize size) =>
-            {
-                Debug.Log("Rebuilding Mesh Verts");
-                int tileCount = size.Length;
-                if (filter == null)
-                    return;
-
-                var verts = meshVertsBuffer.Reinterpret<float3>().AsNativeArray();
-                var indices = meshIndexBuffer.Reinterpret<ushort>().AsNativeArray();
-                var mesh = filter.sharedMesh;
-
-                mesh.Clear();
-                mesh.SetVertexBufferParams(4 * tileCount, Descriptors);
-                mesh.SetIndexBufferParams(6 * tileCount, IndexFormat.UInt16);
-
-                mesh.SetVertexBufferData(verts, 0, 0, verts.Length, 0, Flags);
-                mesh.SetIndexBufferData(indices, 0, 0, indices.Length, Flags);
-
-                mesh.SetSubMesh(0, new SubMeshDescriptor(0, indices.Length), Flags);
-
-                mesh.RecalculateBounds();
-            }).Run();
-
-            Entities
-            .WithoutBurst()
-            .WithName("UpdateTerminalRendererTileData")
-            .WithChangeFilter<TerminalMeshTileDataBuffer>()
-            .ForEach((Entity e, MeshFilter filter,
-            in DynamicBuffer<TerminalMeshTileDataBuffer> tileDataBuffer) =>
-            {
-                //Debug.Log("Updating mesh data");
-                if (filter == null)
-                    return;
-
-                var tileData = tileDataBuffer.Reinterpret<VertTileData>().AsNativeArray();
-                var mesh = filter.sharedMesh;
-                mesh.SetVertexBufferData(tileData, 0, 0, tileData.Length, 1, Flags);
-            }).Run();
-        }
     }
 }

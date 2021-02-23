@@ -1,6 +1,4 @@
 using Unity.Entities;
-using Unity.Mathematics;
-using Unity.Transforms;
 
 using Color = UnityEngine.Color;
 using Debug = UnityEngine.Debug;
@@ -14,13 +12,13 @@ namespace Sark.Terminals
         {
             Entities
             .WithChangeFilter<TerminalSize>()
-            .WithName("ResizeTerminal")
+            .WithName("TerminalResize")
             .ForEach((Entity e,
             ref DynamicBuffer<TerminalTilesBuffer> tilesBuffer,
             in TerminalSize termSize) =>
             {
                 int len = termSize.Length;
-                Debug.Log("Terminal Resized");
+                //Debug.Log("Terminal Resized");
                 tilesBuffer.ResizeUninitialized(len);
                 var tiles = tilesBuffer.Reinterpret<TerminalTile>().AsNativeArray();
                 for (int i = 0; i < tiles.Length; ++i)
@@ -29,7 +27,7 @@ namespace Sark.Terminals
                     {
                         FGColor = Color.white,
                         BGColor = Color.black,
-                        Glyph = 1
+                        Glyph = 0
                     };
                 }
             }).Schedule();

@@ -16,7 +16,7 @@ namespace Sark.Terminals.Authoring
             Undo.RegisterCreatedObjectUndo(go, "CreateTerminal");
 
             go.AddComponent<TerminalAuthoring>();
-            go.AddComponent<TerminalRendererAuthoring>();
+            go.AddComponent<TerminalGameObjectHybridAuthoring>();
             go.AddComponent<ConvertToEntity>();
 
             Selection.activeGameObject = go;

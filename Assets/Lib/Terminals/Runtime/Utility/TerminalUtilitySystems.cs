@@ -3,6 +3,8 @@ using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
 
+using Debug = UnityEngine.Debug;
+
 namespace Sark.Terminals.Utility
 {
     [UpdateInGroup(typeof(InitializationSystemGroup), OrderLast = true)]
@@ -23,13 +25,12 @@ namespace Sark.Terminals.Utility
                 .ForEach((
                 Entity e,
                 ref DynamicBuffer<TerminalTilesBuffer> tilesBuffer,
-                in TerminalSize size,
-                in Translation translation) =>
+                in TerminalSize size) =>
                 {
                     if (tilesBuffer.Length == 0)
                         return;
 
-                    var term = new TerminalAccessor(tilesBuffer, size, translation.Value);
+                    var term = new TerminalAccessor(tilesBuffer, size);
                     term.DrawBorder();
                     ecb.RemoveComponent<TerminalAddBorder>(e);
                 }).Schedule();
@@ -54,14 +55,14 @@ namespace Sark.Terminals.Utility
                 .WithAll<TerminalClearEveryFrame>()
                 .ForEach((
                 ref DynamicBuffer<TerminalTilesBuffer> tilesBuffer,
-                in TerminalSize size,
-                in Translation pos) =>
+                in TerminalSize size) =>
                 {
                     if (tilesBuffer.Length == 0)
                         return;
 
-                    var term = new TerminalAccessor(tilesBuffer, size, pos.Value);
+                    var term = new TerminalAccessor(tilesBuffer, size);
                     term.ClearScreen();
+                    //Debug.Log("Clearing terminal");
                 }).ScheduleParallel();
 
             var ecb = _barrier.CreateCommandBuffer();
@@ -77,10 +78,10 @@ namespace Sark.Terminals.Utility
                     if (tilesBuffer.Length == 0)
                         return;
 
-                    var term = new TerminalAccessor(tilesBuffer, size, pos.Value);
+                    var term = new TerminalAccessor(tilesBuffer, size);
                     term.ClearScreen();
                     ecb.RemoveComponent<TerminalClearOnce>(e);
-                }).ScheduleParallel();
+                }).Schedule();
 
             _barrier.AddJobHandleForProducer(Dependency);
         }
@@ -190,6 +191,37 @@ namespace Sark.Terminals.Utility
                 }
             }).Schedule();
 
+            _barrier.AddJobHandleForProducer(Dependency);
+        }
+    }
+
+    public class TerminalAddTextSystem : SystemBase
+    {
+        EntityCommandBufferSystem _barrier;
+
+        protected override void OnCreate()
+        {
+            _barrier = World.GetOrCreateSystem<EndSimulationEntityCommandBufferSystem>();
+        }
+
+        protected override void OnUpdate()
+        {
+            var ecb = _barrier.CreateCommandBuffer();
+            Entities
+                .ForEach((
+                    Entity e,
+                    ref DynamicBuffer<TerminalTilesBuffer> tilesBuffer,
+                    in TerminalSize size,
+                    in TerminalAddText text) =>
+                {
+                    if (tilesBuffer.Length == 0)
+                        return;
+
+                    //Debug.Log("ADDING TEXT");
+                    ecb.RemoveComponent<TerminalAddText>(e);
+                    var term = new TerminalAccessor(tilesBuffer, size);
+                    term.Print(text.position, text.str);
+                }).Schedule();
             _barrier.AddJobHandleForProducer(Dependency);
         }
     }

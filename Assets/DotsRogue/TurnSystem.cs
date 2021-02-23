@@ -109,5 +109,4 @@ namespace DotsRogue
             _barrier.AddJobHandleForProducer(Dependency);
         }
     }
-
 }

@@ -2,11 +2,7 @@ using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Assertions;
 
-using Color32 = UnityEngine.Color32;
-using Unity.Burst;
-using Unity.Collections;
 using Unity.Jobs;
-using UnityEngine.Jobs;
 
 namespace Sark.Particles2D
 {
@@ -49,7 +45,8 @@ namespace Sark.Particles2D
     {
         protected override void OnUpdate()
         {
-            Entities.ForEach((
+            Entities
+                .ForEach((
                 ref Particle2DCountAlive alive,
                 ref DynamicBuffer<Particle2DVelocity> velBuffer,
                 ref DynamicBuffer<Particle2DAcceleration> accelBuffer,
